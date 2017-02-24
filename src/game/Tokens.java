@@ -7,13 +7,13 @@ class Tokens {
     private int black;
     private int red;
 
-    Tokens(int green, int white, int blue, int black, int red, int yellow) {
-        this.green = green;
-        this.white = white;
-        this.blue = blue;
-        this.black = black;
-        this.red = red;
-        this.yellow = yellow;
+    Tokens(int commonTokensCount, int rareTokensCount) {
+        this.green = commonTokensCount;
+        this.white = commonTokensCount;
+        this.blue = commonTokensCount;
+        this.black = commonTokensCount;
+        this.red = commonTokensCount;
+        this.yellow = rareTokensCount;
     }
 
     public int getGreen() {
