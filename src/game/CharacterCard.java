@@ -1,7 +1,5 @@
 package game;
 
-import java.util.Random;
-
 public class CharacterCard {
     private final int points = 3;
     private static int index;
