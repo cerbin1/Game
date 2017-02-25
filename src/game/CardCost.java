@@ -2,11 +2,11 @@ package game;
 
 import java.util.Random;
 
-class CharacterCardCost {
+class CardCost {
     private int[] cost = new int[5];
     private Tokens tokens;
 
-    CharacterCardCost() {
+    CardCost() {
         randomCardCost();
         tokens = setTokens();
     }

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class Game {
     static Tokens tokens = new Tokens(7, 5);
-    private CharacterCard[] characterCards = new CharacterCard[10];
+    private Card[] cards = new Card[10];
     private Player[] players = new Player[4];
 
     private void startGame() {
@@ -20,8 +20,8 @@ public class Game {
     }
 
     private void initializeCharacterCards() {
-        for (int i = 0; i < characterCards.length; i++) {
-            characterCards[i] = new CharacterCard();
+        for (int i = 0; i < cards.length; i++) {
+            cards[i] = new Card();
         }
     }
 
