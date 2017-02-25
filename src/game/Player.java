@@ -1,8 +1,12 @@
 package game;
 
 public class Player {
-    private Tokens tokens = new Tokens(7, 5);
+    private Tokens tokens;
     private int points;
+
+    Player(Tokens tokens) {
+        this.tokens = tokens;
+    }
 
     public int getPoints() {
         return points;

@@ -1,7 +1,8 @@
 package game;
 
 class Tokens {
-    private int green, white, blue, black, red, yellow;
+    private int green, white, blue, black, red;
+    private int versatile;
 
     Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
@@ -9,7 +10,7 @@ class Tokens {
         this.blue = commonTokensCount;
         this.black = commonTokensCount;
         this.red = commonTokensCount;
-        this.yellow = rareTokensCount;
+        this.versatile = rareTokensCount;
     }
 
     public int getGreen() {
@@ -32,8 +33,7 @@ class Tokens {
         return red;
     }
 
-    public int getYellow() {
-        return yellow;
+    public int getVersatile() {
+        return versatile;
     }
-
 }
