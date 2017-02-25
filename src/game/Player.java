@@ -1,6 +1,6 @@
 package game;
 
-public class Player {
+class Player {
     private Tokens tokens;
     private int points;
 
@@ -12,7 +12,7 @@ public class Player {
         return points;
     }
 
-    public void setPoints(int points) {
+    public void addPoints(int points) {
         this.points = points;
     }
 }
