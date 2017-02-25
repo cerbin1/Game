@@ -4,6 +4,9 @@ class Tokens {
     private int green, white, blue, black, red;
     private int versatile;
 
+    Tokens() {
+    }
+
     Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
         this.white = commonTokensCount;
