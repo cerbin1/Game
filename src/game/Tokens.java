@@ -1,11 +1,7 @@
 package game;
 
 class Tokens {
-    private int green;
-    private int white;
-    private int blue;
-    private int black;
-    private int red;
+    private int green, white, blue, black, red, yellow;
 
     Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
@@ -40,5 +36,4 @@ class Tokens {
         return yellow;
     }
 
-    private int yellow;
 }
