@@ -5,5 +5,6 @@ public class Game {
 
     public static void main(String[] args) {
         Player player = new Player(new Tokens(7, 5));
+        new CharacterCardCost().displayCost();
     }
 }

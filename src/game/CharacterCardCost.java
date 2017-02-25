@@ -2,19 +2,42 @@ package game;
 
 import java.util.Random;
 
-public class CharacterCardCost {
-    private int green, white, blue, black, red;
-    private boolean[] isCostSet = new boolean[5];
+class CharacterCardCost {
+    private int[] tokens = new int[5];
+    private String[] colors = {"green", "white", "blue", "black", "red"};
 
-    public CharacterCardCost() {
-        if (new Random().nextInt(3) + 1 % 2 == 0) {
-            for (int i = 0; i < 3; i++) {
-                white(true) {
-                    if(!isCostSet[i]) {
+    CharacterCardCost() {
+        randomCardCost();
+        displayCost();
+    }
 
-                    }
-                }
-            }
+    private void randomCardCost() {
+        if (firstCostType()) {
+            setFirstCostType();
+        } else {
+            setSecondCostType();
+        }
+    }
+
+    private void setSecondCostType() {
+        tokens[3] = 4;
+        tokens[4] = 4;
+    }
+
+    private void setFirstCostType() {
+        tokens[0] = 3;
+        tokens[1] = 3;
+        tokens[2] = 3;
+    }
+
+    private boolean firstCostType() {
+        return (new Random().nextInt(3) + 1) % 2 == 0;
+    }
+
+    void displayCost() {
+        System.out.println("Koszt");
+        for (int i = 0; i < tokens.length; i++) {
+            System.out.println(colors[i] + ": " + tokens[i]);
         }
     }
 }
