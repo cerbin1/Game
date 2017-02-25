@@ -1,5 +1,6 @@
 package game;
 
+import org.junit.Assert;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -23,10 +24,10 @@ public class GameTest {
         Game game = factory.create();
 
         // then
-        assertEquals(game.getPayers(), asList(player1, player2));
-        assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
-        assertEquals(game.getRegularCards(), asList(mediumCard1, mediumCard2));
-        assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
+        Assert.assertEquals(game.getPayers(), asList(player1, player2));
+        Assert.assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
+        Assert.assertEquals(game.getRegularCards(), asList(mediumCard1, mediumCard2));
+        Assert.assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
     }
 
     private GameFactory gameFactory() {
