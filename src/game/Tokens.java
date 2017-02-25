@@ -13,12 +13,13 @@ class Tokens {
         this.versatile = rareTokensCount;
     }
 
-    Tokens(int green, int white, int blue, int black, int red) {
+    Tokens(int green, int white, int blue, int black, int red, int versatile) {
         this.green = green;
         this.white = white;
         this.blue = blue;
         this.black = black;
         this.red = red;
+        this.versatile = versatile;
     }
 
     public int getGreen() {

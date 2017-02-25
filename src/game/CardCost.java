@@ -12,7 +12,7 @@ class CardCost {
     }
 
     private Tokens setTokens() {
-        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4]);
+        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4], 0);
     }
 
     private void randomCardCost() {
@@ -23,9 +23,8 @@ class CardCost {
         }
     }
 
-    private void setSecondCostType() {
-        cost[3] = 4;
-        cost[4] = 4;
+    private boolean firstCostType() {
+        return (new Random().nextInt(3) + 1) % 2 == 0;
     }
 
     private void setFirstCostType() {
@@ -34,7 +33,8 @@ class CardCost {
         cost[2] = 3;
     }
 
-    private boolean firstCostType() {
-        return (new Random().nextInt(3) + 1) % 2 == 0;
+    private void setSecondCostType() {
+        cost[3] = 4;
+        cost[4] = 4;
     }
 }
