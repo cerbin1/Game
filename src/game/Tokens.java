@@ -13,6 +13,14 @@ class Tokens {
         this.versatile = rareTokensCount;
     }
 
+    public Tokens(int green, int white, int blue, int black, int red) {
+        this.green = green;
+        this.white = white;
+        this.blue = blue;
+        this.black = black;
+        this.red = red;
+    }
+
     public int getGreen() {
         return green;
     }

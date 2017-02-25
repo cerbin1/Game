@@ -3,12 +3,18 @@ package game;
 import java.util.Random;
 
 class CharacterCardCost {
-    private int[] tokens = new int[5];
+    private int[] cost = new int[5];
+    private Tokens tokens;
     private String[] colors = {"green", "white", "blue", "black", "red"};
 
     CharacterCardCost() {
         randomCardCost();
         displayCost();
+        tokens = setTokens();
+    }
+
+    private Tokens setTokens() {
+        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4]);
     }
 
     private void randomCardCost() {
@@ -20,24 +26,24 @@ class CharacterCardCost {
     }
 
     private void setSecondCostType() {
-        tokens[3] = 4;
-        tokens[4] = 4;
+        cost[3] = 4;
+        cost[4] = 4;
     }
 
     private void setFirstCostType() {
-        tokens[0] = 3;
-        tokens[1] = 3;
-        tokens[2] = 3;
+        cost[0] = 3;
+        cost[1] = 3;
+        cost[2] = 3;
     }
 
     private boolean firstCostType() {
         return (new Random().nextInt(3) + 1) % 2 == 0;
     }
 
-    void displayCost() {
+    private void displayCost() {
         System.out.println("Koszt");
-        for (int i = 0; i < tokens.length; i++) {
-            System.out.println(colors[i] + ": " + tokens[i]);
+        for (int i = 0; i < cost.length; i++) {
+            System.out.println(colors[i] + ": " + cost[i]);
         }
     }
 }
