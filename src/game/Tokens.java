@@ -7,13 +7,15 @@ class Tokens {
     private int black;
     private int red;
 
+    private int versatile;
+
     Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
         this.white = commonTokensCount;
         this.blue = commonTokensCount;
         this.black = commonTokensCount;
         this.red = commonTokensCount;
-        this.yellow = rareTokensCount;
+        this.versatile = rareTokensCount;
     }
 
     public int getGreen() {
@@ -36,9 +38,7 @@ class Tokens {
         return red;
     }
 
-    public int getYellow() {
-        return yellow;
+    public int getVersatile() {
+        return versatile;
     }
-
-    private int yellow;
 }
