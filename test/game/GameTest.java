@@ -35,8 +35,7 @@ public class GameTest {
     @Test
     public void shouldHaveFirstPlayer() {
         // given
-        GameFactory factory = gameFactory();
-        Game game = factory.create();
+        Game game = gameFactory().create();
 
         // when
         Player currentPlayer = game.getCurrentPlayer();
@@ -48,8 +47,7 @@ public class GameTest {
     @Test
     public void shouldChangePlayerAfterTurn() {
         // given
-        GameFactory factory = gameFactory();
-        Game game = factory.create();
+        Game game = gameFactory().create();
 
         // when
         game.performTurn(new AquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
@@ -65,8 +63,7 @@ public class GameTest {
     @Test
     public void shouldGetBackToPlayerAfterTwoTurns() {
         // given
-        GameFactory factory = gameFactory();
-        Game game = factory.create();
+        Game game = gameFactory().create();
 
         // when
         game.performTurn(new PassTurn());
@@ -79,8 +76,7 @@ public class GameTest {
     @Test
     public void shouldHaveCardAndVersatileToken() {
         // given
-        GameFactory factory = gameFactory();
-        Game game = factory.create();
+        Game game = gameFactory().create();
 
         // when
         game.performTurn(new ReservationTurn(cheapCard2));
