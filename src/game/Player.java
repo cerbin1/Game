@@ -3,6 +3,7 @@ package game;
 class Player {
     private Tokens tokens;
     private int points;
+    private boolean starting;
 
     Player(Tokens tokens) {
         this.tokens = tokens;
@@ -14,5 +15,9 @@ class Player {
 
     public void addPoints(int points) {
         this.points = points;
+    }
+
+    void setFirstPlayer() {
+        starting = true;
     }
 }

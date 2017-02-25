@@ -1,11 +1,22 @@
 package game;
 
+import java.util.Random;
+
 public class Game {
     static Tokens tokens = new Tokens(7, 5);
     private Player[] players = new Player[4];
 
     private void startGame() {
         initializePlayers();
+        setStartingPlayer();
+    }
+
+    private void setStartingPlayer() {
+        players[drawPlayer()].setFirstPlayer();
+    }
+
+    private int drawPlayer() {
+        return new Random().nextInt(3);
     }
 
     private void initializePlayers() {
