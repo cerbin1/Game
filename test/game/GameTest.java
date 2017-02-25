@@ -30,6 +30,19 @@ public class GameTest {
         Assert.assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
     }
 
+    @Test
+    public void shouldHaveFirstPlayer() {
+        // given
+        GameFactory factory = gameFactory();
+        Game game = factory.create();
+
+        // when
+        Player currentPlayer = game.getCurrentPlayer();
+
+        // then
+        Assert.assertEquals(currentPlayer, player1);
+    }
+
     private GameFactory gameFactory() {
         GameFactory factory = new GameFactory();
         factory.addPlayer(player1);
