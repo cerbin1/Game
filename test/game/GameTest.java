@@ -14,6 +14,7 @@ public class GameTest {
     private Card mediumCard2 = new MediumCard();
     private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
+    private Tokens gameTokens = new Tokens(7, 5);
 
     @Test
     public void shouldInitializeGame() {
@@ -28,6 +29,7 @@ public class GameTest {
         Assert.assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
         Assert.assertEquals(game.getRegularCards(), asList(mediumCard1, mediumCard2));
         Assert.assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
+        Assert.assertEquals(game.getTokens(), gameTokens);
     }
 
     @Test
@@ -43,8 +45,26 @@ public class GameTest {
         Assert.assertEquals(currentPlayer, player1);
     }
 
+    @Test
+    public void shouldChangePlayerAfterTurn() {
+        // given
+        GameFactory factory = gameFactory();
+        Game game = factory.create();
+
+        // when
+        game.performTurn(new AquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
+
+        // then
+        Assert.assertEquals(gameTokens.getGreen(), 6);
+        Assert.assertEquals(gameTokens.getBlack(), 6);
+        Assert.assertEquals(player1.getTokens.getGreen(), 1);
+        Assert.assertEquals(player1.getTokens.getBlack(), 1);
+        Assert.assertEquals(game.getCurrentPlayer(), player2);
+    }
+
     private GameFactory gameFactory() {
         GameFactory factory = new GameFactory();
+        factory.setTokens(gameTokens);
         factory.addPlayer(player1);
         factory.addPlayer(player2);
         factory.addCard(cheapCard1);
