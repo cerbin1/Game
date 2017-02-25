@@ -6,10 +6,11 @@ public class Game {
     static Tokens tokens = new Tokens(7, 5);
     private Card[] cards = new Card[10];
     private Player[] players = new Player[4];
+    private int currentPlayer = 0;
 
     private void startGame() {
         initializePlayers();
-        initializeCharacterCards();
+        initializeCards();
         setStartingPlayer();
     }
 
@@ -19,14 +20,14 @@ public class Game {
         }
     }
 
-    private void initializeCharacterCards() {
+    private void initializeCards() {
         for (int i = 0; i < cards.length; i++) {
             cards[i] = new Card();
         }
     }
 
     private void setStartingPlayer() {
-        players[drawPlayer()].setFirstPlayer();
+        currentPlayer = drawPlayer();
     }
 
     private int drawPlayer() {
