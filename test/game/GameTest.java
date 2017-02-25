@@ -5,29 +5,19 @@ import org.junit.Test;
 import static java.util.Arrays.asList;
 
 public class GameTest {
+    private Player player1 = new Player(new Tokens());
+    private Player player2 = new Player(new Tokens());
+    private Card cheapCard1 = new CheapCard();
+    private Card cheapCard2 = new CheapCard();
+    private Card mediumCard1 = new MediumCard();
+    private Card mediumCard2 = new MediumCard();
+    private Card expensiveCard1 = new ExpensiveCard();
+    private Card expensiveCard2 = new ExpensiveCard();
 
     @Test
     public void shouldInitializeGame() {
         // given
-        GameFactory factory = new GameFactory();
-
-        Player player1 = new Player(new Tokens());
-        Player player2 = new Player(new Tokens());
-        Card cheapCard1 = new CheapCard();
-        Card cheapCard2 = new CheapCard();
-        Card mediumCard1 = new MediumCard();
-        Card mediumCard2 = new MediumCard();
-        Card expensiveCard1 = new ExpensiveCard();
-        Card expensiveCard2 = new ExpensiveCard();
-
-        factory.addPlayer(player1);
-        factory.addPlayer(player2);
-        factory.addCard(cheapCard1);
-        factory.addCard(cheapCard2);
-        factory.addCard(mediumCard2);
-        factory.addCard(mediumCard1);
-        factory.addCard(expensiveCard1);
-        factory.addCard(expensiveCard2);
+        GameFactory factory = gameFactory();
 
         // when
         Game game = factory.create();
@@ -37,5 +27,18 @@ public class GameTest {
         assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
         assertEquals(game.getRegularCards(), asList(mediumCard1, mediumCard2));
         assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
+    }
+
+    private GameFactory gameFactory() {
+        GameFactory factory = new GameFactory();
+        factory.addPlayer(player1);
+        factory.addPlayer(player2);
+        factory.addCard(cheapCard1);
+        factory.addCard(cheapCard2);
+        factory.addCard(mediumCard2);
+        factory.addCard(mediumCard1);
+        factory.addCard(expensiveCard1);
+        factory.addCard(expensiveCard2);
+        return factory;
     }
 }
