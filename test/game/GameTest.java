@@ -62,6 +62,35 @@ public class GameTest {
         Assert.assertEquals(game.getCurrentPlayer(), player2);
     }
 
+    @Test
+    public void shouldGetBackToPlayerAfterTwoTurns() {
+        // given
+        GameFactory factory = gameFactory();
+        Game game = factory.create();
+
+        // when
+        game.performTurn(new PassTurn());
+        game.performTurn(new PassTurn());
+
+        // then
+        Assert.assertEquals(game.getCurrentPlayer(), player1);
+    }
+
+    @Test
+    public void shouldHaveCardAndVersatileToken() {
+        // given
+        GameFactory factory = gameFactory();
+        Game game = factory.create();
+
+        // when
+        game.performTurn(new ReservationTurn(cheapCard2));
+
+        // then
+        Assert.assertEquals(player1.getCards(), asList(cheapCard2));
+        Assert.assertTrue(cheapCard2.isReserved());
+        Assert.assertEquals(player1.getTokens().getVersatile(), 1);
+    }
+
     private GameFactory gameFactory() {
         GameFactory factory = new GameFactory();
         factory.setTokens(gameTokens);
