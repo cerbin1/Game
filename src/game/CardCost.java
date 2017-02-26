@@ -9,7 +9,7 @@ public class CardCost {
     private int[] cardCost = new int[5];
     private boolean[] isCostAssigned = new boolean[5];
 
-    public CardCost() {
+    private CardCost() {
         this(new Random());
     }
 
@@ -23,6 +23,10 @@ public class CardCost {
             setSingleCost(i);
         }
 
+        return getTokensWithSetCost();
+    }
+
+    private Tokens getTokensWithSetCost() {
         return new Tokens(cardCost[0], cardCost[1], cardCost[2], cardCost[3], cardCost[4]);
     }
 
@@ -30,11 +34,15 @@ public class CardCost {
         while (true) {
             int randomToken = getRandomToken(5);
             if (!isCostAssigned[randomToken]) {
-                cardCost[randomToken] = typeCost[i];
-                isCostAssigned[randomToken] = true;
+                assignCost(i, randomToken);
                 break;
             }
         }
+    }
+
+    private void assignCost(int i, int randomToken) {
+        cardCost[randomToken] = typeCost[i];
+        isCostAssigned[randomToken] = true;
     }
 
     private int getRandomToken(int range) {
