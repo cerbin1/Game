@@ -2,9 +2,17 @@ package game;
 
 import java.util.Random;
 
-public class MockRandom extends Random {
+class MockRandom extends Random {
+    private int index;
+    private int[] array;
+
+    MockRandom(int... array) {
+        this.array = array;
+    }
+
     @Override
     public int nextInt(int number) {
-        return number;
+        index++;
+        return array[index];
     }
 }
