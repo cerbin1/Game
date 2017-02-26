@@ -2,17 +2,17 @@ package game;
 
 import java.util.Random;
 
-class CardCost {
+class ConditionsEmploymentNobility {
     private int[] cost = new int[5];
     private Tokens tokens;
 
-    CardCost() {
+    ConditionsEmploymentNobility() {
         randomCardCost();
         tokens = setTokens();
     }
 
     private Tokens setTokens() {
-        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4], 0);
+        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4]);
     }
 
     private void randomCardCost() {
