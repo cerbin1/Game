@@ -1,6 +1,6 @@
 package game;
 
-class Tokens {
+public class Tokens {
     private int green, white, blue, black, red;
     private int versatile;
 

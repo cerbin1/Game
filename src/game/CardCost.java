@@ -13,11 +13,11 @@ public class CardCost {
         this(new Random());
     }
 
-    CardCost(Random random) {
+    public CardCost(Random random) {
         this.random = random;
     }
 
-    Tokens getRandomCheapCardCost() {
+    public Tokens getRandomCheapCardCost() {
         typeCost = getRandomType();
         for (int i = 0; i < typeCost.length; i++) {
             setSingleCost(i);
