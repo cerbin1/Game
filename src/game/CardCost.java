@@ -3,50 +3,58 @@ package game;
 import java.util.Random;
 
 public class CardCost {
-    private Tokens cost;
-    private final int[][] typesOfCost = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
+    private final int[][] cheapCardCostTypes = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
     private Random random;
+    private int[] typeCost;
+    private int[] cardCost = new int[5];
+    private boolean[] isCostAssigned = new boolean[5];
 
     public CardCost() {
         this(new Random());
     }
 
-    private CardCost(Random random) {
+    CardCost(Random random) {
         this.random = random;
-        cost = getRandomCheapCardCost();
-        System.out.println(cost.getGreen());
-        System.out.println(cost.getWhite());
-        System.out.println(cost.getBlue());
-        System.out.println(cost.getBlack());
-        System.out.println(cost.getRed());
     }
 
-    private Tokens getRandomCheapCardCost() {
-        int[] typeCost = getRandomType();
-        int[] cardCost = new int[5];
-        boolean[] isCostAssigned = new boolean[5];
+    Tokens getRandomCheapCardCost() {
+        typeCost = getRandomType();
         for (int i = 0; i < typeCost.length; i++) {
-            while (true) {
-                int randomToken = getRandomToken();
-                if (!isCostAssigned[randomToken]) {
-                    cardCost[randomToken] = typeCost[i];
-                    isCostAssigned[randomToken] = true;
-                    break;
-                }
-            }
+            setSingleCost(i);
         }
+
         return new Tokens(cardCost[0], cardCost[1], cardCost[2], cardCost[3], cardCost[4]);
     }
 
-    private int getRandomToken() {
-        return random.nextInt(5);
+    private void setSingleCost(int i) {
+        while (true) {
+            int randomToken = getRandomToken(5);
+            if (!isCostAssigned[randomToken]) {
+                cardCost[randomToken] = typeCost[i];
+                isCostAssigned[randomToken] = true;
+                break;
+            }
+        }
+    }
+
+    private int getRandomToken(int range) {
+        return random.nextInt(range);
     }
 
     private int[] getRandomType() {
-        return typesOfCost[random.nextInt(typesOfCost.length)];
+        return cheapCardCostTypes[random.nextInt(cheapCardCostTypes.length)];
+    }
+
+    private void displayCost(Tokens tokens) {
+        System.out.println(tokens.getGreen());
+        System.out.println(tokens.getWhite());
+        System.out.println(tokens.getBlue());
+        System.out.println(tokens.getBlack());
+        System.out.println(tokens.getRed());
     }
 
     public static void main(String[] args) {
-        new CardCost();
+        CardCost cardCost = new CardCost();
+        cardCost.displayCost(cardCost.getRandomCheapCardCost());
     }
 }
