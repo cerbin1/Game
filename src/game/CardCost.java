@@ -5,8 +5,14 @@ import java.util.Random;
 public class CardCost {
     private Tokens cost;
     private final int[][] typesOfCost = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
+    private Random random;
 
-    private CardCost() {
+    public CardCost() {
+        this(new Random());
+    }
+
+    private CardCost(Random random) {
+        this.random = random;
         cost = getRandomCheapCardCost();
         System.out.println(cost.getGreen());
         System.out.println(cost.getWhite());
@@ -33,11 +39,11 @@ public class CardCost {
     }
 
     private int getRandomToken() {
-        return new Random().nextInt(5);
+        return random.nextInt(5);
     }
 
     private int[] getRandomType() {
-        return typesOfCost[new Random().nextInt(typesOfCost.length)];
+        return typesOfCost[random.nextInt(typesOfCost.length)];
     }
 
     public static void main(String[] args) {
