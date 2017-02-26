@@ -52,17 +52,4 @@ public class CardCost {
     private int[] getRandomType() {
         return cheapCardCostTypes[random.nextInt(cheapCardCostTypes.length)];
     }
-
-    private void displayCost(Tokens tokens) {
-        System.out.println(tokens.getGreen());
-        System.out.println(tokens.getWhite());
-        System.out.println(tokens.getBlue());
-        System.out.println(tokens.getBlack());
-        System.out.println(tokens.getRed());
-    }
-
-    public static void main(String[] args) {
-        CardCost cardCost = new CardCost();
-        cardCost.displayCost(cardCost.getRandomCheapCardCost());
-    }
 }
