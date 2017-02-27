@@ -122,4 +122,69 @@ public class CardCostGeneratorTest {
         // then
         assertArrayEquals(tokensValue, new int[]{1, 1, 2, 1, 1});
     }
+
+    @Test
+    public void shouldRandomOneTypeOfExpensiveCostCard() {
+        // given
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(0, 3));
+        Tokens tokens = cardCostGenerator.getExpensive();
+
+        // when
+        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+
+        // then
+        assertArrayEquals(tokensValue, new int[]{0, 0, 0, 7, 0});
+    }
+
+    @Test
+    public void shouldRandomTwoTypesOfExpensiveCostCard() {
+        // given
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(2, 0, 3));
+        Tokens tokens = cardCostGenerator.getExpensive();
+
+        // when
+        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+
+        // then
+        assertArrayEquals(tokensValue, new int[]{3, 0, 0, 4, 0});
+    }
+
+    @Test
+    public void shouldRandomThreeTypesOfExpensiveCostCard() {
+        // given
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(5, 0, 1, 4));
+        Tokens tokens = cardCostGenerator.getExpensive();
+
+        // when
+        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+
+        // then
+        assertArrayEquals(tokensValue, new int[]{3, 3, 0, 0, 3});
+    }
+
+    @Test
+    public void shouldRandomFourTypesOfExpensiveCostCard() {
+        // given
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(10, 0, 1, 3, 4));
+        Tokens tokens = cardCostGenerator.getExpensive();
+
+        // when
+        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+
+        // then
+        assertArrayEquals(tokensValue, new int[]{2, 4, 0, 6, 1});
+    }
+
+    @Test
+    public void shouldRandomFiveTypesOfExpensiveCostCard() {
+        // given
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(13, 0, 1, 2, 3, 4));
+        Tokens tokens = cardCostGenerator.getExpensive();
+
+        // when
+        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+
+        // then
+        assertArrayEquals(tokensValue, new int[]{1, 1, 5, 2, 1});
+    }
 }
