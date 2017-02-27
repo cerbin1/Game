@@ -1,5 +1,7 @@
 package test;
 
+import game.Player;
+import game.Tokens;
 import org.junit.Assert;
 import org.junit.Test;
 

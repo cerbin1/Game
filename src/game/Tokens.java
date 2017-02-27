@@ -7,7 +7,7 @@ public class Tokens {
     public Tokens() {
     }
 
-    Tokens(int commonTokensCount, int rareTokensCount) {
+    public Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
         this.white = commonTokensCount;
         this.blue = commonTokensCount;
@@ -16,7 +16,7 @@ public class Tokens {
         this.versatile = rareTokensCount;
     }
 
-    Tokens(int green, int white, int blue, int black, int red) {
+    public Tokens(int green, int white, int blue, int black, int red) {
         this.green = green;
         this.white = white;
         this.blue = blue;
