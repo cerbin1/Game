@@ -4,7 +4,7 @@ public class Tokens {
     private int green, white, blue, black, red;
     private int versatile;
 
-    Tokens() {
+    public Tokens() {
     }
 
     Tokens(int commonTokensCount, int rareTokensCount) {
