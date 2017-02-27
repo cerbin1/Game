@@ -1,16 +1,16 @@
-import game.CardCost;
+import game.CardCostGenerator;
 import game.Tokens;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;
 
-public class CardCostTest {
+public class CardCostGeneratorTest {
 
     @Test
     public void shouldRandomOneTypeOfCheapCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(0, 0));
-        Tokens tokens = cardCost.getCheap();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(0, 0));
+        Tokens tokens = cardCostGenerator.getCheap();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -22,8 +22,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomTwoTypesOfCheapCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(2, 2, 3));
-        Tokens tokens = cardCost.getCheap();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(2, 2, 3));
+        Tokens tokens = cardCostGenerator.getCheap();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -35,8 +35,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomThreeTypesOfCheapCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(4, 0, 1, 4));
-        Tokens tokens = cardCost.getCheap();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(4, 0, 1, 4));
+        Tokens tokens = cardCostGenerator.getCheap();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -48,8 +48,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomFourTypesOfCheapCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(6, 0, 1, 2, 4));
-        Tokens tokens = cardCost.getCheap();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(6, 0, 1, 2, 4));
+        Tokens tokens = cardCostGenerator.getCheap();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -61,8 +61,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomOneTypeOfMediumCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(0, 2));
-        Tokens tokens = cardCost.getMedium();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(0, 2));
+        Tokens tokens = cardCostGenerator.getMedium();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -74,8 +74,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomTwoTypesOfMediumCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(2, 1, 3));
-        Tokens tokens = cardCost.getMedium();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(2, 1, 3));
+        Tokens tokens = cardCostGenerator.getMedium();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -87,8 +87,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomThreeTypesOfMediumCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(5, 0, 2, 1));
-        Tokens tokens = cardCost.getMedium();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(5, 0, 2, 1));
+        Tokens tokens = cardCostGenerator.getMedium();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -100,8 +100,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomFourTypesOfMediumCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(9, 0, 2, 3, 4));
-        Tokens tokens = cardCost.getMedium();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(9, 0, 2, 3, 4));
+        Tokens tokens = cardCostGenerator.getMedium();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -113,8 +113,8 @@ public class CardCostTest {
     @Test
     public void shouldRandomFiveTypesOfMediumCostCard() {
         // given
-        CardCost cardCost = new CardCost(new MockRandom(12, 0, 1, 2, 3, 4));
-        Tokens tokens = cardCost.getMedium();
+        CardCostGenerator cardCostGenerator = new CardCostGenerator(new MockRandom(12, 0, 1, 2, 3, 4));
+        Tokens tokens = cardCostGenerator.getMedium();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};

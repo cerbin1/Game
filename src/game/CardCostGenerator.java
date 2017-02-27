@@ -2,7 +2,7 @@ package game;
 
 import java.util.Random;
 
-public class CardCost {
+public class CardCostGenerator {
     private final int[][] cheapCardCostTypes = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
     private final int[][] mediumCardCostTypes = {{5}, {6}, {4, 7}, {3, 2}, {4, 4}, {3, 2, 3}, {2, 1, 2}, {1, 4, 2}, {3, 1, 2}, {1, 2, 4, 1}, {1, 1, 1, 3}, {1, 2, 2, 1}, {1, 1, 2, 1, 1}};
     private Random random;
@@ -10,11 +10,11 @@ public class CardCost {
     private int[] cardCost = new int[5];
     private boolean[] isCostAssigned = new boolean[5];
 
-    CardCost() {
+    CardCostGenerator() {
         this(new Random());
     }
 
-    public CardCost(Random random) {
+    public CardCostGenerator(Random random) {
         this.random = random;
     }
 
