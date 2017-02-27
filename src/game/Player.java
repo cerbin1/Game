@@ -5,6 +5,11 @@ public class Player {
     private int points;
 
     public Player(Tokens tokens) {
+    public Player() {
+        this(new Tokens());
+    }
+
+    public Player(Tokens tokens) {
         this.tokens = tokens;
     }
 
@@ -13,6 +18,6 @@ public class Player {
     }
 
     public void addPoints(int points) {
-        this.points = points;
+        this.points += points;
     }
 }

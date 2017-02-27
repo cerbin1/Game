@@ -1,5 +1,3 @@
-package test;
-
 import game.CardCost;
 import game.Tokens;
 import org.junit.Test;
