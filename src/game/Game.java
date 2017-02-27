@@ -2,7 +2,6 @@ package game;
 
 import game.cards.Card;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
@@ -25,23 +24,7 @@ public class Game {
     private int currentPlayer = 0;
 
     private void startGame() {
-        initializePlayers();
-        initializeCards();
         currentPlayer = drawPlayer();
-    }
-
-    private void initializePlayers() {
-        for (int i = 0; i < 10; i++) {
-            players.add(new Player());
-        }
-    }
-
-    private void initializeCards() {
-        for (int i = 0; i < 10; i++) {
-            cheapCards.add(new Card());
-            mediumCards.add(new Card());
-            expensiveCards.add(new Card());
-        }
     }
 
     private int drawPlayer() {
