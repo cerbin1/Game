@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class CardCost {
     private final int[][] cheapCardCostTypes = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
-    private final int[][] mediumCardCostTypes = {{5}, {6}, {4, 7}, {3, 2}, {3, 2, 3}, {2, 1, 2}, {1, 4, 2}, {3, 1, 2}, {1, 2, 4, 1}, {1, 1, 1, 3}, {1, 2, 2, 1}, {1, 1, 2, 1, 1}};
+    private final int[][] mediumCardCostTypes = {{5}, {6}, {4, 7}, {3, 2}, {4, 4}, {3, 2, 3}, {2, 1, 2}, {1, 4, 2}, {3, 1, 2}, {1, 2, 4, 1}, {1, 1, 1, 3}, {1, 2, 2, 1}, {1, 1, 2, 1, 1}};
     private Random random;
     private int[] typeCost;
     private int[] cardCost = new int[5];
