@@ -17,7 +17,7 @@ public class Tokens {
         this.versatile = rareTokensCount;
     }
 
-    Tokens(int green, int white, int blue, int black, int red) {
+    public Tokens(int green, int white, int blue, int black, int red) {
         this.green = green;
         this.white = white;
         this.blue = blue;
