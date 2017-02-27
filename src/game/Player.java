@@ -4,6 +4,7 @@ public class Player {
     private Tokens tokens;
     private int points;
 
+    public Player(Tokens tokens) {
     public Player() {
         this(new Tokens());
     }
