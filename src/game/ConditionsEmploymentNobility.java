@@ -2,17 +2,24 @@ package game;
 
 import java.util.Random;
 
-class ConditionsEmploymentNobility {
-    private int[] cost = new int[5];
-    private Tokens tokens;
+public class ConditionsEmploymentNobility {
+    private int[] cardCost = new int[5];
+    private boolean[] isCostAssigned = new boolean[5];
+    private Random random;
 
-    ConditionsEmploymentNobility() {
+    private ConditionsEmploymentNobility() {
+        random = new Random();
         randomCardCost();
-        tokens = setTokens();
     }
 
-    private Tokens setTokens() {
-        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4]);
+    public ConditionsEmploymentNobility(Random random) {
+        this();
+        this.random = random;
+    }
+
+    public Tokens getRandomCost() {
+        randomCardCost();
+        return new Tokens(cardCost[0], cardCost[1], cardCost[2], cardCost[3], cardCost[4]);
     }
 
     private void randomCardCost() {
@@ -24,17 +31,38 @@ class ConditionsEmploymentNobility {
     }
 
     private boolean firstCostType() {
-        return (new Random().nextInt(3) + 1) % 2 == 0;
+        return (random.nextInt(2)) % 2 == 0;
     }
 
     private void setFirstCostType() {
-        cost[0] = 3;
-        cost[1] = 3;
-        cost[2] = 3;
+        for (int i = 0; i < 3; i++) {
+            setSingleCost(i);
+        }
+    }
+
+    private void setSingleCost(int i) {
+        while (true) {
+            int randomToken = getRandomToken(5);
+            if (!isCostAssigned[randomToken]) {
+                assignCost(randomToken);
+                break;
+            }
+        }
+    }
+
+    private int getRandomToken(int range) {
+        return random.nextInt(range);
+    }
+
+
+    private void assignCost(int randomToken) {
+        cardCost[randomToken] = 3;
+        isCostAssigned[randomToken] = true;
     }
 
     private void setSecondCostType() {
-        cost[3] = 4;
-        cost[4] = 4;
+        for (int i = 0; i < 2; i++) {
+            setSingleCost(i);
+        }
     }
 }
