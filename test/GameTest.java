@@ -26,9 +26,9 @@ public class GameTest {
         Game game = factory.create();
 
         // then
-        assertEquals(game.getPayers(), asList(player1, player2));
+        assertEquals(game.getPlayers(), asList(player1, player2));
         assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
-        assertEquals(game.getRegularCards(), asList(mediumCard1, mediumCard2));
+        assertEquals(game.getMediumCards(), asList(mediumCard1, mediumCard2));
         assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
         assertEquals(game.getTokens(), gameTokens);
     }
@@ -93,12 +93,12 @@ public class GameTest {
         factory.setTokens(gameTokens);
         factory.addPlayer(player1);
         factory.addPlayer(player2);
-        factory.addCard(cheapCard1);
-        factory.addCard(cheapCard2);
-        factory.addCard(mediumCard2);
-        factory.addCard(mediumCard1);
-        factory.addCard(expensiveCard1);
-        factory.addCard(expensiveCard2);
+        factory.addCheapCard(cheapCard1);
+        factory.addCheapCard(cheapCard2);
+        factory.addMediumCard(mediumCard2);
+        factory.addMediumCard(mediumCard1);
+        factory.addExpensiveCard(expensiveCard1);
+        factory.addExpensiveCard(expensiveCard2);
         return factory;
     }
 }
