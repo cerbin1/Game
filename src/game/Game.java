@@ -10,18 +10,16 @@ public class Game {
     private List<Card> cheapCards;
     private List<Card> mediumCards;
     private List<Card> expensiveCards;
+    private List<Player> players;
+    private int currentPlayer = 0;
 
-    private List<Player> players = new ArrayList<>();
-
-    public Game(Tokens tokens, List<Player> players, List<Card> cheapCards, List<Card> mediumCards, List<Card> expensiveCards) {
+    Game(Tokens tokens, List<Player> players, List<Card> cheapCards, List<Card> mediumCards, List<Card> expensiveCards) {
         this.players = players;
         this.tokens = tokens;
         this.cheapCards = cheapCards;
         this.mediumCards = mediumCards;
         this.expensiveCards = expensiveCards;
     }
-
-    private int currentPlayer = 0;
 
     private void startGame() {
         currentPlayer = drawPlayer();
