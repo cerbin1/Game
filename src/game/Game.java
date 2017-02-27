@@ -29,7 +29,7 @@ public class Game {
     }
 
     private int drawPlayer() {
-        return new Random().nextInt(3);
+        return new Random().nextInt(players.size());
     }
 
     public static void main(String[] args) {
