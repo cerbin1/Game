@@ -3,48 +3,50 @@ package game;
 import java.util.Random;
 
 public class ConditionsEmploymentNobility {
-    private int[] cardCost = new int[5];
-    private boolean[] isCostAssigned = new boolean[5];
+    private int[] tokenValue = new int[5];
+    private boolean[] isValueAssigned = new boolean[5];
     private Random random;
 
     private ConditionsEmploymentNobility() {
-        random = new Random();
-        randomCardCost();
+        this(new Random());
     }
 
     public ConditionsEmploymentNobility(Random random) {
-        this();
         this.random = random;
     }
 
-    public Tokens getRandomCost() {
-        randomCardCost();
-        return new Tokens(cardCost[0], cardCost[1], cardCost[2], cardCost[3], cardCost[4]);
+    public Tokens getConditions() {
+        return getRandomConditions();
     }
 
-    private void randomCardCost() {
-        if (firstCostType()) {
-            setFirstCostType();
+    private Tokens getRandomConditions() {
+        if (isFirstTypeDrawn()) {
+            return getFirstConditionsType();
         } else {
-            setSecondCostType();
+            return getSecondConditionsType();
         }
     }
 
-    private boolean firstCostType() {
+    private boolean isFirstTypeDrawn() {
         return (random.nextInt(2)) % 2 == 0;
     }
 
-    private void setFirstCostType() {
+    private Tokens getFirstConditionsType() {
         for (int i = 0; i < 3; i++) {
-            setSingleCost(i);
+            setSingleToken(3);
         }
+        return getAssignedTokens();
     }
 
-    private void setSingleCost(int i) {
+    private Tokens getAssignedTokens() {
+        return new Tokens(tokenValue[0], tokenValue[1], tokenValue[2], tokenValue[3], tokenValue[4]);
+    }
+
+    private void setSingleToken(int value) {
         while (true) {
             int randomToken = getRandomToken(5);
-            if (!isCostAssigned[randomToken]) {
-                assignCost(randomToken);
+            if (!isValueAssigned[randomToken]) {
+                assignValue(randomToken, value);
                 break;
             }
         }
@@ -54,15 +56,15 @@ public class ConditionsEmploymentNobility {
         return random.nextInt(range);
     }
 
-
-    private void assignCost(int randomToken) {
-        cardCost[randomToken] = 3;
-        isCostAssigned[randomToken] = true;
+    private void assignValue(int randomToken, int value) {
+        tokenValue[randomToken] = value;
+        isValueAssigned[randomToken] = true;
     }
 
-    private void setSecondCostType() {
+    private Tokens getSecondConditionsType() {
         for (int i = 0; i < 2; i++) {
-            setSingleCost(i);
+            setSingleToken(4);
         }
+        return getAssignedTokens();
     }
 }
