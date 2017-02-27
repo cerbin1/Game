@@ -4,6 +4,10 @@ class Player {
     private Tokens tokens;
     private int points;
 
+    Player() {
+        this(new Tokens());
+    }
+
     Player(Tokens tokens) {
         this.tokens = tokens;
     }

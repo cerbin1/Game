@@ -5,6 +5,7 @@ public class Tokens {
     private int versatile;
 
     Tokens() {
+        this(0, 0);
     }
 
     Tokens(int commonTokensCount, int rareTokensCount) {

@@ -1,33 +1,31 @@
 package game;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
 
 public class Game {
-    static Tokens tokens = new Tokens(7, 5);
-    private Card[] cards = new Card[10];
-    private Player[] players = new Player[4];
+    static Tokens tokens = new Tokens(7, 5); // jaki kurwa static, jak logika w statiku, jak.
+    private List<Card> cards = new ArrayList<>(10);
+    private List<Player> players = new ArrayList<>(10);
     private int currentPlayer = 0;
 
     private void startGame() {
         initializePlayers();
         initializeCards();
-        setStartingPlayer();
+        currentPlayer = drawPlayer();
     }
 
     private void initializePlayers() {
-        for (int i = 0; i < players.length; i++) {
-            players[i] = new Player(new Tokens(0, 0));
+        for (int i = 0; i < 10; i++) {
+            players.add(new Player());
         }
     }
 
     private void initializeCards() {
-        for (int i = 0; i < cards.length; i++) {
-            cards[i] = new Card();
+        for (int i = 0; i < 10; i++) {
+            cards.add(new Card());
         }
-    }
-
-    private void setStartingPlayer() {
-        currentPlayer = drawPlayer();
     }
 
     private int drawPlayer() {
