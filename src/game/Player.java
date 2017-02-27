@@ -17,6 +17,6 @@ public class Player {
     }
 
     public void addPoints(int points) {
-        this.points = points;
+        this.points += points;
     }
 }

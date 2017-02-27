@@ -40,11 +40,11 @@ public class ConditionsEmploymentNobility {
         }
     }
 
-    private void setSingleCost(int i) {
+    private void setSingleCost(int cost) {
         while (true) {
             int randomToken = getRandomToken(5);
             if (!isCostAssigned[randomToken]) {
-                assignCost(randomToken);
+                assignCost(randomToken, cost);
                 break;
             }
         }
@@ -54,9 +54,8 @@ public class ConditionsEmploymentNobility {
         return random.nextInt(range);
     }
 
-
-    private void assignCost(int randomToken) {
-        cardCost[randomToken] = 3;
+    private void assignCost(int randomToken, int cost) {
+        cardCost[randomToken] = cost;
         isCostAssigned[randomToken] = true;
     }
 

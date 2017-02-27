@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-    static Tokens tokens = new Tokens(7, 5); // jaki kurwa static, jak logika w statiku, jak.
+    private Tokens tokens = new Tokens(7, 5);
     private List<Card> cards = new ArrayList<>(10);
     private List<Player> players = new ArrayList<>(10);
     private int currentPlayer = 0;
