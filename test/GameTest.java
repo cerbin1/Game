@@ -4,8 +4,6 @@ import org.junit.Test;
 
 import static java.util.Arrays.asList;
 
-package test;
-
 public class GameTest {
     private Player player1 = new Player();
     private Player player2 = new Player();
