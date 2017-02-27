@@ -1,14 +1,14 @@
 package game;
 
-class Player {
+public class Player {
     private Tokens tokens;
     private int points;
 
-    Player() {
+    public Player() {
         this(new Tokens());
     }
 
-    Player(Tokens tokens) {
+    public Player(Tokens tokens) {
         this.tokens = tokens;
     }
 

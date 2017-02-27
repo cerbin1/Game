@@ -1,5 +1,3 @@
-package test;
-
 import game.ConditionsEmploymentNobility;
 import game.Tokens;
 import org.junit.Assert;

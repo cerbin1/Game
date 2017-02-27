@@ -1,13 +1,12 @@
-package test;
-
+import game.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
 
 public class GameTest {
-    private Player player1 = new Player(new Tokens());
-    private Player player2 = new Player(new Tokens());
+    private Player player1 = new Player();
+    private Player player2 = new Player();
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card mediumCard1 = new MediumCard();

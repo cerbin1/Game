@@ -4,11 +4,11 @@ public class Tokens {
     private int green, white, blue, black, red;
     private int versatile;
 
-    Tokens() {
+    public Tokens() {
         this(0, 0);
     }
 
-    Tokens(int commonTokensCount, int rareTokensCount) {
+    public Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
         this.white = commonTokensCount;
         this.blue = commonTokensCount;
