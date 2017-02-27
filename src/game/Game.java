@@ -7,9 +7,21 @@ import java.util.List;
 import java.util.Random;
 
 public class Game {
-    private Tokens tokens = new Tokens(7, 5);
-    private List<Card> cards = new ArrayList<>(10);
-    private List<Player> players = new ArrayList<>(10);
+    private Tokens tokens;
+    private List<Card> cheapCards;
+    private List<Card> mediumCards;
+    private List<Card> expensiveCards;
+
+    private List<Player> players = new ArrayList<>();
+
+    public Game(Tokens tokens, List<Player> players, List<Card> cheapCards, List<Card> mediumCards, List<Card> expensiveCards) {
+        this.players = players;
+        this.tokens = tokens;
+        this.cheapCards = cheapCards;
+        this.mediumCards = mediumCards;
+        this.expensiveCards = expensiveCards;
+    }
+
     private int currentPlayer = 0;
 
     private void startGame() {
@@ -26,7 +38,9 @@ public class Game {
 
     private void initializeCards() {
         for (int i = 0; i < 10; i++) {
-            cards.add(new Card());
+            cheapCards.add(new Card());
+            mediumCards.add(new Card());
+            expensiveCards.add(new Card());
         }
     }
 
@@ -34,7 +48,31 @@ public class Game {
         return new Random().nextInt(players.size());
     }
 
+    public List<Card> getCheapCards() {
+        return cheapCards;
+    }
+
+    public List<Card> getMediumCards() {
+        return mediumCards;
+    }
+
+    public List<Card> getExpensiveCards() {
+        return expensiveCards;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Tokens getTokens() {
+        return tokens;
+    }
+
     public static void main(String[] args) {
-        new Game().startGame();
+        new GameFactory().create();
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayer);
     }
 }
