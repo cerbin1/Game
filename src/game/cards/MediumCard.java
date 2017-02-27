@@ -1,4 +1,6 @@
-package game;
+package game.cards;
+
+import game.Tokens;
 
 public class MediumCard extends Card {
     Tokens cost = new CardCostGenerator().getMedium();

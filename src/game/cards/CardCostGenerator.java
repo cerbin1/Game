@@ -1,4 +1,6 @@
-package game;
+package game.cards;
+
+import game.Tokens;
 
 import java.util.Random;
 

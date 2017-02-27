@@ -1,5 +1,5 @@
-import game.CardCostGenerator;
 import game.Tokens;
+import game.cards.CardCostGenerator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertArrayEquals;

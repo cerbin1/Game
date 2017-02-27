@@ -1,5 +1,7 @@
 package game;
 
+import game.cards.Card;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;

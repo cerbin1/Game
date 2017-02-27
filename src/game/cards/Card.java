@@ -1,4 +1,4 @@
-package game;
+package game.cards;
 
 public class Card {
     private int points;

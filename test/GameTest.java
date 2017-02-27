@@ -1,4 +1,5 @@
 import game.*;
+import game.cards.*;
 import org.junit.Assert;
 import org.junit.Test;
 
