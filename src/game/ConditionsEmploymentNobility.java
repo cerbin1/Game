@@ -5,7 +5,7 @@ import java.util.Random;
 public class ConditionsEmploymentNobility {
     private int[] tokenValue = new int[5];
     private boolean[] isValueAssigned = new boolean[5];
-    private Random random;
+    private final Random random;
 
     private ConditionsEmploymentNobility() {
         this(new Random());

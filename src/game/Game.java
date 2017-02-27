@@ -29,6 +29,18 @@ public class Game {
         return new Random().nextInt(players.size());
     }
 
+    public Tokens getTokens() {
+        return tokens;
+    }
+
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayer);
+    }
+
     public List<Card> getCheapCards() {
         return cheapCards;
     }
@@ -41,19 +53,7 @@ public class Game {
         return expensiveCards;
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public Tokens getTokens() {
-        return tokens;
-    }
-
     public static void main(String[] args) {
         new GameFactory().create();
-    }
-
-    public Player getCurrentPlayer() {
-        return players.get(currentPlayer);
     }
 }
