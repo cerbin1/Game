@@ -1,5 +1,7 @@
 package game;
 
+import game.cards.Card;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -29,7 +31,7 @@ public class Game {
     }
 
     private int drawPlayer() {
-        return new Random().nextInt(3);
+        return new Random().nextInt(players.size());
     }
 
     public static void main(String[] args) {

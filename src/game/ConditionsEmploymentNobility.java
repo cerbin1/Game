@@ -38,8 +38,11 @@ public class ConditionsEmploymentNobility {
         return getAssignedTokens();
     }
 
-    private Tokens getAssignedTokens() {
-        return new Tokens(tokenValue[0], tokenValue[1], tokenValue[2], tokenValue[3], tokenValue[4]);
+    private Tokens getSecondConditionsType() {
+        for (int i = 0; i < 2; i++) {
+            setSingleToken(4);
+        }
+        return getAssignedTokens();
     }
 
     private void setSingleToken(int value) {
@@ -61,10 +64,7 @@ public class ConditionsEmploymentNobility {
         isValueAssigned[randomToken] = true;
     }
 
-    private Tokens getSecondConditionsType() {
-        for (int i = 0; i < 2; i++) {
-            setSingleToken(4);
-        }
-        return getAssignedTokens();
+    private Tokens getAssignedTokens() {
+        return new Tokens(tokenValue[0], tokenValue[1], tokenValue[2], tokenValue[3], tokenValue[4]);
     }
 }
