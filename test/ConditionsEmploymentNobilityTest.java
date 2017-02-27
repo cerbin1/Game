@@ -12,7 +12,7 @@ public class ConditionsEmploymentNobilityTest {
         Tokens tokens = conditionsEmploymentNobility.getConditions();
 
         // when
-        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+        int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
         Assert.assertArrayEquals(tokensValue, new int[]{0, 3, 3, 3, 0});
@@ -26,7 +26,7 @@ public class ConditionsEmploymentNobilityTest {
         Tokens tokens = conditionsEmploymentNobility.getConditions();
 
         // when
-        int[] tokensValue = {tokens.getGreen(), tokens.getWhite(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+        int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
         Assert.assertArrayEquals(tokensValue, new int[]{0, 0, 0, 4, 4});

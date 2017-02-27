@@ -1,7 +1,7 @@
 package game;
 
 public class Tokens {
-    private int green, white, blue, black, red;
+    private int green, purple, blue, black, red;
     private int versatile;
 
     public Tokens() {
@@ -10,16 +10,16 @@ public class Tokens {
 
     public Tokens(int commonTokensCount, int rareTokensCount) {
         this.green = commonTokensCount;
-        this.white = commonTokensCount;
+        this.purple = commonTokensCount;
         this.blue = commonTokensCount;
         this.black = commonTokensCount;
         this.red = commonTokensCount;
         this.versatile = rareTokensCount;
     }
 
-    public Tokens(int green, int white, int blue, int black, int red) {
+    public Tokens(int green, int purple, int blue, int black, int red) {
         this.green = green;
-        this.white = white;
+        this.purple = purple;
         this.blue = blue;
         this.black = black;
         this.red = red;
@@ -30,8 +30,8 @@ public class Tokens {
         return green;
     }
 
-    public int getWhite() {
-        return white;
+    public int getPurple() {
+        return purple;
     }
 
     public int getBlue() {
