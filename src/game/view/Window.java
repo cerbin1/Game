@@ -2,12 +2,14 @@ package game.view;
 
 import game.Load;
 import game.view.fx.Transition;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
+import static java.awt.Color.white;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -36,8 +38,11 @@ public class Window {
         final int cardWidth = cardImage.getWidth();
         final int cardHeight = cardImage.getHeight();
 
-        cardImage.createGraphics().draw(new RoundRectangle2D.Float(
-                10, 10, cardWidth-20, cardHeight-20,
+        Graphics2D cardGraphics = cardImage.createGraphics();
+        cardGraphics.setStroke(new BasicStroke(10));
+        cardGraphics.setColor(white);
+        cardGraphics.draw(new RoundRectangle2D.Float(
+                10, 10, cardWidth - 20, cardHeight - 20,
                 40, 40
         ));
 
