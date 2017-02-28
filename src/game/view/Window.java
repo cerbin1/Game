@@ -2,10 +2,10 @@ package game.view;
 
 import game.Load;
 import game.view.fx.Transition;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
@@ -32,7 +32,15 @@ public class Window {
 
         BufferedImage image = Load.image("images/background_1.png");
         BufferedImage cardImage = Load.image("images/card.png");
+
         final int cardWidth = cardImage.getWidth();
+        final int cardHeight = cardImage.getHeight();
+
+        cardImage.createGraphics().draw(new RoundRectangle2D.Float(
+                10, 10, cardWidth-20, cardHeight-20,
+                40, 40
+        ));
+
         window.frame.setVisible(true);
         Graphics graphics = window.frame.getGraphics();
 
