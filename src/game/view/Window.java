@@ -33,7 +33,6 @@ public class Window {
 
         ImageRepository imageRepository = new ImageRepository();
 
-        window.frame.setVisible(true);
         Graphics graphics = window.frame.getGraphics();
 
         BufferedImage backBuffer = new BufferedImage(1920, 1090, TYPE_INT_ARGB);
