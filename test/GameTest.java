@@ -6,6 +6,7 @@ import game.cards.Card;
 import game.cards.CheapCard;
 import game.cards.ExpensiveCard;
 import game.cards.MediumCard;
+import game.turn.*;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -62,7 +63,7 @@ public class GameTest {
         Game game = gameFactory().create();
 
         // when
-        game.performTurn(new AquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
+        game.performTurn(new AcquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
 
         // then
         assertEquals(gameTokens.getGreen(), 6);
@@ -74,7 +75,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldGetBackToPlayerAfterTwoTurns() {
+    public void shouldChangeCurrentPlayerToNext() {
         // given
         Game game = gameFactory().create();
 
@@ -83,7 +84,6 @@ public class GameTest {
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
-        assertTrue(player1.getCards().isEmpty());
     }
 
     @Test
@@ -96,7 +96,6 @@ public class GameTest {
         game.performTurn(new PassTurn());
 
         // then
-        assertTrue(player1.getCards().isEmpty());
         assertEquals(game.getCurrentPlayer(), player1);
     }
 
