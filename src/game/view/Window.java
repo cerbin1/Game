@@ -27,13 +27,16 @@ public class Window {
         frame.setVisible(true);
     }
 
+    private Graphics getGraphics() {
+        return frame.getGraphics();
+    }
+
     public static void main(String[] args) {
         Window window = new Window();
         window.show();
+        Graphics graphics = window.getGraphics();
 
         ImageRepository imageRepository = new ImageRepository();
-
-        Graphics graphics = window.frame.getGraphics();
 
         BufferedImage backBuffer = new BufferedImage(1920, 1090, TYPE_INT_ARGB);
         Graphics2D canvas = backBuffer.createGraphics();
