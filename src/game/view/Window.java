@@ -36,7 +36,9 @@ public class Window {
         final int cardWidth = cardImage.getWidth();
         final int cardHeight = cardImage.getHeight();
 
-        cardImage.createGraphics().draw(new RoundRectangle2D.Float(
+        Graphics2D cardGraphics = cardImage.createGraphics();
+        cardGraphics.setStroke(new BasicStroke(10));
+        cardGraphics.draw(new RoundRectangle2D.Float(
                 10, 10, cardWidth-20, cardHeight-20,
                 40, 40
         ));
