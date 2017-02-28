@@ -13,13 +13,16 @@ import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class GameTest {
-    private Player player1 = new Player(new Tokens(3,0,0,0,0));
+    private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
     private Player player2 = new Player();
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
+    private Card cheapCard3 = new CheapCard();
+    private Card cheapCard4 = new CheapCard();
+    private Card cheapCard5 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
-    private Card mediumCard2 = new MediumCard(new Tokens(2,0,0,0,0));
-    private Card expensiveCard1 = new ExpensiveCard();
+    private Card mediumCard2 = new MediumCard(new Tokens(2, 0, 0, 0, 0));
+    private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 0, 0, 0, 0));
     private Card expensiveCard2 = new ExpensiveCard();
     private Tokens gameTokens = new Tokens(7, 5);
 
@@ -127,6 +130,38 @@ public class GameTest {
         assertFalse(mediumCard1.isReserved());
     }
 
+    @Test
+    public void shouldThrowOnBuyingNotAvailableCard() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        try {
+            game.performTurn(new BuyCardTurn(cheapCard5));
+            assertTrue(false);
+        }
+        // then
+        catch (IllegalTurnException ignored) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void shouldThrowOnBuyingCardThatIsTooExpensive() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        try {
+            game.performTurn(new BuyCardTurn(expensiveCard1));
+            assertTrue(false);
+        }
+        // then
+        catch (IllegalTurnException ignored) {
+            assertTrue(true);
+        }
+    }
+
     private GameFactory gameFactory() {
         GameFactory factory = new GameFactory();
         factory.setTokens(gameTokens);
@@ -134,6 +169,9 @@ public class GameTest {
         factory.addPlayer(player2);
         factory.addCheapCard(cheapCard1);
         factory.addCheapCard(cheapCard2);
+        factory.addCheapCard(cheapCard3);
+        factory.addCheapCard(cheapCard4);
+        factory.addCheapCard(cheapCard5);
         factory.addMediumCard(mediumCard2);
         factory.addMediumCard(mediumCard1);
         factory.addExpensiveCard(expensiveCard1);
