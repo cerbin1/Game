@@ -5,7 +5,7 @@ import game.cards.*;
 import java.util.List;
 
 public class Player {
-    private Tokens tokens;
+    private final Tokens tokens;
     private int points;
     private List<Card> boughtCards;
 

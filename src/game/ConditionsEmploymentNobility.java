@@ -24,7 +24,7 @@ public class ConditionsEmploymentNobility {
     }
 
     private boolean isFirstTypeConditionsDrawn() {
-        return (random.nextInt(2)) % 2 == 0;
+        return random.nextInt(2) % 2 == 0;
     }
 
     private Tokens getFirstConditionsType() {
