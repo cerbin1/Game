@@ -6,7 +6,7 @@ public class ViewObject {
     private int x, y, width, height;
     private double secondsPassed = 0;
 
-    public ViewObject(int x, int y, int width, int height) {
+    ViewObject(int x, int y, int width, int height) {
         this.x = x;
         this.y = y;
         this.width = width;
@@ -38,10 +38,10 @@ public class ViewObject {
     }
 
     double getPerspectiveX() {
-        return Transition.cosineTransition(secondsPassed);
+        return 1.0;
     }
 
     double getPerspectiveY() {
-        return 1.0;
+        return Transition.cosineTransition(secondsPassed);
     }
 }
