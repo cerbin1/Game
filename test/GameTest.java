@@ -15,7 +15,7 @@ import static org.junit.Assert.*;
 public class GameTest {
     private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
     private Player player2 = new Player(new Tokens(1, 3));
-    private Card cheapCard1 = new CheapCard();
+    private Card cheapCard1 = new CheapCard(new Tokens(1, 0, 0, 0, 0));
     private Card cheapCard2 = new CheapCard();
     private Card cheapCard3 = new CheapCard();
     private Card cheapCard4 = new CheapCard();
@@ -176,6 +176,20 @@ public class GameTest {
         assertEquals(player2.getTokens().getVersatile(), 0);
         assertEquals(player2.getCards().get(0), expensiveCard1);
         assertFalse(expensiveCard1.isReserved());
+    }
+
+    @Test
+    public void shouldNotLoseVersatileTokens() {
+        // given
+        Game game = gameFactory().create();
+        game.performTurn(new PassTurn());
+
+        // when
+        game.performTurn(new BuyCardTurn(cheapCard1));
+
+        // then
+        assertEquals(player2.getTokens().getGreen(), 0);
+        assertEquals(player2.getTokens().getVersatile(), 3);
     }
 
     private GameFactory gameFactory() {
