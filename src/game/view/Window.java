@@ -1,11 +1,14 @@
 package game.view;
 
 import game.Load;
+import game.view.fx.Transition;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
 
+import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Window {
@@ -28,8 +31,30 @@ public class Window {
         window.show();
 
         BufferedImage image = Load.image("images/background_1.png");
+        BufferedImage cardImage = Load.image("images/card.png");
+        final int cardWidth = cardImage.getWidth();
         window.frame.setVisible(true);
         Graphics graphics = window.frame.getGraphics();
-        graphics.drawImage(image, 0, 0, null);
+
+        BufferedImage backBuffer = new BufferedImage(1920, 1090, TYPE_INT_ARGB);
+        Graphics2D canvas = backBuffer.createGraphics();
+
+        double x = 0;
+        while (true) {
+            x = (x + 0.01) % 4;
+            canvas.drawImage(image, 0, 0, null);
+
+            double scaleX = 1.0 - Transition.cosineTransition(x);
+
+            AffineTransform at = new AffineTransform();
+            at.translate(350 - scaleX * cardWidth / 2, 100);
+            at.scale(scaleX, 1.0);
+            canvas.setTransform(at);
+
+            canvas.drawImage(cardImage, 0, 0, null);
+            canvas.setTransform(new AffineTransform());
+
+            graphics.drawImage(backBuffer, 0, 0, null);
+        }
     }
 }
