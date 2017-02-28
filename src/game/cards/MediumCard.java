@@ -9,7 +9,7 @@ public class MediumCard extends Card {
         this(new CardCostGenerator().getMedium());
     }
 
-    private MediumCard(Tokens cost) {
+    public MediumCard(Tokens cost) {
         this.cost = cost;
     }
 

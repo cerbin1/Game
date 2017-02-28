@@ -9,7 +9,7 @@ public class CheapCard extends Card {
         this(new CardCostGenerator().getCheap());
     }
 
-    private CheapCard(Tokens cost) {
+    public CheapCard(Tokens cost) {
         this.cost = cost;
     }
 
