@@ -1,8 +1,8 @@
 package game;
 
 public class Tokens {
-    private int green, purple, blue, black, red;
-    private int versatile;
+    private final int green, purple, blue, black, red;
+    private final int versatile;
 
     public Tokens() {
         this(0, 0);
