@@ -1,7 +1,7 @@
 package game;
 
 public class Player {
-    private Tokens tokens;
+    private final Tokens tokens;
     private int points;
 
     public Player() {
