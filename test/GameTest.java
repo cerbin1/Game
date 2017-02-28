@@ -56,8 +56,8 @@ public class GameTest {
         // then
         assertEquals(gameTokens.getGreen(), 6);
         assertEquals(gameTokens.getBlack(), 6);
-        assertEquals(player1.getTokens.getGreen(), 1);
-        assertEquals(player1.getTokens.getBlack(), 1);
+        assertEquals(player1.getTokens().getGreen(), 1);
+        assertEquals(player1.getTokens().getBlack(), 1);
         assertEquals(game.getCurrentPlayer(), player2);
     }
 
