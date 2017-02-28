@@ -58,7 +58,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldChangePlayerAfterTurn() {
+    public void shouldChangeGameAndPlayerTokensAfterAcquireTurn() {
         // given
         Game game = gameFactory().create();
 
