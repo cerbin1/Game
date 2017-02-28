@@ -1,9 +1,9 @@
 package game;
 
 import game.cards.Card;
+import game.turn.Turn;
 
 import java.util.List;
-import java.util.Random;
 
 public class Game {
     private Tokens tokens;
@@ -47,5 +47,9 @@ public class Game {
 
     public static void main(String[] args) {
         new GameFactory().create();
+    }
+
+    public void performTurn(Turn turn) {
+
     }
 }
