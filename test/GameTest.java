@@ -13,12 +13,12 @@ import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class GameTest {
-    private Player player1 = new Player();
+    private Player player1 = new Player(new Tokens(3,0,0,0,0));
     private Player player2 = new Player();
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
-    private Card mediumCard2 = new MediumCard();
+    private Card mediumCard2 = new MediumCard(new Tokens(2,0,0,0,0));
     private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
     private Tokens gameTokens = new Tokens(7, 5);
@@ -118,11 +118,12 @@ public class GameTest {
         Game game = gameFactory().create();
 
         // when
-        game.performTurn(new BuyCardTurn(mediumCard1));
+        game.performTurn(new BuyCardTurn(mediumCard2));
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(player1.getCards().get(0), mediumCard1);
+        assertEquals(player1.getTokens().getGreen(), 1);
+        assertEquals(player1.getCards().get(0), mediumCard2);
         assertFalse(mediumCard1.isReserved());
     }
 
