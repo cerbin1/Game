@@ -1,19 +1,28 @@
-import game.*;
-import game.cards.*;
+import game.Game;
+import game.GameFactory;
+import game.Player;
+import game.Tokens;
+import game.cards.Card;
+import game.cards.CheapCard;
+import game.cards.ExpensiveCard;
+import game.cards.MediumCard;
 import org.junit.Assert;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
 public class GameTest {
-    private Player player1 = new Player();
-    private Player player2 = new Player();
-    private Card cheapCard1 = new CheapCard();
+    private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
+    private Player player2 = new Player(new Tokens(1, 3));
+    private Card cheapCard1 = new CheapCard(new Tokens(1, 0, 0, 0, 0));
     private Card cheapCard2 = new CheapCard();
+    private Card cheapCard3 = new CheapCard();
+    private Card cheapCard4 = new CheapCard();
+    private Card cheapCard5 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
-    private Card mediumCard2 = new MediumCard();
-    private Card expensiveCard1 = new ExpensiveCard();
+    private Card mediumCard2 = new MediumCard(new Tokens(2, 0, 0, 0, 0));
+    private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 0, 0, 0, 0));
     private Card expensiveCard2 = new ExpensiveCard();
     private Tokens gameTokens = new Tokens(7, 5);
 
@@ -31,6 +40,8 @@ public class GameTest {
         assertEquals(game.getMediumCards(), asList(mediumCard1, mediumCard2));
         assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
         assertEquals(game.getTokens(), gameTokens);
+        assertTrue(player1.getCards().isEmpty());
+        assertTrue(player2.getCards().isEmpty());
     }
 
     @Test
@@ -59,6 +70,20 @@ public class GameTest {
         assertEquals(player1.getTokens().getGreen(), 1);
         assertEquals(player1.getTokens().getBlack(), 1);
         assertEquals(game.getCurrentPlayer(), player2);
+        assertTrue(player1.getCards().isEmpty());
+    }
+
+    @Test
+    public void shouldGetBackToPlayerAfterTwoTurns() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        game.performTurn(new PassTurn());
+
+        // then
+        assertEquals(game.getCurrentPlayer(), player2);
+        assertTrue(player1.getCards().isEmpty());
     }
 
     @Test
@@ -71,6 +96,7 @@ public class GameTest {
         game.performTurn(new PassTurn());
 
         // then
+        assertTrue(player1.getCards().isEmpty());
         assertEquals(game.getCurrentPlayer(), player1);
     }
 
@@ -83,9 +109,87 @@ public class GameTest {
         game.performTurn(new ReservationTurn(cheapCard2));
 
         // then
-        assertEquals(player1.getCards(), asList(cheapCard2));
+        assertEquals(game.getCurrentPlayer(), player2);
+        assertEquals(player1.getCards().get(0), cheapCard2);
         Assert.assertTrue(cheapCard2.isReserved());
         assertEquals(player1.getTokens().getVersatile(), 1);
+    }
+
+    @Test
+    public void shouldBuyCardAndLoseToken() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        game.performTurn(new BuyCardTurn(mediumCard2));
+
+        // then
+        assertEquals(game.getCurrentPlayer(), player2);
+        assertEquals(player1.getTokens().getGreen(), 1);
+        assertEquals(player1.getCards().get(0), mediumCard2);
+        assertFalse(mediumCard1.isReserved());
+    }
+
+    @Test
+    public void shouldThrowOnBuyingNotAvailableCard() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        try {
+            game.performTurn(new BuyCardTurn(cheapCard5));
+            assertTrue(false);
+        }
+        // then
+        catch (IllegalTurnException ignored) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void shouldThrowOnBuyingCardThatIsTooExpensive() {
+        // given
+        Game game = gameFactory().create();
+
+        // when
+        try {
+            game.performTurn(new BuyCardTurn(expensiveCard1));
+            assertTrue(false);
+        }
+        // then
+        catch (IllegalTurnException ignored) {
+            assertTrue(true);
+        }
+    }
+
+    @Test
+    public void shouldBuyCardAndLoseVersatileToken() {
+        // given
+        Game game = gameFactory().create();
+        game.performTurn(new PassTurn());
+
+        // when
+        game.performTurn(new BuyCardTurn(expensiveCard1));
+
+        // then
+        assertEquals(player2.getTokens().getGreen(), 0);
+        assertEquals(player2.getTokens().getVersatile(), 0);
+        assertEquals(player2.getCards().get(0), expensiveCard1);
+        assertFalse(expensiveCard1.isReserved());
+    }
+
+    @Test
+    public void shouldNotLoseVersatileTokens() {
+        // given
+        Game game = gameFactory().create();
+        game.performTurn(new PassTurn());
+
+        // when
+        game.performTurn(new BuyCardTurn(cheapCard1));
+
+        // then
+        assertEquals(player2.getTokens().getGreen(), 0);
+        assertEquals(player2.getTokens().getVersatile(), 3);
     }
 
     private GameFactory gameFactory() {
@@ -95,6 +199,9 @@ public class GameTest {
         factory.addPlayer(player2);
         factory.addCheapCard(cheapCard1);
         factory.addCheapCard(cheapCard2);
+        factory.addCheapCard(cheapCard3);
+        factory.addCheapCard(cheapCard4);
+        factory.addCheapCard(cheapCard5);
         factory.addMediumCard(mediumCard2);
         factory.addMediumCard(mediumCard1);
         factory.addExpensiveCard(expensiveCard1);
