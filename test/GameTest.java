@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
 
 public class GameTest {
     private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
-    private Player player2 = new Player();
+    private Player player2 = new Player(new Tokens(1, 3));
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card cheapCard3 = new CheapCard();
@@ -160,6 +160,22 @@ public class GameTest {
         catch (IllegalTurnException ignored) {
             assertTrue(true);
         }
+    }
+
+    @Test
+    public void shouldBuyCardAndLoseVersatileToken() {
+        // given
+        Game game = gameFactory().create();
+        game.performTurn(new PassTurn());
+
+        // when
+        game.performTurn(new BuyCardTurn(expensiveCard1));
+
+        // then
+        assertEquals(player2.getTokens().getGreen(), 0);
+        assertEquals(player2.getTokens().getVersatile(), 0);
+        assertEquals(player2.getCards().get(0), expensiveCard1);
+        assertFalse(expensiveCard1.isReserved());
     }
 
     private GameFactory gameFactory() {
