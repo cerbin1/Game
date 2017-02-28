@@ -20,14 +20,10 @@ public class ConditionsEmploymentNobility {
     }
 
     private Tokens getRandomConditions() {
-        if (isFirstTypeDrawn()) {
-            return getFirstConditionsType();
-        } else {
-            return getSecondConditionsType();
-        }
+        return isFirstTypeConditionsDrawn() ? getFirstConditionsType() : getSecondConditionsType();
     }
 
-    private boolean isFirstTypeDrawn() {
+    private boolean isFirstTypeConditionsDrawn() {
         return (random.nextInt(2)) % 2 == 0;
     }
 

@@ -21,14 +21,6 @@ public class Game {
         this.expensiveCards = expensiveCards;
     }
 
-    private void startGame() {
-        currentPlayer = drawPlayer();
-    }
-
-    private int drawPlayer() {
-        return new Random().nextInt(players.size());
-    }
-
     public Tokens getTokens() {
         return tokens;
     }
