@@ -1,8 +1,16 @@
 package game.cards;
 
 public class Card {
-    private int points;
-    private boolean reserved;
+    private final int points;
+    private boolean reserved = false;
+
+    public Card() {
+        this(0);
+    }
+
+    public Card(int points) {
+        this.points = points;
+    }
 
     public int getPoints() {
         return points;
@@ -12,7 +20,7 @@ public class Card {
         return reserved;
     }
 
-    public void setReserved(boolean value) {
-        reserved = value;
+    public void setReserved(boolean reserved) {
+        this.reserved = reserved;
     }
 }
