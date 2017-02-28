@@ -1,15 +1,14 @@
 package game.cards;
 
+import game.Tokens;
+
 public class Card {
-    private final int points;
+    private int points;
     private boolean reserved = false;
+    private Tokens cost;
 
-    public Card() {
-        this(0);
-    }
-
-    public Card(int points) {
-        this.points = points;
+    public Card(Tokens cost) {
+        this.cost = cost;
     }
 
     public int getPoints() {
@@ -22,5 +21,9 @@ public class Card {
 
     public void setReserved(boolean reserved) {
         this.reserved = reserved;
+    }
+
+    public Tokens getCost() {
+        return cost;
     }
 }
