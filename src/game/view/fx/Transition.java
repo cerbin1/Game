@@ -5,6 +5,6 @@ import static java.lang.Math.cos;
 
 public class Transition {
     public static double cosineTransition(double value) {
-        return cos(value * (PI / 2) - PI) + 1;
+        return cos(value * PI);
     }
 }
