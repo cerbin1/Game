@@ -7,8 +7,9 @@ public class Card {
     private Tokens cost;
     private int points;
 
-    public Card(Tokens cost) {
+    public Card(Tokens cost, int points) {
         this.cost = cost;
+        this.points = points;
     }
 
     public boolean isReserved() {

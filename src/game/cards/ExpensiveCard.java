@@ -9,6 +9,6 @@ public class ExpensiveCard extends Card {
     }
 
     public ExpensiveCard(Tokens cost) {
-        super(cost);
+        super(cost, 0);
     }
 }

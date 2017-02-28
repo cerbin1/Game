@@ -9,6 +9,6 @@ public class MediumCard extends Card {
     }
 
     public MediumCard(Tokens cost) {
-        super(cost);
+        super(cost, 0);
     }
 }
