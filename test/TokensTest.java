@@ -9,7 +9,29 @@ import static org.junit.Assert.assertEquals;
 
 public class TokensTest {
     @Test
-    public void shouldGetGreen() throws Exception {
+    public void shouldGetTokens() throws Exception {
+        // given
+        Tokens tokens = new Tokens(3, 2);
+
+        // when
+        int green = tokens.getGreen();
+        int purple = tokens.getPurple();
+        int blue = tokens.getBlue();
+        int black = tokens.getBlack();
+        int red = tokens.getRed();
+        int versatile = tokens.getVersatile();
+
+        // then
+        assertEquals(green, 3);
+        assertEquals(purple, 3);
+        assertEquals(blue, 3);
+        assertEquals(black, 3);
+        assertEquals(red, 3);
+        assertEquals(versatile, 2);
+    }
+
+    @Test
+    public void shouldGetTokensAsMap() throws Exception {
         // given
         Tokens tokens = new Tokens(3, 2);
 
