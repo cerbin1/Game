@@ -12,7 +12,7 @@ import java.awt.image.BufferedImage;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-public class Window {
+class Window {
     private final JFrame frame = new JFrame();
 
     private Window() {

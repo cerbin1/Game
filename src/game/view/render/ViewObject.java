@@ -42,6 +42,6 @@ public class ViewObject {
     }
 
     double getPerspectiveY() {
-        return Transition.cosineTransition(secondsPassed);
+        return 1.0;
     }
 }

@@ -6,7 +6,7 @@ import java.awt.geom.AffineTransform;
 public abstract class Renderer {
     private final ViewObject viewObject;
 
-    public Renderer(ViewObject viewObject) {
+    Renderer(ViewObject viewObject) {
         this.viewObject = viewObject;
     }
 
