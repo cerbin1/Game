@@ -1,5 +1,7 @@
 package game.turn;
 
-public abstract class Turn {
+import game.Game;
 
+public abstract class Turn {
+    public abstract void invoke(Game game);
 }
