@@ -2,7 +2,7 @@ package game.cards;
 
 import game.Tokens;
 
-public class Card {
+public abstract class Card {
     private boolean reserved = false;
     private Tokens cost;
     private int points;
