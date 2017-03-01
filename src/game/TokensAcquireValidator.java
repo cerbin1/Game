@@ -44,18 +44,15 @@ public class TokensAcquireValidator {
     }
 
     private class SingleTokensValidator implements BiConsumer<TokenColor, Integer> {
-        int numberOfOnes = 0;
+        private int numberOfOnes = 0;
 
         @Override
         public void accept(TokenColor tokenColor, Integer integer) {
-            if (integer == 1) {
-                numberOfOnes++;
-                return;
+            if (integer == 1 || integer == 0) {
+                numberOfOnes += integer;
+            } else {
+                throw new RuntimeException();
             }
-            if (integer == 0) {
-                return;
-            }
-            throw new RuntimeException();
         }
 
         boolean isRequestedThreeSingleTokens() {
