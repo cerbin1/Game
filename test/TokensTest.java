@@ -31,6 +31,26 @@ public class TokensTest {
     }
 
     @Test
+    public void shouldGetSeparateTokens() {
+        // given
+        Tokens tokens = new Tokens(0, 4, 2, 12, 4);
+
+        // when
+        int green = tokens.getGreen();
+        int purple = tokens.getPurple();
+        int blue = tokens.getBlue();
+        int black = tokens.getBlack();
+        int red = tokens.getRed();
+
+        // then
+        assertEquals(green, 0);
+        assertEquals(purple, 4);
+        assertEquals(blue, 2);
+        assertEquals(black, 12);
+        assertEquals(red, 4);
+    }
+
+    @Test
     public void shouldGetTokensAsMap() {
         // given
         Tokens tokens = new Tokens(3, 2);
