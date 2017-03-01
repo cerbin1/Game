@@ -38,10 +38,14 @@ public class ViewObject {
     }
 
     double getPerspectiveX() {
-        return 1.0;
+        return Transition.cosineTransition(secondsPassed);
     }
 
     double getPerspectiveY() {
         return 1.0;
+    }
+
+    boolean isFlipped() {
+        return getPerspectiveX() < 0;
     }
 }

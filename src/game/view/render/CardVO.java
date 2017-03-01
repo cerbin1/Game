@@ -6,7 +6,7 @@ public class CardVO extends ViewObject {
     private final Card card;
 
     public CardVO(Card card, int x, int y) {
-        super(x, y, 336, 514);
+        super(x, y, 236, 330);
         this.card = card;
     }
 

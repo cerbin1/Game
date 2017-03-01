@@ -1,7 +1,6 @@
 package game.view.render;
 
 import game.TokenColor;
-import game.Tokens;
 import game.cards.Card;
 import game.view.ImageRepository;
 
@@ -17,34 +16,34 @@ import static java.awt.Font.ITALIC;
 import static java.awt.Font.PLAIN;
 
 public class CardRenderer extends Renderer {
-    private final BufferedImage cardImage;
+    private final BufferedImage cardImage, cardBack;
     private final Card card;
-    private final Tokens cardCost;
-    private final int cardWidth, cardHeight;
     private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
     private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
     public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
         card = cardVO.getCard();
-        cardCost = card.getCost();
-        cardImage = imageRepository.card;
-
-        cardWidth = cardImage.getWidth();
-        cardHeight = cardImage.getHeight();
+        cardImage = imageRepository.cardCastle;
+        cardBack = imageRepository.cardBack;
     }
 
     @Override
     protected void render(Graphics2D graphics) {
-        graphics.drawImage(cardImage, 10, 10, null);
-        drawTopHeader(graphics);
-        drawCardCosts(graphics);
-        drawCardOutline(graphics);
+        if (viewObject.isFlipped()) {
+            graphics.drawImage(cardBack, 0, 0, null);
+        } else {
+            graphics.drawImage(cardImage, 0, 0, null);
+            drawTopHeader(graphics);
+            drawCardCosts(graphics);
+            drawCardOutline(graphics);
+        }
     }
 
     private void drawTopHeader(Graphics2D graphics) {
         graphics.setColor(new Color(255, 255, 255, 180));
-        graphics.fillRect(10, 10, cardWidth, 80);
+        graphics.fillRoundRect(0, 0, cardImage.getWidth(), 80,
+                20, 20);
 
         graphics.setColor(black);
         graphics.setFont(pointsFont);
@@ -52,16 +51,16 @@ public class CardRenderer extends Renderer {
     }
 
     private void drawCardCosts(Graphics2D graphics) {
-        cardCost.asMap().forEach(new CardCostDrawer(graphics));
+        card.getCost().asMap().forEach(new CardCostDrawer(graphics));
     }
 
     private void drawCardOutline(Graphics2D graphics) {
-        graphics.setStroke(new BasicStroke(10));
-        graphics.setColor(white);
+        graphics.setStroke(new BasicStroke(2));
+        graphics.setColor(black);
         graphics.draw(new RoundRectangle2D.Float(
-                5, 5,
-                cardWidth + 10, cardHeight + 10,
-                40, 40
+                0, 0,
+                cardImage.getWidth(), cardImage.getHeight(),
+                20, 20
         ));
     }
 
@@ -96,7 +95,7 @@ public class CardRenderer extends Renderer {
         }
 
         private int nextElementHeight() {
-            return cardHeight - 15 - elementsRendered * 45;
+            return cardImage.getHeight() - 15 - elementsRendered * 45;
         }
     }
 }

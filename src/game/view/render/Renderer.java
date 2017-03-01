@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.geom.AffineTransform;
 
 public abstract class Renderer {
-    private final ViewObject viewObject;
+    protected final ViewObject viewObject;
 
     Renderer(ViewObject viewObject) {
         this.viewObject = viewObject;
@@ -13,8 +13,6 @@ public abstract class Renderer {
     protected abstract void render(Graphics2D graphics);
 
     public void performRenderOn(Graphics2D graphics2D) {
-        drawDebugOutline(graphics2D);
-
         AffineTransform previous = graphics2D.getTransform();
         graphics2D.setTransform(getTransform());
         render(graphics2D);
@@ -28,12 +26,5 @@ public abstract class Renderer {
         transform.rotate(viewObject.getRotation());
         transform.translate(-viewObject.getWidth() / 2, -viewObject.getHeight() / 2);
         return transform;
-    }
-
-    private void drawDebugOutline(Graphics2D graphics2D) {
-        graphics2D.setStroke(new BasicStroke(2));
-        int x = viewObject.getX() - viewObject.getWidth() / 2;
-        int y = viewObject.getY() - viewObject.getHeight() / 2;
-        graphics2D.drawRect(x, y, viewObject.getWidth(), viewObject.getHeight());
     }
 }
