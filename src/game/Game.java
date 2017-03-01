@@ -46,7 +46,9 @@ public class Game {
     }
 
     public void performTurn(Turn turn) {
+        turn.invoke(this);
 
+        currentPlayer = (currentPlayer + 1) % players.size();
     }
 
     public static void main(String[] args) {
