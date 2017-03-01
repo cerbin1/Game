@@ -51,11 +51,11 @@ public class Tokens {
         return tokens.get(Red);
     }
 
-    public Map<TokenColor, Integer> asMap() {
-        return tokens;
-    }
-
     public int getVersatile() {
         return versatile;
+    }
+
+    public Map<TokenColor, Integer> asMap() {
+        return tokens;
     }
 }

@@ -45,11 +45,11 @@ public class Game {
         return expensiveCards;
     }
 
-    public static void main(String[] args) {
-        new GameFactory().create();
-    }
-
     public void performTurn(Turn turn) {
 
+    }
+
+    public static void main(String[] args) {
+        new GameFactory().create();
     }
 }
