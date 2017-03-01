@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class TokensTest {
     @Test
-    public void shouldGetTokens() throws Exception {
+    public void shouldGetTokens() {
         // given
         Tokens tokens = new Tokens(3, 2);
 
@@ -31,7 +31,7 @@ public class TokensTest {
     }
 
     @Test
-    public void shouldGetTokensAsMap() throws Exception {
+    public void shouldGetTokensAsMap() {
         // given
         Tokens tokens = new Tokens(3, 2);
 
