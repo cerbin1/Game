@@ -15,7 +15,7 @@ public class CardRenderer extends Renderer {
     private final BufferedImage cardImage;
     private final Card card;
     private final int cardWidth, cardHeight;
-    private Font arial = new Font("Arial", Font.ITALIC, 70);
+    private Font arial = new Font("Franklin Gothic Medium", Font.ITALIC, 70);
 
     public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
