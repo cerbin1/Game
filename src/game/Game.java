@@ -50,6 +50,6 @@ public class Game {
     }
 
     public static void main(String[] args) {
-        new GameFactory().create();
+        new GameBuilder().create();
     }
 }

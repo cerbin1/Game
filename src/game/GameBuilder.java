@@ -5,7 +5,7 @@ import game.cards.Card;
 import java.util.ArrayList;
 import java.util.List;
 
-public class GameFactory {
+public class GameBuilder {
     private Tokens tokens;
     private List<Player> players = new ArrayList<>();
     private List<Card> cheapCards = new ArrayList<>();

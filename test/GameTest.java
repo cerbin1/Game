@@ -1,5 +1,5 @@
 import game.Game;
-import game.GameFactory;
+import game.GameBuilder;
 import game.Player;
 import game.Tokens;
 import game.cards.Card;
@@ -30,10 +30,10 @@ public class GameTest {
     @Test
     public void shouldInitializeGame() {
         // given
-        GameFactory factory = gameFactory();
+        GameBuilder builder = gameBuilder();
 
         // when
-        Game game = factory.create();
+        Game game = builder.create();
 
         // then
         assertEquals(game.getPlayers(), asList(player1, player2));
@@ -48,7 +48,7 @@ public class GameTest {
     @Test
     public void shouldHaveFirstPlayer() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         Player currentPlayer = game.getCurrentPlayer();
@@ -60,7 +60,7 @@ public class GameTest {
     @Test
     public void shouldChangeGameAndPlayerTokensAfterAcquireTurn() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         game.performTurn(new AcquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
@@ -77,7 +77,7 @@ public class GameTest {
     @Test
     public void shouldChangeCurrentPlayerToNext() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         game.performTurn(new PassTurn());
@@ -89,7 +89,7 @@ public class GameTest {
     @Test
     public void shouldGetBackToPlayerAfterTwoTurns() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         game.performTurn(new PassTurn());
@@ -102,7 +102,7 @@ public class GameTest {
     @Test
     public void shouldHaveCardAndVersatileToken() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         game.performTurn(new ReservationTurn(cheapCard2));
@@ -117,7 +117,7 @@ public class GameTest {
     @Test
     public void shouldBuyCardAndLoseToken() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         game.performTurn(new BuyCardTurn(mediumCard2));
@@ -132,7 +132,7 @@ public class GameTest {
     @Test
     public void shouldThrowOnBuyingNotAvailableCard() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         try {
@@ -148,7 +148,7 @@ public class GameTest {
     @Test
     public void shouldThrowOnBuyingCardThatIsTooExpensive() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
 
         // when
         try {
@@ -164,7 +164,7 @@ public class GameTest {
     @Test
     public void shouldBuyCardAndLoseVersatileToken() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
         game.performTurn(new PassTurn());
 
         // when
@@ -180,7 +180,7 @@ public class GameTest {
     @Test
     public void shouldNotLoseVersatileTokens() {
         // given
-        Game game = gameFactory().create();
+        Game game = gameBuilder().create();
         game.performTurn(new PassTurn());
 
         // when
@@ -191,20 +191,20 @@ public class GameTest {
         assertEquals(player2.getTokens().getVersatile(), 3);
     }
 
-    private GameFactory gameFactory() {
-        GameFactory factory = new GameFactory();
-        factory.setTokens(gameTokens);
-        factory.addPlayer(player1);
-        factory.addPlayer(player2);
-        factory.addCheapCard(cheapCard1);
-        factory.addCheapCard(cheapCard2);
-        factory.addCheapCard(cheapCard3);
-        factory.addCheapCard(cheapCard4);
-        factory.addCheapCard(cheapCard5);
-        factory.addMediumCard(mediumCard2);
-        factory.addMediumCard(mediumCard1);
-        factory.addExpensiveCard(expensiveCard1);
-        factory.addExpensiveCard(expensiveCard2);
-        return factory;
+    private GameBuilder gameBuilder() {
+        GameBuilder builder = new GameBuilder();
+        builder.setTokens(gameTokens);
+        builder.addPlayer(player1);
+        builder.addPlayer(player2);
+        builder.addCheapCard(cheapCard1);
+        builder.addCheapCard(cheapCard2);
+        builder.addCheapCard(cheapCard3);
+        builder.addCheapCard(cheapCard4);
+        builder.addCheapCard(cheapCard5);
+        builder.addMediumCard(mediumCard2);
+        builder.addMediumCard(mediumCard1);
+        builder.addExpensiveCard(expensiveCard1);
+        builder.addExpensiveCard(expensiveCard2);
+        return builder;
     }
 }
