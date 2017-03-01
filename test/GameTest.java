@@ -37,9 +37,9 @@ public class GameTest {
 
         // then
         assertEquals(game.getPlayers(), asList(player1, player2));
-        assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2));
+        assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5));
         assertEquals(game.getMediumCards(), asList(mediumCard1, mediumCard2));
-        assertEquals(game.getExpensiveCards(), asList(expensiveCard2, expensiveCard2));
+        assertEquals(game.getExpensiveCards(), asList(expensiveCard1, expensiveCard2));
         assertEquals(game.getTokens(), gameTokens);
         assertTrue(player1.getCards().isEmpty());
         assertTrue(player2.getCards().isEmpty());
@@ -55,23 +55,6 @@ public class GameTest {
 
         // then
         assertEquals(currentPlayer, player1);
-    }
-
-    @Test
-    public void shouldChangeGameAndPlayerTokensAfterAcquireTurn() {
-        // given
-        Game game = gameBuilder().create();
-
-        // when
-        game.performTurn(new AcquireTokensTurn(new Tokens(1, 0, 0, 1, 1)));
-
-        // then
-        assertEquals(gameTokens.getGreen(), 6);
-        assertEquals(gameTokens.getBlack(), 6);
-        assertEquals(player1.getTokens().getGreen(), 1);
-        assertEquals(player1.getTokens().getBlack(), 1);
-        assertEquals(game.getCurrentPlayer(), player2);
-        assertTrue(player1.getCards().isEmpty());
     }
 
     @Test
@@ -124,6 +107,7 @@ public class GameTest {
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
+        assertEquals(game.getTokens().getGreen(), 9);
         assertEquals(player1.getTokens().getGreen(), 1);
         assertEquals(player1.getCards().get(0), mediumCard2);
         assertFalse(mediumCard1.isReserved());
@@ -201,8 +185,8 @@ public class GameTest {
         builder.addCheapCard(cheapCard3);
         builder.addCheapCard(cheapCard4);
         builder.addCheapCard(cheapCard5);
-        builder.addMediumCard(mediumCard2);
         builder.addMediumCard(mediumCard1);
+        builder.addMediumCard(mediumCard2);
         builder.addExpensiveCard(expensiveCard1);
         builder.addExpensiveCard(expensiveCard2);
         return builder;
