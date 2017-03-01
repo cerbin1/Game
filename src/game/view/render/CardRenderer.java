@@ -15,7 +15,7 @@ public class CardRenderer extends Renderer {
     private final BufferedImage cardImage;
     private final Card card;
     private final int cardWidth, cardHeight;
-    private Font arial = new Font("Arial", Font.PLAIN, 70);
+    private Font arial = new Font("Arial", Font.ITALIC, 70);
 
     public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
@@ -35,7 +35,7 @@ public class CardRenderer extends Renderer {
 
         graphics.setColor(black);
         graphics.setFont(arial);
-        drawOutlineText(graphics, card.getPoints() + "", cardWidth - 80, 80);
+        drawOutlineText(graphics, card.getPoints() + "", 30, 76);
 
         graphics.setStroke(new BasicStroke(10));
         graphics.setColor(white);
