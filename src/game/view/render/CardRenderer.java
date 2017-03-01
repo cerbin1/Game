@@ -4,6 +4,7 @@ import game.cards.Card;
 import game.view.ImageRepository;
 
 import java.awt.*;
+import java.awt.font.GlyphVector;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 
@@ -14,6 +15,7 @@ public class CardRenderer extends Renderer {
     private final BufferedImage cardImage;
     private final Card card;
     private final int cardWidth, cardHeight;
+    private Font arial = new Font("Arial", Font.PLAIN, 70);
 
     public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
@@ -32,8 +34,8 @@ public class CardRenderer extends Renderer {
         graphics.fillRect(10, 10, cardWidth, 80);
 
         graphics.setColor(black);
-        graphics.setFont(new Font("Arial", Font.PLAIN, 60));
-        graphics.drawString(card.getPoints() + "", cardWidth - 80, 80);
+        graphics.setFont(arial);
+        drawOutlineText(graphics, card.getPoints() + "", cardWidth - 80, 80);
 
         graphics.setStroke(new BasicStroke(10));
         graphics.setColor(white);
@@ -42,5 +44,19 @@ public class CardRenderer extends Renderer {
                 cardWidth + 10, cardHeight + 10,
                 40, 40
         ));
+    }
+
+    private void drawOutlineText(Graphics2D graphics, String text, int x, int y) {
+        graphics.translate(x, y);
+        GlyphVector glyphVector = arial.createGlyphVector(graphics.getFontRenderContext(), text);
+        Shape textShape = glyphVector.getOutline();
+
+        graphics.setColor(black);
+        graphics.setStroke(new BasicStroke(2.0f));
+        graphics.draw(textShape);
+
+        graphics.setColor(white);
+        graphics.fill(textShape);
+        graphics.translate(-x, -y);
     }
 }

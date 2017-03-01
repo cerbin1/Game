@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
+import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
@@ -40,6 +41,9 @@ class Window {
 
         BufferedImage backBuffer = new BufferedImage(1920, 1090, TYPE_INT_ARGB);
         Graphics2D canvas = backBuffer.createGraphics();
+
+        canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
+        canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
 
         Card card = new Card(new Tokens(2, 2, 1, 0, 0), 1);
         CardVO cardVO = new CardVO(card, 500, 300);
