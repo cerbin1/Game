@@ -1,7 +1,7 @@
 package game.view;
 
 import game.Tokens;
-import game.cards.Card;
+import game.cards.*;
 import game.view.render.CardRenderer;
 import game.view.render.CardVO;
 
@@ -45,7 +45,7 @@ class Window {
         canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
         canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
 
-        Card card = new Card(new Tokens(2, 2, 1, 0, 0), 1);
+        Card card = new CheapCard(new Tokens(2, 2, 1, 0, 0));
         CardVO cardVO = new CardVO(card, 500, 300);
         CardRenderer cardRenderer = new CardRenderer(cardVO, imageRepository);
 
