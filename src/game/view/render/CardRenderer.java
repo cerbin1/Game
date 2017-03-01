@@ -1,5 +1,6 @@
 package game.view.render;
 
+import game.TokenColor;
 import game.Tokens;
 import game.cards.Card;
 import game.view.ImageRepository;
@@ -8,16 +9,20 @@ import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
+import java.util.function.BiConsumer;
 
 import static java.awt.Color.black;
 import static java.awt.Color.white;
+import static java.awt.Font.ITALIC;
+import static java.awt.Font.PLAIN;
 
 public class CardRenderer extends Renderer {
     private final BufferedImage cardImage;
     private final Card card;
     private final Tokens cardCost;
     private final int cardWidth, cardHeight;
-    private Font arial = new Font("Franklin Gothic Medium", Font.ITALIC, 70);
+    private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
+    private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
     public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
@@ -33,6 +38,7 @@ public class CardRenderer extends Renderer {
     protected void render(Graphics2D graphics) {
         graphics.drawImage(cardImage, 10, 10, null);
         drawTopHeader(graphics);
+        drawCardCosts(graphics);
         drawCardOutline(graphics);
     }
 
@@ -41,8 +47,12 @@ public class CardRenderer extends Renderer {
         graphics.fillRect(10, 10, cardWidth, 80);
 
         graphics.setColor(black);
-        graphics.setFont(arial);
+        graphics.setFont(pointsFont);
         drawOutlineText(graphics, card.getPoints() + "", 30, 76);
+    }
+
+    private void drawCardCosts(Graphics2D graphics) {
+        cardCost.asMap().forEach(new CardCostDrawer(graphics));
     }
 
     private void drawCardOutline(Graphics2D graphics) {
@@ -57,7 +67,7 @@ public class CardRenderer extends Renderer {
 
     private void drawOutlineText(Graphics2D graphics, String text, int x, int y) {
         graphics.translate(x, y);
-        GlyphVector glyphVector = arial.createGlyphVector(graphics.getFontRenderContext(), text);
+        GlyphVector glyphVector = pointsFont.createGlyphVector(graphics.getFontRenderContext(), text);
         Shape textShape = glyphVector.getOutline();
 
         graphics.setColor(black);
@@ -67,5 +77,26 @@ public class CardRenderer extends Renderer {
         graphics.setColor(white);
         graphics.fill(textShape);
         graphics.translate(-x, -y);
+    }
+
+    class CardCostDrawer implements BiConsumer<TokenColor, Integer> {
+        private final Graphics2D graphics;
+        private int elementsRendered = 0;
+
+        CardCostDrawer(Graphics2D graphics) {
+            this.graphics = graphics;
+        }
+
+        @Override
+        public void accept(TokenColor color, Integer amount) {
+            if (amount == 0) return;
+            graphics.setFont(costFont);
+            graphics.drawString(color.name() + ": " + amount, 19, nextElementHeight());
+            elementsRendered++;
+        }
+
+        private int nextElementHeight() {
+            return cardHeight - 15 - elementsRendered * 45;
+        }
     }
 }
