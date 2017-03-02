@@ -30,56 +30,44 @@ public class TokensAcquireValidator {
             return false;
         }
 
-        if (!requestedThreeSingleTokens(requestedTokens) && !requestedTwoCommonTokens(requestedTokens)) {
+        if (!validate(requestedTokens, 1, 3) && !validate(requestedTokens, 2, 2)) {
+            return false;
+        }
+
+        if (requestedTokens.getGreen() > 2 || requestedTokens.getPurple() > 2 || requestedTokens.getBlue() > 2 || requestedTokens.getBlack() > 2 || requestedTokens.getRed() > 2) {
             return false;
         }
 
         return true;
     }
 
-    private boolean requestedThreeSingleTokens(Tokens requestedTokens) {
-        SingleTokensValidator validator = new SingleTokensValidator();
-        requestedTokens.asMap().forEach(validator);
-        return validator.isRequestedThreeSingleTokens();
-    }
-
-    private class SingleTokensValidator implements BiConsumer<TokenColor, Integer> {
-        private int numberOfOnes = 0;
-
-        @Override
-        public void accept(TokenColor tokenColor, Integer integer) {
-            if (integer == 1 || integer == 0) {
-                numberOfOnes += integer;
-            } else {
-                throw new RuntimeException();
-            }
-        }
-
-        boolean isRequestedThreeSingleTokens() {
-            return numberOfOnes == 3;
-        }
-    }
-
-    private boolean requestedTwoCommonTokens(Tokens requestedTokens) {
-        TwoCommonTokensValidator validator = new TwoCommonTokensValidator();
+    private boolean validate(Tokens requestedTokens, int checkingTokensValue, int expectedEndingValue) {
+        TokensValidator validator = new TokensValidator(checkingTokensValue, expectedEndingValue);
         requestedTokens.asMap().forEach(validator);
         return validator.isRequestedTwoCommonTokens();
     }
 
-    private class TwoCommonTokensValidator implements BiConsumer<TokenColor, Integer> {
+    private class TokensValidator implements BiConsumer<TokenColor, Integer> {
         private int tokensValue = 0;
+        private int checkingTokensValue;
+        private int expectedValue;
+
+        TokensValidator(int checkingTokensValue, int expectedValue) {
+            this.checkingTokensValue = checkingTokensValue;
+            this.expectedValue = expectedValue;
+        }
 
         @Override
         public void accept(TokenColor tokenColor, Integer integer) {
-            if (integer == 2 || integer == 0) {
+            if (integer == checkingTokensValue || integer == 0) {
                 tokensValue += integer;
             } else {
-                throw new RuntimeException();
+                tokensValue -= 10;
             }
         }
 
         boolean isRequestedTwoCommonTokens() {
-            return tokensValue == 2;
+            return tokensValue == expectedValue;
         }
     }
 }
