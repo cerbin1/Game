@@ -31,6 +31,10 @@ public class Tokens {
         versatile = 0;
     }
 
+    public int get(TokenColor color) {
+        return tokens.get(color);
+    }
+
     public int getGreen() {
         return tokens.get(Green);
     }
