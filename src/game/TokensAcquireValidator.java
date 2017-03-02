@@ -41,8 +41,8 @@ public class TokensAcquireValidator {
         return true;
     }
 
-    private boolean validate(Tokens requestedTokens, int checkingTokensValue, int expectedEndingValue) {
-        TokensValidator validator = new TokensValidator(checkingTokensValue, expectedEndingValue);
+    private boolean validate(Tokens requestedTokens, int value, int amount) {
+        TokensValidator validator = new TokensValidator(value, amount);
         requestedTokens.asMap().forEach(validator);
         return validator.isRequestedTwoCommonTokens();
     }
