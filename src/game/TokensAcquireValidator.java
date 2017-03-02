@@ -67,7 +67,7 @@ public class TokensAcquireValidator {
         }
 
         boolean isRequestedTwoCommonTokens() {
-            return currentAmount == expectedAmount || isPassedValidation;
+            return currentAmount == expectedAmount && isPassedValidation;
         }
     }
 }
