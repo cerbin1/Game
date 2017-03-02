@@ -48,26 +48,25 @@ public class TokensAcquireValidator {
     }
 
     private class TokensValidator implements BiConsumer<TokenColor, Integer> {
-        private int tokensValue = 0;
-        private int checkingTokensValue;
-        private int expectedValue;
+        private final int value, expectedAmount;
+        private int currentAmount = 0;
 
-        TokensValidator(int checkingTokensValue, int expectedValue) {
-            this.checkingTokensValue = checkingTokensValue;
-            this.expectedValue = expectedValue;
+        TokensValidator(int value, int amount) {
+            this.value = value;
+            this.expectedAmount = amount;
         }
 
         @Override
         public void accept(TokenColor tokenColor, Integer integer) {
-            if (integer == checkingTokensValue || integer == 0) {
-                tokensValue += integer;
+            if (integer == value || integer == 0) {
+                currentAmount += integer;
             } else {
-                tokensValue -= 10;
+                currentAmount -= 10;
             }
         }
 
         boolean isRequestedTwoCommonTokens() {
-            return tokensValue == expectedValue;
+            return currentAmount == expectedAmount;
         }
     }
 }
