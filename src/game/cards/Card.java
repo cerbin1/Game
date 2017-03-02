@@ -1,5 +1,6 @@
 package game.cards;
 
+import game.TokenColor;
 import game.Tokens;
 
 public abstract class Card {
@@ -26,5 +27,9 @@ public abstract class Card {
 
     public int getPoints() {
         return points;
+    }
+
+    public TokenColor getColor() {
+        return TokenColor.Black;
     }
 }
