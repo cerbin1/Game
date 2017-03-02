@@ -50,6 +50,7 @@ public class TokensAcquireValidator {
     private class TokensValidator implements BiConsumer<TokenColor, Integer> {
         private final int value, expectedAmount;
         private int currentAmount = 0;
+        private boolean isPassedValidation = true;
 
         TokensValidator(int value, int amount) {
             this.value = value;
@@ -61,12 +62,12 @@ public class TokensAcquireValidator {
             if (integer == value || integer == 0) {
                 currentAmount += integer;
             } else {
-                currentAmount -= 10;
+                isPassedValidation = false;
             }
         }
 
         boolean isRequestedTwoCommonTokens() {
-            return currentAmount == expectedAmount;
+            return currentAmount == expectedAmount || isPassedValidation;
         }
     }
 }
