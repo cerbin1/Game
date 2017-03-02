@@ -30,7 +30,7 @@ public class TokensAcquireValidator {
             return false;
         }
 
-        if (!requestedThreeSingleTokens(requestedTokens) && !requestedTwoCommonTokens()) {
+        if (!requestedThreeSingleTokens(requestedTokens) && !requestedTwoCommonTokens(requestedTokens)) {
             return false;
         }
 
@@ -60,7 +60,26 @@ public class TokensAcquireValidator {
         }
     }
 
-    private boolean requestedTwoCommonTokens() {
-        return true;
+    private boolean requestedTwoCommonTokens(Tokens requestedTokens) {
+        TwoCommonTokensValidator validator = new TwoCommonTokensValidator();
+        requestedTokens.asMap().forEach(validator);
+        return validator.isRequestedTwoCommonTokens();
+    }
+
+    private class TwoCommonTokensValidator implements BiConsumer<TokenColor, Integer> {
+        private int tokensValue = 0;
+
+        @Override
+        public void accept(TokenColor tokenColor, Integer integer) {
+            if (integer == 2 || integer == 0) {
+                tokensValue += integer;
+            } else {
+                throw new RuntimeException();
+            }
+        }
+
+        boolean isRequestedTwoCommonTokens() {
+            return tokensValue == 2;
+        }
     }
 }
