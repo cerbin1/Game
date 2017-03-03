@@ -25,8 +25,8 @@ public class ViewObject {
         return 0.0;
     }
 
-    public void update(double ticksPerSecond) {
-        secondsPassed = ticksPerSecond;
+    public void update(double secondsPassed) {
+        this.secondsPassed += secondsPassed;
     }
 
     int getWidth() {
