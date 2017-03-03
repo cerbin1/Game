@@ -79,4 +79,17 @@ public class AnimatedValueTest {
         // then
         assertEquals(animatedValue.getValue(), 9.0, 0.000001);
     }
+
+    @Test
+    public void shouldUpdateUpToWithDifferentSpeed() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(10, 2.2);
+        animatedValue.setValue(15);
+
+        // when
+        animatedValue.update(1.5);
+
+        // then
+        assertEquals(animatedValue.getValue(), 13.3, 0.000001);
+    }
 }
