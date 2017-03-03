@@ -11,7 +11,7 @@ public class CheapCard extends Card {
         this(cost, 0);
     }
 
-    public CheapCard(Tokens cost, int points) {
+    private CheapCard(Tokens cost, int points) {
         super(cost, points);
     }
 }
