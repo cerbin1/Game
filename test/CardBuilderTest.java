@@ -5,13 +5,15 @@ import app.game.card.Card;
 import app.game.card.CardBuilder;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class CardBuilderTest {
     @Test
     public void shouldCreateCheapCards() {
         // given
-        MockRandom random = new MockRandom(0, 0, 1, 0, 0);
+        Random random = new MockRandom(0, 0, 1, 0, 0);
         CardBuilder builder = new CardBuilder(random);
 
         // when
@@ -19,7 +21,6 @@ public class CardBuilderTest {
         //Card cheapCard2 = builder.createCheapCard();
 
         // then
-        System.out.println(cheapCard1.getCost().getGreen());
         assertEquals(cheapCard1.getCost(), new Tokens(3, 0, 0, 0, 0));
         assertEquals(cheapCard1.getPoints(), 0);
         assertEquals(cheapCard1.getColor(), TokenColor.Green);
@@ -31,7 +32,7 @@ public class CardBuilderTest {
     @Test
     public void shouldCreateMediumCards() {
         // given
-        MockRandom random = new MockRandom(0, 0, 1, 0);
+        Random random = new MockRandom(0, 0, 1, 0);
         CardBuilder builder = new CardBuilder(random);
 
         // when
@@ -50,7 +51,7 @@ public class CardBuilderTest {
     @Test
     public void shouldCreateExpensiveCards() {
         // given
-        MockRandom random = new MockRandom(0, 0, 1, 0);
+        Random random = new MockRandom(0, 0, 1, 0);
         CardBuilder builder = new CardBuilder(random);
 
         // when

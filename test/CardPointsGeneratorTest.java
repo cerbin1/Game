@@ -2,6 +2,8 @@ import app.MockRandom;
 import app.game.card.CardPointsGenerator;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class CardPointsGeneratorTest {
@@ -9,7 +11,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateCheapCardPoints() {
         // given
-        MockRandom random = new MockRandom(0, 1);
+        Random random = new MockRandom(0, 1);
         CardPointsGenerator generator = new CardPointsGenerator(random);
 
         // when
@@ -24,7 +26,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateMediumCardPoints() {
         // given
-        MockRandom random = new MockRandom(0, 1, 2);
+        Random random = new MockRandom(0, 1, 2);
         CardPointsGenerator generator = new CardPointsGenerator(random);
 
         // when
@@ -41,7 +43,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateExpensiveCardPoints() {
         // given
-        MockRandom random = new MockRandom(0, 1, 2);
+        Random random = new MockRandom(0, 1, 2);
         CardPointsGenerator generator = new CardPointsGenerator(random);
 
         // when

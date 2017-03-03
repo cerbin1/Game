@@ -4,12 +4,14 @@ import app.game.Tokens;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.util.Random;
+
 public class ConditionsEmploymentNobilityTest {
     @Test
     public void shouldRandomTwoCostTypes() {
         // given
-        MockRandom mockRandom = new MockRandom(0, 1, 2, 3);
-        ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(mockRandom);
+        Random random = new MockRandom(0, 1, 2, 3);
+        ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(random);
         Tokens tokens = conditionsEmploymentNobility.getConditions();
 
         // when
@@ -22,8 +24,8 @@ public class ConditionsEmploymentNobilityTest {
     @Test
     public void shouldRandomThreeCostTypes() {
         // given
-        MockRandom mockRandom = new MockRandom(1, 3, 4);
-        ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(mockRandom);
+        Random random = new MockRandom(1, 3, 4);
+        ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(random);
         Tokens tokens = conditionsEmploymentNobility.getConditions();
 
         // when

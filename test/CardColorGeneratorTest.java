@@ -3,6 +3,8 @@ import app.game.TokenColor;
 import app.game.card.CardColorGenerator;
 import org.junit.Test;
 
+import java.util.Random;
+
 import static org.junit.Assert.assertEquals;
 
 public class CardColorGeneratorTest {
@@ -10,7 +12,7 @@ public class CardColorGeneratorTest {
     @Test
     public void shouldGenerateCardColor() {
         // given
-        MockRandom random = new MockRandom(0, 1, 2, 3, 4);
+        Random random = new MockRandom(0, 1, 2, 3, 4);
         CardColorGenerator colorGenerator = new CardColorGenerator(random);
 
         // when
