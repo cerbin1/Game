@@ -1,3 +1,4 @@
+import app.MockRandom;
 import app.game.card.CardPointsGenerator;
 import org.junit.Test;
 

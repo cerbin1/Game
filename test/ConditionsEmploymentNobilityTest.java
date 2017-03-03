@@ -1,3 +1,4 @@
+import app.MockRandom;
 import app.game.ConditionsEmploymentNobility;
 import app.game.Tokens;
 import org.junit.Assert;

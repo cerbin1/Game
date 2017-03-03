@@ -1,10 +1,12 @@
+package app;
+
 import java.util.Random;
 
-class MockRandom extends Random {
+public class MockRandom extends Random {
     private int index;
     private int[] array;
 
-    MockRandom(int... array) {
+    public MockRandom(int... array) {
         this.array = array;
     }
 

@@ -1,3 +1,4 @@
+import app.MockRandom;
 import app.game.TokenColor;
 import app.game.card.CardColorGenerator;
 import org.junit.Test;
