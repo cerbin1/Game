@@ -1,5 +1,5 @@
-import game.ConditionsEmploymentNobility;
-import game.Tokens;
+import app.game.ConditionsEmploymentNobility;
+import app.game.Tokens;
 import org.junit.Assert;
 import org.junit.Test;
 

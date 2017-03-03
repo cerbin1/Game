@@ -1,12 +1,12 @@
-import game.Game;
-import game.GameBuilder;
-import game.Player;
-import game.Tokens;
-import game.cards.Card;
-import game.cards.CheapCard;
-import game.cards.ExpensiveCard;
-import game.cards.MediumCard;
-import game.turn.*;
+import app.game.Game;
+import app.game.GameBuilder;
+import app.game.Player;
+import app.game.Tokens;
+import app.game.cards.Card;
+import app.game.cards.CheapCard;
+import app.game.cards.ExpensiveCard;
+import app.game.cards.MediumCard;
+import app.game.turn.*;
 import org.junit.Assert;
 import org.junit.Test;
 
