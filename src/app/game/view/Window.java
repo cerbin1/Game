@@ -1,7 +1,7 @@
 package app.game.view;
 
 import app.game.Tokens;
-import app.game.cards.*;
+import app.game.card.*;
 import app.game.view.render.CardRenderer;
 import app.game.view.render.CardVO;
 

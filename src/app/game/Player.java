@@ -1,6 +1,6 @@
 package app.game;
 
-import app.game.cards.Card;
+import app.game.card.Card;
 
 import java.util.List;
 

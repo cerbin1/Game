@@ -1,7 +1,7 @@
-import app.game.cards.CardBuilder;
+import app.game.card.CardBuilder;
 import app.game.TokenColor;
 import app.game.Tokens;
-import app.game.cards.Card;
+import app.game.card.Card;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;

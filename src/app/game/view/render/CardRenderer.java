@@ -1,7 +1,7 @@
 package app.game.view.render;
 
 import app.game.TokenColor;
-import app.game.cards.Card;
+import app.game.card.Card;
 import app.game.view.ImageRepository;
 
 import java.awt.*;

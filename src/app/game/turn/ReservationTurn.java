@@ -1,7 +1,7 @@
 package app.game.turn;
 
 import app.game.Game;
-import app.game.cards.Card;
+import app.game.card.Card;
 
 public class ReservationTurn extends Turn {
     public ReservationTurn(Card card) {

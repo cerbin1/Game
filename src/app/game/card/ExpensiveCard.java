@@ -1,4 +1,4 @@
-package app.game.cards;
+package app.game.card;
 
 import app.game.Tokens;
 

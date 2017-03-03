@@ -2,7 +2,7 @@ package app.game.turn;
 
 import app.game.Game;
 import app.game.Player;
-import app.game.cards.Card;
+import app.game.card.Card;
 
 public class BuyCardTurn extends Turn {
     public BuyCardTurn(Card card) {

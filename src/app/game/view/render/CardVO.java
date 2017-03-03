@@ -1,6 +1,6 @@
 package app.game.view.render;
 
-import app.game.cards.Card;
+import app.game.card.Card;
 
 import static java.lang.Math.*;
 
