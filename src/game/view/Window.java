@@ -11,9 +11,11 @@ import java.awt.image.BufferedImage;
 
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+import static java.lang.Thread.sleep;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 class Window {
+    private static boolean shouldStop = false;
     private final JFrame frame = new JFrame();
 
     private Window() {
@@ -49,14 +51,21 @@ class Window {
         CardVO cardVO = new CardVO(card, 500, 300);
         CardRenderer cardRenderer = new CardRenderer(cardVO, imageRepository);
 
-        double x = 0;
-        while (true) {
-            x = (x + 0.01);
-            cardVO.update(x);
-            canvas.drawImage(imageRepository.background1, 0, 0, null);
+        double previous = System.nanoTime();
+        while (!shouldStop) {
+            double current = System.nanoTime();
+            double elapsed = current - previous;
+            previous = current;
+            cardVO.update(elapsed / 1.0e9);
 
+            canvas.drawImage(imageRepository.background1, 0, 0, null);
             cardRenderer.performRenderOn(canvas);
             graphics.drawImage(backBuffer, 0, 0, null);
+
+            try {
+                sleep(2);
+            } catch (InterruptedException ignored) {
+            }
         }
     }
 }
