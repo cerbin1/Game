@@ -2,7 +2,7 @@ package app.game;
 
 import app.game.cards.Card;
 import app.game.turn.Turn;
-import util.Lists;
+import app.util.Lists;
 
 import java.util.List;
 

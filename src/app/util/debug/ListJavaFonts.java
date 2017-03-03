@@ -1,4 +1,4 @@
-package app.debug;
+package app.util.debug;
 
 import java.awt.*;
 
