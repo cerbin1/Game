@@ -16,8 +16,8 @@ import static java.awt.Font.ITALIC;
 import static java.awt.Font.PLAIN;
 
 public class CardRenderer extends Renderer {
-    private final BufferedImage cardImage, cardBack;
     private final Card card;
+    private final BufferedImage cardImage, cardBack;
     private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
     private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
@@ -91,11 +91,10 @@ public class CardRenderer extends Renderer {
             if (amount == 0) return;
             graphics.setFont(costFont);
             graphics.drawString(color.name() + ": " + amount, 19, nextElementHeight());
-            elementsRendered++;
         }
 
         private int nextElementHeight() {
-            return cardImage.getHeight() - 15 - elementsRendered * 45;
+            return cardImage.getHeight() - 15 - elementsRendered++ * 45;
         }
     }
 }

@@ -22,7 +22,7 @@ public class AnimatedValueTest {
         AnimatedValue animatedValue = new AnimatedValue(14);
 
         // when
-        animatedValue.update(0.1);
+        animatedValue.update(1.1);
 
         // then
         assertEquals(animatedValue.getValue(), 14, 0.000001);

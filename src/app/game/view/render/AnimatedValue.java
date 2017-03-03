@@ -29,11 +29,12 @@ public class AnimatedValue {
 
     public void update(double seconds) {
         int compare = compare(currentValue, destinationValue);
+        double difference = seconds / duration;
         if (compare < 0) {
-            currentValue = min(currentValue + seconds / duration, destinationValue);
+            currentValue = min(currentValue + difference, destinationValue);
         }
         if (compare > 0) {
-            currentValue = max(currentValue - seconds / duration, destinationValue);
+            currentValue = max(currentValue - difference, destinationValue);
         }
     }
 }
