@@ -1,17 +1,14 @@
 package app.game.card;
 
+import app.game.TokenColor;
 import app.game.Tokens;
 
 public class CheapCard extends Card {
     public CheapCard() {
-        this(new CardCostGenerator().getCheap(), 0);
+        super(new Tokens(), 0, TokenColor.Green);
     }
 
-    public CheapCard(Tokens cost) {
-        this(cost, 0);
-    }
-
-    private CheapCard(Tokens cost, int points) {
-        super(cost, points);
+    public CheapCard(Tokens cost, int points, TokenColor color) {
+        super(cost, points, color);
     }
 }
