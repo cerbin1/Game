@@ -2,6 +2,7 @@ package game;
 
 import game.cards.Card;
 import game.turn.Turn;
+import util.Lists;
 
 import java.util.List;
 
@@ -43,6 +44,10 @@ public class Game {
 
     public List<Card> getExpensiveCards() {
         return expensiveCards;
+    }
+
+    public List<Card> getAvailableCards() {
+        return Lists.join(cheapCards, mediumCards, expensiveCards);
     }
 
     public void performTurn(Turn turn) {
