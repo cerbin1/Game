@@ -47,7 +47,7 @@ class Window {
         canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
         canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
 
-        Card card = new CheapCard(new Tokens(2, 2, 1, 0, 0));
+        Card card = new CheapCard();
         CardVO cardVO = new CardVO(card, 500, 300);
         CardRenderer cardRenderer = new CardRenderer(cardVO, imageRepository);
 
