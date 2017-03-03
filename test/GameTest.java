@@ -16,14 +16,14 @@ import static org.junit.Assert.*;
 public class GameTest {
     private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
     private Player player2 = new Player(new Tokens(1, 3));
-    private Card cheapCard1 = new CheapCard(new Tokens(1, 0, 0, 0, 0));
+    private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card cheapCard3 = new CheapCard();
     private Card cheapCard4 = new CheapCard();
     private Card cheapCard5 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
-    private Card mediumCard2 = new MediumCard(new Tokens(2, 0, 0, 0, 0));
-    private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 0, 0, 0, 0));
+    private Card mediumCard2 = new MediumCard();
+    private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
     private Tokens gameTokens = new Tokens(7, 5);
 
