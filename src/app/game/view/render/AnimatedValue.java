@@ -1,4 +1,4 @@
-package game.view.render;
+package app.game.view.render;
 
 import static java.lang.Double.compare;
 import static java.lang.Math.max;

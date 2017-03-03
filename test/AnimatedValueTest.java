@@ -1,4 +1,4 @@
-import game.view.render.AnimatedValue;
+import app.game.view.render.AnimatedValue;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
