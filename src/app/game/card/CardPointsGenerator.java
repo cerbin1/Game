@@ -3,10 +3,10 @@ package app.game.card;
 import java.util.Random;
 
 public class CardPointsGenerator {
-    private Random random;
-    private final int[] cheapCardPoints = {0, 1};
-    private final int[] mediumCardPoints = {1, 2, 3};
-    private final int[] expensiveCardPoints = {3, 4, 5};
+    private final Random random;
+    private final int[] cheapPoints = {0, 1};
+    private final int[] mediumPoints = {1, 2, 3};
+    private final int[] expensivePoints = {3, 4, 5};
 
     public CardPointsGenerator() {
         this(new Random());
@@ -17,14 +17,14 @@ public class CardPointsGenerator {
     }
 
     public int generateCheapCardPoints() {
-        return cheapCardPoints[random.nextInt(cheapCardPoints.length)];
+        return cheapPoints[random.nextInt(cheapPoints.length)];
     }
 
     public int generateMediumCardPoints() {
-        return mediumCardPoints[random.nextInt(mediumCardPoints.length)];
+        return mediumPoints[random.nextInt(mediumPoints.length)];
     }
 
     public int generateExpensiveCardPoints() {
-        return expensiveCardPoints[random.nextInt(expensiveCardPoints.length)];
+        return expensivePoints[random.nextInt(expensivePoints.length)];
     }
 }

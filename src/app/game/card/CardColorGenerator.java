@@ -6,7 +6,6 @@ import java.util.Random;
 
 public class CardColorGenerator {
     private final Random random;
-    private TokenColor[] tokenColors = {TokenColor.Green, TokenColor.Purple, TokenColor.Blue, TokenColor.Black, TokenColor.Red};
 
     public CardColorGenerator() {
         this(new Random());
@@ -17,6 +16,7 @@ public class CardColorGenerator {
     }
 
     public TokenColor generateColor() {
+        TokenColor[] tokenColors = TokenColor.values();
         return tokenColors[random.nextInt(tokenColors.length)];
     }
 }
