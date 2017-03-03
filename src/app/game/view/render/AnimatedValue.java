@@ -5,7 +5,7 @@ import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class AnimatedValue {
-    private final double changePerSecond;
+    private final double duration;
     private double currentValue;
     private double destinationValue;
 
@@ -13,10 +13,10 @@ public class AnimatedValue {
         this(value, 1.0);
     }
 
-    public AnimatedValue(double value, double changePerSecond) {
+    public AnimatedValue(double value, double secondsDuration) {
         this.currentValue = value;
         this.destinationValue = value;
-        this.changePerSecond = changePerSecond;
+        this.duration = secondsDuration;
     }
 
     public void setValue(double value) {
@@ -30,10 +30,10 @@ public class AnimatedValue {
     public void update(double seconds) {
         int compare = compare(currentValue, destinationValue);
         if (compare < 0) {
-            currentValue = min(currentValue + seconds * changePerSecond, destinationValue);
+            currentValue = min(currentValue + seconds / duration, destinationValue);
         }
         if (compare > 0) {
-            currentValue = max(currentValue - seconds * changePerSecond, destinationValue);
+            currentValue = max(currentValue - seconds / duration, destinationValue);
         }
     }
 }

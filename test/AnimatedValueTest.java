@@ -83,13 +83,13 @@ public class AnimatedValueTest {
     @Test
     public void shouldUpdateUpToWithDifferentSpeed() {
         // given
-        AnimatedValue animatedValue = new AnimatedValue(10, 2.2);
+        AnimatedValue animatedValue = new AnimatedValue(10, 2.5);
         animatedValue.setValue(15);
 
         // when
-        animatedValue.update(1.5);
+        animatedValue.update(5.0);
 
         // then
-        assertEquals(animatedValue.getValue(), 13.3, 0.000001);
+        assertEquals(animatedValue.getValue(), 12.0, 0.000001);
     }
 }
