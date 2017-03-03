@@ -1,7 +1,7 @@
-import app.game.card.CardBuilder;
 import app.game.TokenColor;
 import app.game.Tokens;
 import app.game.card.Card;
+import app.game.card.CardBuilder;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -24,7 +24,6 @@ public class CardBuilderTest {
         assertEquals(cheapCard2.getCost(), new Tokens(1, 1, 1, 1, 0));
         assertEquals(cheapCard2.getPoints(), 0);
         assertEquals(cheapCard2.getColor(), TokenColor.Red);
-
     }
 
     @Test
