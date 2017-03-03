@@ -5,12 +5,14 @@ import app.game.Tokens;
 
 public abstract class Card {
     private boolean reserved = false;
+    private TokenColor color;
     private Tokens cost;
     private int points;
 
-    public Card(Tokens cost, int points) {
+    public Card(Tokens cost, int points, TokenColor color) {
         this.cost = cost;
         this.points = points;
+        this.color = color;
     }
 
     public boolean isReserved() {
@@ -30,6 +32,6 @@ public abstract class Card {
     }
 
     public TokenColor getColor() {
-        return TokenColor.Black;
+        return color;
     }
 }
