@@ -1,6 +1,7 @@
 package app.game;
 
 import app.game.card.Card;
+import app.game.card.nobility.Nobility;
 import app.game.turn.Turn;
 import app.util.Lists;
 
@@ -12,14 +13,16 @@ public class Game {
     private List<Card> mediumCards;
     private List<Card> expensiveCards;
     private List<Player> players;
+    private List<Nobility> nobilities;
     private int currentPlayer = 0;
 
-    Game(Tokens tokens, List<Player> players, List<Card> cheapCards, List<Card> mediumCards, List<Card> expensiveCards) {
+    Game(Tokens tokens, List<Player> players, List<Card> cheapCards, List<Card> mediumCards, List<Card> expensiveCards,List<Nobility> nobilities) {
         this.players = players;
         this.tokens = tokens;
         this.cheapCards = cheapCards;
         this.mediumCards = mediumCards;
         this.expensiveCards = expensiveCards;
+        this.nobilities = nobilities;
     }
 
     public Tokens getTokens() {
@@ -44,6 +47,10 @@ public class Game {
 
     public List<Card> getExpensiveCards() {
         return expensiveCards;
+    }
+
+    public List<Nobility> getNobility() {
+        return nobilities;
     }
 
     public List<Card> getAvailableCards() {
