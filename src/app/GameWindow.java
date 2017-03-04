@@ -18,6 +18,7 @@ import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
 public class GameWindow implements Updatable {
     private final Window window = new Window();
+    private ImageRepository imageRepository = new ImageRepository();
 
     private List<Updatable> updatables = new ArrayList<>();
     private List<Renderer> renderers = new ArrayList<>();
@@ -39,8 +40,6 @@ public class GameWindow implements Updatable {
     }
 
     private void initializeGame() {
-        ImageRepository imageRepository = new ImageRepository();
-
         CardVO cardVO = new CardVO(new CheapCard(), 500, 300);
         cardVO.setRotation(CardVO.randomCardRotation());
 
@@ -54,7 +53,7 @@ public class GameWindow implements Updatable {
         updatables.add(tokenVO);
 
         renderers.add(new BackgroundRenderer(imageRepository));
-        renderers.add(new CardRenderer(canvas, cardVO, imageRepository));
+        renderers.add(new CardRenderer(cardVO, imageRepository));
         renderers.add(new TokenRenderer(tokenVO, imageRepository));
         renderers.add(new TokenRenderer(versatileVO, imageRepository));
     }
