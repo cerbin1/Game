@@ -1,5 +1,3 @@
-package app;
-
 public class MockRandom extends app.util.Random {
     private int index;
     private int[] array;

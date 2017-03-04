@@ -1,5 +1,3 @@
-package app;
-
 public class MockJavaRandom extends java.util.Random {
     private int index;
     private int[] array;

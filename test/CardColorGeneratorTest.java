@@ -1,4 +1,3 @@
-import app.MockRandom;
 import app.game.token.TokenColor;
 import app.game.card.CardColorGenerator;
 import app.util.Random;

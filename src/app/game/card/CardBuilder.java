@@ -1,10 +1,9 @@
 package app.game.card;
 
-import app.MockRandom;
 import app.util.Random;
 
 public class CardBuilder {
-    private Random random = new MockRandom(0, 0, 0, 0, 0, 0, 0);
+    private Random random;
     private final CardCostGenerator costGenerator = new CardCostGenerator(random);
     private final CardPointsGenerator pointsGenerator = new CardPointsGenerator(random);
     private final CardColorGenerator colorGenerator = new CardColorGenerator(random);

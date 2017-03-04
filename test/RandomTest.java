@@ -1,4 +1,3 @@
-import app.MockJavaRandom;
 import app.util.Random;
 import org.junit.Test;
 
