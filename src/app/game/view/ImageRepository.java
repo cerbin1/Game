@@ -34,6 +34,9 @@ public class ImageRepository {
     }
 
     public BufferedImage getTokenImage(TokenColor color) {
+        if (color == null) {
+            return tokenVersatile;
+        }
         return tokens.get(color);
     }
 }

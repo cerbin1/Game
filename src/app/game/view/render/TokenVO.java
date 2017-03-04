@@ -14,4 +14,8 @@ public class TokenVO extends ViewObject {
     TokenColor getColor() {
         return token.getColor();
     }
+
+    public boolean isVersatile() {
+        return false;
+    }
 }

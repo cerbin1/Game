@@ -10,4 +10,8 @@ public class Token {
     public TokenColor getColor() {
         return color;
     }
+
+    public boolean isVersatile() {
+        return color == null;
+    }
 }
