@@ -39,10 +39,6 @@ public class Nobility {
     }
 
     public int getRandomPoints() {
-        return isFirstTypeOfPointsDrawn() ? 3 : 4;
-    }
-
-    private boolean isFirstTypeOfPointsDrawn() {
-        return random.nextInt(2) % 2 == 0;
+        return random.nextInt(2) + 2;
     }
 }
