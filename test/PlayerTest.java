@@ -7,8 +7,10 @@ import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
 import app.game.card.nobility.Nobility;
 import app.util.Random;
+import app.game.token.Tokens;
 import org.junit.Test;
 
+import static app.game.token.TokenColor.Green;
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;
 
@@ -38,9 +40,9 @@ public class PlayerTest {
     public void shouldCountPointsFromCards() {
         // given
         Player player = new Player();
-        player.addCard(new CheapCard(new Tokens(0, 0), 0, TokenColor.Green));
-        player.addCard(new MediumCard(new Tokens(0, 0), 2, TokenColor.Green));
-        player.addCard(new ExpensiveCard(new Tokens(0, 0), 5, TokenColor.Green));
+        player.addCard(new CheapCard(new Tokens(), 0, Green));
+        player.addCard(new MediumCard(new Tokens(), 2, Green));
+        player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
 
         // when
         int points = player.countPoints();
@@ -53,8 +55,8 @@ public class PlayerTest {
     public void shouldCountPointsFromNobilities() {
         // given
         Player player = new Player();
-        player.addNobility(new Nobility(new Tokens(0, 0), 4));
-        player.addNobility(new Nobility(new Tokens(0, 0), 3));
+        player.addNobility(new Nobility(new Tokens(), 4));
+        player.addNobility(new Nobility(new Tokens(), 3));
 
         // when
         int playerPoints = player.countPoints();
@@ -68,8 +70,8 @@ public class PlayerTest {
         // given
         Random random = new MockRandom(0);
         Player player = new Player();
-        player.addCard(new MediumCard(new Tokens(0, 0), 3, TokenColor.Green));
-        player.addCard(new ExpensiveCard(new Tokens(0, 0), 5, TokenColor.Green));
+        player.addCard(new MediumCard(new Tokens(), 3, Green));
+        player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
         player.addNobility(new Nobility(random));
 
         // when
