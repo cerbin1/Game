@@ -1,6 +1,7 @@
 package app;
 
 import app.game.Updatable;
+import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.token.Token;
 import app.view.Window;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static app.game.token.TokenColor.Green;
+import static app.view.render.ViewObject.slightRotation;
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
@@ -38,23 +40,35 @@ public class GameWindow implements Updatable {
     }
 
     private void initializeGame() {
-        CardVO cardVO = new CardVO(new CheapCard(), 500, 300);
+        List<Card> cards = new ArrayList<>();
+        List<CardVO> cardVOs = new ArrayList<>();
+
+        for (int i = 0; i < 15; i++) {
+            Card card = new CheapCard();
+            cards.add(card);
+            CardVO cardVO = new CardVO(card, 300, 300);
+            cardVO.setRotation(slightRotation());
+            cardVOs.add(cardVO);
+        }
+
         TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));
         TokenVO tokenVO2 = new TokenVO(1010, 520, new Token(Green));
         TokenVO tokenVO3 = new TokenVO(990, 540, new Token(Green));
         TokenVO versatileVO = new TokenVO(1100, 550, new Token(null));
 
-        updatables.add(cardVO);
+        cardVOs.forEach(vo -> updatables.add(vo));
         updatables.add(tokenVO);
 
         renderers.add(new BackgroundRenderer());
-        renderers.add(new CardRenderer(cardVO));
+        cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         renderers.add(new TokenRenderer(tokenVO));
         renderers.add(new TokenRenderer(tokenVO2));
         renderers.add(new TokenRenderer(tokenVO3));
         renderers.add(new TokenRenderer(versatileVO));
 
-        cardVO.reposition(550, 350, 1.1);
+        CardVO lastCard = cardVOs.get(cardVOs.size() - 1);
+        lastCard.moveTo(700, 300, 2.0);
+        lastCard.setFlipped(true);
     }
 
     public void update(double secondsElapsed) {

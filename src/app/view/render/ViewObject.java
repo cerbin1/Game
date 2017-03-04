@@ -1,7 +1,7 @@
 package app.view.render;
 
 import app.game.Updatable;
-import app.view.fx.InOutQuartTransition;
+import app.view.fx.LinearTransition;
 
 import static java.lang.Math.random;
 import static java.lang.Math.round;
@@ -12,8 +12,8 @@ public class ViewObject implements Updatable {
     private double secondsPassed = 0;
 
     ViewObject(int x, int y, int width, int height) {
-        this.x = new AnimatedValue(x, new InOutQuartTransition());
-        this.y = new AnimatedValue(y, new InOutQuartTransition());
+        this.x = new AnimatedValue(x, new LinearTransition());
+        this.y = new AnimatedValue(y, new LinearTransition());
         this.rotation = new AnimatedValue(0);
         this.width = width;
         this.height = height;
@@ -51,7 +51,7 @@ public class ViewObject implements Updatable {
     }
 
     double getPerspectiveX() {
-        return 1.0; //Transition.cosineTransition(secondsPassed);
+        return 1.0;
     }
 
     double getPerspectiveY() {
@@ -59,7 +59,7 @@ public class ViewObject implements Updatable {
     }
 
     boolean isFlipped() {
-        return getPerspectiveX() < 0;
+        return getPerspectiveY() < 0 || getPerspectiveX() < 0;
     }
 
     public void moveTo(int x, int y, double duration) {
