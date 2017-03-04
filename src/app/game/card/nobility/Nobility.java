@@ -2,7 +2,7 @@ package app.game.card.nobility;
 
 import app.game.token.Tokens;
 
-import java.util.Random;
+import app.util.Random;
 
 public class Nobility {
     private final Random random;
@@ -34,6 +34,6 @@ public class Nobility {
     }
 
     public int getRandomPoints() {
-        return random.nextInt(2) + 2;
+        return random.nextInt(3, 4);
     }
 }

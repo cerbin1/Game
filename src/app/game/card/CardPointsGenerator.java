@@ -1,6 +1,6 @@
 package app.game.card;
 
-import java.util.Random;
+import app.util.Random;
 
 public class CardPointsGenerator {
     private final Random random;
@@ -17,14 +17,14 @@ public class CardPointsGenerator {
     }
 
     public int generateCheapCardPoints() {
-        return cheapPoints[random.nextInt(cheapPoints.length)];
+        return cheapPoints[random.nextInt(0, cheapPoints.length)];
     }
 
     public int generateMediumCardPoints() {
-        return mediumPoints[random.nextInt(mediumPoints.length)];
+        return mediumPoints[random.nextInt(0, mediumPoints.length)];
     }
 
     public int generateExpensiveCardPoints() {
-        return expensivePoints[random.nextInt(expensivePoints.length)];
+        return expensivePoints[random.nextInt(0, expensivePoints.length)];
     }
 }

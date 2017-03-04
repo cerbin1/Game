@@ -6,9 +6,8 @@ import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
 import app.game.card.nobility.Nobility;
+import app.util.Random;
 import org.junit.Test;
-
-import java.util.Random;
 
 import static org.junit.Assert.assertArrayEquals;
 import static org.junit.Assert.assertEquals;

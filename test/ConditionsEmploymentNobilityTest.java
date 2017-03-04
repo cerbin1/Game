@@ -1,10 +1,9 @@
 import app.MockRandom;
-import app.game.card.nobility.ConditionsEmploymentNobility;
 import app.game.token.Tokens;
+import app.game.card.nobility.ConditionsEmploymentNobility;
+import app.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
-
-import java.util.Random;
 
 public class ConditionsEmploymentNobilityTest {
     @Test

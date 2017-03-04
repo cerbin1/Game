@@ -1,8 +1,6 @@
 package app;
 
-import java.util.Random;
-
-public class MockRandom extends Random {
+public class MockRandom extends app.util.Random {
     private int index;
     private int[] array;
 
@@ -11,7 +9,7 @@ public class MockRandom extends Random {
     }
 
     @Override
-    public int nextInt(int number) {
+    public int nextInt(int min, int max) {
         return array[index++];
     }
 }

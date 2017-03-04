@@ -1,6 +1,5 @@
-package app.util;
-
 import app.MockRandom;
+import app.util.Random;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -10,7 +9,7 @@ public class RandomTest {
     @Test
     public void shouldGetInteger() {
         // given
-        MockRandom mock = new MockRandom(3);
+        Random mock = new MockRandom(3);
         Random random = new Random(mock);
 
         // when

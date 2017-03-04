@@ -2,7 +2,7 @@ package app.game.card.nobility;
 
 import app.game.token.Tokens;
 
-import java.util.Random;
+import app.util.Random;
 
 public class ConditionsEmploymentNobility {
     private int[] tokenValue = new int[5];
@@ -26,7 +26,7 @@ public class ConditionsEmploymentNobility {
     }
 
     private boolean isFirstTypeConditionsDrawn() {
-        return random.nextInt(2) % 2 == 0;
+        return random.nextInt(0, 1) % 2 == 0;
     }
 
     private Tokens getFirstConditionsType() {
@@ -45,7 +45,7 @@ public class ConditionsEmploymentNobility {
 
     private void setSingleToken(int value) {
         while (true) {
-            int randomToken = getRandomToken(5);
+            int randomToken = getRandomToken(0, 4);
             if (!isValueAssigned[randomToken]) {
                 assignValue(randomToken, value);
                 break;
@@ -53,8 +53,8 @@ public class ConditionsEmploymentNobility {
         }
     }
 
-    private int getRandomToken(int range) {
-        return random.nextInt(range);
+    private int getRandomToken(int min, int max) {
+        return random.nextInt(min, max);
     }
 
     private void assignValue(int randomToken, int value) {

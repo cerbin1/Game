@@ -1,8 +1,7 @@
 package app.game.card;
 
 import app.game.token.TokenColor;
-
-import java.util.Random;
+import app.util.Random;
 
 public class CardColorGenerator {
     private final Random random;
@@ -17,6 +16,6 @@ public class CardColorGenerator {
 
     public TokenColor generateColor() {
         TokenColor[] tokenColors = TokenColor.values();
-        return tokenColors[random.nextInt(tokenColors.length)];
+        return tokenColors[random.nextInt(0, tokenColors.length)];
     }
 }

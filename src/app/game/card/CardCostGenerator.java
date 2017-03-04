@@ -1,8 +1,7 @@
 package app.game.card;
 
 import app.game.token.Tokens;
-
-import java.util.Random;
+import app.util.Random;
 
 public class CardCostGenerator {
     private final int[][] cheapCardCostTypes = {{3}, {4}, {2, 2}, {2, 1}, {3, 1, 1}, {2, 2, 1}, {2, 1, 1, 1}, {1, 1, 1, 2}, {1, 1, 1, 1}};
@@ -48,7 +47,7 @@ public class CardCostGenerator {
 
     private void setSingleCost(int i) {
         while (true) {
-            int randomToken = getRandomToken(5);
+            int randomToken = getRandomToken(0, 5);
             if (!isCostAssigned[randomToken]) {
                 assignCost(i, randomToken);
                 break;
@@ -56,8 +55,8 @@ public class CardCostGenerator {
         }
     }
 
-    private int getRandomToken(int range) {
-        return random.nextInt(range);
+    private int getRandomToken(int min, int max) {
+        return random.nextInt(min, max);
     }
 
     private void assignCost(int i, int randomToken) {
@@ -70,14 +69,14 @@ public class CardCostGenerator {
     }
 
     private int[] getRandomCheapCostType() {
-        return cheapCardCostTypes[random.nextInt(cheapCardCostTypes.length)];
+        return cheapCardCostTypes[random.nextInt(0, cheapCardCostTypes.length)];
     }
 
     private int[] getRandomMediumCostType() {
-        return mediumCardCostTypes[random.nextInt(mediumCardCostTypes.length)];
+        return mediumCardCostTypes[random.nextInt(0, mediumCardCostTypes.length)];
     }
 
     private int[] getRandomExpensiveCostType() {
-        return expensiveCardCostTypes[random.nextInt(expensiveCardCostTypes.length)];
+        return expensiveCardCostTypes[random.nextInt(0, expensiveCardCostTypes.length)];
     }
 }

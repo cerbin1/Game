@@ -3,9 +3,8 @@ import app.game.token.TokenColor;
 import app.game.token.Tokens;
 import app.game.card.Card;
 import app.game.card.CardBuilder;
+import app.util.Random;
 import org.junit.Test;
-
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 

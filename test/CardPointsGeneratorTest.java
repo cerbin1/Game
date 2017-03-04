@@ -1,8 +1,7 @@
 import app.MockRandom;
 import app.game.card.CardPointsGenerator;
+import app.util.Random;
 import org.junit.Test;
-
-import java.util.Random;
 
 import static org.junit.Assert.assertEquals;
 
