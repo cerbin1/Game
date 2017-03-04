@@ -14,7 +14,6 @@ import java.util.List;
 import static app.game.token.TokenColor.Green;
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
-import static java.lang.Math.random;
 
 public class GameWindow implements Updatable {
     private final Window window = new Window();
@@ -43,7 +42,7 @@ public class GameWindow implements Updatable {
 
         Card card = new CheapCard();
         CardVO cardVO = new CardVO(card, 500, 300);
-        cardVO.setRotation(random() * 0.14 - 0.07);
+        cardVO.setRotation(CardVO.randomCardRotation());
         CardRenderer cardRenderer = new CardRenderer(canvas, cardVO, imageRepository);
 
         TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));

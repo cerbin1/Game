@@ -3,6 +3,7 @@ package app.game.view.render;
 import app.game.card.Card;
 
 import static java.lang.Math.PI;
+import static java.lang.Math.random;
 
 public class CardVO extends ViewObject {
     private final static double RESERVATION_ANIM_LENGTH = 2.5;
@@ -29,5 +30,9 @@ public class CardVO extends ViewObject {
     @Override
     double getRotation() {
         return super.getRotation() + reservation.getValue() * PI / 2;
+    }
+
+    public static double randomCardRotation() {
+        return random() * 0.14 - 0.07;
     }
 }
