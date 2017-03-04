@@ -8,7 +8,6 @@ public class MockRandom extends app.util.Random {
         this.array = array;
     }
 
-    @Override
     public int nextInt(int min, int max) {
         return array[index++];
     }

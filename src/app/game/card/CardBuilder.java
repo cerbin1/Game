@@ -1,8 +1,7 @@
 package app.game.card;
 
 import app.MockRandom;
-
-import java.util.Random;
+import app.util.Random;
 
 public class CardBuilder {
     private Random random = new MockRandom(0, 0, 0, 0, 0, 0, 0);
@@ -15,7 +14,7 @@ public class CardBuilder {
     }
 
     public CardBuilder(Random random) {
-        //this.random = random;
+        this.random = random;
     }
 
     public Card createCheapCard() {

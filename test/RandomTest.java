@@ -1,4 +1,4 @@
-import app.MockRandom;
+import app.MockJavaRandom;
 import app.util.Random;
 import org.junit.Test;
 
@@ -9,8 +9,7 @@ public class RandomTest {
     @Test
     public void shouldGetInteger() {
         // given
-        Random mock = new MockRandom(3);
-        Random random = new Random(mock);
+        Random random = new Random(new MockJavaRandom(3));
 
         // when
         int value = random.nextInt(5, 10);
@@ -22,8 +21,7 @@ public class RandomTest {
     @Test
     public void shouldGetNegativeInteger() {
         // given
-        MockRandom mock = new MockRandom(3);
-        Random random = new Random(mock);
+        Random random = new Random(new MockJavaRandom(3));
 
         // when
         int value = random.nextInt(-5, 5);
