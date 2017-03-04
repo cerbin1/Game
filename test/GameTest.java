@@ -1,7 +1,4 @@
-import app.game.Game;
-import app.game.GameBuilder;
-import app.game.Player;
-import app.game.Tokens;
+import app.game.*;
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
@@ -29,6 +26,9 @@ public class GameTest {
     private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
     private Tokens gameTokens = new Tokens(7, 5);
+    private Nobility nobility1 = new Nobility();
+    private Nobility nobility2 = new Nobility();
+    private Nobility nobility3 = new Nobility();
 
     @Test
     public void shouldInitializeGame() {
@@ -43,6 +43,7 @@ public class GameTest {
         assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5));
         assertEquals(game.getMediumCards(), asList(mediumCard1, mediumCard2));
         assertEquals(game.getExpensiveCards(), asList(expensiveCard1, expensiveCard2));
+        assertEquals(game.getNobility(), asList(nobility1, nobility2, nobility3));
         assertEquals(game.getTokens(), gameTokens);
         assertTrue(player1.getCards().isEmpty());
         assertTrue(player2.getCards().isEmpty());
@@ -192,6 +193,9 @@ public class GameTest {
         builder.addMediumCard(mediumCard2);
         builder.addExpensiveCard(expensiveCard1);
         builder.addExpensiveCard(expensiveCard2);
+        builder.addNobilityCard(nobility1);
+        builder.addNobilityCard(nobility2);
+        builder.addNobilityCard(nobility3);
         return builder;
     }
 }
