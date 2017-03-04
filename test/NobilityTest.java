@@ -10,7 +10,7 @@ public class NobilityTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
-        Random random = new MockRandom(0, 1, 0);
+        Random random = new MockRandom(0, 0, 1);
         Nobility nobility = new Nobility(random);
 
         // when
@@ -18,7 +18,7 @@ public class NobilityTest {
         int points2 = nobility.getRandomPoints();
 
         // then
-        assertEquals(points1, 4);
-        assertEquals(points2, 3);
+        assertEquals(points1, 3);
+        assertEquals(points2, 4);
     }
 }
