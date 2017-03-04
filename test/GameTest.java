@@ -1,4 +1,7 @@
-import app.game.*;
+import app.game.Game;
+import app.game.GameBuilder;
+import app.game.Player;
+import app.game.Tokens;
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
@@ -42,9 +45,7 @@ public class GameTest {
 
         // then
         assertEquals(game.getPlayers(), asList(player1, player2));
-        assertEquals(game.getCheapCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5));
-        assertEquals(game.getMediumCards(), asList(mediumCard1, mediumCard2));
-        assertEquals(game.getExpensiveCards(), asList(expensiveCard1, expensiveCard2));
+        assertEquals(game.getAvailableCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2));
         assertEquals(game.getNobility(), asList(nobility1, nobility2, nobility3));
         assertEquals(game.getTokens(), gameTokens);
         assertTrue(player1.getCards().isEmpty());
@@ -186,15 +187,15 @@ public class GameTest {
         builder.setTokens(gameTokens);
         builder.addPlayer(player1);
         builder.addPlayer(player2);
-        builder.addCheapCard(cheapCard1);
-        builder.addCheapCard(cheapCard2);
-        builder.addCheapCard(cheapCard3);
-        builder.addCheapCard(cheapCard4);
-        builder.addCheapCard(cheapCard5);
-        builder.addMediumCard(mediumCard1);
-        builder.addMediumCard(mediumCard2);
-        builder.addExpensiveCard(expensiveCard1);
-        builder.addExpensiveCard(expensiveCard2);
+        builder.addCard(cheapCard1);
+        builder.addCard(cheapCard2);
+        builder.addCard(cheapCard3);
+        builder.addCard(cheapCard4);
+        builder.addCard(cheapCard5);
+        builder.addCard(mediumCard1);
+        builder.addCard(mediumCard2);
+        builder.addCard(expensiveCard1);
+        builder.addCard(expensiveCard2);
         builder.addNobilityCard(nobility1);
         builder.addNobilityCard(nobility2);
         builder.addNobilityCard(nobility3);
