@@ -1,9 +1,11 @@
-package app.view;
+package app;
 
 import app.game.Updatable;
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.token.Token;
+import app.view.ImageRepository;
+import app.view.Window;
 import app.view.render.*;
 
 import java.awt.*;
@@ -25,7 +27,7 @@ public class GameWindow implements Updatable {
     private BufferedImage backBuffer;
     private Graphics2D canvas;
 
-    public GameWindow() {
+    GameWindow() {
         initializeBackBuffer();
         initializeGame();
     }
@@ -71,7 +73,7 @@ public class GameWindow implements Updatable {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
     }
 
-    public void show() {
+    void show() {
         window.show();
         windowGraphics = window.getGraphics();
     }

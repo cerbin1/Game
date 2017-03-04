@@ -5,10 +5,10 @@ import java.awt.*;
 
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
-class Window {
+public class Window {
     private final JFrame frame = new JFrame();
 
-    Window() {
+    public Window() {
         frame.setResizable(false);
         frame.setTitle("Game");
         frame.setSize(1920, 1080);
@@ -16,11 +16,11 @@ class Window {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    void show() {
+    public void show() {
         frame.setVisible(true);
     }
 
-    Graphics getGraphics() {
+    public Graphics getGraphics() {
         return frame.getGraphics();
     }
 }
