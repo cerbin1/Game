@@ -4,7 +4,6 @@ import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
 import app.game.card.nobility.Nobility;
 import app.game.token.Tokens;
-import app.util.Random;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;
@@ -65,11 +64,10 @@ public class PlayerTest {
     @Test
     public void shouldCountPoints() {
         // given
-        Random random = new MockRandom(0);
         Player player = new Player();
         player.addCard(new MediumCard(new Tokens(), 3, Green));
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
-        player.addNobility(new Nobility(random));
+        player.addNobility(new Nobility(new Tokens(), 3));
 
         // when
         int points = player.countPoints();
