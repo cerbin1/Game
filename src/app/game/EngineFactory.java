@@ -7,8 +7,8 @@ public class EngineFactory {
     private final List<Updatable> onUpdate = new ArrayList<>();
     private final List<Runnable> onRender = new ArrayList<>();
 
-    public void addUpdateListener(Updatable updataListener) {
-        onUpdate.add(updataListener);
+    public void addUpdateListener(Updatable updateListener) {
+        onUpdate.add(updateListener);
     }
 
     public void addRenderListener(Runnable renderListener) {
