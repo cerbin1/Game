@@ -1,12 +1,15 @@
 package app.game;
 
 import app.game.card.Card;
+import app.game.card.nobility.Nobility;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
     private final Tokens tokens;
-    private List<Card> boughtCards;
+    private List<Card> boughtCards = new ArrayList<>();
+    private List<Nobility> nobilities = new ArrayList<>();
 
     public Player() {
         this(new Tokens());
@@ -22,5 +25,35 @@ public class Player {
 
     public List<Card> getCards() {
         return boughtCards;
+    }
+
+    public void addCard(Card card) {
+        boughtCards.add(card);
+    }
+
+    public void addNobility(Nobility nobility) {
+        nobilities.add(nobility);
+    }
+
+    public int countPoints() {
+        return getPointsFromCards() + getPointsFromNobility();
+    }
+
+    private int getPointsFromCards() {
+        int points = 0;
+        for (Card card :
+                boughtCards) {
+            points += card.getPoints();
+        }
+        return points;
+    }
+
+    private int getPointsFromNobility() {
+        int points = 0;
+        for (Nobility nobility :
+                this.nobilities) {
+            points += nobility.getPoints();
+        }
+        return points;
     }
 }
