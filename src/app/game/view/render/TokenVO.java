@@ -10,7 +10,7 @@ public class TokenVO extends ViewObject {
         this.color = color;
     }
 
-    public TokenColor getColor() {
+    TokenColor getColor() {
         return color;
     }
 }

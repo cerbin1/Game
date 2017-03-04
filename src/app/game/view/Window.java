@@ -56,7 +56,7 @@ class Window {
         TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
 
         TokenVO versatileVO = new TokenVO(1100, 550, null);
-        TokenRenderer versatileTokenRenderer = new VersatileTokenRender(versatileVO, imageRepository);
+        TokenRenderer versatileTokenRenderer = new VersatileTokenRenderer(versatileVO, imageRepository);
 
         double previous = System.nanoTime();
         while (!shouldStop) {
