@@ -8,8 +8,8 @@ import java.util.List;
 
 public class Player {
     private final Tokens tokens;
-    private List<Card> boughtCards = new ArrayList<>();
-    private List<Nobility> nobilities = new ArrayList<>();
+    private final List<Card> boughtCards = new ArrayList<>();
+    private final List<Nobility> nobilities = new ArrayList<>();
 
     public Player() {
         this(new Tokens());
@@ -41,8 +41,7 @@ public class Player {
 
     private int getPointsFromCards() {
         int points = 0;
-        for (Card card :
-                boughtCards) {
+        for (Card card : boughtCards) {
             points += card.getPoints();
         }
         return points;
@@ -50,8 +49,7 @@ public class Player {
 
     private int getPointsFromNobility() {
         int points = 0;
-        for (Nobility nobility :
-                this.nobilities) {
+        for (Nobility nobility : nobilities) {
             points += nobility.getPoints();
         }
         return points;
