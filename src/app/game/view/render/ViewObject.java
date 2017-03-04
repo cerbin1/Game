@@ -61,8 +61,8 @@ public class ViewObject implements Updatable {
         return getPerspectiveX() < 0;
     }
 
-    public void moveTo(int x, int y) {
-        this.x.setValue(x);
-        this.y.setValue(y);
+    public void moveTo(int x, int y, double duration) {
+        this.x.setValue(x, duration);
+        this.y.setValue(y, duration);
     }
 }

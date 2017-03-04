@@ -47,7 +47,7 @@ public class GameWindow implements Updatable {
 
         TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
         TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
-        tokenVO.moveTo(500, 700);
+        tokenVO.moveTo(500, 700, 1.5);
         tokenVO.setRotation(0.1);
 
         TokenVO versatileVO = new TokenVO(1100, 550, null);
