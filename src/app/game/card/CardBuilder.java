@@ -3,10 +3,10 @@ package app.game.card;
 import app.util.Random;
 
 public class CardBuilder {
-    private Random random;
-    private final CardCostGenerator costGenerator = new CardCostGenerator(random);
-    private final CardPointsGenerator pointsGenerator = new CardPointsGenerator(random);
-    private final CardColorGenerator colorGenerator = new CardColorGenerator(random);
+    private final Random random;
+    private final CardCostGenerator costGenerator;
+    private final CardPointsGenerator pointsGenerator;
+    private final CardColorGenerator colorGenerator;
 
     public CardBuilder() {
         this(new Random());
@@ -14,6 +14,9 @@ public class CardBuilder {
 
     public CardBuilder(Random random) {
         this.random = random;
+        pointsGenerator = new CardPointsGenerator(this.random);
+        colorGenerator = new CardColorGenerator(this.random);
+        costGenerator = new CardCostGenerator(this.random);
     }
 
     public Card createCheapCard() {
