@@ -12,7 +12,7 @@ public abstract class Renderer {
 
     protected abstract void render(Graphics2D graphics);
 
-    public void performRenderOn(Graphics2D graphics2D) {
+    public void renderOn(Graphics2D graphics2D) {
         AffineTransform previous = graphics2D.getTransform();
         graphics2D.setTransform(getTransform());
         render(graphics2D);

@@ -1,10 +1,11 @@
 package app.game.view.render;
 
+import app.game.Updatable;
 import app.game.view.fx.Transition;
 
 import static java.lang.Math.round;
 
-public class ViewObject {
+public class ViewObject implements Updatable {
     private final AnimatedValue x, y;
     private final int width, height;
     private double secondsPassed = 0;

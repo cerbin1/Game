@@ -21,7 +21,7 @@ public class CardRenderer extends Renderer {
     private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
     private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
-    public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
+    public CardRenderer(Graphics2D graphics2D, CardVO cardVO, ImageRepository imageRepository) {
         super(cardVO);
         card = cardVO.getCard();
         cardImage = imageRepository.cardCastle;

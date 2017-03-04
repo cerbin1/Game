@@ -1,24 +1,14 @@
 package app.game.view;
 
-import app.game.TokenColor;
-import app.game.card.Card;
-import app.game.card.CheapCard;
-import app.game.view.render.*;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.BufferedImage;
 
-import static java.awt.RenderingHints.*;
-import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
-import static java.lang.Thread.sleep;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 class Window {
-    private static boolean shouldStop = false;
     private final JFrame frame = new JFrame();
 
-    private Window() {
+    Window() {
         frame.setResizable(false);
         frame.setTitle("Game");
         frame.setSize(1920, 1080);
@@ -26,58 +16,11 @@ class Window {
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    private void show() {
+    void show() {
         frame.setVisible(true);
     }
 
-    private Graphics getGraphics() {
+    Graphics getGraphics() {
         return frame.getGraphics();
-    }
-
-    public static void main(String[] args) {
-        Window window = new Window();
-        window.show();
-        Graphics graphics = window.getGraphics();
-
-        ImageRepository imageRepository = new ImageRepository();
-
-        BufferedImage backBuffer = new BufferedImage(1920, 1090, TYPE_INT_ARGB);
-        Graphics2D canvas = backBuffer.createGraphics();
-
-        canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
-        canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
-
-        Card card = new CheapCard();
-        card.setReserved(true);
-        CardVO cardVO = new CardVO(card, 500, 300);
-        CardRenderer cardRenderer = new CardRenderer(cardVO, imageRepository);
-
-        TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
-        TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
-
-        tokenVO.moveTo(500, 700);
-
-        TokenVO versatileVO = new TokenVO(1100, 550, null);
-        TokenRenderer versatileTokenRenderer = new VersatileTokenRenderer(versatileVO, imageRepository);
-
-        double previous = System.nanoTime();
-        while (!shouldStop) {
-            double current = System.nanoTime();
-            double elapsed = current - previous;
-            previous = current;
-            cardVO.update(elapsed / 1.0e9);
-            tokenVO.update(elapsed / 1.0e9);
-
-            canvas.drawImage(imageRepository.background1, 0, 0, null);
-            cardRenderer.performRenderOn(canvas);
-            tokenRenderer.performRenderOn(canvas);
-            versatileTokenRenderer.performRenderOn(canvas);
-            graphics.drawImage(backBuffer, 0, 0, null);
-
-            try {
-                sleep(2);
-            } catch (InterruptedException ignored) {
-            }
-        }
     }
 }
