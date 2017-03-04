@@ -14,9 +14,9 @@ public class CardBuilder {
 
     public CardBuilder(Random random) {
         this.random = random;
-        pointsGenerator = new CardPointsGenerator(this.random);
-        colorGenerator = new CardColorGenerator(this.random);
-        costGenerator = new CardCostGenerator(this.random);
+        costGenerator = new CardCostGenerator(random);
+        pointsGenerator = new CardPointsGenerator(random);
+        colorGenerator = new CardColorGenerator(random);
     }
 
     public Card createCheapCard() {
