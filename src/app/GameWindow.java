@@ -48,15 +48,50 @@ public class GameWindow implements Updatable {
         for (int i = 0; i < 15; i++) {
             Card card = cardBuilder.createCheapCard();
             cards.add(card);
-            CardVO cardVO = new CardVO(card, 300, 300);
+            CardVO cardVO = new CardVO(card, 300, 200);
             cardVO.setRotation(slightRotation());
             cardVOs.add(cardVO);
         }
 
-        TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));
-        TokenVO tokenVO2 = new TokenVO(1010, 520, new Token(Green));
-        TokenVO tokenVO3 = new TokenVO(990, 540, new Token(Green));
-        TokenVO versatileVO = new TokenVO(1100, 550, new Token(null));
+        for (int i = 0; i < 4; i++) {
+            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
+            lastCard.moveX(670 + i * 238, 2.0);
+            lastCard.setFlipped(true);
+        }
+
+        for (int i = 0; i < 15; i++) {
+            Card card = cardBuilder.createMediumCard();
+            cards.add(card);
+            CardVO cardVO = new CardVO(card, 300, 550);
+            cardVO.setRotation(slightRotation());
+            cardVOs.add(cardVO);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
+            lastCard.moveX(670 + i * 238, 2.0);
+            lastCard.setFlipped(true);
+        }
+
+
+        for (int i = 0; i < 15; i++) {
+            Card card = cardBuilder.createExpensiveCard();
+            cards.add(card);
+            CardVO cardVO = new CardVO(card, 300, 890);
+            cardVO.setRotation(slightRotation());
+            cardVOs.add(cardVO);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
+            lastCard.moveX(670 + i * 238, 2.0);
+            lastCard.setFlipped(true);
+        }
+
+        TokenVO tokenVO = new TokenVO(1800 - 30, 500, new Token(Green));
+        TokenVO tokenVO2 = new TokenVO(1810 - 30, 520, new Token(Green));
+        TokenVO tokenVO3 = new TokenVO(1790 - 30, 540, new Token(Green));
+        TokenVO versatileVO = new TokenVO(1900 - 30, 550, new Token(null));
 
         cardVOs.forEach(vo -> updatables.add(vo));
         updatables.add(tokenVO);
@@ -68,11 +103,6 @@ public class GameWindow implements Updatable {
         renderers.add(new TokenRenderer(tokenVO3));
         renderers.add(new TokenRenderer(versatileVO));
 
-        for (int i = 0; i < 4; i++) {
-            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
-            lastCard.moveTo(670 + i * 238, 300, 2.0);
-            lastCard.setFlipped(true);
-        }
     }
 
     public void update(double secondsElapsed) {
