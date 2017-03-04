@@ -1,10 +1,15 @@
 package app.game.view.render;
 
+import app.game.view.fx.LinearTransition;
+import app.game.view.fx.Transition;
+
 import static java.lang.Double.compare;
 import static java.lang.Math.max;
 import static java.lang.Math.min;
 
 public class AnimatedValue {
+    private final Transition transition;
+
     private double passedDuration = 0.0;
     private double duration;
     private double startValue;
@@ -12,8 +17,13 @@ public class AnimatedValue {
     private double destinationValue;
 
     public AnimatedValue(double value) {
+        this(value, new LinearTransition());
+    }
+
+    AnimatedValue(double value, Transition transition) {
         this.currentValue = value;
         this.destinationValue = value;
+        this.transition = transition;
     }
 
     public void setValue(double value) {
@@ -35,14 +45,15 @@ public class AnimatedValue {
         int compare = compare(startValue, destinationValue);
         this.passedDuration += seconds;
 
-        double progress = passedDuration / duration;
-
+        double progress = min(1.0, passedDuration / duration);
         double difference = destinationValue - startValue;
+        double newValue = startValue + difference * transition.valueOf(progress);
+
         if (compare < 0) {
-            currentValue = min(startValue + difference * progress, destinationValue);
+            currentValue = min(newValue, destinationValue);
         }
         if (compare > 0) {
-            currentValue = max(startValue + difference * progress, destinationValue);
+            currentValue = max(newValue, destinationValue);
         }
     }
 }

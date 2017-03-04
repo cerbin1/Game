@@ -1,10 +1,19 @@
 package app.game.view.fx;
 
-import static java.lang.Math.PI;
-import static java.lang.Math.cos;
+import static java.lang.Math.*;
 
-public class Transition {
-    public static double cosineTransition(double value) {
-        return cos(value * PI);
+public interface Transition {
+    double valueOf(double value);
+
+    static double linearTransition(double value) {
+        return value;
+    }
+
+    static double cosineTransition(double value) {
+        return -(cos(value * PI) - 1) / 2;
+    }
+
+    static double outCubic(double value) {
+        return pow(value, 3);
     }
 }

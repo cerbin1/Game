@@ -8,11 +8,11 @@ import java.awt.image.BufferedImage;
 public class TokenRenderer extends Renderer {
     private final BufferedImage tokenImage;
 
-    public TokenRenderer(Graphics2D graphics2D, TokenVO tokenVO, ImageRepository imageRepository) {
-        this(graphics2D, tokenVO, imageRepository.getTokenImage(tokenVO.getColor()));
+    public TokenRenderer(TokenVO tokenVO, ImageRepository imageRepository) {
+        this(tokenVO, imageRepository.getTokenImage(tokenVO.getColor()));
     }
 
-    TokenRenderer(Graphics2D graphics2D, TokenVO tokenVO, BufferedImage image) {
+    TokenRenderer(TokenVO tokenVO, BufferedImage image) {
         super(tokenVO);
         this.tokenImage = image;
     }
