@@ -3,10 +3,7 @@ package app.game.view;
 import app.game.TokenColor;
 import app.game.card.Card;
 import app.game.card.CheapCard;
-import app.game.view.render.CardRenderer;
-import app.game.view.render.CardVO;
-import app.game.view.render.TokenRenderer;
-import app.game.view.render.TokenVO;
+import app.game.view.render.*;
 
 import javax.swing.*;
 import java.awt.*;
@@ -58,6 +55,9 @@ class Window {
         TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
         TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
 
+        TokenVO versatileVO = new TokenVO(1100, 550, null);
+        TokenRenderer versatileTokenRenderer = new VersatileTokenRender(versatileVO, imageRepository);
+
         double previous = System.nanoTime();
         while (!shouldStop) {
             double current = System.nanoTime();
@@ -68,6 +68,7 @@ class Window {
             canvas.drawImage(imageRepository.background1, 0, 0, null);
             cardRenderer.performRenderOn(canvas);
             tokenRenderer.performRenderOn(canvas);
+            versatileTokenRenderer.performRenderOn(canvas);
             graphics.drawImage(backBuffer, 0, 0, null);
 
             try {
