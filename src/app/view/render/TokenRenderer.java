@@ -12,7 +12,7 @@ public class TokenRenderer extends Renderer {
         this(tokenVO, imageRepository.getTokenImage(tokenVO.getColor()));
     }
 
-    TokenRenderer(TokenVO tokenVO, BufferedImage image) {
+    private TokenRenderer(TokenVO tokenVO, BufferedImage image) {
         super(tokenVO);
         this.tokenImage = image;
     }

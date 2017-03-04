@@ -17,7 +17,7 @@ public class ImageRepository {
     public BufferedImage background1 = get("images/background_1.png");
 
     private Map<TokenColor, BufferedImage> tokens = loadTokenImages();
-    public BufferedImage tokenVersatile = get("images/tokens/versatile.png");
+    private BufferedImage tokenVersatile = get("images/tokens/versatile.png");
 
     private Map<TokenColor, BufferedImage> loadTokenImages() {
         Map<TokenColor, BufferedImage> tokens = new EnumMap<>(TokenColor.class);

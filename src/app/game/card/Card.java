@@ -9,7 +9,7 @@ public abstract class Card {
     private Tokens cost;
     private int points;
 
-    public Card(Tokens cost, int points, TokenColor color) {
+    Card(Tokens cost, int points, TokenColor color) {
         this.cost = cost;
         this.points = points;
         this.color = color;
