@@ -3,6 +3,7 @@ package app.view.render;
 import app.game.Updatable;
 import app.view.fx.InOutQuartTransition;
 
+import static java.lang.Math.random;
 import static java.lang.Math.round;
 
 public class ViewObject implements Updatable {
@@ -64,5 +65,14 @@ public class ViewObject implements Updatable {
     public void moveTo(int x, int y, double duration) {
         this.x.setValue(x, duration);
         this.y.setValue(y, duration);
+    }
+
+    public void reposition(int x, int y, double duration) {
+        moveTo(x, y, duration);
+        setRotation(slightRotation());
+    }
+
+    public static double slightRotation() {
+        return random() * 0.14 - 0.07;
     }
 }
