@@ -55,6 +55,8 @@ class Window {
         TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
         TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
 
+        tokenVO.moveTo(500, 300);
+
         TokenVO versatileVO = new TokenVO(1100, 550, null);
         TokenRenderer versatileTokenRenderer = new VersatileTokenRenderer(versatileVO, imageRepository);
 

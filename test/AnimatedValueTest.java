@@ -13,7 +13,7 @@ public class AnimatedValueTest {
         double value = animatedValue.getValue();
 
         // then
-        assertEquals(value, 14, 0.000001);
+        assertEquals(14, value, 0.000001);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class AnimatedValueTest {
         animatedValue.update(1.1);
 
         // then
-        assertEquals(animatedValue.getValue(), 14, 0.000001);
+        assertEquals(14, animatedValue.getValue(), 0.000001);
     }
 
     @Test
@@ -38,7 +38,7 @@ public class AnimatedValueTest {
         animatedValue.update(0.1);
 
         // then
-        assertEquals(animatedValue.getValue(), 10.1, 0.000001);
+        assertEquals(10.1, animatedValue.getValue(), 0.000001);
     }
 
     @Test
@@ -51,7 +51,7 @@ public class AnimatedValueTest {
         animatedValue.update(0.1);
 
         // then
-        assertEquals(animatedValue.getValue(), 9.9, 0.000001);
+        assertEquals(9.9, animatedValue.getValue(), 0.000001);
     }
 
     @Test
@@ -64,7 +64,7 @@ public class AnimatedValueTest {
         animatedValue.update(1.5);
 
         // then
-        assertEquals(animatedValue.getValue(), 11.0, 0.000001);
+        assertEquals(11.0, animatedValue.getValue(), 0.000001);
     }
 
     @Test
@@ -77,19 +77,33 @@ public class AnimatedValueTest {
         animatedValue.update(1.5);
 
         // then
-        assertEquals(animatedValue.getValue(), 9.0, 0.000001);
+        assertEquals(9.0, animatedValue.getValue(), 0.000001);
     }
 
     @Test
-    public void shouldUpdateUpToWithDifferentSpeed() {
+    public void shouldUpdateUpToWithExceedingSpeed() {
         // given
-        AnimatedValue animatedValue = new AnimatedValue(10, 2.5);
-        animatedValue.setValue(15);
+        AnimatedValue animatedValue = new AnimatedValue(10);
+        animatedValue.setValue(15, 2.5);
 
         // when
         animatedValue.update(5.0);
 
         // then
-        assertEquals(animatedValue.getValue(), 12.0, 0.000001);
+        assertEquals(animatedValue.getValue(), 15.0, 0.000001);
+    }
+
+    @Test
+    public void shouldUpdateUpToWithDifferentSpeed() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(10);
+        animatedValue.setValue(25, 5.0);
+
+        // when
+        animatedValue.update(2.5);
+
+        // then
+        assertEquals(17.5, animatedValue.getValue(), 0.000001);
+
     }
 }

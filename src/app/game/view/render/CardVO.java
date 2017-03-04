@@ -8,7 +8,7 @@ public class CardVO extends ViewObject {
     private final static double RESERVATION_ANIM_LENGTH = 2.5;
 
     private final Card card;
-    private AnimatedValue reservation = new AnimatedValue(0.0, RESERVATION_ANIM_LENGTH);
+    private AnimatedValue reservation = new AnimatedValue(0.0);
 
     public CardVO(Card card, int x, int y) {
         super(x, y, 236, 330);
@@ -22,7 +22,7 @@ public class CardVO extends ViewObject {
     @Override
     public void update(double secondsPassed) {
         super.update(secondsPassed);
-        reservation.setValue(card.isReserved() ? 1.0 : 0.0);
+        reservation.setValue(card.isReserved() ? 1.0 : 0.0, RESERVATION_ANIM_LENGTH);
         reservation.update(secondsPassed);
     }
 
