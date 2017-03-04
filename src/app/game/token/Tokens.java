@@ -3,6 +3,8 @@ package app.game.token;
 import java.util.EnumMap;
 import java.util.Map;
 
+import static app.game.token.TokenColor.*;
+
 public class Tokens {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
     private final int versatile;
@@ -11,21 +13,21 @@ public class Tokens {
         this(0, 0);
     }
 
-    public Tokens(int commonCount, int rareCount) {
-        tokens.put(TokenColor.Green, commonCount);
-        tokens.put(TokenColor.Purple, commonCount);
-        tokens.put(TokenColor.Blue, commonCount);
-        tokens.put(TokenColor.Black, commonCount);
-        tokens.put(TokenColor.Red, commonCount);
-        versatile = rareCount;
+    public Tokens(int regular, int versatile) {
+        tokens.put(Green, regular);
+        tokens.put(Purple, regular);
+        tokens.put(Blue, regular);
+        tokens.put(Black, regular);
+        tokens.put(Red, regular);
+        this.versatile = versatile;
     }
 
     public Tokens(int green, int purple, int blue, int black, int red) {
-        tokens.put(TokenColor.Green, green);
-        tokens.put(TokenColor.Purple, purple);
-        tokens.put(TokenColor.Blue, blue);
-        tokens.put(TokenColor.Black, black);
-        tokens.put(TokenColor.Red, red);
+        tokens.put(Green, green);
+        tokens.put(Purple, purple);
+        tokens.put(Blue, blue);
+        tokens.put(Black, black);
+        tokens.put(Red, red);
         versatile = 0;
     }
 
@@ -34,23 +36,23 @@ public class Tokens {
     }
 
     public int getGreen() {
-        return tokens.get(TokenColor.Green);
+        return tokens.get(Green);
     }
 
     public int getPurple() {
-        return tokens.get(TokenColor.Purple);
+        return tokens.get(Purple);
     }
 
     public int getBlue() {
-        return tokens.get(TokenColor.Blue);
+        return tokens.get(Blue);
     }
 
     public int getBlack() {
-        return tokens.get(TokenColor.Black);
+        return tokens.get(Black);
     }
 
     public int getRed() {
-        return tokens.get(TokenColor.Red);
+        return tokens.get(Red);
     }
 
     public int getVersatile() {
