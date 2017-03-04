@@ -1,6 +1,7 @@
 package app.game.view.fx;
 
-import static java.lang.Math.*;
+import static java.lang.Math.PI;
+import static java.lang.Math.cos;
 
 public interface Transition {
     double valueOf(double value);
@@ -13,7 +14,13 @@ public interface Transition {
         return -(cos(value * PI) - 1) / 2;
     }
 
-    static double outCubic(double value) {
-        return pow(value, 3);
+    static double inOutQuart(double value) {
+        double t = value * 2;
+        if (t < 1) {
+            return 0.5 * t * t * t * t;
+        } else {
+            t = t - 2;
+            return -0.5 * (t * t * t * t - 2);
+        }
     }
 }

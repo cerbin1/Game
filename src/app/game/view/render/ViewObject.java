@@ -1,7 +1,7 @@
 package app.game.view.render;
 
 import app.game.Updatable;
-import app.game.view.fx.CosineTransition;
+import app.game.view.fx.InOutQuartTransition;
 
 import static java.lang.Math.round;
 
@@ -11,8 +11,8 @@ public class ViewObject implements Updatable {
     private double secondsPassed = 0;
 
     ViewObject(int x, int y, int width, int height) {
-        this.x = new AnimatedValue(x, new CosineTransition());
-        this.y = new AnimatedValue(y, new CosineTransition());
+        this.x = new AnimatedValue(x, new InOutQuartTransition());
+        this.y = new AnimatedValue(y, new InOutQuartTransition());
         this.rotation = new AnimatedValue(0);
         this.width = width;
         this.height = height;
