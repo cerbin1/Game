@@ -1,7 +1,6 @@
 package app;
 
 import app.game.Updatable;
-import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.token.Token;
 import app.view.ImageRepository;
@@ -42,26 +41,22 @@ public class GameWindow implements Updatable {
     private void initializeGame() {
         ImageRepository imageRepository = new ImageRepository();
 
-        Card card = new CheapCard();
-        CardVO cardVO = new CardVO(card, 500, 300);
+        CardVO cardVO = new CardVO(new CheapCard(), 500, 300);
         cardVO.setRotation(CardVO.randomCardRotation());
-        CardRenderer cardRenderer = new CardRenderer(canvas, cardVO, imageRepository);
 
         TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));
-        TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
         tokenVO.moveTo(500, 700, 1.5);
         tokenVO.setRotation(0.1);
 
         TokenVO versatileVO = new TokenVO(1100, 550, new Token(null));
-        TokenRenderer versatileTokenRenderer = new TokenRenderer(versatileVO, imageRepository);
 
         updatables.add(cardVO);
         updatables.add(tokenVO);
 
         renderers.add(new BackgroundRenderer(imageRepository));
-        renderers.add(cardRenderer);
-        renderers.add(tokenRenderer);
-        renderers.add(versatileTokenRenderer);
+        renderers.add(new CardRenderer(canvas, cardVO, imageRepository));
+        renderers.add(new TokenRenderer(tokenVO, imageRepository));
+        renderers.add(new TokenRenderer(versatileVO, imageRepository));
     }
 
     public void update(double secondsElapsed) {
