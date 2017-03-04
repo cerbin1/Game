@@ -6,7 +6,7 @@ import static java.lang.Math.PI;
 import static java.lang.Math.random;
 
 public class CardVO extends ViewObject {
-    private final static double RESERVATION_ANIM_LENGTH = 2.5;
+    private final static double RESERVATION_ANIMATION_LENGTH = 2.5;
 
     private final Card card;
     private AnimatedValue reservation = new AnimatedValue(0.0);
@@ -23,7 +23,7 @@ public class CardVO extends ViewObject {
     @Override
     public void update(double secondsPassed) {
         super.update(secondsPassed);
-        reservation.setValue(card.isReserved() ? 1.0 : 0.0, RESERVATION_ANIM_LENGTH);
+        reservation.setValue(card.isReserved() ? 1.0 : 0.0, RESERVATION_ANIMATION_LENGTH);
         reservation.update(secondsPassed);
     }
 
