@@ -25,16 +25,19 @@ public class GameWindow implements Updatable {
     private Graphics2D canvas;
 
     public GameWindow() {
-        backBuffer = new BufferedImage(1920, 1080, TYPE_INT_ARGB);
-        canvas = backBuffer.createGraphics();
-        initialize();
+        initializeBackBuffer();
+        initializeGame();
     }
 
-    private void initialize() {
-        ImageRepository imageRepository = new ImageRepository();
-
+    private void initializeBackBuffer() {
+        backBuffer = new BufferedImage(1920, 1080, TYPE_INT_ARGB);
+        canvas = backBuffer.createGraphics();
         canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
         canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
+    }
+
+    private void initializeGame() {
+        ImageRepository imageRepository = new ImageRepository();
 
         Card card = new CheapCard();
         CardVO cardVO = new CardVO(card, 500, 300);
