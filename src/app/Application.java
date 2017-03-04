@@ -2,7 +2,7 @@ package app;
 
 import app.game.EngineExecutor;
 import app.game.EngineFactory;
-import app.game.view.GameWindow;
+import app.view.GameWindow;
 
 public class Application {
     public static void main(String... args) {

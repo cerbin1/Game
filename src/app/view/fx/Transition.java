@@ -1,4 +1,4 @@
-package app.game.view.fx;
+package app.view.fx;
 
 import static java.lang.Math.PI;
 import static java.lang.Math.cos;

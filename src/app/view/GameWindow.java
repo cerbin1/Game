@@ -1,10 +1,10 @@
-package app.game.view;
+package app.view;
 
 import app.game.Updatable;
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.token.Token;
-import app.game.view.render.*;
+import app.view.render.*;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

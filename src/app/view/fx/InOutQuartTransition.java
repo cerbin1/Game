@@ -1,4 +1,4 @@
-package app.game.view.fx;
+package app.view.fx;
 
 public class InOutQuartTransition implements Transition {
     @Override

@@ -1,4 +1,4 @@
-package app.game.view;
+package app.view;
 
 import javax.swing.*;
 import java.awt.*;

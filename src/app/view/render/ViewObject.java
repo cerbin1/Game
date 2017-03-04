@@ -1,7 +1,7 @@
-package app.game.view.render;
+package app.view.render;
 
 import app.game.Updatable;
-import app.game.view.fx.InOutQuartTransition;
+import app.view.fx.InOutQuartTransition;
 
 import static java.lang.Math.round;
 

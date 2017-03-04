@@ -1,4 +1,4 @@
-package app.game.view.render;
+package app.view.render;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

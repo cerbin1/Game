@@ -1,8 +1,8 @@
-package app.game.view.render;
+package app.view.render;
 
 import app.game.card.Card;
 import app.game.token.TokenColor;
-import app.game.view.ImageRepository;
+import app.view.ImageRepository;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;

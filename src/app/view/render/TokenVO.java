@@ -1,4 +1,4 @@
-package app.game.view.render;
+package app.view.render;
 
 import app.game.token.Token;
 import app.game.token.TokenColor;
