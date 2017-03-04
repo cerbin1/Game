@@ -1,9 +1,12 @@
 package app.game.view;
 
-import app.game.Tokens;
-import app.game.card.*;
+import app.game.TokenColor;
+import app.game.card.Card;
+import app.game.card.CheapCard;
 import app.game.view.render.CardRenderer;
 import app.game.view.render.CardVO;
+import app.game.view.render.TokenRenderer;
+import app.game.view.render.TokenVO;
 
 import javax.swing.*;
 import java.awt.*;
@@ -48,8 +51,12 @@ class Window {
         canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
 
         Card card = new CheapCard();
+        card.setReserved(true);
         CardVO cardVO = new CardVO(card, 500, 300);
         CardRenderer cardRenderer = new CardRenderer(cardVO, imageRepository);
+
+        TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
+        TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
 
         double previous = System.nanoTime();
         while (!shouldStop) {
@@ -60,6 +67,7 @@ class Window {
 
             canvas.drawImage(imageRepository.background1, 0, 0, null);
             cardRenderer.performRenderOn(canvas);
+            tokenRenderer.performRenderOn(canvas);
             graphics.drawImage(backBuffer, 0, 0, null);
 
             try {
