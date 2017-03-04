@@ -15,7 +15,7 @@ public class Game {
     private List<Nobility> nobilities;
     private int currentPlayer = 0;
 
-    Game(Tokens tokens, List<Player> players, List<Card> cards, List<Nobility> nobilities) {
+    public Game(Tokens tokens, List<Player> players, List<Card> cards, List<Nobility> nobilities) {
         this.players = players;
         this.tokens = tokens;
         this.cards = cards;
