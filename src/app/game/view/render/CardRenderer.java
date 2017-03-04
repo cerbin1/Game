@@ -1,7 +1,7 @@
 package app.game.view.render;
 
-import app.game.token.TokenColor;
 import app.game.card.Card;
+import app.game.token.TokenColor;
 import app.game.view.ImageRepository;
 
 import java.awt.*;
@@ -47,7 +47,7 @@ public class CardRenderer extends Renderer {
 
         graphics.setColor(black);
         graphics.setFont(pointsFont);
-        drawOutlineText(graphics, card.getPoints() + "", 30, 76);
+        drawOutlineText(graphics, card.getPoints() + "", 20, 66);
     }
 
     private void drawCardCosts(Graphics2D graphics) {
