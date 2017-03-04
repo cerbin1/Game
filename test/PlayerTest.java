@@ -1,13 +1,11 @@
 import app.MockRandom;
 import app.game.Player;
-import app.game.token.TokenColor;
-import app.game.token.Tokens;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
 import app.game.card.nobility.Nobility;
-import app.util.Random;
 import app.game.token.Tokens;
+import app.util.Random;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;

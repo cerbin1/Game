@@ -1,8 +1,8 @@
 import app.MockRandom;
-import app.game.token.TokenColor;
-import app.game.token.Tokens;
 import app.game.card.Card;
 import app.game.card.CardBuilder;
+import app.game.token.TokenColor;
+import app.game.token.Tokens;
 import app.util.Random;
 import org.junit.Test;
 
@@ -17,15 +17,11 @@ public class CardBuilderTest {
 
         // when
         Card cheapCard1 = builder.createCheapCard();
-        //Card cheapCard2 = builder.createCheapCard();
 
         // then
         assertEquals(cheapCard1.getCost(), new Tokens(3, 0, 0, 0, 0));
         assertEquals(cheapCard1.getPoints(), 0);
         assertEquals(cheapCard1.getColor(), TokenColor.Green);
-        //assertEquals(cheapCard2.getCost(), new Tokens(1, 1, 1, 1, 0));
-        //assertEquals(cheapCard2.getPoints(), 0);
-        //assertEquals(cheapCard2.getColor(), TokenColor.Red);
     }
 
     @Test
