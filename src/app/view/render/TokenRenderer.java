@@ -1,15 +1,15 @@
 package app.view.render;
 
-import app.view.ImageRepository;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static app.view.ImageRepository.imageRepository;
 
 public class TokenRenderer extends Renderer {
     private final BufferedImage tokenImage;
 
-    public TokenRenderer(TokenVO tokenVO, ImageRepository imageRepository) {
-        this(tokenVO, imageRepository.getTokenImage(tokenVO.getColor()));
+    public TokenRenderer(TokenVO tokenVO) {
+        this(tokenVO, imageRepository().getTokenImage(tokenVO.getColor()));
     }
 
     private TokenRenderer(TokenVO tokenVO, BufferedImage image) {

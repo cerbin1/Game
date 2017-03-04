@@ -1,16 +1,16 @@
 package app.view.render;
 
-import app.view.ImageRepository;
-
 import java.awt.*;
 import java.awt.image.BufferedImage;
+
+import static app.view.ImageRepository.imageRepository;
 
 public class BackgroundRenderer extends Renderer {
     private final BufferedImage background;
 
-    public BackgroundRenderer(ImageRepository repository) {
+    public BackgroundRenderer() {
         super(new ViewObject(0, 0, 0, 0));
-        background = repository.background1;
+        background = imageRepository().background1;
     }
 
     @Override

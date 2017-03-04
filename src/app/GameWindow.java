@@ -3,7 +3,6 @@ package app;
 import app.game.Updatable;
 import app.game.card.CheapCard;
 import app.game.token.Token;
-import app.view.ImageRepository;
 import app.view.Window;
 import app.view.render.*;
 
@@ -18,7 +17,6 @@ import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
 public class GameWindow implements Updatable {
     private final Window window = new Window();
-    private ImageRepository imageRepository = new ImageRepository();
 
     private List<Updatable> updatables = new ArrayList<>();
     private List<Renderer> renderers = new ArrayList<>();
@@ -52,10 +50,10 @@ public class GameWindow implements Updatable {
         updatables.add(cardVO);
         updatables.add(tokenVO);
 
-        renderers.add(new BackgroundRenderer(imageRepository));
-        renderers.add(new CardRenderer(cardVO, imageRepository));
-        renderers.add(new TokenRenderer(tokenVO, imageRepository));
-        renderers.add(new TokenRenderer(versatileVO, imageRepository));
+        renderers.add(new BackgroundRenderer());
+        renderers.add(new CardRenderer(cardVO));
+        renderers.add(new TokenRenderer(tokenVO));
+        renderers.add(new TokenRenderer(versatileVO));
     }
 
     public void update(double secondsElapsed) {

@@ -10,6 +10,7 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.function.BiConsumer;
 
+import static app.view.ImageRepository.imageRepository;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import static java.awt.Font.ITALIC;
@@ -21,11 +22,11 @@ public class CardRenderer extends Renderer {
     private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
     private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
-    public CardRenderer(CardVO cardVO, ImageRepository imageRepository) {
+    public CardRenderer(CardVO cardVO) {
         super(cardVO);
         card = cardVO.getCard();
-        cardImage = imageRepository.cardCastle;
-        cardBack = imageRepository.cardBack;
+        cardImage = imageRepository().cardCastle;
+        cardBack = imageRepository().cardBack;
     }
 
     @Override

@@ -10,6 +10,8 @@ import java.util.Map;
 import static app.game.token.TokenColor.*;
 
 public class ImageRepository {
+    private static final ImageRepository imageRepository = new ImageRepository();
+
     public BufferedImage cardBack = get("images/card.png");
     public BufferedImage cardBench = get("images/cards/view/bench.png");
     public BufferedImage cardCastle = get("images/cards/view/castle.png");
@@ -29,6 +31,9 @@ public class ImageRepository {
         return tokens;
     }
 
+    private ImageRepository() {
+    }
+
     private BufferedImage get(String filename) {
         return Load.image(filename);
     }
@@ -38,5 +43,9 @@ public class ImageRepository {
             return tokenVersatile;
         }
         return tokens.get(color);
+    }
+
+    public static ImageRepository imageRepository() {
+        return imageRepository;
     }
 }
