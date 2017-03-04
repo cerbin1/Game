@@ -1,5 +1,5 @@
-import app.game.Tokens;
-import app.game.TokensAcquireValidator;
+import app.game.token.Tokens;
+import app.game.token.TokensAcquireValidator;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;

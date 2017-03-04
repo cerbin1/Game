@@ -1,6 +1,6 @@
 package app.game.card.nobility;
 
-import app.game.Tokens;
+import app.game.token.Tokens;
 
 import java.util.Random;
 

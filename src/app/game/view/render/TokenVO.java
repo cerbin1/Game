@@ -1,16 +1,17 @@
 package app.game.view.render;
 
-import app.game.TokenColor;
+import app.game.token.Token;
+import app.game.token.TokenColor;
 
 public class TokenVO extends ViewObject {
-    private final TokenColor color;
+    private final Token token;
 
-    public TokenVO(int x, int y, TokenColor color) {
+    public TokenVO(int x, int y, Token token) {
         super(x, y, 122, 122);
-        this.color = color;
+        this.token = token;
     }
 
     TokenColor getColor() {
-        return color;
+        return token.getColor();
     }
 }

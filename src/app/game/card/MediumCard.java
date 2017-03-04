@@ -1,7 +1,7 @@
 package app.game.card;
 
-import app.game.TokenColor;
-import app.game.Tokens;
+import app.game.token.TokenColor;
+import app.game.token.Tokens;
 
 public class MediumCard extends Card {
     public MediumCard() {

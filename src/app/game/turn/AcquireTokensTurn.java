@@ -1,7 +1,7 @@
 package app.game.turn;
 
 import app.game.Game;
-import app.game.Tokens;
+import app.game.token.Tokens;
 
 public class AcquireTokensTurn extends Turn {
     public AcquireTokensTurn(Tokens tokens) {

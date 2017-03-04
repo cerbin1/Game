@@ -1,4 +1,4 @@
-package app.game;
+package app.game.token;
 
 import java.util.function.BiConsumer;
 

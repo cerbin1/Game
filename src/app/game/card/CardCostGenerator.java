@@ -1,6 +1,6 @@
 package app.game.card;
 
-import app.game.Tokens;
+import app.game.token.Tokens;
 
 import java.util.Random;
 

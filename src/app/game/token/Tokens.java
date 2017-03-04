@@ -1,9 +1,7 @@
-package app.game;
+package app.game.token;
 
 import java.util.EnumMap;
 import java.util.Map;
-
-import static app.game.TokenColor.*;
 
 public class Tokens {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
@@ -14,20 +12,20 @@ public class Tokens {
     }
 
     public Tokens(int commonCount, int rareCount) {
-        tokens.put(Green, commonCount);
-        tokens.put(Purple, commonCount);
-        tokens.put(Blue, commonCount);
-        tokens.put(Black, commonCount);
-        tokens.put(Red, commonCount);
+        tokens.put(TokenColor.Green, commonCount);
+        tokens.put(TokenColor.Purple, commonCount);
+        tokens.put(TokenColor.Blue, commonCount);
+        tokens.put(TokenColor.Black, commonCount);
+        tokens.put(TokenColor.Red, commonCount);
         versatile = rareCount;
     }
 
     public Tokens(int green, int purple, int blue, int black, int red) {
-        tokens.put(Green, green);
-        tokens.put(Purple, purple);
-        tokens.put(Blue, blue);
-        tokens.put(Black, black);
-        tokens.put(Red, red);
+        tokens.put(TokenColor.Green, green);
+        tokens.put(TokenColor.Purple, purple);
+        tokens.put(TokenColor.Blue, blue);
+        tokens.put(TokenColor.Black, black);
+        tokens.put(TokenColor.Red, red);
         versatile = 0;
     }
 
@@ -36,23 +34,23 @@ public class Tokens {
     }
 
     public int getGreen() {
-        return tokens.get(Green);
+        return tokens.get(TokenColor.Green);
     }
 
     public int getPurple() {
-        return tokens.get(Purple);
+        return tokens.get(TokenColor.Purple);
     }
 
     public int getBlue() {
-        return tokens.get(Blue);
+        return tokens.get(TokenColor.Blue);
     }
 
     public int getBlack() {
-        return tokens.get(Black);
+        return tokens.get(TokenColor.Black);
     }
 
     public int getRed() {
-        return tokens.get(Red);
+        return tokens.get(TokenColor.Red);
     }
 
     public int getVersatile() {

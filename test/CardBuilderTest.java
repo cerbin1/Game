@@ -1,6 +1,6 @@
 import app.MockRandom;
-import app.game.TokenColor;
-import app.game.Tokens;
+import app.game.token.TokenColor;
+import app.game.token.Tokens;
 import app.game.card.Card;
 import app.game.card.CardBuilder;
 import org.junit.Test;

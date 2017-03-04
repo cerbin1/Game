@@ -1,6 +1,7 @@
 package app.game.view;
 
-import app.game.TokenColor;
+import app.game.token.Token;
+import app.game.token.TokenColor;
 import app.game.Updatable;
 import app.game.card.Card;
 import app.game.card.CheapCard;
@@ -11,6 +12,7 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 
+import static app.game.token.TokenColor.*;
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 import static java.lang.Math.random;
@@ -45,7 +47,7 @@ public class GameWindow implements Updatable {
         cardVO.setRotation(random() * 0.14 - 0.07);
         CardRenderer cardRenderer = new CardRenderer(canvas, cardVO, imageRepository);
 
-        TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
+        TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));
         TokenRenderer tokenRenderer = new TokenRenderer(tokenVO, imageRepository);
         tokenVO.moveTo(500, 700, 1.5);
         tokenVO.setRotation(0.1);

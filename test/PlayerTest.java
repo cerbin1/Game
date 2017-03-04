@@ -1,7 +1,7 @@
 import app.MockRandom;
 import app.game.Player;
-import app.game.TokenColor;
-import app.game.Tokens;
+import app.game.token.TokenColor;
+import app.game.token.Tokens;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;

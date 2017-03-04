@@ -1,6 +1,6 @@
 import app.MockRandom;
 import app.game.card.nobility.ConditionsEmploymentNobility;
-import app.game.Tokens;
+import app.game.token.Tokens;
 import org.junit.Assert;
 import org.junit.Test;
 

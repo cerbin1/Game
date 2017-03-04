@@ -1,13 +1,13 @@
 package app.game.view;
 
 import app.game.Load;
-import app.game.TokenColor;
+import app.game.token.TokenColor;
 
 import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static app.game.TokenColor.*;
+import static app.game.token.TokenColor.*;
 
 public class ImageRepository {
     public BufferedImage cardBack = get("images/card.png");

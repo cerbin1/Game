@@ -1,6 +1,6 @@
 package app.game.view.render;
 
-import app.game.TokenColor;
+import app.game.token.TokenColor;
 import app.game.card.Card;
 import app.game.view.ImageRepository;
 

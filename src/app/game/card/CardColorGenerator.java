@@ -1,6 +1,6 @@
 package app.game.card;
 
-import app.game.TokenColor;
+import app.game.token.TokenColor;
 
 import java.util.Random;
 
