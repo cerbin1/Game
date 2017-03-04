@@ -68,9 +68,11 @@ public class GameWindow implements Updatable {
         renderers.add(new TokenRenderer(tokenVO3));
         renderers.add(new TokenRenderer(versatileVO));
 
-        CardVO lastCard = cardVOs.get(cardVOs.size() - 1);
-        lastCard.moveTo(700, 300, 2.0);
-        lastCard.setFlipped(true);
+        for (int i = 0; i < 4; i++) {
+            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
+            lastCard.moveTo(670 + i * 238, 300, 2.0);
+            lastCard.setFlipped(true);
+        }
     }
 
     public void update(double secondsElapsed) {
