@@ -1,4 +1,6 @@
-package app.game;
+package app.game.card.nobility;
+
+import app.game.Tokens;
 
 import java.util.Random;
 
@@ -7,7 +9,7 @@ public class ConditionsEmploymentNobility {
     private boolean[] isValueAssigned = new boolean[5];
     private final Random random;
 
-    private ConditionsEmploymentNobility() {
+    ConditionsEmploymentNobility() {
         this(new Random());
     }
 
