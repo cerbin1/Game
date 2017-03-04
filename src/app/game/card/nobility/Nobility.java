@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Nobility {
     private final Random random;
-    private final Tokens conditions;
+    private final Tokens cost;
     private final int points;
 
     public Nobility() {
@@ -15,13 +15,13 @@ public class Nobility {
 
     public Nobility(Random random) {
         this.random = random;
-        this.conditions = new ConditionsEmploymentNobility().getConditions();
+        this.cost = new ConditionsEmploymentNobility().getConditions();
         this.points = getRandomPoints();
     }
 
-    public Nobility(Tokens conditions, int points) {
+    public Nobility(Tokens cost, int points) {
         this.random = new Random();
-        this.conditions = conditions;
+        this.cost = cost;
         this.points = points;
     }
 
@@ -29,8 +29,8 @@ public class Nobility {
         return points;
     }
 
-    public Tokens getConditions() {
-        return conditions;
+    public Tokens getCost() {
+        return cost;
     }
 
     public int getRandomPoints() {
