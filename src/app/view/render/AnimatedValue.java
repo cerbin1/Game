@@ -42,9 +42,15 @@ public class AnimatedValue {
     }
 
     public void update(double seconds) {
-        int compare = compare(startValue, destinationValue);
+        if (seconds < 0) {
+            throw new RuntimeException("Negative argument for update()");
+        }
         this.passedDuration += seconds;
+        updateCurrentValue();
+    }
 
+    private void updateCurrentValue() {
+        int compare = compare(startValue, destinationValue);
         double progress = min(1.0, passedDuration / duration);
         double difference = destinationValue - startValue;
         double newValue = startValue + difference * transition.valueOf(progress);

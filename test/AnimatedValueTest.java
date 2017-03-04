@@ -104,6 +104,31 @@ public class AnimatedValueTest {
 
         // then
         assertEquals(17.5, animatedValue.getValue(), 0.000001);
+    }
 
+    @Test
+    public void shouldUpdateNegativeNumber() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(-5.0);
+        animatedValue.setValue(-1.0, 2.0);
+
+        // when
+        animatedValue.update(0.25);
+
+        // then
+        assertEquals(-4.5, animatedValue.getValue(), 0.000001);
+    }
+
+    @Test
+    public void shouldUpdateNegativeToPositiveNumber() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(-1.0);
+        animatedValue.setValue(1.0);
+
+        // when
+        animatedValue.update(0.25);
+
+        // then
+        assertEquals(-0.5, animatedValue.getValue(), 0.000001);
     }
 }
