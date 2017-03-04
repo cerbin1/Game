@@ -13,6 +13,7 @@ import java.util.List;
 
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+import static java.lang.Math.random;
 
 public class GameWindow implements Updatable {
     private final Window window = new Window();
@@ -41,11 +42,13 @@ public class GameWindow implements Updatable {
 
         Card card = new CheapCard();
         CardVO cardVO = new CardVO(card, 500, 300);
+        cardVO.setRotation(random() * 0.14 - 0.07);
         CardRenderer cardRenderer = new CardRenderer(canvas, cardVO, imageRepository);
 
         TokenVO tokenVO = new TokenVO(1000, 500, TokenColor.Green);
         TokenRenderer tokenRenderer = new TokenRenderer(canvas, tokenVO, imageRepository);
         tokenVO.moveTo(500, 700);
+        tokenVO.setRotation(0.1);
 
         TokenVO versatileVO = new TokenVO(1100, 550, null);
         TokenRenderer versatileTokenRenderer = new VersatileTokenRenderer(canvas, versatileVO, imageRepository);

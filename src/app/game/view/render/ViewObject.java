@@ -1,18 +1,18 @@
 package app.game.view.render;
 
 import app.game.Updatable;
-import app.game.view.fx.Transition;
 
 import static java.lang.Math.round;
 
 public class ViewObject implements Updatable {
-    private final AnimatedValue x, y;
+    private final AnimatedValue x, y, rotation;
     private final int width, height;
     private double secondsPassed = 0;
 
     ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
         this.y = new AnimatedValue(y);
+        this.rotation = new AnimatedValue(0);
         this.width = width;
         this.height = height;
     }
@@ -25,14 +25,19 @@ public class ViewObject implements Updatable {
         return (int) round(y.getValue());
     }
 
+    public void setRotation(double rotation) {
+        this.rotation.setValue(rotation);
+    }
+
     double getRotation() {
-        return 0.0;
+        return rotation.getValue();
     }
 
     public void update(double secondsPassed) {
         this.secondsPassed += secondsPassed;
         x.update(secondsPassed);
         y.update(secondsPassed);
+        rotation.update(secondsPassed);
     }
 
     int getWidth() {
@@ -44,7 +49,7 @@ public class ViewObject implements Updatable {
     }
 
     double getPerspectiveX() {
-        return Transition.cosineTransition(secondsPassed);
+        return 1.0; //Transition.cosineTransition(secondsPassed);
     }
 
     double getPerspectiveY() {

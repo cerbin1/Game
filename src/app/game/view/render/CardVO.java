@@ -2,7 +2,7 @@ package app.game.view.render;
 
 import app.game.card.Card;
 
-import static java.lang.Math.*;
+import static java.lang.Math.PI;
 
 public class CardVO extends ViewObject {
     private final static double RESERVATION_ANIM_LENGTH = 2.5;
@@ -28,6 +28,6 @@ public class CardVO extends ViewObject {
 
     @Override
     double getRotation() {
-        return reservation.getValue() * PI / 2;
+        return super.getRotation() + reservation.getValue() * PI / 2;
     }
 }
