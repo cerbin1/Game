@@ -6,7 +6,7 @@ import app.util.Random;
 
 public class Nobility {
     private final Random random;
-    private final Tokens cost;
+    private final Tokens condition;
     private final int points;
 
     public Nobility() {
@@ -15,13 +15,13 @@ public class Nobility {
 
     public Nobility(Random random) {
         this.random = random;
-        this.cost = new ConditionsEmploymentNobility().getConditions();
+        this.condition = new ConditionsEmploymentNobility().getConditions();
         this.points = getRandomPoints();
     }
 
-    public Nobility(Tokens cost, int points) {
+    public Nobility(Tokens condition, int points) {
         this.random = new Random();
-        this.cost = cost;
+        this.condition = condition;
         this.points = points;
     }
 
@@ -29,8 +29,8 @@ public class Nobility {
         return points;
     }
 
-    public Tokens getCost() {
-        return cost;
+    public Tokens getCondition() {
+        return condition;
     }
 
     public int getRandomPoints() {
