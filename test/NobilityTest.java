@@ -10,7 +10,7 @@ public class NobilityTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
-        Random random = new MockRandom(1, 0);
+        Random random = new MockRandom(0, 1, 0);
         Nobility nobility = new Nobility(random);
 
         // when
