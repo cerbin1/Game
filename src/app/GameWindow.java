@@ -39,11 +39,7 @@ public class GameWindow implements Updatable {
 
     private void initializeGame() {
         CardVO cardVO = new CardVO(new CheapCard(), 500, 300);
-        cardVO.reposition(550, 350, 1.1);
-
         TokenVO tokenVO = new TokenVO(1000, 500, new Token(Green));
-        tokenVO.reposition(500, 700, 1.5);
-
         TokenVO versatileVO = new TokenVO(1100, 550, new Token(null));
 
         updatables.add(cardVO);
@@ -53,6 +49,9 @@ public class GameWindow implements Updatable {
         renderers.add(new CardRenderer(cardVO));
         renderers.add(new TokenRenderer(tokenVO));
         renderers.add(new TokenRenderer(versatileVO));
+
+        cardVO.reposition(550, 350, 1.1);
+        tokenVO.reposition(500, 700, 1.5);
     }
 
     public void update(double secondsElapsed) {
