@@ -45,7 +45,7 @@ public class GameWindow implements Updatable {
         List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             Card card = cardBuilder.createCheapCard();
             cards.add(card);
             CardVO cardVO = new CardVO(card, 300, 200);
@@ -59,7 +59,7 @@ public class GameWindow implements Updatable {
             lastCard.setFlipped(true);
         }
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             Card card = cardBuilder.createMediumCard();
             cards.add(card);
             CardVO cardVO = new CardVO(card, 300, 550);
@@ -74,7 +74,7 @@ public class GameWindow implements Updatable {
         }
 
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 5; i++) {
             Card card = cardBuilder.createExpensiveCard();
             cards.add(card);
             CardVO cardVO = new CardVO(card, 300, 890);
