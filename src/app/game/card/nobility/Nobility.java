@@ -8,7 +8,6 @@ public class Nobility {
     private final Random random;
     private final Tokens conditions;
     private final int points;
-    private final ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility();
 
     public Nobility() {
         this(new Random());
@@ -16,14 +15,14 @@ public class Nobility {
 
     public Nobility(Random random) {
         this.random = random;
-        this.conditions = conditionsEmploymentNobility.getConditions();
+        this.conditions = new ConditionsEmploymentNobility().getConditions();
         this.points = getRandomPoints();
     }
 
     public Nobility(Tokens conditions, int points) {
+        this.random = new Random();
         this.conditions = conditions;
         this.points = points;
-        this.random = new Random();
     }
 
     public int getPoints() {
@@ -32,10 +31,6 @@ public class Nobility {
 
     public Tokens getConditions() {
         return conditions;
-    }
-
-    public Nobility createNobility() {
-        return new Nobility();
     }
 
     public int getRandomPoints() {
