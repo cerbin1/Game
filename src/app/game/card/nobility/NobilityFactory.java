@@ -3,8 +3,8 @@ package app.game.card.nobility;
 import app.util.Random;
 
 public class NobilityFactory {
-
-    private Random random;
+    private final Random random;
+    private final ConditionsEmploymentNobility conditions = new ConditionsEmploymentNobility();
 
     public NobilityFactory() {
         this(new Random());
@@ -14,10 +14,8 @@ public class NobilityFactory {
         this.random = random;
     }
 
-    ConditionsEmploymentNobility conditions = new ConditionsEmploymentNobility();
-
     public Nobility create() {
-        return new Nobility(conditions.getConditions(), generateRandomPoints());
+        return new Nobility(conditions.getRandomConditions(), generateRandomPoints());
     }
 
     public int generateRandomPoints() {
