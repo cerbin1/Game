@@ -105,7 +105,7 @@ public class GameWindow implements Updatable {
         @Override
         public void mouseClicked(MouseEvent e) {
             Optional<Renderer> optional = getRendererOnPoint(e.getPoint());
-            optional.ifPresent(renderer -> renderer.getViewObject().setRotation(slightRotation()));
+            optional.ifPresent(renderer -> renderer.getViewObject().setRotation(slightRotation() * 10));
         }
 
         @Override

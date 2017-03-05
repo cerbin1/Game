@@ -15,7 +15,7 @@ public class TokenVO extends ViewObject {
     }
 
     @Override
-    public Shape getOutline() {
+    protected Shape getBaseOutline() {
         return new Ellipse2D.Double(
                 getX() - width / 2, getY() - height / 2,
                 width, height);

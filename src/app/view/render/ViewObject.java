@@ -4,11 +4,12 @@ import app.game.Updatable;
 import app.view.fx.LinearTransition;
 
 import java.awt.*;
+import java.awt.geom.AffineTransform;
 
 import static java.lang.Math.random;
 import static java.lang.Math.round;
 
-public class ViewObject implements Updatable {
+public abstract class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
     final int width, height;
     private boolean hover = false;
@@ -21,7 +22,13 @@ public class ViewObject implements Updatable {
         this.height = height;
     }
 
-    public Shape getOutline() {
+    final public Shape getOutline() {
+        AffineTransform transform = new AffineTransform();
+        transform.rotate(getRotation(), getX(), getY());
+        return transform.createTransformedShape(getBaseOutline());
+    }
+
+    protected Shape getBaseOutline() {
         return new Rectangle(
                 getX() - width / 2, getY() - height / 2, width, height
         );

@@ -9,7 +9,8 @@ public class BackgroundRenderer extends Renderer {
     private final BufferedImage background;
 
     public BackgroundRenderer() {
-        super(new ViewObject(0, 0, 0, 0));
+        super(new ViewObject(0, 0, 0, 0) {
+        });
         background = imageRepository().background1;
     }
 
