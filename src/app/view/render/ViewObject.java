@@ -10,7 +10,7 @@ import static java.lang.Math.round;
 
 public class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
-    private final int width, height;
+    final int width, height;
     private double secondsPassed = 0;
     private boolean hover = false;
 
@@ -22,7 +22,7 @@ public class ViewObject implements Updatable {
         this.height = height;
     }
 
-    public Rectangle getOutline() {
+    public Shape getOutline() {
         return new Rectangle(
                 getX() - width / 2, getY() - height / 2, width, height
         );
