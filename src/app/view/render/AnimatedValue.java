@@ -71,8 +71,8 @@ public class AnimatedValue {
     }
 
     private void invokeListenerIfDue() {
-        if (compare(currentValue, destinationValue) == 0) {
-            if (onFinish != null) {
+        if (onFinish != null) {
+            if (compare(currentValue, destinationValue) == 0) {
                 onFinish.run();
                 onFinish = null;
             }
