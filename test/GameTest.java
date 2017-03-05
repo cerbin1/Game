@@ -100,7 +100,7 @@ public class GameTest {
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(player1.getCards(), asList(cheapCard2));
+        assertEquals(player1.getCards().get(0), cheapCard2);
         Assert.assertTrue(cheapCard2.isReserved());
         assertEquals(player1.getTokens().getVersatile(), 1);
     }
