@@ -52,7 +52,7 @@ public class Game {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
-    public void remove(Card card) {
+    public void removeCard(Card card) {
         cards.remove(card);
     }
 
