@@ -2,6 +2,7 @@ package app.game;
 
 import app.game.card.Card;
 import app.game.card.nobility.Nobility;
+import app.game.token.TokenColor;
 import app.game.token.Tokens;
 
 import java.util.ArrayList;
@@ -22,6 +23,12 @@ public class Player {
 
     public Tokens getTokens() {
         return tokens;
+    }
+
+    public Tokens getTokensIncludingBoughtCards() {
+        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Green).count()), (int) (tokens.getPurple() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Purple).count()),
+                (int) (tokens.getBlue() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Blue).count()), (int) (tokens.getBlack() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Black).count()),
+                (int) (tokens.getRed() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Red).count()));
     }
 
     public List<Card> getCards() {
