@@ -14,19 +14,20 @@ import app.game.turn.ReservationTurn;
 import org.junit.Assert;
 import org.junit.Test;
 
+import static app.game.token.TokenColor.Green;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
 public class GameTest {
-    private Player player1 = new Player(new Tokens(3, 0, 0, 0, 0));
-    private Player player2 = new Player(new Tokens(1, 3));
+    private Player player1 = new Player(new Tokens(4, 2, 0, 0, 0));
+    private Player player2 = new Player(new Tokens(1, 1, 0, 0, 0));
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card cheapCard3 = new CheapCard();
     private Card cheapCard4 = new CheapCard();
     private Card cheapCard5 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
-    private Card mediumCard2 = new MediumCard();
+    private Card mediumCard2 = new MediumCard(new Tokens(3, 2, 0, 0, 0), 0, Green);
     private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
     private Card notIncludedCard = new CheapCard();
@@ -114,8 +115,10 @@ public class GameTest {
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(game.getTokens().getGreen(), 9);
+        assertEquals(game.getTokens().getGreen(), 10);
+        assertEquals(game.getTokens().getPurple(), 9);
         assertEquals(player1.getTokens().getGreen(), 1);
+        assertEquals(player1.getTokens().getPurple(), 0);
         assertEquals(player1.getCards().get(0), mediumCard2);
         assertFalse(mediumCard1.isReserved());
     }
