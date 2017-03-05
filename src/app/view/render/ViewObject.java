@@ -3,6 +3,8 @@ package app.view.render;
 import app.game.Updatable;
 import app.view.fx.LinearTransition;
 
+import java.awt.*;
+
 import static java.lang.Math.random;
 import static java.lang.Math.round;
 
@@ -17,6 +19,12 @@ public class ViewObject implements Updatable {
         this.rotation = new AnimatedValue(0);
         this.width = width;
         this.height = height;
+    }
+
+    public Rectangle getCurrentOutline() {
+        return new Rectangle(
+                getX(), getY(), width, height
+        );
     }
 
     int getX() {
