@@ -17,9 +17,7 @@ public abstract class Renderer {
         graphics2D.setTransform(getTransform());
         render(graphics2D);
         graphics2D.setTransform(previous);
-        if (viewObject.hasHover() || true) {
-            graphics2D.draw(viewObject.getOutline());
-        }
+        drawOutline(graphics2D);
     }
 
     private AffineTransform getTransform() {
@@ -29,6 +27,12 @@ public abstract class Renderer {
         transform.rotate(viewObject.getRotation());
         transform.translate(-viewObject.getWidth() / 2, -viewObject.getHeight() / 2);
         return transform;
+    }
+
+    private void drawOutline(Graphics2D graphics2D) {
+        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.setColor(Color.red);
+        graphics2D.draw(viewObject.getOutline());
     }
 
     public ViewObject getViewObject() {
