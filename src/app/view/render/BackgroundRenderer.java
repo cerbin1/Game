@@ -17,4 +17,9 @@ public class BackgroundRenderer extends Renderer {
     protected void render(Graphics2D graphics) {
         graphics.drawImage(background, 0, 0, null);
     }
+
+    @Override
+    public boolean isHoverable() {
+        return false;
+    }
 }

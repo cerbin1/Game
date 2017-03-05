@@ -14,6 +14,7 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static app.game.token.TokenColor.Green;
 import static app.view.render.ViewObject.slightRotation;
@@ -88,18 +89,24 @@ public class GameWindow implements Updatable {
         windowGraphics = window.getGraphics();
     }
 
+    private Optional<Renderer> getRendererOnPoint(Point point) {
+        return renderers
+                .stream()
+                .filter(Renderer::isHoverable)
+                .filter(renderer -> renderer.getViewObject().getOutline().contains(point))
+                .reduce((a, b) -> b);
+    }
+
     public class GameMouseAdapter extends MouseAdapter {
         @Override
         public void mouseMoved(MouseEvent e) {
             super.mouseMoved(e);
-            Point point = e.getPoint();
 
-            renderers.forEach(renderer -> renderer.getViewObject().triggerLeaveHover());
             renderers
-                    .stream()
-                    .filter(renderer -> renderer.getViewObject().getOutline().contains(point))
-                    .reduce((a, b) -> b)
-                    .ifPresent(renderer -> renderer.getViewObject().triggerEnterHover());
+                    .forEach(r -> r.getViewObject().triggerLeaveHover());
+
+            getRendererOnPoint(e.getPoint())
+                    .ifPresent(r -> r.getViewObject().triggerEnterHover());
         }
     }
 }

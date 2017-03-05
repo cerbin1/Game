@@ -34,4 +34,8 @@ public abstract class Renderer {
     public ViewObject getViewObject() {
         return viewObject;
     }
+
+    public boolean isHoverable() {
+        return true;
+    }
 }
