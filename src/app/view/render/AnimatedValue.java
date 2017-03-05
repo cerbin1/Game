@@ -49,7 +49,7 @@ public class AnimatedValue {
 
     public void update(double seconds) {
         if (seconds < 0) {
-            throw new RuntimeException("Negative argument for update()");
+            throw new RuntimeException("Negative argument for AnimationValue.update()");
         }
         this.passedDuration += seconds;
         updateCurrentValue();
