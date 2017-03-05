@@ -9,8 +9,6 @@ public class Load {
     public static BufferedImage image(final String filename) {
         URL resource = Load.class.getClassLoader().getResource(filename);
 
-        System.out.println(resource.getPath());
-
         if (resource == null) {
             throw new RuntimeException("File " + filename + " not found");
         }
