@@ -66,6 +66,10 @@ public class GameWindow implements Updatable {
         TokenVO versatileVO = new TokenVO(1900 - 30, 550, new Token(null));
 
         cardVOs.forEach(vo -> updatables.add(vo));
+        updatables.add(tokenVO);
+        updatables.add(tokenVO2);
+        updatables.add(tokenVO3);
+        updatables.add(versatileVO);
 
         renderers.add(new BackgroundRenderer());
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
@@ -99,12 +103,18 @@ public class GameWindow implements Updatable {
 
     public class GameMouseAdapter extends MouseAdapter {
         @Override
+        public void mouseClicked(MouseEvent e) {
+            Optional<Renderer> optional = getRendererOnPoint(e.getPoint());
+            optional.ifPresent(renderer -> renderer.getViewObject().setRotation(slightRotation()));
+        }
+
+        @Override
         public void mouseMoved(MouseEvent e) {
-            renderers.forEach(r -> r.getViewObject().triggerLeaveHover());
+            renderers.forEach(r -> r.getViewObject().setHover(false));
             Optional<Renderer> optional = getRendererOnPoint(e.getPoint());
 
             if (optional.isPresent()) {
-                optional.get().getViewObject().triggerEnterHover();
+                optional.get().getViewObject().setHover(true);
                 window.setHandCursor();
             } else {
                 window.setDefaultCursor();

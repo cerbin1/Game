@@ -87,15 +87,11 @@ public class ViewObject implements Updatable {
         return random() * 0.14 - 0.07;
     }
 
-    public void triggerEnterHover() {
-        this.hover = true;
+    public void setHover(boolean hover) {
+        this.hover = hover;
     }
 
-    public void triggerLeaveHover() {
-        this.hover = false;
-    }
-
-    public boolean hasHover() {
+    boolean hasHover() {
         return this.hover;
     }
 }
