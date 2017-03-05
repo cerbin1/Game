@@ -3,12 +3,17 @@ package app.view;
 import app.GameWindow;
 
 import javax.swing.*;
+import java.awt.Cursor;
 import java.awt.*;
 
+import static java.awt.Cursor.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Window {
-    private final JFrame frame = new JFrame();
+    public final JFrame frame = new JFrame();
+
+    private final Cursor handCursor = getPredefinedCursor(HAND_CURSOR);
+    private final Cursor defaultCursor = getPredefinedCursor(DEFAULT_CURSOR);
 
     public Window() {
         frame.setResizable(false);
@@ -29,5 +34,13 @@ public class Window {
 
     public Graphics getGraphics() {
         return frame.getGraphics();
+    }
+
+    public void setHandCursor() {
+        frame.setCursor(handCursor);
+    }
+
+    public void setDefaultCursor() {
+        frame.setCursor(defaultCursor);
     }
 }

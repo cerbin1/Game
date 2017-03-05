@@ -100,13 +100,15 @@ public class GameWindow implements Updatable {
     public class GameMouseAdapter extends MouseAdapter {
         @Override
         public void mouseMoved(MouseEvent e) {
-            super.mouseMoved(e);
+            renderers.forEach(r -> r.getViewObject().triggerLeaveHover());
+            Optional<Renderer> optional = getRendererOnPoint(e.getPoint());
 
-            renderers
-                    .forEach(r -> r.getViewObject().triggerLeaveHover());
-
-            getRendererOnPoint(e.getPoint())
-                    .ifPresent(r -> r.getViewObject().triggerEnterHover());
+            if (optional.isPresent()) {
+                optional.get().getViewObject().triggerEnterHover();
+                window.setHandCursor();
+            } else {
+                window.setDefaultCursor();
+            }
         }
     }
 }
