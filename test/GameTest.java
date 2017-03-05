@@ -28,7 +28,7 @@ public class GameTest {
     private Card cheapCard5 = new CheapCard();
     private Card mediumCard1 = new MediumCard();
     private Card mediumCard2 = new MediumCard(new Tokens(3, 2, 0, 0, 0), 0, Green);
-    private Card expensiveCard1 = new ExpensiveCard();
+    private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 4, 3, 0, 0), 0, Green);
     private Card expensiveCard2 = new ExpensiveCard();
     private Card notIncludedCard = new CheapCard();
     private Tokens gameTokens = new Tokens(7, 5);
