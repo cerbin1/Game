@@ -32,9 +32,9 @@ public class GameTest {
     private Card expensiveCard2 = new ExpensiveCard();
     private Card notIncludedCard = new CheapCard();
     private Tokens gameTokens = new Tokens(7, 5);
-    private Nobility nobility1 = new Nobility();
-    private Nobility nobility2 = new Nobility();
-    private Nobility nobility3 = new Nobility();
+    private Nobility nobility1 = new Nobility(new Tokens(), 0);
+    private Nobility nobility2 = new Nobility(new Tokens(), 0);
+    private Nobility nobility3 = new Nobility(new Tokens(), 0);
 
     @Test
     public void shouldInitializeGame() {
