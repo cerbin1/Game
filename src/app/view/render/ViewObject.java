@@ -67,8 +67,8 @@ public class ViewObject implements Updatable {
         this.y.setValue(y, duration);
     }
 
-    public void moveX(int x, double duration) {
-        this.x.setValue(x, duration);
+    public void moveX(int x, double duration, Runnable onFinish) {
+        this.x.setValue(x, duration, onFinish);
     }
 
     public void reposition(int x, int y, double duration) {

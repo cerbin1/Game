@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 import static app.game.token.TokenColor.Green;
 import static app.view.render.ViewObject.slightRotation;
@@ -53,39 +54,7 @@ public class GameWindow implements Updatable {
             cardVOs.add(cardVO);
         }
 
-        for (int i = 0; i < 4; i++) {
-            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
-            lastCard.moveX(670 + i * 238, 2.0);
-            lastCard.setFlipped(true);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            Card card = cardBuilder.createMediumCard();
-            cards.add(card);
-            CardVO cardVO = new CardVO(card, 300, 550);
-            cardVO.setRotation(slightRotation());
-            cardVOs.add(cardVO);
-        }
-
-        for (int i = 0; i < 4; i++) {
-            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
-            lastCard.moveX(670 + i * 238, 2.0);
-            lastCard.setFlipped(true);
-        }
-
-        for (int i = 0; i < 5; i++) {
-            Card card = cardBuilder.createExpensiveCard();
-            cards.add(card);
-            CardVO cardVO = new CardVO(card, 300, 890);
-            cardVO.setRotation(slightRotation());
-            cardVOs.add(cardVO);
-        }
-
-        for (int i = 0; i < 4; i++) {
-            CardVO lastCard = cardVOs.get(cardVOs.size() - 1 - i);
-            lastCard.moveX(670 + i * 238, 2.0);
-            lastCard.setFlipped(true);
-        }
+        new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
         TokenVO tokenVO = new TokenVO(1800 - 30, 500, new Token(Green));
         TokenVO tokenVO2 = new TokenVO(1810 - 30, 520, new Token(Green));
@@ -114,5 +83,30 @@ public class GameWindow implements Updatable {
     void show() {
         window.show();
         windowGraphics = window.getGraphics();
+    }
+
+    private class SubsequentCardDealer {
+        private final List<CardVO> cardVOs;
+        private final Function<Integer, Integer> xValue;
+
+        private int amount;
+        private int current = 0;
+
+        SubsequentCardDealer(List<CardVO> cardVOs, int amount, Function<Integer, Integer> xValue) {
+            this.cardVOs = cardVOs;
+            this.xValue = xValue;
+            this.amount = amount;
+            if (amount <= 0) {
+                throw new IllegalArgumentException("Amount lower than 0");
+            }
+        }
+
+        void deal() {
+            if (current < amount) {
+                CardVO vo = cardVOs.get(cardVOs.size() - 1 - current);
+                vo.moveX(xValue.apply(current++), 2.0, this::deal);
+                vo.setFlipped(true);
+            }
+        }
     }
 }

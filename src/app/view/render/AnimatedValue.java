@@ -9,14 +9,13 @@ import static java.lang.Math.min;
 
 public class AnimatedValue {
     private final Transition transition;
+    private Runnable onFinish;
 
     private double passedDuration = 0.0;
     private double duration;
     private double startValue;
     private double currentValue;
     private double destinationValue;
-
-    private Runnable onFinish;
 
     public AnimatedValue(double value) {
         this(value, new LinearTransition());
@@ -75,6 +74,7 @@ public class AnimatedValue {
         if (compare(currentValue, destinationValue) == 0) {
             if (onFinish != null) {
                 onFinish.run();
+                onFinish = null;
             }
         }
     }
