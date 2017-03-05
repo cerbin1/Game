@@ -75,4 +75,20 @@ public class PlayerTest {
         // then
         assertEquals(points, 11);
     }
+
+    @Test
+    public void shouldSetTokens() {
+        // given
+        Player player = new Player();
+
+        // when
+        player.setTokens(new Tokens(1, 2, 3, 4, 5));
+
+        // then
+        assertEquals(player.getTokens().getGreen(), 1);
+        assertEquals(player.getTokens().getPurple(), 2);
+        assertEquals(player.getTokens().getBlue(), 3);
+        assertEquals(player.getTokens().getBlack(), 4);
+        assertEquals(player.getTokens().getRed(), 5);
+    }
 }
