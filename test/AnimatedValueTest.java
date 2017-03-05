@@ -2,6 +2,8 @@ import app.view.render.AnimatedValue;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class AnimatedValueTest {
     @Test
@@ -130,5 +132,43 @@ public class AnimatedValueTest {
 
         // then
         assertEquals(-0.5, animatedValue.getValue(), 0.000001);
+    }
+
+    @Test
+    public void shouldNotInvokeOnFinish() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(0.0);
+        MockRunnable mock = new MockRunnable();
+        animatedValue.setValue(5.0, 1.0, mock);
+
+        // when
+        animatedValue.update(0.9);
+
+        // then
+        assertFalse(mock.wasRun);
+    }
+
+    @Test
+    public void shouldInvokeOnFinish() {
+        // given
+        AnimatedValue animatedValue = new AnimatedValue(0.0);
+        MockRunnable mock = new MockRunnable();
+        animatedValue.setValue(5.0, 1.0, mock);
+
+        // when
+        animatedValue.update(1.01);
+
+        // then
+        assertTrue(mock.wasRun);
+    }
+
+}
+
+class MockRunnable implements Runnable {
+    public boolean wasRun = false;
+
+    @Override
+    public void run() {
+        wasRun = true;
     }
 }

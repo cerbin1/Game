@@ -16,6 +16,8 @@ public class AnimatedValue {
     private double currentValue;
     private double destinationValue;
 
+    private Runnable onFinish;
+
     public AnimatedValue(double value) {
         this(value, new LinearTransition());
     }
@@ -31,10 +33,15 @@ public class AnimatedValue {
     }
 
     public void setValue(double value, double duration) {
+        setValue(value, duration, null);
+    }
+
+    public void setValue(double value, double duration, Runnable onFinish) {
         this.startValue = currentValue;
         this.destinationValue = value;
         this.duration = duration;
         this.passedDuration = 0.0;
+        this.onFinish = onFinish;
     }
 
     public double getValue() {
@@ -60,6 +67,15 @@ public class AnimatedValue {
         }
         if (compare > 0) {
             currentValue = max(newValue, destinationValue);
+        }
+        invokeListenerIfDue();
+    }
+
+    private void invokeListenerIfDue() {
+        if (compare(currentValue, destinationValue) == 0) {
+            if (onFinish != null) {
+                onFinish.run();
+            }
         }
     }
 }
