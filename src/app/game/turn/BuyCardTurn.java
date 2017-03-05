@@ -18,9 +18,21 @@ public class BuyCardTurn extends Turn {
         Tokens playerTokens = player.getTokens();
         Tokens cost = card.getCost();
         Tokens gameTokens = game.getTokens();
-        player.addCard(card);
-        player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
-        game.setTokens(new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed()));
+        if (playerHaveEnoughTokensToBuyCard(playerTokens, cost)) {
+            player.addCard(card);
+            player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
+            game.setTokens(getGameTokensAfterUpdate(cost, gameTokens));
+        } else {
+            throw new IllegalTurnException();
+        }
+    }
+
+    private boolean playerHaveEnoughTokensToBuyCard(Tokens playerTokens, Tokens cost) {
+        return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
+    }
+
+    private Tokens getGameTokensAfterUpdate(Tokens cost, Tokens gameTokens) {
+        return new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed());
     }
 
     private Tokens getPlayerTokensAfterBuyingCard(Tokens playerTokens, Tokens cost) {
