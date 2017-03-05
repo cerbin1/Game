@@ -103,11 +103,19 @@ public class GameWindow implements Updatable {
 
         void deal() {
             if (current < amount) {
-                CardVO vo = cardVOs.get(cardVOs.size() - 1 - current);
-                vo.moveX(xValue.apply(current), 2.0, this::deal);
-                vo.setFlipped(true);
+                dealCurrentCard();
                 current++;
             }
+        }
+
+        private void dealCurrentCard() {
+            CardVO vo = getCurrentCardVO();
+            vo.moveX(xValue.apply(current), 2.0, this::deal);
+            vo.setFlipped(true);
+        }
+
+        private CardVO getCurrentCardVO() {
+            return cardVOs.get(cardVOs.size() - 1 - current);
         }
     }
 }
