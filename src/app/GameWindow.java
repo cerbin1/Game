@@ -73,7 +73,6 @@ public class GameWindow implements Updatable {
             lastCard.setFlipped(true);
         }
 
-
         for (int i = 0; i < 5; i++) {
             Card card = cardBuilder.createExpensiveCard();
             cards.add(card);
@@ -94,7 +93,6 @@ public class GameWindow implements Updatable {
         TokenVO versatileVO = new TokenVO(1900 - 30, 550, new Token(null));
 
         cardVOs.forEach(vo -> updatables.add(vo));
-        updatables.add(tokenVO);
 
         renderers.add(new BackgroundRenderer());
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
@@ -102,7 +100,6 @@ public class GameWindow implements Updatable {
         renderers.add(new TokenRenderer(tokenVO2));
         renderers.add(new TokenRenderer(tokenVO3));
         renderers.add(new TokenRenderer(versatileVO));
-
     }
 
     public void update(double secondsElapsed) {
