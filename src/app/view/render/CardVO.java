@@ -31,7 +31,7 @@ public class CardVO extends ViewObject {
     protected Shape getBaseOutline() {
         return new RoundRectangle2D.Double(
                 getX() - width / 2, getY() - height / 2, width, height,
-                10, 10
+                20, 20
         );
     }
 
