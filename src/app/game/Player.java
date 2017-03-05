@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private final Tokens tokens;
+    private Tokens tokens;
     private final List<Card> boughtCards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
 
@@ -54,5 +54,9 @@ public class Player {
             points += nobility.getPoints();
         }
         return points;
+    }
+
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
     }
 }
