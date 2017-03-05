@@ -18,7 +18,7 @@ public abstract class Renderer {
         render(graphics2D);
         graphics2D.setTransform(previous);
         if (viewObject.hasHover()) {
-            graphics2D.draw(viewObject.getCurrentOutline());
+            graphics2D.draw(viewObject.getOutline());
         }
     }
 

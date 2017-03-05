@@ -22,7 +22,7 @@ public class ViewObject implements Updatable {
         this.height = height;
     }
 
-    public Rectangle getCurrentOutline() {
+    public Rectangle getOutline() {
         return new Rectangle(
                 getX() - width / 2, getY() - height / 2, width, height
         );
