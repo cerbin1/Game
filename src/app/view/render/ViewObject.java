@@ -24,7 +24,10 @@ public abstract class ViewObject implements Updatable {
 
     final public Shape getOutline() {
         AffineTransform transform = new AffineTransform();
-        transform.rotate(getRotation(), getX(), getY());
+        transform.translate(getX(), getY());
+        transform.scale(getPerspectiveX(), getPerspectiveY());
+        transform.rotate(getRotation());
+        transform.translate(-getX(), -getY());
         return transform.createTransformedShape(getBaseOutline());
     }
 
