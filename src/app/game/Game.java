@@ -39,7 +39,11 @@ public class Game {
     }
 
     public List<Card> getAvailableCards() {
-        return Lists.join(cards);
+        return cards;
+    }
+
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
     }
 
     public void performTurn(Turn turn) {
@@ -48,11 +52,11 @@ public class Game {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
-    public static void main(String[] args) {
-        new GameBuilder().create();
+    public void remove(Card card) {
+        cards.remove(card);
     }
 
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
+    public static void main(String[] args) {
+        new GameBuilder().create();
     }
 }
