@@ -46,7 +46,7 @@ public class GameTest {
 
         // then
         assertEquals(game.getPlayers(), asList(player1, player2));
-        assertEquals(game.getAvailableCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2));
+        assertEquals(game.getAvailableCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2));
         assertEquals(game.getNobility(), asList(nobility1, nobility2, nobility3));
         assertEquals(game.getTokens(), gameTokens);
         assertTrue(player1.getCards().isEmpty());
@@ -212,7 +212,6 @@ public class GameTest {
         builder.addCard(cheapCard2);
         builder.addCard(cheapCard3);
         builder.addCard(cheapCard4);
-        builder.addCard(cheapCard5);
         builder.addCard(mediumCard1);
         builder.addCard(mediumCard2);
         builder.addCard(expensiveCard1);
