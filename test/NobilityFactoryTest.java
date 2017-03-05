@@ -1,15 +1,15 @@
-import app.game.card.nobility.NobilityPointsGenerator;
+import app.game.card.nobility.NobilityFactory;
 import app.util.Random;
 import org.junit.Test;
 
-import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.*;
 
-public class NobilityPointsGeneratorTest {
+public class NobilityFactoryTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
         Random random = new MockRandom(3, 4);
-        NobilityPointsGenerator generator = new NobilityPointsGenerator(random);
+        NobilityFactory generator = new NobilityFactory(random);
 
         // when
         int points1 = generator.generateRandomPoints();
