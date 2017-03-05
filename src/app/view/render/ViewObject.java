@@ -11,7 +11,6 @@ import static java.lang.Math.round;
 public class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
     final int width, height;
-    private double secondsPassed = 0;
     private boolean hover = false;
 
     ViewObject(int x, int y, int width, int height) {
@@ -45,7 +44,6 @@ public class ViewObject implements Updatable {
     }
 
     public void update(double secondsPassed) {
-        this.secondsPassed += secondsPassed;
         x.update(secondsPassed);
         y.update(secondsPassed);
         rotation.update(secondsPassed);
