@@ -51,4 +51,8 @@ public class Game {
     public static void main(String[] args) {
         new GameBuilder().create();
     }
+
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
+    }
 }
