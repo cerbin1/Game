@@ -53,6 +53,7 @@ public class CardRenderer extends Renderer {
     }
 
     private void drawCardCosts(Graphics2D graphics) {
+        graphics.setColor(white);
         card.getCost().asMap().forEach(new CardCostDrawer(graphics));
     }
 
