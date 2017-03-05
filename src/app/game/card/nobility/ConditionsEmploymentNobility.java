@@ -1,12 +1,10 @@
 package app.game.card.nobility;
 
 import app.game.token.Tokens;
-
 import app.util.Random;
 
 public class ConditionsEmploymentNobility {
     private int[] tokenValue = new int[5];
-    private boolean[] isValueAssigned = new boolean[5];
     private final Random random;
 
     ConditionsEmploymentNobility() {
@@ -17,37 +15,26 @@ public class ConditionsEmploymentNobility {
         this.random = random;
     }
 
-    public Tokens getConditions() {
-        return getRandomConditions();
+    public Tokens getRandomConditions() {
+        return isFirstTypeDrawn() ? getConditions(3, 3) : getConditions(2, 4);
     }
 
-    private Tokens getRandomConditions() {
-        return isFirstTypeConditionsDrawn() ? getFirstConditionsType() : getSecondConditionsType();
-    }
-
-    private boolean isFirstTypeConditionsDrawn() {
+    private boolean isFirstTypeDrawn() {
         return random.nextInt(0, 1) % 2 == 0;
     }
 
-    private Tokens getFirstConditionsType() {
-        for (int i = 0; i < 3; i++) {
-            setSingleToken(3);
-        }
-        return getAssignedTokens();
-    }
-
-    private Tokens getSecondConditionsType() {
-        for (int i = 0; i < 2; i++) {
-            setSingleToken(4);
+    private Tokens getConditions(int typesCount, int value) {
+        for (int i = 0; i < typesCount; i++) {
+            setSingleToken(value);
         }
         return getAssignedTokens();
     }
 
     private void setSingleToken(int value) {
         while (true) {
-            int randomToken = getRandomToken(0, 4);
-            if (!isValueAssigned[randomToken]) {
-                assignValue(randomToken, value);
+            int token = getRandomToken(0, 4);
+            if (tokenValue[token] == 0) {
+                tokenValue[token] = value;
                 break;
             }
         }
@@ -55,11 +42,6 @@ public class ConditionsEmploymentNobility {
 
     private int getRandomToken(int min, int max) {
         return random.nextInt(min, max);
-    }
-
-    private void assignValue(int randomToken, int value) {
-        tokenValue[randomToken] = value;
-        isValueAssigned[randomToken] = true;
     }
 
     private Tokens getAssignedTokens() {

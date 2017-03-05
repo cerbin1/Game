@@ -1,5 +1,5 @@
-import app.game.token.Tokens;
 import app.game.card.nobility.ConditionsEmploymentNobility;
+import app.game.token.Tokens;
 import app.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
@@ -10,7 +10,7 @@ public class ConditionsEmploymentNobilityTest {
         // given
         Random random = new MockRandom(0, 1, 2, 3);
         ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(random);
-        Tokens tokens = conditionsEmploymentNobility.getConditions();
+        Tokens tokens = conditionsEmploymentNobility.getRandomConditions();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
@@ -24,7 +24,7 @@ public class ConditionsEmploymentNobilityTest {
         // given
         Random random = new MockRandom(1, 3, 4);
         ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(random);
-        Tokens tokens = conditionsEmploymentNobility.getConditions();
+        Tokens tokens = conditionsEmploymentNobility.getRandomConditions();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
