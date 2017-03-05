@@ -31,6 +31,15 @@ public class Tokens {
         versatile = 0;
     }
 
+    public Tokens(int green, int purple, int blue, int black, int red, int versatile) {
+        tokens.put(Green, green);
+        tokens.put(Purple, purple);
+        tokens.put(Blue, blue);
+        tokens.put(Black, black);
+        tokens.put(Red, red);
+        this.versatile = versatile;
+    }
+
     public int get(TokenColor color) {
         return tokens.get(color);
     }
