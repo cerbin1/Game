@@ -29,6 +29,7 @@ public class GameTest {
     private Card mediumCard2 = new MediumCard();
     private Card expensiveCard1 = new ExpensiveCard();
     private Card expensiveCard2 = new ExpensiveCard();
+    private Card notIncludedCard = new CheapCard();
     private Tokens gameTokens = new Tokens(7, 5);
     private Nobility nobility1 = new Nobility();
     private Nobility nobility2 = new Nobility();
@@ -98,7 +99,7 @@ public class GameTest {
 
         // then
         assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(player1.getCards().get(0), cheapCard2);
+        assertEquals(player1.getCards(), asList(cheapCard2));
         Assert.assertTrue(cheapCard2.isReserved());
         assertEquals(player1.getTokens().getVersatile(), 1);
     }
@@ -180,6 +181,24 @@ public class GameTest {
         assertEquals(player2.getTokens().getGreen(), 0);
         assertEquals(player2.getTokens().getVersatile(), 3);
     }
+
+    @Test
+    public void shouldThrowOnNotAvailableCard() {
+        // given
+        Game game = gameBuilder().create();
+
+        // when
+        try {
+            game.performTurn(new BuyCardTurn(notIncludedCard));
+            assertTrue(false);
+        }
+
+        // then
+        catch (IllegalTurnException exception) {
+            assertTrue(true);
+        }
+    }
+
 
     private GameBuilder gameBuilder() {
         GameBuilder builder = new GameBuilder();
