@@ -9,9 +9,12 @@ import app.view.Window;
 import app.view.render.*;
 
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 import static app.game.token.TokenColor.Green;
 import static app.view.render.ViewObject.slightRotation;
@@ -29,6 +32,7 @@ public class GameWindow implements Updatable {
     private Graphics2D canvas;
 
     GameWindow() {
+        window.addMouseListener(new GameMouseAdapter(this));
         initializeBackBuffer();
         initializeGame();
     }
@@ -80,8 +84,39 @@ public class GameWindow implements Updatable {
         windowGraphics.drawImage(backBuffer, 0, 0, null);
     }
 
+    private void forEachRenderer(Consumer<Renderer> consumer) {
+        renderers.forEach(consumer);
+    }
+
     void show() {
         window.show();
         windowGraphics = window.getGraphics();
+    }
+
+    public class GameMouseAdapter extends MouseAdapter {
+        private final GameWindow gameWindow;
+
+        public GameMouseAdapter(GameWindow gameWindow) {
+            this.gameWindow = gameWindow;
+        }
+
+        @Override
+        public void mouseMoved(MouseEvent e) {
+            super.mouseMoved(e);
+            Point point = e.getPoint();
+            gameWindow.forEachRenderer(renderer -> {
+                ViewObject viewObject = renderer.getViewObject();
+                Rectangle outline = viewObject.getCurrentOutline();
+                if (outline.contains(point)) {
+                    if (!viewObject.hasHover()) {
+                        viewObject.triggerEnterHover();
+                    }
+                } else {
+                    if (viewObject.hasHover()) {
+                        viewObject.triggerLeaveHover();
+                    }
+                }
+            });
+        }
     }
 }

@@ -1,5 +1,7 @@
 package app.view;
 
+import app.GameWindow;
+
 import javax.swing.*;
 import java.awt.*;
 
@@ -14,6 +16,11 @@ public class Window {
         frame.setSize(1920, 1080);
         frame.setUndecorated(true);
         frame.setDefaultCloseOperation(EXIT_ON_CLOSE);
+    }
+
+    public void addMouseListener(GameWindow.GameMouseAdapter listener) {
+        frame.addMouseListener(listener);
+        frame.addMouseMotionListener(listener);
     }
 
     public void show() {

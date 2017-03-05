@@ -17,6 +17,9 @@ public abstract class Renderer {
         graphics2D.setTransform(getTransform());
         render(graphics2D);
         graphics2D.setTransform(previous);
+        if (viewObject.hasHover()) {
+            graphics2D.draw(viewObject.getCurrentOutline());
+        }
     }
 
     private AffineTransform getTransform() {
@@ -26,5 +29,9 @@ public abstract class Renderer {
         transform.rotate(viewObject.getRotation());
         transform.translate(-viewObject.getWidth() / 2, -viewObject.getHeight() / 2);
         return transform;
+    }
+
+    public ViewObject getViewObject() {
+        return viewObject;
     }
 }

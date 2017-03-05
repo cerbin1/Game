@@ -12,6 +12,7 @@ public class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
     private final int width, height;
     private double secondsPassed = 0;
+    private boolean hover = false;
 
     ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x, new LinearTransition());
@@ -23,7 +24,7 @@ public class ViewObject implements Updatable {
 
     public Rectangle getCurrentOutline() {
         return new Rectangle(
-                getX(), getY(), width, height
+                getX() - width / 2, getY() - height / 2, width, height
         );
     }
 
@@ -86,5 +87,17 @@ public class ViewObject implements Updatable {
 
     public static double slightRotation() {
         return random() * 0.14 - 0.07;
+    }
+
+    public void triggerEnterHover() {
+        this.hover = true;
+    }
+
+    public void triggerLeaveHover() {
+        this.hover = false;
+    }
+
+    public boolean hasHover() {
+        return this.hover;
     }
 }
