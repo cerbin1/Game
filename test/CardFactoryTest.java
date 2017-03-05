@@ -1,5 +1,5 @@
 import app.game.card.Card;
-import app.game.card.CardBuilder;
+import app.game.card.CardFactory;
 import app.game.token.TokenColor;
 import app.game.token.Tokens;
 import app.util.Random;
@@ -7,15 +7,15 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class CardBuilderTest {
+public class CardFactoryTest {
     @Test
     public void shouldCreateCheapCards() {
         // given
         Random random = new MockRandom(0, 0, 1, 0, 0);
-        CardBuilder builder = new CardBuilder(random);
+        CardFactory factory = new CardFactory(random);
 
         // when
-        Card cheapCard1 = builder.createCheapCard();
+        Card cheapCard1 = factory.createCheapCard();
 
         // then
         assertEquals(cheapCard1.getCost(), new Tokens(3, 0, 0, 0, 0));
@@ -27,11 +27,11 @@ public class CardBuilderTest {
     public void shouldCreateMediumCards() {
         // given
         Random random = new MockRandom(0, 0, 1, 0);
-        CardBuilder builder = new CardBuilder(random);
+        CardFactory factory = new CardFactory(random);
 
         // when
-        Card mediumCard1 = builder.createMediumCard();
-        Card mediumCard2 = builder.createMediumCard();
+        Card mediumCard1 = factory.createMediumCard();
+        Card mediumCard2 = factory.createMediumCard();
 
         // then
         assertEquals(mediumCard1.getCost(), new Tokens(5, 0, 0, 0, 0));
@@ -46,7 +46,7 @@ public class CardBuilderTest {
     public void shouldCreateExpensiveCards() {
         // given
         Random random = new MockRandom(0, 0, 1, 0);
-        CardBuilder builder = new CardBuilder(random);
+        CardFactory builder = new CardFactory(random);
 
         // when
         Card expensiveCard1 = builder.createExpensiveCard();

@@ -2,7 +2,7 @@ package app;
 
 import app.game.Updatable;
 import app.game.card.Card;
-import app.game.card.CardBuilder;
+import app.game.card.CardFactory;
 import app.game.token.Token;
 import app.view.SubsequentCardDealer;
 import app.view.Window;
@@ -45,13 +45,13 @@ public class GameWindow implements Updatable {
     }
 
     private void initializeGame() {
-        CardBuilder cardBuilder = new CardBuilder();
+        CardFactory cardFactory = new CardFactory();
 
         List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
 
         for (int i = 0; i < 5; i++) {
-            Card card = cardBuilder.createCheapCard();
+            Card card = cardFactory.createCheapCard();
             cards.add(card);
             CardVO cardVO = new CardVO(card, 300, 200);
             cardVO.setRotation(slightRotation());

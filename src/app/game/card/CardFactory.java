@@ -2,16 +2,16 @@ package app.game.card;
 
 import app.util.Random;
 
-public class CardBuilder {
+public class CardFactory {
     private final CardCostGenerator cost;
     private final CardPointsGenerator points;
     private final CardColorGenerator color;
 
-    public CardBuilder() {
+    public CardFactory() {
         this(new Random());
     }
 
-    public CardBuilder(Random random) {
+    public CardFactory(Random random) {
         cost = new CardCostGenerator(random);
         points = new CardPointsGenerator(random);
         color = new CardColorGenerator(random);
