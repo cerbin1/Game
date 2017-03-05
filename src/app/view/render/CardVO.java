@@ -2,6 +2,9 @@ package app.view.render;
 
 import app.game.card.Card;
 
+import java.awt.*;
+import java.awt.geom.RoundRectangle2D;
+
 import static java.lang.Math.PI;
 
 public class CardVO extends ViewObject {
@@ -22,6 +25,14 @@ public class CardVO extends ViewObject {
 
     public void setFlipped(boolean flipped) {
         flip.setValue(flipped ? 1.0 : -1.0, 2.0);
+    }
+
+    @Override
+    public Shape getOutline() {
+        return new RoundRectangle2D.Double(
+                getX() - width / 2, getY() - height / 2, width, height,
+                10, 10
+        );
     }
 
     @Override
