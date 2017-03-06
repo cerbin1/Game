@@ -86,9 +86,7 @@ public class PlayerTest {
     public void shouldCountPoints() {
         // given
         Player player = new Player();
-        Card reservedCard = new MediumCard(new Tokens(), 4, Green);
-        reservedCard.setReserved(false);
-        player.addCard(reservedCard);
+        player.addCard(new MediumCard(new Tokens(), 4, Green));
         player.addCard(new MediumCard(new Tokens(), 3, Green));
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
         player.addNobility(new Nobility(new Tokens(), 3));
@@ -104,15 +102,12 @@ public class PlayerTest {
     public void shouldSetTokens() {
         // given
         Player player = new Player();
+        Tokens tokens = new Tokens(1, 2, 3, 4, 5);
 
         // when
-        player.setTokens(new Tokens(1, 2, 3, 4, 5));
+        player.setTokens(tokens);
 
         // then
-        assertEquals(player.getTokens().getGreen(), 1);
-        assertEquals(player.getTokens().getPurple(), 2);
-        assertEquals(player.getTokens().getBlue(), 3);
-        assertEquals(player.getTokens().getBlack(), 4);
-        assertEquals(player.getTokens().getRed(), 5);
+        assertEquals(tokens, player.getTokens());
     }
 }
