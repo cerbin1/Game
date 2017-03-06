@@ -50,7 +50,9 @@ public class Player {
     private int getPointsFromCards() {
         int points = 0;
         for (Card card : boughtCards) {
-            points += card.getPoints();
+            if (!card.isReserved()) {
+                points += card.getPoints();
+            }
         }
         return points;
     }
