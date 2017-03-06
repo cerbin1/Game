@@ -9,9 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Player {
-    private Tokens tokens;
     private final List<Card> boughtCards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
+    private Tokens tokens;
 
     public Player() {
         this(new Tokens());
@@ -47,6 +47,10 @@ public class Player {
         return getPointsFromCards() + getPointsFromNobility();
     }
 
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
+    }
+
     private int getPointsFromCards() {
         int points = 0;
         for (Card card : boughtCards) {
@@ -63,9 +67,5 @@ public class Player {
             points += nobility.getPoints();
         }
         return points;
-    }
-
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
     }
 }
