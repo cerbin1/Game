@@ -43,7 +43,7 @@ public class Player {
         nobilities.add(nobility);
     }
 
-    public int countPoints() {
+    public int getPoints() {
         return getPointsFromCards() + getPointsFromNobility();
     }
 

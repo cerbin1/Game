@@ -43,7 +43,7 @@ public class PlayerTest {
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
 
         // when
-        int points = player.countPoints();
+        int points = player.getPoints();
 
         // then
         assertEquals(points, 8);
@@ -62,7 +62,7 @@ public class PlayerTest {
         player.addCard(new ExpensiveCard(new Tokens(), 1, Green));
 
         // when
-        int points = player.countPoints();
+        int points = player.getPoints();
 
         // then
         assertEquals(points, 4);
@@ -76,7 +76,7 @@ public class PlayerTest {
         player.addNobility(new Nobility(new Tokens(), 3));
 
         // when
-        int playerPoints = player.countPoints();
+        int playerPoints = player.getPoints();
 
         // then
         assertEquals(playerPoints, 7);
@@ -94,7 +94,7 @@ public class PlayerTest {
         player.addNobility(new Nobility(new Tokens(), 3));
 
         // when
-        int points = player.countPoints();
+        int points = player.getPoints();
 
         // then
         assertEquals(points, 15);
