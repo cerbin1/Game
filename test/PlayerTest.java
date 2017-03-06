@@ -1,4 +1,5 @@
 import app.game.Player;
+import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
@@ -37,6 +38,7 @@ public class PlayerTest {
         // given
         Player player = new Player();
         player.addCard(new CheapCard(new Tokens(), 0, Green));
+        player.addCard(new CheapCard(new Tokens(), 1, Green));
         player.addCard(new MediumCard(new Tokens(), 2, Green));
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
 
@@ -44,7 +46,26 @@ public class PlayerTest {
         int points = player.countPoints();
 
         // then
-        assertEquals(points, 7);
+        assertEquals(points, 8);
+    }
+
+    @Test
+    public void shouldCountPointsFromUnreservedCards() {
+        // given
+        Player player = new Player();
+        Card reservedCard = new CheapCard(new Tokens(), 1, Green);
+        reservedCard.setReserved(true);
+        player.addCard(reservedCard);
+        player.addCard(new CheapCard(new Tokens(), 0, Green));
+        player.addCard(new CheapCard(new Tokens(), 1, Green));
+        player.addCard(new MediumCard(new Tokens(), 2, Green));
+        player.addCard(new ExpensiveCard(new Tokens(), 1, Green));
+
+        // when
+        int points = player.countPoints();
+
+        // then
+        assertEquals(points, 4);
     }
 
     @Test
@@ -65,6 +86,9 @@ public class PlayerTest {
     public void shouldCountPoints() {
         // given
         Player player = new Player();
+        Card reservedCard = new MediumCard(new Tokens(), 4, Green);
+        reservedCard.setReserved(true);
+        player.addCard(reservedCard);
         player.addCard(new MediumCard(new Tokens(), 3, Green));
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
         player.addNobility(new Nobility(new Tokens(), 3));
@@ -73,7 +97,7 @@ public class PlayerTest {
         int points = player.countPoints();
 
         // then
-        assertEquals(points, 11);
+        assertEquals(points, 15);
     }
 
     @Test
