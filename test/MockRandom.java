@@ -1,4 +1,4 @@
-public class MockRandom extends app.util.Random {
+class MockRandom extends app.util.Random {
     private int index;
     private int[] array;
 

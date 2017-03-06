@@ -1,8 +1,8 @@
-public class MockJavaRandom extends java.util.Random {
+class MockJavaRandom extends java.util.Random {
     private int index;
     private int[] array;
 
-    public MockJavaRandom(int... array) {
+    MockJavaRandom(int... array) {
         this.array = array;
     }
 
