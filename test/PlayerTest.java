@@ -87,7 +87,7 @@ public class PlayerTest {
         // given
         Player player = new Player();
         Card reservedCard = new MediumCard(new Tokens(), 4, Green);
-        reservedCard.setReserved(true);
+        reservedCard.setReserved(false);
         player.addCard(reservedCard);
         player.addCard(new MediumCard(new Tokens(), 3, Green));
         player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
