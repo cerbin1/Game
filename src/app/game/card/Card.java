@@ -5,9 +5,9 @@ import app.game.token.Tokens;
 
 public abstract class Card {
     private boolean reserved = false;
-    private TokenColor color;
-    private Tokens cost;
-    private int points;
+    private final Tokens cost;
+    private final int points;
+    private final TokenColor color;
 
     Card(Tokens cost, int points, TokenColor color) {
         this.cost = cost;

@@ -24,7 +24,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateMediumCardPoints() {
         // given
-        Random random = new MockRandom(0, 1, 2);
+        Random random = new MockRandom(1, 2, 3);
         CardPointsGenerator generator = new CardPointsGenerator(random);
 
         // when
@@ -41,7 +41,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateExpensiveCardPoints() {
         // given
-        Random random = new MockRandom(0, 1, 2);
+        Random random = new MockRandom(3, 4, 5);
         CardPointsGenerator generator = new CardPointsGenerator(random);
 
         // when
