@@ -4,9 +4,6 @@ import app.util.Random;
 
 public class CardPointsGenerator {
     private final Random random;
-    private final int[] cheapPoints = {0, 1};
-    private final int[] mediumPoints = {1, 2, 3};
-    private final int[] expensivePoints = {3, 4, 5};
 
     public CardPointsGenerator() {
         this(new Random());
@@ -17,14 +14,14 @@ public class CardPointsGenerator {
     }
 
     public int generateCheapCardPoints() {
-        return cheapPoints[random.nextInt(0, cheapPoints.length)];
+        return random.nextInt(0, 1);
     }
 
     public int generateMediumCardPoints() {
-        return mediumPoints[random.nextInt(0, mediumPoints.length)];
+        return random.nextInt(1, 3);
     }
 
     public int generateExpensiveCardPoints() {
-        return expensivePoints[random.nextInt(0, expensivePoints.length)];
+        return random.nextInt(3, 5);
     }
 }
