@@ -15,49 +15,39 @@ public class CardFactoryTest {
         CardFactory factory = new CardFactory(random);
 
         // when
-        Card cheapCard1 = factory.createCheapCard();
+        Card cheapCard = factory.createCheapCard();
 
         // then
-        assertEquals(cheapCard1.getCost(), new Tokens(3, 0, 0, 0, 0));
-        assertEquals(cheapCard1.getPoints(), 0);
-        assertEquals(cheapCard1.getColor(), TokenColor.Green);
+        assertEquals(cheapCard.getCost(), new Tokens(3, 0, 0, 0, 0));
+        assertEquals(cheapCard.getPoints(), 0);
+        assertEquals(cheapCard.getColor(), TokenColor.Green);
     }
 
     @Test
     public void shouldCreateMediumCards() {
         // given
-        Random random = new MockRandom(0, 0, 1, 0);
-        CardFactory factory = new CardFactory(random);
+        CardFactory factory = new CardFactory(new MockRandom(0, 0, 1));
 
         // when
-        Card mediumCard1 = factory.createMediumCard();
-        Card mediumCard2 = factory.createMediumCard();
+        Card mediumCard = factory.createMediumCard();
 
         // then
-        assertEquals(mediumCard1.getCost(), new Tokens(5, 0, 0, 0, 0));
-        assertEquals(mediumCard1.getPoints(), 1);
-        assertEquals(mediumCard1.getColor(), TokenColor.Green);
-        assertEquals(mediumCard2.getCost(), new Tokens(1, 1, 2, 1, 1));
-        assertEquals(mediumCard2.getPoints(), 3);
-        assertEquals(mediumCard2.getColor(), TokenColor.Purple);
+        assertEquals(mediumCard.getCost(), new Tokens(5, 0, 0, 0, 0));
+        assertEquals(mediumCard.getPoints(), 1);
+        assertEquals(mediumCard.getColor(), TokenColor.Green);
     }
 
     @Test
     public void shouldCreateExpensiveCards() {
         // given
-        Random random = new MockRandom(0, 0, 1, 0);
-        CardFactory builder = new CardFactory(random);
+        CardFactory builder = new CardFactory(new MockRandom(0, 0, 1));
 
         // when
-        Card expensiveCard1 = builder.createExpensiveCard();
-        Card expensiveCard2 = builder.createExpensiveCard();
+        Card expensiveCard = builder.createExpensiveCard();
 
         // then
-        assertEquals(expensiveCard1.getCost(), new Tokens(7, 0, 0, 0, 0));
-        assertEquals(expensiveCard1.getPoints(), 3);
-        assertEquals(expensiveCard1.getColor(), TokenColor.Blue);
-        assertEquals(expensiveCard2.getCost(), new Tokens());
-        assertEquals(expensiveCard2.getPoints(), 5);
-        assertEquals(expensiveCard2.getColor(), TokenColor.Black);
+        assertEquals(expensiveCard.getCost(), new Tokens(7, 0, 0, 0, 0));
+        assertEquals(expensiveCard.getPoints(), 3);
+        assertEquals(expensiveCard.getColor(), TokenColor.Blue);
     }
 }
