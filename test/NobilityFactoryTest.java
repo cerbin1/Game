@@ -23,27 +23,23 @@ public class NobilityFactoryTest {
     public void shouldRandomThreeCostTypes() {
         // given
         NobilityFactory factory = new NobilityFactory(new MockProbability(0, 1, 2, 3, 3));
-        Nobility nobility = factory.create();
-        Tokens tokens = nobility.getCondition();
 
         // when
-        int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+        Tokens tokens = factory.create().getCondition();
 
         // then
-        Assert.assertArrayEquals(new int[]{0, 3, 3, 3, 0}, tokensValue);
+        Assert.assertArrayEquals(new int[]{0, 3, 3, 3, 0}, new int[]{tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()});
     }
 
     @Test
     public void shouldRandomTwoCostTypes() {
         // given
         NobilityFactory factory = new NobilityFactory(new MockProbability(1, 3, 4, 4));
-        Nobility nobility = factory.create();
-        Tokens tokens = nobility.getCondition();
 
         // when
-        int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
+        Tokens tokens = factory.create().getCondition();
 
         // then
-        Assert.assertArrayEquals(new int[]{0, 0, 0, 4, 4}, tokensValue);
+        Assert.assertArrayEquals(new int[]{0, 0, 0, 4, 4}, new int[]{tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()});
     }
 }
