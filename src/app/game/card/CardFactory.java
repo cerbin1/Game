@@ -4,7 +4,7 @@ import app.game.token.TokenColor;
 import app.util.Probability;
 
 public class CardFactory {
-    private final CardCostGenerator cost;
+    private final CardCost cost;
     private final CardPoints points;
 
     public CardFactory() {
@@ -12,7 +12,7 @@ public class CardFactory {
     }
 
     public CardFactory(Probability probability) {
-        cost = new CardCostGenerator(probability);
+        cost = new CardCost(probability);
         points = new CardPoints(probability);
     }
 

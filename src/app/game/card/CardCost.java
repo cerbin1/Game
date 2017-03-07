@@ -3,14 +3,14 @@ package app.game.card;
 import app.game.token.Tokens;
 import app.util.Probability;
 
-public class CardCostGenerator {
+public class CardCost {
     private final Probability probability;
 
-    CardCostGenerator() {
+    CardCost() {
         this(new Probability());
     }
 
-    public CardCostGenerator(Probability probability) {
+    public CardCost(Probability probability) {
         this.probability = probability;
     }
 
