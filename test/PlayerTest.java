@@ -13,7 +13,7 @@ import static org.junit.Assert.assertEquals;
 
 public class PlayerTest {
     @Test
-    public void shouldAddTokens() {
+    public void shouldCreatePlayerWithDefaultPoints() {
         // given
         Player player1 = new Player();
         Player player2 = new Player(new Tokens(1, 1, 1, 1, 1));
