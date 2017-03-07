@@ -4,7 +4,6 @@ import app.util.Random;
 
 public class NobilityFactory {
     private final Random random;
-    private final ConditionsEmploymentNobility conditions;
 
     public NobilityFactory() {
         this(new Random());
@@ -12,14 +11,13 @@ public class NobilityFactory {
 
     public NobilityFactory(Random random) {
         this.random = random;
-        conditions = new ConditionsEmploymentNobility(random);
     }
 
     public Nobility create() {
-        return new Nobility(conditions.getRandomConditions(), generateRandomPoints());
+        return new Nobility(new ConditionsEmploymentNobility(random).getRandomConditions(), generateRandomPoints());
     }
 
-    public int generateRandomPoints() {
+    private int generateRandomPoints() {
         return random.nextInt(3, 4);
     }
 }
