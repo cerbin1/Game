@@ -1,6 +1,6 @@
 package app.game.card;
 
-import app.util.Random;
+import app.util.Probability;
 
 public class CardFactory {
     private final CardCostGenerator cost;
@@ -8,13 +8,13 @@ public class CardFactory {
     private final CardColorGenerator color;
 
     public CardFactory() {
-        this(new Random());
+        this(new Probability());
     }
 
-    public CardFactory(Random random) {
-        cost = new CardCostGenerator(random);
-        points = new CardPointsGenerator(random);
-        color = new CardColorGenerator(random);
+    public CardFactory(Probability probability) {
+        cost = new CardCostGenerator(probability);
+        points = new CardPointsGenerator(probability);
+        color = new CardColorGenerator(probability);
     }
 
     public Card createCheapCard() {

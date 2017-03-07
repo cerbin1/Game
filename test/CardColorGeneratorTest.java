@@ -1,6 +1,5 @@
 import app.game.token.TokenColor;
 import app.game.card.CardColorGenerator;
-import app.util.Random;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.*;
@@ -11,7 +10,7 @@ public class CardColorGeneratorTest {
     @Test
     public void shouldGenerateCardColor() {
         // given
-        CardColorGenerator colorGenerator = new CardColorGenerator(new MockRandom(0, 1, 2, 3, 4));
+        CardColorGenerator colorGenerator = new CardColorGenerator(new MockProbability(0, 1, 2, 3, 4));
 
         // when
         TokenColor cardColor1 = colorGenerator.generateColor();

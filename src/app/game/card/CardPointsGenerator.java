@@ -1,27 +1,27 @@
 package app.game.card;
 
-import app.util.Random;
+import app.util.Probability;
 
 public class CardPointsGenerator {
-    private final Random random;
+    private final Probability probability;
 
     public CardPointsGenerator() {
-        this(new Random());
+        this(new Probability());
     }
 
-    public CardPointsGenerator(Random random) {
-        this.random = random;
+    public CardPointsGenerator(Probability probability) {
+        this.probability = probability;
     }
 
     public int generateCheapCardPoints() {
-        return random.nextInt(0, 1);
+        return probability.nextInt(0, 1);
     }
 
     public int generateMediumCardPoints() {
-        return random.nextInt(1, 3);
+        return probability.nextInt(1, 3);
     }
 
     public int generateExpensiveCardPoints() {
-        return random.nextInt(3, 5);
+        return probability.nextInt(3, 5);
     }
 }

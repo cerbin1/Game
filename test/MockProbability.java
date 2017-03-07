@@ -1,8 +1,10 @@
-class MockRandom extends app.util.Random {
+import app.util.Probability;
+
+class MockProbability extends Probability {
     private int index;
     private int[] array;
 
-    MockRandom(int... array) {
+    MockProbability(int... array) {
         this.array = array;
     }
 
@@ -10,7 +12,7 @@ class MockRandom extends app.util.Random {
         try {
             return array[index++];
         } catch (ArrayIndexOutOfBoundsException ex) {
-            throw new RuntimeException("Not enough values specified for MockRandom");
+            throw new RuntimeException("Not enough values specified for MockProbability");
         }
     }
 }

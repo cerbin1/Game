@@ -1,8 +1,7 @@
 import app.game.card.Card;
 import app.game.card.CardFactory;
-import app.game.token.TokenColor;
 import app.game.token.Tokens;
-import app.util.Random;
+import app.util.Probability;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.*;
@@ -12,8 +11,8 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateCheapCard() {
         // given
-        Random random = new MockRandom(0, 0, 1, 0, 0);
-        CardFactory factory = new CardFactory(random);
+        Probability probability = new MockProbability(0, 0, 1, 0, 0);
+        CardFactory factory = new CardFactory(probability);
 
         // when
         Card cheapCard = factory.createCheapCard();
@@ -27,7 +26,7 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateMediumCard() {
         // given
-        CardFactory factory = new CardFactory(new MockRandom(0, 0, 1));
+        CardFactory factory = new CardFactory(new MockProbability(0, 0, 1));
 
         // when
         Card mediumCard = factory.createMediumCard();
@@ -41,7 +40,7 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateExpensiveCard() {
         // given
-        CardFactory builder = new CardFactory(new MockRandom(0, 0, 1));
+        CardFactory builder = new CardFactory(new MockProbability(0, 0, 1));
 
         // when
         Card expensiveCard = builder.createExpensiveCard();

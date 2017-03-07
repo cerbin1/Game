@@ -1,17 +1,17 @@
-import app.util.Random;
+import app.util.Probability;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
-public class RandomTest {
+public class ProbabilityTest {
     @Test
     public void shouldGetInteger() {
         // given
-        Random random = new Random(new MockJavaRandom(3));
+        Probability probability = new Probability(new MockJavaRandom(3));
 
         // when
-        int value = random.nextInt(5, 10);
+        int value = probability.nextInt(5, 10);
 
         // then
         assertEquals(8, value);
@@ -20,10 +20,10 @@ public class RandomTest {
     @Test
     public void shouldGetNegativeInteger() {
         // given
-        Random random = new Random(new MockJavaRandom(3));
+        Probability probability = new Probability(new MockJavaRandom(3));
 
         // when
-        int value = random.nextInt(-5, 5);
+        int value = probability.nextInt(-5, 5);
 
         // then
         assertEquals(-2, value);
@@ -32,11 +32,11 @@ public class RandomTest {
     @Test
     public void shouldThrowOnInvalidBound() {
         // given
-        Random random = new Random();
+        Probability probability = new Probability();
 
         // when
         try {
-            random.nextInt(1, 0);
+            probability.nextInt(1, 0);
             assertTrue(false);
         }
         // then

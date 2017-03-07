@@ -1,8 +1,6 @@
-import app.game.card.nobility.ConditionsEmploymentNobility;
 import app.game.card.nobility.Nobility;
 import app.game.card.nobility.NobilityFactory;
 import app.game.token.Tokens;
-import app.util.Random;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -12,7 +10,7 @@ public class NobilityFactoryTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
-        NobilityFactory factory = new NobilityFactory(new MockRandom(0, 0, 1, 2, 3));
+        NobilityFactory factory = new NobilityFactory(new MockProbability(0, 0, 1, 2, 3));
 
         // when
         Nobility nobility = factory.create();
@@ -24,7 +22,7 @@ public class NobilityFactoryTest {
     @Test
     public void shouldRandomThreeCostTypes() {
         // given
-        NobilityFactory factory = new NobilityFactory(new MockRandom(0, 1, 2, 3, 3));
+        NobilityFactory factory = new NobilityFactory(new MockProbability(0, 1, 2, 3, 3));
         Nobility nobility = factory.create();
         Tokens tokens = nobility.getCondition();
 
@@ -38,7 +36,7 @@ public class NobilityFactoryTest {
     @Test
     public void shouldRandomTwoCostTypes() {
         // given
-        NobilityFactory factory = new NobilityFactory(new MockRandom(1, 3, 4, 4));
+        NobilityFactory factory = new NobilityFactory(new MockProbability(1, 3, 4, 4));
         Nobility nobility = factory.create();
         Tokens tokens = nobility.getCondition();
 

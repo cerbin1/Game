@@ -7,7 +7,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateCheapCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockRandom(14));
+        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(14));
 
         // when
         int cheapCardPoints = generator.generateCheapCardPoints();
@@ -19,7 +19,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateMediumCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockRandom(18));
+        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(18));
 
         // when
         int mediumCardPoints = generator.generateMediumCardPoints();
@@ -31,7 +31,7 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateExpensiveCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockRandom(87));
+        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(87));
 
         // when
         int expensiveCardPoints = generator.generateExpensiveCardPoints();

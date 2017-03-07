@@ -1,17 +1,17 @@
 package app.game.card.nobility;
 
 import app.game.token.Tokens;
-import app.util.Random;
+import app.util.Probability;
 
 public class NobilityFactory {
-    private final Random random;
+    private final Probability probability;
 
     public NobilityFactory() {
-        this(new Random());
+        this(new Probability());
     }
 
-    public NobilityFactory(Random random) {
-        this.random = random;
+    public NobilityFactory(Probability probability) {
+        this.probability = probability;
     }
 
     public Nobility create() {
@@ -19,10 +19,10 @@ public class NobilityFactory {
     }
 
     private Tokens getRandomConditions() {
-        return new ConditionsEmploymentNobility(random).getRandomConditions();
+        return new ConditionsEmploymentNobility(probability).getRandomConditions();
     }
 
     private int getRandomPoints() {
-        return random.nextInt(3, 4);
+        return probability.nextInt(3, 4);
     }
 }

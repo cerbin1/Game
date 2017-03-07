@@ -1,17 +1,17 @@
 package app.game.card;
 
 import app.game.token.Tokens;
-import app.util.Random;
+import app.util.Probability;
 
 public class CardCostGenerator {
-    private final Random random;
+    private final Probability probability;
 
     CardCostGenerator() {
-        this(new Random());
+        this(new Probability());
     }
 
-    public CardCostGenerator(Random random) {
-        this.random = random;
+    public CardCostGenerator(Probability probability) {
+        this.probability = probability;
     }
 
     public Tokens getCheap() {
@@ -28,9 +28,9 @@ public class CardCostGenerator {
 
     private Tokens getCost(int min, int max) {
         int[] array = {0, 0, 0, 0, 0};
-        int cost = random.nextInt(min, max);
+        int cost = probability.nextInt(min, max);
         while (cost-- > 0) {
-            array[random.nextInt(0, 5)]++;
+            array[probability.nextInt(0, 5)]++;
         }
         return new Tokens(array[0], array[1], array[2], array[3], array[4]);
     }

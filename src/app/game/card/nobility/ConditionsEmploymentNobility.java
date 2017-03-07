@@ -1,18 +1,18 @@
 package app.game.card.nobility;
 
 import app.game.token.Tokens;
-import app.util.Random;
+import app.util.Probability;
 
 public class ConditionsEmploymentNobility {
     private int[] tokenValue = new int[5];
-    private final Random random;
+    private final Probability probability;
 
     ConditionsEmploymentNobility() {
-        this(new Random());
+        this(new Probability());
     }
 
-    public ConditionsEmploymentNobility(Random random) {
-        this.random = random;
+    public ConditionsEmploymentNobility(Probability probability) {
+        this.probability = probability;
     }
 
     public Tokens getRandomConditions() {
@@ -20,7 +20,7 @@ public class ConditionsEmploymentNobility {
     }
 
     private boolean isFirstTypeDrawn() {
-        return random.nextInt(0, 1) % 2 == 0;
+        return probability.nextInt(0, 1) % 2 == 0;
     }
 
     private Tokens getConditions(int typesCount, int value) {
@@ -41,7 +41,7 @@ public class ConditionsEmploymentNobility {
     }
 
     private int getRandomToken(int min, int max) {
-        return random.nextInt(min, max);
+        return probability.nextInt(min, max);
     }
 
     private Tokens getAssignedTokens() {
