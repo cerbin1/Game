@@ -5,6 +5,7 @@ import org.junit.Test;
 import java.util.EnumMap;
 import java.util.Map;
 
+import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
 
 public class TokensTest {
@@ -60,11 +61,11 @@ public class TokensTest {
 
         // then
         assertEquals(map, new EnumMap<TokenColor, Integer>(TokenColor.class) {{
-            put(TokenColor.Green, 3);
-            put(TokenColor.Purple, 3);
-            put(TokenColor.Blue, 3);
-            put(TokenColor.Black, 3);
-            put(TokenColor.Red, 3);
+            put(Green, 3);
+            put(Purple, 3);
+            put(Blue, 3);
+            put(Black, 3);
+            put(Red, 3);
         }});
     }
 }
