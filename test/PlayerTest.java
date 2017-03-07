@@ -14,11 +14,8 @@ import static org.junit.Assert.assertTrue;
 public class PlayerTest {
     @Test
     public void shouldCreatePlayerWithDefaultTokens() {
-        // given
-        Player player;
-
         // when
-        player = new Player(new Tokens(0, 1, 2, 3, 4));
+        Player player = new Player(new Tokens(0, 1, 2, 3, 4));
 
         // then
         assertTrue(new Tokens(0, 1, 2, 3, 4).equals(player.getTokens()));
