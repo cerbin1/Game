@@ -12,12 +12,14 @@ public class NobilityFactoryTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
-        Random random = new MockRandom(3, 4);
+        Random random = new MockRandom(0, 0, 1, 2, 3, 1, 0, 1, 4);
         NobilityFactory factory = new NobilityFactory(random);
+        Nobility nobility1 = factory.create();
+        Nobility nobility2 = factory.create();
 
         // when
-        int points1 = factory.generateRandomPoints();
-        int points2 = factory.generateRandomPoints();
+        int points1 = nobility1.getPoints();
+        int points2 = nobility2.getPoints();
 
         // then
         assertEquals(points1, 3);
