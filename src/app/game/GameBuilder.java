@@ -9,9 +9,9 @@ import java.util.List;
 
 public class GameBuilder {
     private Tokens tokens;
-    private List<Player> players = new ArrayList<>();
-    private List<Card> cards = new ArrayList<>();
-    private List<Nobility> nobilities = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
+    private final List<Player> players = new ArrayList<>();
+    private final List<Nobility> nobilities = new ArrayList<>();
 
     public Game create() {
         return new Game(tokens, players, cards, nobilities);
@@ -29,7 +29,7 @@ public class GameBuilder {
         cards.add(card);
     }
 
-    public void addNobilityCard(Nobility nobility) {
+    public void addNobility(Nobility nobility) {
         nobilities.add(nobility);
     }
 }

@@ -4,15 +4,14 @@ import app.game.card.Card;
 import app.game.card.nobility.Nobility;
 import app.game.token.Tokens;
 import app.game.turn.Turn;
-import app.util.Lists;
 
 import java.util.List;
 
 public class Game {
     private Tokens tokens;
-    private List<Card> cards;
-    private List<Player> players;
-    private List<Nobility> nobilities;
+    private final List<Card> cards;
+    private final List<Player> players;
+    private final List<Nobility> nobilities;
     private int currentPlayer = 0;
 
     public Game(Tokens tokens, List<Player> players, List<Card> cards, List<Nobility> nobilities) {

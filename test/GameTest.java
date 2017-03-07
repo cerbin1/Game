@@ -267,9 +267,9 @@ public class GameTest {
         builder.addCard(mediumCard2);
         builder.addCard(expensiveCard1);
         builder.addCard(expensiveCard2);
-        builder.addNobilityCard(nobility1);
-        builder.addNobilityCard(nobility2);
-        builder.addNobilityCard(nobility3);
+        builder.addNobility(nobility1);
+        builder.addNobility(nobility2);
+        builder.addNobility(nobility3);
         return builder;
     }
 }
