@@ -13,15 +13,15 @@ public class CardPoints {
         this.probability = probability;
     }
 
-    public int generateCheapCardPoints() {
+    public int getCheap() {
         return probability.nextInt(0, 1);
     }
 
-    public int generateMediumCardPoints() {
+    public int getMedium() {
         return probability.nextInt(1, 3);
     }
 
-    public int generateExpensiveCardPoints() {
+    public int getExpensive() {
         return probability.nextInt(3, 5);
     }
 }

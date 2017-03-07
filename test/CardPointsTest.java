@@ -10,7 +10,7 @@ public class CardPointsTest {
         CardPoints points = new CardPoints(new MockProbability(14));
 
         // when
-        int cheapCardPoints = points.generateCheapCardPoints();
+        int cheapCardPoints = points.getCheap();
 
         // then
         assertEquals(14, cheapCardPoints);
@@ -22,7 +22,7 @@ public class CardPointsTest {
         CardPoints points = new CardPoints(new MockProbability(18));
 
         // when
-        int mediumCardPoints = points.generateMediumCardPoints();
+        int mediumCardPoints = points.getMedium();
 
         // then
         assertEquals(18, mediumCardPoints);
@@ -34,7 +34,7 @@ public class CardPointsTest {
         CardPoints points = new CardPoints(new MockProbability(87));
 
         // when
-        int expensiveCardPoints = points.generateExpensiveCardPoints();
+        int expensiveCardPoints = points.getExpensive();
 
         // then
         assertEquals(87, expensiveCardPoints);

@@ -17,14 +17,14 @@ public class CardFactory {
     }
 
     public Card createCheapCard() {
-        return new CheapCard(cost.getCheap(), points.generateCheapCardPoints(), TokenColor.getRandom());
+        return new CheapCard(cost.getCheap(), points.getCheap(), TokenColor.getRandom());
     }
 
     public Card createMediumCard() {
-        return new MediumCard(cost.getMedium(), points.generateMediumCardPoints(), TokenColor.getRandom());
+        return new MediumCard(cost.getMedium(), points.getMedium(), TokenColor.getRandom());
     }
 
     public Card createExpensiveCard() {
-        return new ExpensiveCard(cost.getExpensive(), points.generateExpensiveCardPoints(), TokenColor.getRandom());
+        return new ExpensiveCard(cost.getExpensive(), points.getExpensive(), TokenColor.getRandom());
     }
 }
