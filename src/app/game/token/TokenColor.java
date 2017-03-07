@@ -10,7 +10,7 @@ public enum TokenColor {
     }
 
     public static TokenColor getRandom(Probability probability) {
-        TokenColor[] tokenColors = TokenColor.values();
-        return tokenColors[probability.nextInt(0, tokenColors.length)];
+        int index = probability.nextInt(0, values().length);
+        return values()[index];
     }
 }
