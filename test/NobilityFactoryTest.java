@@ -38,9 +38,9 @@ public class NobilityFactoryTest {
     @Test
     public void shouldRandomTwoCostTypes() {
         // given
-        Random random = new MockRandom(1, 3, 4, 4);
-        ConditionsEmploymentNobility conditionsEmploymentNobility = new ConditionsEmploymentNobility(random);
-        Tokens tokens = conditionsEmploymentNobility.getRandomConditions();
+        NobilityFactory factory = new NobilityFactory(new MockRandom(1, 3, 4, 4));
+        Nobility nobility = factory.create();
+        Tokens tokens = nobility.getCondition();
 
         // when
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
