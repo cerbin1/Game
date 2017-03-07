@@ -71,4 +71,17 @@ public class Tokens {
     public Map<TokenColor, Integer> asMap() {
         return tokens;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+
+        if (o instanceof Tokens) {
+            Tokens that = (Tokens) o;
+            return getGreen() == that.getGreen() && getPurple() == that.getPurple() && getBlue() == that.getBlue() && getBlack() == that.getBlack() && getRed() == that.getRed();
+        } else {
+            return false;
+        }
+    }
 }
