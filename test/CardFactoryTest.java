@@ -4,7 +4,8 @@ import app.game.token.Tokens;
 import app.util.Probability;
 import org.junit.Test;
 
-import static app.game.token.TokenColor.*;
+import static app.game.token.TokenColor.Blue;
+import static app.game.token.TokenColor.Green;
 import static org.junit.Assert.assertEquals;
 
 public class CardFactoryTest {
