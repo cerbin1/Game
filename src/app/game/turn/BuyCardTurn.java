@@ -18,14 +18,20 @@ public class BuyCardTurn extends Turn {
         Tokens playerTokens = player.getTokensIncludingBoughtCards();
         Tokens cost = card.getCost();
         Tokens gameTokens = game.getTokens();
-        if (!game.getAvailableCards().contains(card)) {
-            throw new IllegalTurnException();
-        }
         if (playerHaveEnoughTokensToBuyCard(playerTokens, cost)) {
-            player.addCard(card);
+            if (game.getAvailableCards().contains(card)) {
+                game.removeCard(card);
+                player.addCard(card);
+            } else {
+                throw new IllegalTurnException();
+            }
+            if (player.getCards().contains(card)) {
+                card.setReserved(false);
+            } else {
+                throw new IllegalTurnException();
+            }
             player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
             game.setTokens(getGameTokensAfterUpdate(cost, gameTokens));
-            game.removeCard(card);
         } else {
             throw new IllegalTurnException();
         }
