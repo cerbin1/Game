@@ -3,6 +3,7 @@ import app.game.card.CardColorGenerator;
 import app.util.Random;
 import org.junit.Test;
 
+import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
 
 public class CardColorGeneratorTest {
@@ -21,10 +22,10 @@ public class CardColorGeneratorTest {
         TokenColor cardColor5 = colorGenerator.generateColor();
 
         // then
-        assertEquals(cardColor1, TokenColor.Green);
-        assertEquals(cardColor2, TokenColor.Purple);
-        assertEquals(cardColor3, TokenColor.Blue);
-        assertEquals(cardColor4, TokenColor.Black);
-        assertEquals(cardColor5, TokenColor.Red);
+        assertEquals(cardColor1, Green);
+        assertEquals(cardColor2, Purple);
+        assertEquals(cardColor3, Blue);
+        assertEquals(cardColor4, Black);
+        assertEquals(cardColor5, Red);
     }
 }
