@@ -27,6 +27,7 @@ public class GameTest {
     private Card cheapCard5 = new CheapCard(new Tokens(4, 1, 1, 0, 0), 0, Green);
     private Card cheapCard6 = new CheapCard(new Tokens(), 0, Purple);
     private Card cheapCard7 = new CheapCard(new Tokens(), 0, Blue);
+    private Card cheapCard8 = new CheapCard(new Tokens(2, 0, 0, 0, 0), 0, Blue);
     private Card mediumCard1 = new MediumCard();
     private Card mediumCard2 = new MediumCard(new Tokens(3, 2, 0, 0, 0), 0, Green);
     private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 4, 3, 0, 0), 0, Green);
@@ -230,6 +231,23 @@ public class GameTest {
         // then
         assertEquals(player2.getTokens().getGreen(), 0);
         assertEquals(player2.getTokens().getVersatile(), 3);
+    }
+
+    @Test
+    public void shouldBuyReservedCard() {
+        // given
+        Game game = gameBuilder().create();
+        cheapCard8.setReserved(true);
+        player1.addCard(cheapCard8);
+
+        // when
+        game.performTurn(new BuyCardTurn(cheapCard8));
+
+        // then
+        assertTrue(player1.hasCards());
+        assertFalse(player1.getCards().get(0).isReserved());
+        assertEquals(9, game.getTokens().getGreen());
+        assertEquals(2, player1.getTokens().getGreen());
     }
 
     @Test
