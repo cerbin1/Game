@@ -1,5 +1,6 @@
 package app.game.card.nobility;
 
+import app.game.token.Tokens;
 import app.util.Random;
 
 public class NobilityFactory {
@@ -14,10 +15,14 @@ public class NobilityFactory {
     }
 
     public Nobility create() {
-        return new Nobility(new ConditionsEmploymentNobility(random).getRandomConditions(), generateRandomPoints());
+        return new Nobility(getRandomConditions(), getRandomPoints());
     }
 
-    private int generateRandomPoints() {
+    private Tokens getRandomConditions() {
+        return new ConditionsEmploymentNobility(random).getRandomConditions();
+    }
+
+    private int getRandomPoints() {
         return random.nextInt(3, 4);
     }
 }
