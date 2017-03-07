@@ -50,22 +50,24 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldCountPointsFromUnreservedCards() {
+    public void shouldCountPointsFromReservedCards() {
         // given
         Player player = new Player();
-        Card reservedCard = new CheapCard(new Tokens(), 1, Green);
-        reservedCard.setReserved(true);
-        player.addCard(reservedCard);
-        player.addCard(new CheapCard(new Tokens(), 0, Green));
-        player.addCard(new CheapCard(new Tokens(), 1, Green));
-        player.addCard(new MediumCard(new Tokens(), 2, Green));
-        player.addCard(new ExpensiveCard(new Tokens(), 1, Green));
+        Card reservedCard1 = new CheapCard(new Tokens(), 1, Green);
+        Card reservedCard2 = new MediumCard(new Tokens(), 2, Green);
+        Card reservedCard3 = new ExpensiveCard(new Tokens(), 5, Green);
+        reservedCard1.setReserved(true);
+        reservedCard2.setReserved(true);
+        reservedCard3.setReserved(true);
+        player.addCard(reservedCard1);
+        player.addCard(reservedCard2);
+        player.addCard(reservedCard3);
 
         // when
         int points = player.getPoints();
 
         // then
-        assertEquals(4, points);
+        assertEquals(0, points);
     }
 
     @Test
