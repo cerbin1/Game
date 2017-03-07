@@ -11,8 +11,7 @@ public class CardColorGeneratorTest {
     @Test
     public void shouldGenerateCardColor() {
         // given
-        Random random = new MockRandom(0, 1, 2, 3, 4);
-        CardColorGenerator colorGenerator = new CardColorGenerator(random);
+        CardColorGenerator colorGenerator = new CardColorGenerator(new MockRandom(0, 1, 2, 3, 4));
 
         // when
         TokenColor cardColor1 = colorGenerator.generateColor();

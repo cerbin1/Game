@@ -5,6 +5,7 @@ import app.game.token.Tokens;
 import app.util.Random;
 import org.junit.Test;
 
+import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
 
 public class CardFactoryTest {
@@ -20,7 +21,7 @@ public class CardFactoryTest {
         // then
         assertEquals(new Tokens(3, 0, 0, 0, 0), cheapCard.getCost());
         assertEquals(0, cheapCard.getPoints());
-        assertEquals(TokenColor.Green, cheapCard.getColor());
+        assertEquals(Green, cheapCard.getColor());
     }
 
     @Test
@@ -34,7 +35,7 @@ public class CardFactoryTest {
         // then
         assertEquals(new Tokens(5, 0, 0, 0, 0), mediumCard.getCost());
         assertEquals(1, mediumCard.getPoints());
-        assertEquals(TokenColor.Green, mediumCard.getColor());
+        assertEquals(Green, mediumCard.getColor());
     }
 
     @Test
@@ -48,6 +49,6 @@ public class CardFactoryTest {
         // then
         assertEquals(new Tokens(7, 0, 0, 0, 0), expensiveCard.getCost());
         assertEquals(3, expensiveCard.getPoints());
-        assertEquals(TokenColor.Blue, expensiveCard.getColor());
+        assertEquals(Blue, expensiveCard.getColor());
     }
 }
