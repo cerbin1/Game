@@ -127,22 +127,6 @@ public class GameTest {
     }
 
     @Test
-    public void shouldThrowOnBuyingNotAvailableCard() {
-        // given
-        Game game = gameBuilder().create();
-
-        // when
-        try {
-            game.performTurn(new BuyCardTurn(cheapCard5));
-            assertTrue(false);
-        }
-        // then
-        catch (IllegalTurnException ignored) {
-            assertTrue(true);
-        }
-    }
-
-    @Test
     public void shouldThrowOnBuyingCardThatIsTooExpensive() {
         // given
         Game game = gameBuilder().create();
@@ -251,7 +235,7 @@ public class GameTest {
     }
 
     @Test
-    public void shouldThrowOnNotAvailableCard() {
+    public void shouldThrowOnBuyingNotAvailableCard() {
         // given
         Game game = gameBuilder().create();
 
