@@ -9,7 +9,7 @@ import static org.junit.Assert.assertEquals;
 
 public class CardFactoryTest {
     @Test
-    public void shouldCreateCheapCards() {
+    public void shouldCreateCheapCard() {
         // given
         Random random = new MockRandom(0, 0, 1, 0, 0);
         CardFactory factory = new CardFactory(random);
@@ -24,7 +24,7 @@ public class CardFactoryTest {
     }
 
     @Test
-    public void shouldCreateMediumCards() {
+    public void shouldCreateMediumCard() {
         // given
         CardFactory factory = new CardFactory(new MockRandom(0, 0, 1));
 
@@ -38,7 +38,7 @@ public class CardFactoryTest {
     }
 
     @Test
-    public void shouldCreateExpensiveCards() {
+    public void shouldCreateExpensiveCard() {
         // given
         CardFactory builder = new CardFactory(new MockRandom(0, 0, 1));
 
