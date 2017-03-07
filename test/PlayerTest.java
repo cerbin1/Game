@@ -27,10 +27,10 @@ public class PlayerTest {
         int[] tokensValue4 = {player4.getTokens().getGreen(), player4.getTokens().getPurple(), player4.getTokens().getBlue(), player4.getTokens().getBlack(), player4.getTokens().getRed()};
 
         // then
-        assertArrayEquals(tokensValue1, new int[]{0, 0, 0, 0, 0});
-        assertArrayEquals(tokensValue2, new int[]{1, 1, 1, 1, 1});
-        assertArrayEquals(tokensValue3, new int[]{0, 4, 0, 4, 0});
-        assertArrayEquals(tokensValue4, new int[]{5, 5, 5, 5, 5});
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0}, tokensValue1);
+        assertArrayEquals(new int[]{1, 1, 1, 1, 1}, tokensValue2);
+        assertArrayEquals(new int[]{0, 4, 0, 4, 0}, tokensValue3);
+        assertArrayEquals(new int[]{5, 5, 5, 5, 5}, tokensValue4);
     }
 
     @Test
@@ -46,7 +46,7 @@ public class PlayerTest {
         int points = player.getPoints();
 
         // then
-        assertEquals(points, 8);
+        assertEquals(8, points);
     }
 
     @Test
@@ -65,7 +65,7 @@ public class PlayerTest {
         int points = player.getPoints();
 
         // then
-        assertEquals(points, 4);
+        assertEquals(4, points);
     }
 
     @Test
@@ -79,7 +79,7 @@ public class PlayerTest {
         int playerPoints = player.getPoints();
 
         // then
-        assertEquals(playerPoints, 7);
+        assertEquals(7, playerPoints);
     }
 
     @Test
@@ -95,7 +95,7 @@ public class PlayerTest {
         int points = player.getPoints();
 
         // then
-        assertEquals(points, 15);
+        assertEquals(15, points);
     }
 
     @Test

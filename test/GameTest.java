@@ -47,10 +47,10 @@ public class GameTest {
         Game game = builder.create();
 
         // then
-        assertEquals(game.getPlayers(), asList(player1, player2));
-        assertEquals(game.getAvailableCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5, cheapCard6, cheapCard7, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2));
-        assertEquals(game.getNobility(), asList(nobility1, nobility2, nobility3));
-        assertEquals(game.getTokens(), gameTokens);
+        assertEquals(asList(player1, player2), game.getPlayers());
+        assertEquals(asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5, cheapCard6, cheapCard7, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2), game.getAvailableCards());
+        assertEquals(asList(nobility1, nobility2, nobility3), game.getNobility());
+        assertEquals(gameTokens, game.getTokens());
         assertFalse(player1.hasCards());
         assertFalse(player2.hasCards());
     }
@@ -64,7 +64,7 @@ public class GameTest {
         Player currentPlayer = game.getCurrentPlayer();
 
         // then
-        assertEquals(currentPlayer, player1);
+        assertEquals(player1, currentPlayer);
     }
 
     @Test
@@ -76,7 +76,7 @@ public class GameTest {
         game.performTurn(new PassTurn());
 
         // then
-        assertEquals(game.getCurrentPlayer(), player2);
+        assertEquals(player2, game.getCurrentPlayer());
     }
 
     @Test
@@ -89,7 +89,7 @@ public class GameTest {
         game.performTurn(new PassTurn());
 
         // then
-        assertEquals(game.getCurrentPlayer(), player1);
+        assertEquals(player1, game.getCurrentPlayer());
     }
 
     @Test
@@ -102,9 +102,9 @@ public class GameTest {
 
         // then
         assertTrue(cheapCard2.isReserved());
-        assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(player1.getCards().get(0), cheapCard2);
-        assertEquals(player1.getTokens().getVersatile(), 1);
+        assertEquals(player2, game.getCurrentPlayer());
+        assertEquals(cheapCard2, player1.getCards().get(0));
+        assertEquals(1, player1.getTokens().getVersatile());
     }
 
     @Test
@@ -116,12 +116,12 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(mediumCard2));
 
         // then
-        assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(game.getTokens().getGreen(), 10);
-        assertEquals(game.getTokens().getPurple(), 9);
-        assertEquals(player1.getTokens().getGreen(), 1);
-        assertEquals(player1.getTokens().getPurple(), 0);
-        assertEquals(player1.getCards().get(0), mediumCard2);
+        assertEquals(player2, game.getCurrentPlayer());
+        assertEquals(10, game.getTokens().getGreen());
+        assertEquals(9, game.getTokens().getPurple());
+        assertEquals(1, player1.getTokens().getGreen());
+        assertEquals(0, player1.getTokens().getPurple());
+        assertEquals(mediumCard2, player1.getCards().get(0));
         assertFalse(mediumCard2.isReserved());
         assertFalse(game.getAvailableCards().contains(mediumCard2));
     }
@@ -168,9 +168,9 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(expensiveCard1));
 
         // then
-        assertEquals(player2.getTokens().getGreen(), 0);
-        assertEquals(player2.getTokens().getVersatile(), 0);
-        assertEquals(player2.getCards().get(0), expensiveCard1);
+        assertEquals(0, player2.getTokens().getGreen());
+        assertEquals(0, player2.getTokens().getVersatile());
+        assertEquals(expensiveCard1, player2.getCards().get(0));
         assertFalse(expensiveCard1.isReserved());
     }
 
@@ -188,12 +188,12 @@ public class GameTest {
         // then
         assertTrue(player1.getCards().contains(cheapCard3));
         assertFalse(game.getAvailableCards().contains(cheapCard3));
-        assertEquals(game.getCurrentPlayer(), player2);
-        assertEquals(player1.getCards(), asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3));
-        assertEquals(player1.getTokens().getGreen(), 0);
-        assertEquals(player1.getTokens().getPurple(), 0);
-        assertEquals(player1.getTokens().getBlue(), 0);
-        assertEquals(player1.getTokens().getBlack(), 1);
+        assertEquals(player2, game.getCurrentPlayer());
+        assertEquals(asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3), player1.getCards());
+        assertEquals(0, player1.getTokens().getGreen());
+        assertEquals(0, player1.getTokens().getPurple());
+        assertEquals(0, player1.getTokens().getBlue());
+        assertEquals(1, player1.getTokens().getBlack());
     }
 
     @Test
@@ -213,10 +213,10 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard5));
 
         // then
-        assertEquals(game.getCurrentPlayer(), player2);
         assertTrue(player1.getCards().contains(cheapCard5));
-        assertEquals(player1.getCards(), asList(cheapCard3, cheapCard4, cheapCard6, cheapCard7, mediumCard1, expensiveCard1, cheapCard5));
-        assertArrayEquals(playerTokens, new int[]{0, 0, 0, 0, 0});
+        assertEquals(player2, game.getCurrentPlayer());
+        assertEquals(asList(cheapCard3, cheapCard4, cheapCard6, cheapCard7, mediumCard1, expensiveCard1, cheapCard5), player1.getCards());
+        assertArrayEquals(new int[]{0, 0, 0, 0, 0}, playerTokens);
     }
 
     @Test
@@ -229,8 +229,8 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard1));
 
         // then
-        assertEquals(player2.getTokens().getGreen(), 0);
-        assertEquals(player2.getTokens().getVersatile(), 3);
+        assertEquals(0, player2.getTokens().getGreen());
+        assertEquals(3, player2.getTokens().getVersatile());
     }
 
     @Test

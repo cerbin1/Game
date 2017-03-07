@@ -18,7 +18,7 @@ public class NobilityFactoryTest {
         Nobility nobility = factory.create();
 
         // then
-        assertEquals(nobility.getPoints(), 3);
+        assertEquals(3, nobility.getPoints());
     }
 
     @Test
@@ -32,7 +32,7 @@ public class NobilityFactoryTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        Assert.assertArrayEquals(tokensValue, new int[]{0, 3, 3, 3, 0});
+        Assert.assertArrayEquals(new int[]{0, 3, 3, 3, 0}, tokensValue);
     }
 
     @Test
@@ -46,6 +46,6 @@ public class NobilityFactoryTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        Assert.assertArrayEquals(tokensValue, new int[]{0, 0, 0, 4, 4});
+        Assert.assertArrayEquals(new int[]{0, 0, 0, 4, 4}, tokensValue);
     }
 }

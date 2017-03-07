@@ -16,7 +16,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{3, 0, 0, 0, 0});
+        assertArrayEquals(new int[]{3, 0, 0, 0, 0}, tokensValue);
     }
 
     @Test
@@ -29,7 +29,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{0, 0, 2, 2, 0});
+        assertArrayEquals(new int[]{0, 0, 2, 2, 0}, tokensValue);
     }
 
     @Test
@@ -42,7 +42,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{3, 1, 0, 0, 1});
+        assertArrayEquals(new int[]{3, 1, 0, 0, 1}, tokensValue);
     }
 
     @Test
@@ -55,7 +55,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{2, 1, 1, 0, 1});
+        assertArrayEquals(new int[]{2, 1, 1, 0, 1}, tokensValue);
     }
 
     @Test
@@ -68,7 +68,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{1, 1, 1, 1, 1});
+        assertArrayEquals(new int[]{1, 1, 1, 1, 1}, tokensValue);
     }
 
     @Test
@@ -81,7 +81,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{0, 0, 5, 0, 0});
+        assertArrayEquals(new int[]{0, 0, 5, 0, 0}, tokensValue);
     }
 
     @Test
@@ -94,7 +94,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{3, 0, 3, 0, 0});
+        assertArrayEquals(new int[]{3, 0, 3, 0, 0}, tokensValue);
     }
 
     @Test
@@ -107,7 +107,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{0, 3, 2, 0, 3});
+        assertArrayEquals(new int[]{0, 3, 2, 0, 3}, tokensValue);
     }
 
     @Test
@@ -120,7 +120,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{2, 2, 2, 2, 0});
+        assertArrayEquals(new int[]{2, 2, 2, 2, 0}, tokensValue);
     }
 
     @Test
@@ -133,7 +133,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{1, 1, 1, 4, 1});
+        assertArrayEquals(new int[]{1, 1, 1, 4, 1}, tokensValue);
     }
 
     @Test
@@ -146,7 +146,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{0, 7, 0, 0, 0});
+        assertArrayEquals(new int[]{0, 7, 0, 0, 0}, tokensValue);
     }
 
     @Test
@@ -159,7 +159,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{5, 0, 0, 5, 0});
+        assertArrayEquals(new int[]{5, 0, 0, 5, 0}, tokensValue);
     }
 
     @Test
@@ -185,7 +185,7 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{3, 0, 3, 3, 3});
+        assertArrayEquals(new int[]{3, 0, 3, 3, 3}, tokensValue);
     }
 
     @Test
@@ -198,6 +198,6 @@ public class CardCostGeneratorTest {
         int[] tokensValue = {tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()};
 
         // then
-        assertArrayEquals(tokensValue, new int[]{2, 2, 1, 4, 5});
+        assertArrayEquals(new int[]{2, 2, 1, 4, 5}, tokensValue);
     }
 }

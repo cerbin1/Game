@@ -22,10 +22,10 @@ public class CardColorGeneratorTest {
         TokenColor cardColor5 = colorGenerator.generateColor();
 
         // then
-        assertEquals(cardColor1, Green);
-        assertEquals(cardColor2, Purple);
-        assertEquals(cardColor3, Blue);
-        assertEquals(cardColor4, Black);
-        assertEquals(cardColor5, Red);
+        assertEquals(Green, cardColor1);
+        assertEquals(Purple, cardColor2);
+        assertEquals(Blue, cardColor3);
+        assertEquals(Black, cardColor4);
+        assertEquals(Red, cardColor5);
     }
 }

@@ -23,12 +23,12 @@ public class TokensTest {
         int versatile = tokens.getVersatile();
 
         // then
-        assertEquals(green, 3);
-        assertEquals(purple, 3);
-        assertEquals(blue, 3);
-        assertEquals(black, 3);
-        assertEquals(red, 3);
-        assertEquals(versatile, 2);
+        assertEquals(3, green);
+        assertEquals(3, purple);
+        assertEquals(3, blue);
+        assertEquals(3, black);
+        assertEquals(3, red);
+        assertEquals(2, versatile);
     }
 
     @Test
@@ -44,11 +44,11 @@ public class TokensTest {
         int red = tokens.getRed();
 
         // then
-        assertEquals(green, 0);
-        assertEquals(purple, 4);
-        assertEquals(blue, 2);
-        assertEquals(black, 12);
-        assertEquals(red, 4);
+        assertEquals(0, green);
+        assertEquals(4, purple);
+        assertEquals(2, blue);
+        assertEquals(12, black);
+        assertEquals(4, red);
     }
 
     @Test
@@ -60,12 +60,12 @@ public class TokensTest {
         Map<TokenColor, Integer> map = tokens.asMap();
 
         // then
-        assertEquals(map, new EnumMap<TokenColor, Integer>(TokenColor.class) {{
+        assertEquals(new EnumMap<TokenColor, Integer>(TokenColor.class) {{
             put(Green, 3);
             put(Purple, 3);
             put(Blue, 3);
             put(Black, 3);
             put(Red, 3);
-        }});
+        }}, map);
     }
 }

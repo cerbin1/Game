@@ -13,7 +13,7 @@ public class CardPointsGeneratorTest {
         int cheapCardPoints = generator.generateCheapCardPoints();
 
         // then
-        assertEquals(cheapCardPoints, 14);
+        assertEquals(14, cheapCardPoints);
     }
 
     @Test
@@ -25,7 +25,7 @@ public class CardPointsGeneratorTest {
         int mediumCardPoints = generator.generateMediumCardPoints();
 
         // then
-        assertEquals(mediumCardPoints, 18);
+        assertEquals(18, mediumCardPoints);
     }
 
     @Test
@@ -37,6 +37,6 @@ public class CardPointsGeneratorTest {
         int expensiveCardPoints = generator.generateExpensiveCardPoints();
 
         // then
-        assertEquals(expensiveCardPoints, 87);
+        assertEquals(87, expensiveCardPoints);
     }
 }

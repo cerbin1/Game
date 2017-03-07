@@ -18,9 +18,9 @@ public class CardFactoryTest {
         Card cheapCard = factory.createCheapCard();
 
         // then
-        assertEquals(cheapCard.getCost(), new Tokens(3, 0, 0, 0, 0));
-        assertEquals(cheapCard.getPoints(), 0);
-        assertEquals(cheapCard.getColor(), TokenColor.Green);
+        assertEquals(new Tokens(3, 0, 0, 0, 0), cheapCard.getCost());
+        assertEquals(0, cheapCard.getPoints());
+        assertEquals(TokenColor.Green, cheapCard.getColor());
     }
 
     @Test
@@ -32,9 +32,9 @@ public class CardFactoryTest {
         Card mediumCard = factory.createMediumCard();
 
         // then
-        assertEquals(mediumCard.getCost(), new Tokens(5, 0, 0, 0, 0));
-        assertEquals(mediumCard.getPoints(), 1);
-        assertEquals(mediumCard.getColor(), TokenColor.Green);
+        assertEquals(new Tokens(5, 0, 0, 0, 0), mediumCard.getCost());
+        assertEquals(1, mediumCard.getPoints());
+        assertEquals(TokenColor.Green, mediumCard.getColor());
     }
 
     @Test
@@ -46,8 +46,8 @@ public class CardFactoryTest {
         Card expensiveCard = builder.createExpensiveCard();
 
         // then
-        assertEquals(expensiveCard.getCost(), new Tokens(7, 0, 0, 0, 0));
-        assertEquals(expensiveCard.getPoints(), 3);
-        assertEquals(expensiveCard.getColor(), TokenColor.Blue);
+        assertEquals(new Tokens(7, 0, 0, 0, 0), expensiveCard.getCost());
+        assertEquals(3, expensiveCard.getPoints());
+        assertEquals(TokenColor.Blue, expensiveCard.getColor());
     }
 }
