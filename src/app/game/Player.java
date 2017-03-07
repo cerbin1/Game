@@ -35,6 +35,10 @@ public class Player {
         return boughtCards;
     }
 
+    public boolean hasCards() {
+        return !boughtCards.isEmpty();
+    }
+
     public void addCard(Card card) {
         boughtCards.add(card);
     }

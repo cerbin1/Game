@@ -11,7 +11,6 @@ import app.game.turn.BuyCardTurn;
 import app.game.turn.IllegalTurnException;
 import app.game.turn.PassTurn;
 import app.game.turn.ReservationTurn;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.*;
@@ -51,8 +50,8 @@ public class GameTest {
         assertEquals(game.getAvailableCards(), asList(cheapCard1, cheapCard2, cheapCard3, cheapCard4, cheapCard5, cheapCard6, cheapCard7, mediumCard1, mediumCard2, expensiveCard1, expensiveCard2));
         assertEquals(game.getNobility(), asList(nobility1, nobility2, nobility3));
         assertEquals(game.getTokens(), gameTokens);
-        assertTrue(player1.getCards().isEmpty());
-        assertTrue(player2.getCards().isEmpty());
+        assertFalse(player1.hasCards());
+        assertFalse(player2.hasCards());
     }
 
     @Test
@@ -101,9 +100,9 @@ public class GameTest {
         game.performTurn(new ReservationTurn(cheapCard2));
 
         // then
+        assertTrue(cheapCard2.isReserved());
         assertEquals(game.getCurrentPlayer(), player2);
         assertEquals(player1.getCards().get(0), cheapCard2);
-        Assert.assertTrue(cheapCard2.isReserved());
         assertEquals(player1.getTokens().getVersatile(), 1);
     }
 
@@ -186,9 +185,9 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard3));
 
         // then
-        assertEquals(game.getCurrentPlayer(), player2);
         assertTrue(player1.getCards().contains(cheapCard3));
         assertFalse(game.getAvailableCards().contains(cheapCard3));
+        assertEquals(game.getCurrentPlayer(), player2);
         assertEquals(player1.getCards(), asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3));
         assertEquals(player1.getTokens().getGreen(), 0);
         assertEquals(player1.getTokens().getPurple(), 0);
@@ -249,7 +248,6 @@ public class GameTest {
             assertTrue(true);
         }
     }
-
 
     private GameBuilder gameBuilder() {
         GameBuilder builder = new GameBuilder();
