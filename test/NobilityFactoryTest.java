@@ -12,25 +12,19 @@ public class NobilityFactoryTest {
     @Test
     public void shouldDrawRandomPoints() {
         // given
-        Random random = new MockRandom(0, 0, 1, 2, 3, 1, 0, 1, 4);
-        NobilityFactory factory = new NobilityFactory(random);
-        Nobility nobility1 = factory.create();
-        Nobility nobility2 = factory.create();
+        NobilityFactory factory = new NobilityFactory(new MockRandom(0, 0, 1, 2, 3));
 
         // when
-        int points1 = nobility1.getPoints();
-        int points2 = nobility2.getPoints();
+        Nobility nobility = factory.create();
 
         // then
-        assertEquals(points1, 3);
-        assertEquals(points2, 4);
+        assertEquals(nobility.getPoints(), 3);
     }
 
     @Test
     public void shouldRandomThreeCostTypes() {
         // given
-        Random random = new MockRandom(0, 1, 2, 3, 3);
-        NobilityFactory factory = new NobilityFactory(random);
+        NobilityFactory factory = new NobilityFactory(new MockRandom(0, 1, 2, 3, 3));
         Nobility nobility = factory.create();
         Tokens tokens = nobility.getCondition();
 
