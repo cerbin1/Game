@@ -2,14 +2,14 @@ package app.game.card;
 
 import app.util.Probability;
 
-public class CardPointsGenerator {
+public class CardPoints {
     private final Probability probability;
 
-    public CardPointsGenerator() {
+    public CardPoints() {
         this(new Probability());
     }
 
-    public CardPointsGenerator(Probability probability) {
+    public CardPoints(Probability probability) {
         this.probability = probability;
     }
 

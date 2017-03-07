@@ -1,16 +1,16 @@
-import app.game.card.CardPointsGenerator;
+import app.game.card.CardPoints;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class CardPointsGeneratorTest {
+public class CardPointsTest {
     @Test
     public void shouldGenerateCheapCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(14));
+        CardPoints points = new CardPoints(new MockProbability(14));
 
         // when
-        int cheapCardPoints = generator.generateCheapCardPoints();
+        int cheapCardPoints = points.generateCheapCardPoints();
 
         // then
         assertEquals(14, cheapCardPoints);
@@ -19,10 +19,10 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateMediumCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(18));
+        CardPoints points = new CardPoints(new MockProbability(18));
 
         // when
-        int mediumCardPoints = generator.generateMediumCardPoints();
+        int mediumCardPoints = points.generateMediumCardPoints();
 
         // then
         assertEquals(18, mediumCardPoints);
@@ -31,10 +31,10 @@ public class CardPointsGeneratorTest {
     @Test
     public void shouldGenerateExpensiveCardPoints() {
         // given
-        CardPointsGenerator generator = new CardPointsGenerator(new MockProbability(87));
+        CardPoints points = new CardPoints(new MockProbability(87));
 
         // when
-        int expensiveCardPoints = generator.generateExpensiveCardPoints();
+        int expensiveCardPoints = points.generateExpensiveCardPoints();
 
         // then
         assertEquals(87, expensiveCardPoints);

@@ -5,7 +5,7 @@ import app.util.Probability;
 
 public class CardFactory {
     private final CardCostGenerator cost;
-    private final CardPointsGenerator points;
+    private final CardPoints points;
 
     public CardFactory() {
         this(new Probability());
@@ -13,7 +13,7 @@ public class CardFactory {
 
     public CardFactory(Probability probability) {
         cost = new CardCostGenerator(probability);
-        points = new CardPointsGenerator(probability);
+        points = new CardPoints(probability);
     }
 
     public Card createCheapCard() {
