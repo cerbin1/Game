@@ -235,6 +235,7 @@ public class GameTest {
         // given
         Game game = gameBuilder().create();
         cheapCard8.setReserved(true);
+        player1.addCard(cheapCard8);
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard8));
