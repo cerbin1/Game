@@ -226,7 +226,6 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard8));
 
         // then
-        assertTrue(player1.hasCards());
         assertFalse(player1.getCards().get(0).isReserved());
         assertEquals(9, game.getTokens().getGreen());
         assertEquals(2, player1.getTokens().getGreen());
