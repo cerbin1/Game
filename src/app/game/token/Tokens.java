@@ -40,7 +40,7 @@ public class Tokens {
         this.versatile = versatile;
     }
 
-    public int get(TokenColor color) {
+    int get(TokenColor color) {
         return tokens.get(color);
     }
 
