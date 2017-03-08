@@ -56,20 +56,10 @@ public class Player {
     }
 
     private int getPointsFromCards() {
-        int points = 0;
-        for (Card card : boughtCards) {
-            if (!card.isReserved()) {
-                points += card.getPoints();
-            }
-        }
-        return points;
+        return boughtCards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
     }
 
     private int getPointsFromNobility() {
-        int points = 0;
-        for (Nobility nobility : nobilities) {
-            points += nobility.getPoints();
-        }
-        return points;
+        return nobilities.stream().mapToInt(Nobility::getPoints).sum();
     }
 }
