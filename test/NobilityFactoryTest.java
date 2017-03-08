@@ -11,13 +11,12 @@ public class NobilityFactoryTest {
     public void shouldDrawRandomPoints() {
         // given
         NobilityFactory factory = new NobilityFactory(new MockProbability(0, 0, 1, 2, 3));
-        Nobility nobility = factory.create();
 
         // when
-        int points = nobility.getPoints();
+        Nobility nobility = factory.create();
 
         // then
-        assertEquals(3, points);
+        assertEquals(3, nobility.getPoints());
     }
 
     @Test
