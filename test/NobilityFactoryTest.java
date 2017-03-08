@@ -28,7 +28,7 @@ public class NobilityFactoryTest {
         Tokens tokens = factory.create().getCondition();
 
         // then
-        Assert.assertArrayEquals(new int[]{0, 3, 3, 3, 0}, new int[]{tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()});
+        Assert.assertEquals(new Tokens(0, 3, 3, 3, 0), tokens);
     }
 
     @Test
@@ -40,6 +40,6 @@ public class NobilityFactoryTest {
         Tokens tokens = factory.create().getCondition();
 
         // then
-        Assert.assertArrayEquals(new int[]{0, 0, 0, 4, 4}, new int[]{tokens.getGreen(), tokens.getPurple(), tokens.getBlue(), tokens.getBlack(), tokens.getRed()});
+        Assert.assertEquals(new Tokens(0, 0, 0, 4, 4), tokens);
     }
 }

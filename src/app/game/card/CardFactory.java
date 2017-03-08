@@ -13,9 +13,9 @@ public class CardFactory {
     }
 
     public CardFactory(Probability probability) {
+        this.probability = probability;
         cost = new CardCost(probability);
         points = new CardPoints(probability);
-        this.probability = probability;
     }
 
     public Card createCheapCard() {
