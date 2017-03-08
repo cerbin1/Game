@@ -25,7 +25,7 @@ public class GameTest {
     private Card cheapCard3 = new CheapCard(new Tokens(5, 3, 1, 0, 0), 0, Green);
     private Card cheapCard4 = new CheapCard(new Tokens(), 0, Green);
     private Card cheapCard5 = new CheapCard(new Tokens(4, 1, 1, 0, 0), 0, Green);
-    private Card cheapCard6 = new CheapCard(new Tokens(), 0, Purple);
+    private Card cheapCard6 = new CheapCard(new Tokens(2, 2, 0, 0, 0), 0, Purple);
     private Card cheapCard7 = new CheapCard(new Tokens(), 0, Blue);
     private Card cheapCard8 = new CheapCard(new Tokens(2, 0, 0, 0, 0), 0, Blue);
     private Card mediumCard1 = new MediumCard();
@@ -216,19 +216,31 @@ public class GameTest {
     }
 
     @Test
-    public void shouldBuyReservedCard() {
+    public void shouldAssignTokensAfterBuyingReservedCard() {
+        // given
+        Game game = gameBuilder().create();
+        cheapCard6.setReserved(true);
+
+        // when
+        game.performTurn(new BuyCardTurn(cheapCard6));
+
+        // then
+        System.out.println(player1.getTokens().getBlue());
+        assertEquals(new Tokens(2, 0, 0, 1, 0), player1.getTokens());
+        assertEquals(new Tokens(9, 9, 7, 7, 7), game.getTokens());
+    }
+
+    @Test
+    public void shouldRemoveReservationAfterBuyingReservedCard() {
         // given
         Game game = gameBuilder().create();
         cheapCard8.setReserved(true);
-        player1.addCard(cheapCard8);
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard8));
 
         // then
-        assertFalse(player1.getCards().get(0).isReserved());
-        assertEquals(9, game.getTokens().getGreen());
-        assertEquals(2, player1.getTokens().getGreen());
+        assertFalse(cheapCard8.isReserved());
     }
 
     @Test
