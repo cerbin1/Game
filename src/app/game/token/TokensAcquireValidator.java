@@ -23,15 +23,15 @@ public class TokensAcquireValidator {
             }
         }
 
-        if (!validate(requested, 1, 3) && !validate(requested, 2, 2)) {
-            return false;
-        }
+        return isValidationPassed(requested) && !isTooManyTokensChose(requested);
+    }
 
-        if (requested.getGreen() > 2 || requested.getPurple() > 2 || requested.getBlue() > 2 || requested.getBlack() > 2 || requested.getRed() > 2) {
-            return false;
-        }
+    private boolean isValidationPassed(Tokens requested) {
+        return validate(requested, 1, 3) || validate(requested, 2, 2);
+    }
 
-        return true;
+    private boolean isTooManyTokensChose(Tokens requested) {
+        return requested.getGreen() > 2 || requested.getPurple() > 2 || requested.getBlue() > 2 || requested.getBlack() > 2 || requested.getRed() > 2;
     }
 
     private boolean validate(Tokens requestedTokens, int value, int amount) {
