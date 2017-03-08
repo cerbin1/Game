@@ -79,7 +79,7 @@ public class Tokens {
 
         if (o instanceof Tokens) {
             Tokens that = (Tokens) o;
-            return getGreen() == that.getGreen() && getPurple() == that.getPurple() && getBlue() == that.getBlue() && getBlack() == that.getBlack() && getRed() == that.getRed();
+            return tokens.equals(that.tokens);
         } else {
             return false;
         }
