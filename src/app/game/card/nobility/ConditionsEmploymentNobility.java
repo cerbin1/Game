@@ -3,7 +3,7 @@ package app.game.card.nobility;
 import app.game.token.Tokens;
 import app.util.Probability;
 
-public class ConditionsEmploymentNobility {
+class ConditionsEmploymentNobility {
     private int[] tokenValue = new int[5];
     private final Probability probability;
 
@@ -11,11 +11,11 @@ public class ConditionsEmploymentNobility {
         this(new Probability());
     }
 
-    public ConditionsEmploymentNobility(Probability probability) {
+    ConditionsEmploymentNobility(Probability probability) {
         this.probability = probability;
     }
 
-    public Tokens getRandomConditions() {
+    Tokens getRandomConditions() {
         return isFirstTypeDrawn() ? getConditions(3, 3) : getConditions(2, 4);
     }
 
