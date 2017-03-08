@@ -1,7 +1,6 @@
 import app.game.card.Card;
 import app.game.card.CardFactory;
 import app.game.token.Tokens;
-import app.util.Probability;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Blue;
@@ -12,8 +11,7 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateCheapCard() {
         // given
-        Probability probability = new MockProbability(0, 0, 1, 0, 0);
-        CardFactory factory = new CardFactory(probability);
+        CardFactory factory = new CardFactory(new MockProbability(0, 0, 1, 0, 0));
 
         // when
         Card cheapCard = factory.createCheapCard();
