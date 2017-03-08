@@ -117,13 +117,11 @@ public class GameTest {
 
         // then
         assertEquals(player2, game.getCurrentPlayer());
-        assertEquals(10, game.getTokens().getGreen());
-        assertEquals(9, game.getTokens().getPurple());
-        assertEquals(1, player1.getTokens().getGreen());
-        assertEquals(0, player1.getTokens().getPurple());
-        assertEquals(mediumCard2, player1.getCards().get(0));
+        assertEquals(new Tokens(10, 9, 7, 7, 7), game.getTokens());
+        assertEquals(new Tokens(1, 0, 0, 1, 0), player1.getTokens());
         assertFalse(mediumCard2.isReserved());
         assertFalse(game.getAvailableCards().contains(mediumCard2));
+        assertTrue(player1.getCards().contains(mediumCard2));
     }
 
     @Test
@@ -191,16 +189,16 @@ public class GameTest {
         player1.addCard(cheapCard7);
         player1.addCard(mediumCard1);
         player1.addCard(expensiveCard1);
-        int[] playerTokens = {player1.getTokens().getGreen(), player1.getTokens().getPurple(), player1.getTokens().getBlue(), player1.getTokens().getBlack(), player1.getTokens().getRed()};
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard5));
 
         // then
-        assertTrue(player1.getCards().contains(cheapCard5));
         assertEquals(player2, game.getCurrentPlayer());
         assertEquals(asList(cheapCard3, cheapCard4, cheapCard6, cheapCard7, mediumCard1, expensiveCard1, cheapCard5), player1.getCards());
-        assertArrayEquals(new int[]{0, 0, 0, 0, 0}, playerTokens);
+        assertEquals(new Tokens(0, 0, 0, 0, 0), player1.getTokens());
+        assertEquals(new Tokens(11, 8, 8, 7, 7, 5), game.getTokens());
+        assertTrue(player1.getCards().contains(cheapCard5));
     }
 
     @Test
