@@ -7,6 +7,8 @@ import app.game.token.Tokens;
 
 public class BuyCardTurn extends Turn {
     private Card card;
+    private int versatileNeeded = 0;
+    private int green, purple, blue, black, red;
 
     public BuyCardTurn(Card card) {
         this.card = card;
@@ -18,7 +20,7 @@ public class BuyCardTurn extends Turn {
         Tokens playerTokens = player.getTokensIncludingBoughtCards();
         Tokens cost = card.getCost();
         Tokens gameTokens = game.getTokens();
-        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && isPlayerAbleToBuyCard(playerTokens, cost)) {
+        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && isPlayerAbleToBuyCard(playerTokens, cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerTokens, cost)) {
             game.removeCard(card);
             player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
             game.setTokens(getGameTokensAfterUpdate(cost, gameTokens));
@@ -31,15 +33,45 @@ public class BuyCardTurn extends Turn {
         }
     }
 
+    private boolean isPlayerAbleToBuyCardWithVersatileTokens(Tokens playerResources, Tokens cost) {
+        int result = 0;
+        green = playerResources.getGreen() - cost.getGreen();
+        purple = playerResources.getPurple() - cost.getPurple();
+        blue = playerResources.getBlue() - cost.getBlue();
+        black = playerResources.getBlack() - cost.getBlack();
+        red = playerResources.getRed() - cost.getRed();
+        if (green < 0) {
+            result += green;
+        }
+        if (purple < 0) {
+            result += purple;
+        }
+        if (blue < 0) {
+            result += blue;
+        }
+        if (black < 0) {
+            result += black;
+        }
+        if (red < 0) {
+            result += red;
+        }
+        if (result < 0 && playerResources.getVersatile() >= -result) {
+            versatileNeeded = result;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
     private boolean isPlayerAbleToBuyCard(Tokens playerTokens, Tokens cost) {
         return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
     }
 
     private Tokens getGameTokensAfterUpdate(Tokens cost, Tokens gameTokens) {
-        return new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed(), gameTokens.getVersatile());
+        return new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed(), gameTokens.getVersatile() - versatileNeeded);
     }
 
     private Tokens getPlayerTokensAfterBuyingCard(Tokens playerTokens, Tokens cost) {
-        return new Tokens(playerTokens.getGreen() - cost.getGreen(), playerTokens.getPurple() - cost.getPurple(), playerTokens.getBlue() - cost.getBlue(), playerTokens.getBlack() - cost.getBlack(), playerTokens.getRed() - cost.getRed(), playerTokens.getVersatile());
+        return playerTokens.subtract(new Tokens(cost.getGreen() + green, cost.getPurple() + purple, cost.getBlue() + blue, cost.getBlack() + black, cost.getRed() + red, versatileNeeded));
     }
 }
