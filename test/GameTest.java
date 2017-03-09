@@ -193,14 +193,11 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard3));
 
         // then
+        assertEquals(player2, game.getCurrentPlayer());
         assertTrue(player1.getCards().contains(cheapCard3));
         assertFalse(game.getAvailableCards().contains(cheapCard3));
-        assertEquals(player2, game.getCurrentPlayer());
         assertEquals(asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3), player1.getCards());
-        assertEquals(0, player1.getTokens().getGreen());
-        assertEquals(0, player1.getTokens().getPurple());
-        assertEquals(0, player1.getTokens().getBlue());
-        assertEquals(1, player1.getTokens().getBlack());
+        assertEquals(new Tokens(0, 0, 0, 1, 0), player1.getTokens());
     }
 
     @Test
