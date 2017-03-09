@@ -6,7 +6,7 @@ import app.game.card.Card;
 import app.game.token.Tokens;
 
 public class BuyCardTurn extends Turn {
-    private Card card;
+    private final Card card;
     private int versatileNeeded = 0;
     private int green, purple, blue, black, red;
 
