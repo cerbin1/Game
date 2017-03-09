@@ -16,8 +16,9 @@ public class ReservationTurn extends Turn {
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
         Tokens playerTokens = player.getTokens();
-        Tokens tokensAfterReservation = new Tokens(playerTokens.getGreen(), playerTokens.getPurple() , playerTokens.getBlue() , playerTokens.getBlack() , playerTokens.getRed(), playerTokens.getVersatile() + 1);
+        Tokens tokensAfterReservation = new Tokens(playerTokens.getGreen(), playerTokens.getPurple(), playerTokens.getBlue(), playerTokens.getBlack(), playerTokens.getRed(), playerTokens.getVersatile() + 1);
         player.setTokens(tokensAfterReservation);
+        game.removeCard(card);
         card.setReserved(true);
         player.addCard(card);
     }

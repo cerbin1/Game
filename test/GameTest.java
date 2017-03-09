@@ -245,6 +245,19 @@ public class GameTest {
     }
 
     @Test
+    public void shouldRemoveCardFromGameCardsAfterReservation() {
+        // given
+        Game game = gameBuilder().create();
+        cheapCard5.setReserved(true);
+
+        // when
+        game.performTurn(new ReservationTurn(cheapCard5));
+
+        // then
+        assertFalse(game.getAvailableCards().contains(cheapCard5));
+    }
+
+    @Test
     public void shouldThrowOnBuyingNotAvailableCard() {
         // given
         Game game = gameBuilder().create();
