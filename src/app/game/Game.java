@@ -50,6 +50,10 @@ public class Game {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
+    public void updateVersatile(int value) {
+        tokens.setVersatile(getTokens().getVersatile() + value);
+    }
+
     public void removeCard(Card card) {
         cards.remove(card);
     }

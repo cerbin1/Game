@@ -55,6 +55,10 @@ public class Player {
         this.tokens = tokens;
     }
 
+    public void updateVersatile(int value) {
+        tokens.setVersatile(getTokens().getVersatile() + value);
+    }
+
     private int getPointsFromCards() {
         return boughtCards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
     }
