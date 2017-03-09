@@ -50,7 +50,7 @@ public class Game {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
-    public void updateVersatile(int value) {
+    public void setVersatile(int value) {
         tokens.setVersatile(getTokens().getVersatile() + value);
     }
 

@@ -55,7 +55,7 @@ public class Player {
         this.tokens = tokens;
     }
 
-    public void updateVersatile(int value) {
+    public void setVersatile(int value) {
         tokens.setVersatile(getTokens().getVersatile() + value);
     }
 

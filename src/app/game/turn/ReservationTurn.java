@@ -14,8 +14,8 @@ public class ReservationTurn extends Turn {
     @Override
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
-        player.updateVersatile(1);
-        game.updateVersatile(-1);
+        player.setVersatile(1);
+        game.setVersatile(-1);
         game.removeCard(card);
         card.setReserved(true);
         player.addCard(card);
