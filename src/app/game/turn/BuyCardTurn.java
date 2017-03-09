@@ -63,10 +63,6 @@ public class BuyCardTurn extends Turn {
         }
     }
 
-    private boolean isPlayerAbleToBuyCard(Tokens playerTokens, Tokens cost) {
-        return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
-    }
-
     private Tokens getGameTokensAfterUpdate(Tokens cost, Tokens gameTokens) {
         return new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed(), gameTokens.getVersatile() - versatileNeeded);
     }
