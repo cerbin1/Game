@@ -28,7 +28,7 @@ public class GameTest {
     private Card cheapCard6 = new CheapCard(new Tokens(2, 2, 0, 0, 0), 0, Purple);
     private Card cheapCard7 = new CheapCard(new Tokens(), 0, Blue);
     private Card cheapCard8 = new CheapCard(new Tokens(2, 0, 0, 0, 0), 0, Blue);
-    private Card mediumCard1 = new MediumCard();
+    private Card mediumCard1 = new MediumCard(new Tokens(2, 2, 2, 2, 2), 0, Red);
     private Card mediumCard2 = new MediumCard(new Tokens(3, 2, 0, 0, 0), 0, Green);
     private Card expensiveCard1 = new ExpensiveCard(new Tokens(4, 4, 3, 0, 0), 0, Green);
     private Card expensiveCard2 = new ExpensiveCard();
@@ -166,19 +166,57 @@ public class GameTest {
     }
 
     @Test
-    public void shouldBuyCardAndLoseVersatileToken() {
+    public void shouldBuyCardForVersatile() {
         // given
         Game game = gameBuilder().create();
-        game.performTurn(new PassTurn());
+        player1.setTokens(new Tokens(0, 0, 0, 0, 0, 4));
 
         // when
-        game.performTurn(new BuyCardTurn(expensiveCard1));
+        game.performTurn(new BuyCardTurn(cheapCard6));
 
         // then
-        assertEquals(0, player2.getTokens().getGreen());
-        assertEquals(0, player2.getTokens().getVersatile());
-        assertEquals(expensiveCard1, player2.getCards().get(0));
-        assertFalse(expensiveCard1.isReserved());
+        assertEquals(new Tokens(0, 0, 0, 0, 0, 0), player1.getTokens());
+        assertEquals(new Tokens(9, 9, 7, 7, 7, 9), game.getTokens());
+        assertTrue(player1.getCards().contains(cheapCard6));
+        assertFalse(cheapCard6.isReserved());
+    }
+
+    @Test
+    public void shouldBuyCardWithBoughtCardsAndVersatile() {
+        // given
+        Game game = gameBuilder().create();
+        player1.setTokens(new Tokens(0, 0, 0, 0, 0, 3));
+        player1.addCard(cheapCard3);
+        player1.addCard(cheapCard4);
+        player1.addCard(mediumCard2);
+
+        // when
+        game.performTurn(new BuyCardTurn(cheapCard5));
+
+        // then
+        assertEquals(new Tokens(0, 0, 0, 0, 0, 0), player1.getTokens());
+        assertEquals(new Tokens(11, 8, 8, 7, 7, 8), game.getTokens());
+        assertEquals(asList(cheapCard3, cheapCard4, mediumCard2, cheapCard5), player1.getCards());
+        assertFalse(cheapCard5.isReserved());
+    }
+
+    @Test
+    public void shouldBuyCardWithAllCapabilities() {
+        // given
+        Game game = gameBuilder().create();
+        player1.setTokens(new Tokens(1, 1, 1, 1, 0, 3));
+        player1.addCard(cheapCard3);
+        player1.addCard(cheapCard6);
+        player1.addCard(cheapCard7);
+
+        // when
+        game.performTurn(new BuyCardTurn(mediumCard1));
+
+        // then
+        assertEquals(new Tokens(0, 0, 0, 0, 0, 0), player1.getTokens());
+        assertEquals(new Tokens(9, 9, 9, 9, 9, 8), game.getTokens());
+        assertEquals(asList(cheapCard3, cheapCard6, cheapCard7, mediumCard1), player1.getCards());
+        assertFalse(mediumCard1.isReserved());
     }
 
     @Test
@@ -194,10 +232,10 @@ public class GameTest {
 
         // then
         assertEquals(player2, game.getCurrentPlayer());
-        assertTrue(player1.getCards().contains(cheapCard3));
-        assertFalse(game.getAvailableCards().contains(cheapCard3));
-        assertEquals(asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3), player1.getCards());
         assertEquals(new Tokens(0, 0, 0, 1, 0), player1.getTokens());
+        assertEquals(new Tokens(12, 10, 8, 7, 7, 5), game.getTokens());
+        assertEquals(asList(cheapCard4, cheapCard6, cheapCard7, cheapCard3), player1.getCards());
+        assertFalse(game.getAvailableCards().contains(cheapCard3));
     }
 
     @Test
@@ -209,25 +247,24 @@ public class GameTest {
         player1.addCard(cheapCard4);
         player1.addCard(cheapCard6);
         player1.addCard(cheapCard7);
-        player1.addCard(mediumCard1);
+        player1.addCard(mediumCard2);
         player1.addCard(expensiveCard1);
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard5));
 
         // then
-        assertEquals(player2, game.getCurrentPlayer());
-        assertEquals(asList(cheapCard3, cheapCard4, cheapCard6, cheapCard7, mediumCard1, expensiveCard1, cheapCard5), player1.getCards());
+        assertEquals(asList(cheapCard3, cheapCard4, cheapCard6, cheapCard7, mediumCard2, expensiveCard1, cheapCard5), player1.getCards());
         assertEquals(new Tokens(0, 0, 0, 0, 0), player1.getTokens());
         assertEquals(new Tokens(11, 8, 8, 7, 7, 5), game.getTokens());
-        assertTrue(player1.getCards().contains(cheapCard5));
+        assertFalse(cheapCard5.isReserved());
     }
 
     @Test
     public void shouldNotLoseVersatileTokens() {
         // given
         Game game = gameBuilder().create();
-        player1.updateVersatile(2);
+        player1.setVersatile(2);
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard4));
