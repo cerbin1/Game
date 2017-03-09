@@ -23,7 +23,7 @@ public class GameTest {
     private Card cheapCard1 = new CheapCard();
     private Card cheapCard2 = new CheapCard();
     private Card cheapCard3 = new CheapCard(new Tokens(5, 3, 1, 0, 0), 0, Green);
-    private Card cheapCard4 = new CheapCard(new Tokens(), 0, Green);
+    private Card cheapCard4 = new CheapCard(new Tokens(4, 2, 0, 1, 0), 0, Green);
     private Card cheapCard5 = new CheapCard(new Tokens(4, 1, 1, 0, 0), 0, Green);
     private Card cheapCard6 = new CheapCard(new Tokens(2, 2, 0, 0, 0), 0, Purple);
     private Card cheapCard7 = new CheapCard(new Tokens(), 0, Blue);
@@ -230,14 +230,13 @@ public class GameTest {
     public void shouldNotLoseVersatileTokens() {
         // given
         Game game = gameBuilder().create();
-        game.performTurn(new PassTurn());
+        player1.updateVersatile(2);
 
         // when
-        game.performTurn(new BuyCardTurn(cheapCard1));
+        game.performTurn(new BuyCardTurn(cheapCard4));
 
         // then
-        assertEquals(0, player2.getTokens().getGreen());
-        assertEquals(3, player2.getTokens().getVersatile());
+        assertEquals(new Tokens(0, 0, 0, 0, 0, 2), player1.getTokens());
     }
 
     @Test
