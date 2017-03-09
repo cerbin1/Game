@@ -108,6 +108,31 @@ public class GameTest {
     }
 
     @Test
+    public void shouldRemoveCardFromGameCardsAfterReservation() {
+        // given
+        Game game = gameBuilder().create();
+        cheapCard5.setReserved(true);
+
+        // when
+        game.performTurn(new ReservationTurn(cheapCard5));
+
+        // then
+        assertFalse(game.getAvailableCards().contains(cheapCard5));
+    }
+
+    @Test
+    public void shouldRemoveVersatileTokenFromGameAfterReservation() {
+        // given
+        Game game = gameBuilder().create();
+
+        // when
+        game.performTurn(new ReservationTurn(cheapCard2));
+
+        // then
+        assertEquals(new Tokens(7, 4), game.getTokens());
+    }
+
+    @Test
     public void shouldBuyCardAndLoseTokens() {
         // given
         Game game = gameBuilder().create();
@@ -117,7 +142,7 @@ public class GameTest {
 
         // then
         assertEquals(player2, game.getCurrentPlayer());
-        assertEquals(new Tokens(10, 9, 7, 7, 7), game.getTokens());
+        assertEquals(new Tokens(10, 9, 7, 7, 7, 5), game.getTokens());
         assertEquals(new Tokens(1, 0, 0, 1, 0), player1.getTokens());
         assertFalse(mediumCard2.isReserved());
         assertFalse(game.getAvailableCards().contains(mediumCard2));
@@ -225,9 +250,8 @@ public class GameTest {
         game.performTurn(new BuyCardTurn(cheapCard6));
 
         // then
-        System.out.println(player1.getTokens().getBlue());
         assertEquals(new Tokens(2, 0, 0, 1, 0), player1.getTokens());
-        assertEquals(new Tokens(9, 9, 7, 7, 7), game.getTokens());
+        assertEquals(new Tokens(9, 9, 7, 7, 7, 5), game.getTokens());
     }
 
     @Test
@@ -242,19 +266,6 @@ public class GameTest {
 
         // then
         assertFalse(cheapCard8.isReserved());
-    }
-
-    @Test
-    public void shouldRemoveCardFromGameCardsAfterReservation() {
-        // given
-        Game game = gameBuilder().create();
-        cheapCard5.setReserved(true);
-
-        // when
-        game.performTurn(new ReservationTurn(cheapCard5));
-
-        // then
-        assertFalse(game.getAvailableCards().contains(cheapCard5));
     }
 
     @Test
