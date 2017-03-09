@@ -7,7 +7,7 @@ import static app.game.token.TokenColor.*;
 
 public class Tokens {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
-    private final int versatile;
+    private int versatile;
 
     public Tokens() {
         this(0, 0);
@@ -68,6 +68,10 @@ public class Tokens {
         return versatile;
     }
 
+    public void setVersatile(int value) {
+        versatile = value;
+    }
+
     public Map<TokenColor, Integer> asMap() {
         return tokens;
     }
@@ -79,7 +83,7 @@ public class Tokens {
 
         if (o instanceof Tokens) {
             Tokens that = (Tokens) o;
-            return tokens.equals(that.tokens);
+            return tokens.equals(that.tokens) && versatile == that.getVersatile();
         } else {
             return false;
         }
