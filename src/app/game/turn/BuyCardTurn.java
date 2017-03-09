@@ -18,7 +18,7 @@ public class BuyCardTurn extends Turn {
         Tokens playerTokens = player.getTokensIncludingBoughtCards();
         Tokens cost = card.getCost();
         Tokens gameTokens = game.getTokens();
-        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && playerHaveEnoughTokensToBuyCard(playerTokens, cost)) {
+        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && isPlayerAbleToBuyCard(playerTokens, cost)) {
             game.removeCard(card);
             player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
             game.setTokens(getGameTokensAfterUpdate(cost, gameTokens));
@@ -31,7 +31,7 @@ public class BuyCardTurn extends Turn {
         }
     }
 
-    private boolean playerHaveEnoughTokensToBuyCard(Tokens playerTokens, Tokens cost) {
+    private boolean isPlayerAbleToBuyCard(Tokens playerTokens, Tokens cost) {
         return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
     }
 
