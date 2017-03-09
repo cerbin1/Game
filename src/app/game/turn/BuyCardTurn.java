@@ -20,7 +20,7 @@ public class BuyCardTurn extends Turn {
         Tokens playerTokens = player.getTokensIncludingBoughtCards();
         Tokens cost = card.getCost();
         Tokens gameTokens = game.getTokens();
-        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && isPlayerAbleToBuyCard(playerTokens, cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerTokens, cost)) {
+        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && player.isAbleToBuyCard(cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerTokens, cost)) {
             game.removeCard(card);
             player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
             game.setTokens(getGameTokensAfterUpdate(cost, gameTokens));

@@ -66,4 +66,9 @@ public class Player {
     private int getPointsFromNobility() {
         return nobilities.stream().mapToInt(Nobility::getPoints).sum();
     }
+
+    public boolean isAbleToBuyCard(Tokens cost) {
+        Tokens playerTokens = getTokensIncludingBoughtCards();
+        return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
+    }
 }
