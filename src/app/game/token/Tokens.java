@@ -13,6 +13,11 @@ public class Tokens {
         this(0, 0);
     }
 
+    public Tokens(Tokens tokens) {
+        this.tokens.putAll(tokens.asMap());
+        this.versatile = tokens.versatile;
+    }
+
     public Tokens(int regular, int versatile) {
         tokens.put(Green, regular);
         tokens.put(Purple, regular);
