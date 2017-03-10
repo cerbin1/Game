@@ -19,7 +19,7 @@ public class Tokens {
     }
 
     public Tokens(int versatile) {
-        this.versatile = versatile;
+        this(0, versatile);
     }
 
     public Tokens(int regular, int versatile) {
