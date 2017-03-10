@@ -8,31 +8,36 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class GameBuilder {
-    private Tokens tokens;
+    private Tokens tokens = new Tokens();
     private final List<Card> cards = new ArrayList<>();
     private final List<Player> players = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
 
     public Game create() {
+        if (players.isEmpty()) throw new RuntimeException("Missing players");
         return new Game(tokens, players, cards, nobilities);
     }
 
-    public GameBuilder setTokens(Tokens tokens) {
+    public static GameBuilder builder() {
+        return new GameBuilder();
+    }
+
+    public GameBuilder set(Tokens tokens) {
         this.tokens = tokens;
         return this;
     }
 
-    public GameBuilder addPlayer(Player player) {
+    public GameBuilder add(Player player) {
         players.add(player);
         return this;
     }
 
-    public GameBuilder addCard(Card card) {
+    public GameBuilder add(Card card) {
         cards.add(card);
         return this;
     }
 
-    public GameBuilder addNobility(Nobility nobility) {
+    public GameBuilder add(Nobility nobility) {
         nobilities.add(nobility);
         return this;
     }
