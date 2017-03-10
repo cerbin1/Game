@@ -100,4 +100,20 @@ public class PlayerTest {
         // then
         assertEquals(tokens, player.getTokens());
     }
+
+    @Test
+    public void shouldIncludeReservedCardToPlayerResources() {
+        // given
+        Player player = new Player(new Tokens(0, 1, 1, 1, 1));
+        Card card = new CheapCard(new Tokens(), 0, Green);
+        card.setReserved(true);
+        player.addCard(card);
+        player.addCard(new CheapCard(new Tokens(1, 0, 0, 0, 0), 0, Green));
+
+        // when
+        Tokens tokens = player.getTokensIncludingBoughtCards();
+
+        // then
+        assertEquals(new Tokens(1, 1, 1, 1, 1), tokens);
+    }
 }
