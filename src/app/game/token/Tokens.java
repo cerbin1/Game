@@ -18,6 +18,10 @@ public class Tokens {
         this.versatile = tokens.versatile;
     }
 
+    public Tokens(int versatile) {
+        this.versatile = versatile;
+    }
+
     public Tokens(int regular, int versatile) {
         tokens.put(Green, regular);
         tokens.put(Purple, regular);
@@ -46,7 +50,7 @@ public class Tokens {
     }
 
     int get(TokenColor color) {
-        return tokens.get(color);
+        return tokens.getOrDefault(color, 0);
     }
 
     public int getGreen() {
@@ -90,6 +94,11 @@ public class Tokens {
         }
     }
 
+    @Override
+    public String toString() {
+        return "Tokens{" + tokens + ", versatile=" + versatile + '}';
+    }
+
     public Tokens add(Tokens parameter) {
         Tokens result = new Tokens(0, versatile + parameter.versatile);
         for (TokenColor color : TokenColor.values()) {
@@ -101,7 +110,7 @@ public class Tokens {
     public Tokens subtract(Tokens parameter) {
         Tokens result = new Tokens(0, versatile - parameter.versatile);
         for (TokenColor color : TokenColor.values()) {
-            result.tokens.put(color, tokens.get(color) - parameter.tokens.get(color));
+            result.tokens.put(color, get(color) - parameter.get(color));
         }
         return result;
     }
