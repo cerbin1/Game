@@ -26,9 +26,11 @@ public class Player {
     }
 
     public Tokens getTokensIncludingBoughtCards() {
-        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Green).count()), (int) (tokens.getPurple() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Purple).count()),
-                (int) (tokens.getBlue() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Blue).count()), (int) (tokens.getBlack() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Black).count()),
-                (int) (tokens.getRed() + boughtCards.stream().filter(token -> token.getColor() == TokenColor.Red).count()), tokens.getVersatile());
+        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Green).count()),
+                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Purple).count()),
+                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Blue).count()),
+                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Black).count()),
+                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red).count()), tokens.getVersatile());
     }
 
     public List<Card> getCards() {
