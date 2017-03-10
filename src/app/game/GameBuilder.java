@@ -17,19 +17,23 @@ public class GameBuilder {
         return new Game(tokens, players, cards, nobilities);
     }
 
-    public void setTokens(Tokens tokens) {
+    public GameBuilder setTokens(Tokens tokens) {
         this.tokens = tokens;
+        return this;
     }
 
-    public void addPlayer(Player player) {
+    public GameBuilder addPlayer(Player player) {
         players.add(player);
+        return this;
     }
 
-    public void addCard(Card card) {
+    public GameBuilder addCard(Card card) {
         cards.add(card);
+        return this;
     }
 
-    public void addNobility(Nobility nobility) {
+    public GameBuilder addNobility(Nobility nobility) {
         nobilities.add(nobility);
+        return this;
     }
 }
