@@ -58,10 +58,6 @@ public class Game {
         cards.remove(card);
     }
 
-    public Tokens getTokens(Tokens cost) {
-        return new Tokens(tokens.getGreen() + cost.getGreen(), tokens.getPurple() + cost.getPurple(), tokens.getBlue() + cost.getBlue(), tokens.getBlack() + cost.getBlack(), tokens.getRed() + cost.getRed(), tokens.getVersatile() - cost.getVersatile());
-    }
-
     public static void main(String[] args) {
         new GameBuilder().create();
     }

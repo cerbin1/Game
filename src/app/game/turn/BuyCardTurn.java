@@ -63,10 +63,6 @@ public class BuyCardTurn extends Turn {
         }
     }
 
-    private Tokens getGameTokensAfterUpdate(Tokens cost, Tokens gameTokens) {
-        return new Tokens(gameTokens.getGreen() + cost.getGreen(), gameTokens.getPurple() + cost.getPurple(), gameTokens.getBlue() + cost.getBlue(), gameTokens.getBlack() + cost.getBlack(), gameTokens.getRed() + cost.getRed(), gameTokens.getVersatile() - versatileNeeded);
-    }
-
     private Tokens getPlayerTokensAfterBuyingCard(Tokens playerTokens, Tokens cost) {
         return playerTokens.subtract(new Tokens(cost.getGreen() + green, cost.getPurple() + purple, cost.getBlue() + blue, cost.getBlack() + black, cost.getRed() + red, versatileNeeded));
     }

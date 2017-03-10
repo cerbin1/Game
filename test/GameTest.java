@@ -142,8 +142,8 @@ public class GameTest {
 
         // then
         assertEquals(player2, game.getCurrentPlayer());
-        assertEquals(new Tokens(10, 9, 7, 7, 7, 5), game.getTokens());
         assertEquals(new Tokens(1, 0, 0, 1, 0), player1.getTokens());
+        assertEquals(new Tokens(10, 9, 7, 7, 7, 5), game.getTokens());
         assertFalse(mediumCard2.isReserved());
         assertFalse(game.getAvailableCards().contains(mediumCard2));
         assertTrue(player1.getCards().contains(mediumCard2));
