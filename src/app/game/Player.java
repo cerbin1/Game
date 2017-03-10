@@ -61,8 +61,8 @@ public class Player {
         this.tokens = tokens;
     }
 
-    public void setVersatile(int value) {
-        tokens.setVersatile(getTokens().getVersatile() + value);
+    public void incVersatile(int value) {
+        tokens = tokens.add(new Tokens(0, value));
     }
 
     private int getPointsFromCards() {

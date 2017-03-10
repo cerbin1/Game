@@ -264,7 +264,7 @@ public class GameTest {
     public void shouldNotLoseVersatileTokens() {
         // given
         Game game = gameBuilder().create();
-        player1.setVersatile(2);
+        player1.incVersatile(2);
 
         // when
         game.performTurn(new BuyCardTurn(cheapCard4));
