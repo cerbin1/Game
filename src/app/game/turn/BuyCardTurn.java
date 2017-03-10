@@ -17,12 +17,12 @@ public class BuyCardTurn extends Turn {
     @Override
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
-        Tokens playerTokens = player.getTokensIncludingBoughtCards();
+        Tokens playerResources = player.getTokensIncludingBoughtCards();
         Tokens cost = card.getCost();
-        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && player.isAbleToBuyCard(cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerTokens, cost)) {
+        if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && player.isAbleToBuyCard(cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerResources, cost)) {
             Tokens costWithVersatileTokens = new Tokens(cost.getGreen(), cost.getPurple(), cost.getBlue(), cost.getBlack(), cost.getRed(), versatileNeeded);
             game.removeCard(card);
-            player.setTokens(getTokensAfterBuyingCard(playerTokens, cost));
+            player.setTokens(getTokensAfterBuyingCard(playerResources, cost));
             game.setTokens(costWithVersatileTokens);
             if (!card.isReserved()) {
                 player.addCard(card);
