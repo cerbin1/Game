@@ -1,5 +1,6 @@
 package app.game.token;
 
+import java.util.Map;
 import java.util.function.BiConsumer;
 
 public class TokensAcquireValidator {
@@ -31,7 +32,13 @@ public class TokensAcquireValidator {
     }
 
     private boolean isTooManyTokensChose(Tokens requested) {
-        return requested.getGreen() > 2 || requested.getPurple() > 2 || requested.getBlue() > 2 || requested.getBlack() > 2 || requested.getRed() > 2;
+        Map<TokenColor, Integer> tokens = requested.asMap();
+        for(Map.Entry<TokenColor, Integer> token : tokens.entrySet()) {
+            if(token.getValue() > 2) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean validate(Tokens requestedTokens, int value, int amount) {
