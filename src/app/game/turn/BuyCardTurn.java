@@ -22,7 +22,7 @@ public class BuyCardTurn extends Turn {
         if (player.getCards().contains(card) || game.getAvailableCards().contains(card) && player.isAbleToBuyCard(cost) || isPlayerAbleToBuyCardWithVersatileTokens(playerTokens, cost)) {
             Tokens costWithVersatileTokens = new Tokens(cost.getGreen(), cost.getPurple(), cost.getBlue(), cost.getBlack(), cost.getRed(), versatileNeeded);
             game.removeCard(card);
-            player.setTokens(getPlayerTokensAfterBuyingCard(playerTokens, cost));
+            player.setTokens(getTokensAfterBuyingCard(playerTokens, cost));
             game.setTokens(costWithVersatileTokens);
             if (!card.isReserved()) {
                 player.addCard(card);
@@ -63,7 +63,7 @@ public class BuyCardTurn extends Turn {
         }
     }
 
-    private Tokens getPlayerTokensAfterBuyingCard(Tokens playerTokens, Tokens cost) {
-        return playerTokens.subtract(new Tokens(cost.getGreen() + green, cost.getPurple() + purple, cost.getBlue() + blue, cost.getBlack() + black, cost.getRed() + red, versatileNeeded));
+    private Tokens getTokensAfterBuyingCard(Tokens playerTokens, Tokens cost) {
+        return new Tokens(playerTokens.getGreen() - (cost.getGreen() + green), playerTokens.getPurple() - (cost.getPurple() + purple), playerTokens.getBlue() - (cost.getBlue() + blue), playerTokens.getBlack() - (cost.getBlack() + black), playerTokens.getRed() - (cost.getRed() + red), playerTokens.getVersatile() + versatileNeeded);
     }
 }
