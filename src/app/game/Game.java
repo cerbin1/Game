@@ -41,8 +41,8 @@ public class Game {
         return cards;
     }
 
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
+    public void setTokens(Tokens cost) {
+        tokens = new Tokens(tokens.getGreen() + cost.getGreen(), tokens.getPurple() + cost.getPurple(), tokens.getBlue() + cost.getBlue(), tokens.getBlack() + cost.getBlack(), tokens.getRed() + cost.getRed(), tokens.getVersatile() - cost.getVersatile());
     }
 
     public void performTurn(Turn turn) {
@@ -56,6 +56,10 @@ public class Game {
 
     public void removeCard(Card card) {
         cards.remove(card);
+    }
+
+    public Tokens getTokens(Tokens cost) {
+        return new Tokens(tokens.getGreen() + cost.getGreen(), tokens.getPurple() + cost.getPurple(), tokens.getBlue() + cost.getBlue(), tokens.getBlack() + cost.getBlack(), tokens.getRed() + cost.getRed(), tokens.getVersatile() - cost.getVersatile());
     }
 
     public static void main(String[] args) {
