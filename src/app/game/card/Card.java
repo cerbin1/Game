@@ -34,4 +34,8 @@ public abstract class Card {
     public TokenColor getColor() {
         return color;
     }
+
+    public boolean is(TokenColor color) {
+        return this.color.equals(color);
+    }
 }
