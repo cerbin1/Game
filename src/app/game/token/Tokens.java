@@ -95,10 +95,10 @@ public class Tokens {
     }
 
     public Tokens add(Tokens tokens) {
-        return new Tokens();
+        return new Tokens(getGreen() + tokens.getGreen(), getPurple() + tokens.getPurple(), getBlue() + tokens.getBlue(), getBlack() + tokens.getBlack(), getRed() + tokens.getRed(), getVersatile() + tokens.getVersatile());
     }
 
     public Tokens subtract(Tokens tokens) {
-        return new Tokens();
+        return new Tokens(getGreen() - tokens.getGreen(), getPurple() - tokens.getPurple(), getBlue() - tokens.getBlue(), getBlack() - tokens.getBlack(), getRed() - tokens.getRed(), getVersatile() - tokens.getVersatile());
     }
 }
