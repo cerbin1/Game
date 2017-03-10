@@ -7,7 +7,7 @@ import static app.game.token.TokenColor.*;
 
 public class Tokens {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
-    private int versatile;
+    private final int versatile;
 
     public Tokens() {
         this(0, 0);
@@ -73,10 +73,6 @@ public class Tokens {
         return versatile;
     }
 
-    public void setVersatile(int value) {
-        versatile = value;
-    }
-
     public Map<TokenColor, Integer> asMap() {
         return tokens;
     }
@@ -94,11 +90,19 @@ public class Tokens {
         }
     }
 
-    public Tokens add(Tokens tokens) {
-        return new Tokens(getGreen() + tokens.getGreen(), getPurple() + tokens.getPurple(), getBlue() + tokens.getBlue(), getBlack() + tokens.getBlack(), getRed() + tokens.getRed(), getVersatile() + tokens.getVersatile());
+    public Tokens add(Tokens parameter) {
+        Tokens result = new Tokens(0, versatile + parameter.versatile);
+        for (TokenColor color : TokenColor.values()) {
+            result.tokens.put(color, tokens.get(color) + parameter.tokens.get(color));
+        }
+        return result;
     }
 
-    public Tokens subtract(Tokens tokens) {
-        return new Tokens(getGreen() - tokens.getGreen(), getPurple() - tokens.getPurple(), getBlue() - tokens.getBlue(), getBlack() - tokens.getBlack(), getRed() - tokens.getRed(), getVersatile() - tokens.getVersatile());
+    public Tokens subtract(Tokens parameter) {
+        Tokens result = new Tokens(0, versatile - parameter.versatile);
+        for (TokenColor color : TokenColor.values()) {
+            result.tokens.put(color, tokens.get(color) - parameter.tokens.get(color));
+        }
+        return result;
     }
 }
