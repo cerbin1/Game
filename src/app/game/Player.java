@@ -2,11 +2,12 @@ package app.game;
 
 import app.game.card.Card;
 import app.game.card.nobility.Nobility;
-import app.game.token.TokenColor;
 import app.game.token.Tokens;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import static app.game.token.TokenColor.*;
 
 public class Player {
     private final List<Card> boughtCards = new ArrayList<>();
@@ -26,12 +27,14 @@ public class Player {
     }
 
     public Tokens getTokensIncludingBoughtCards() {
-        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Green && !card.isReserved()).count()),
-                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Purple && !card.isReserved()).count()),
-                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Blue && !card.isReserved()).count()),
-                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Black && !card.isReserved()).count()),
-                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red && !card.isReserved()).count()),
-                tokens.getVersatile());
+        return new Tokens(
+                (int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
+                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
+                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
+                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
+                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.is(Red) && !card.isReserved()).count()),
+                tokens.getVersatile()
+        );
     }
 
     public List<Card> getCards() {
