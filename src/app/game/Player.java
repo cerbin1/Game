@@ -10,7 +10,7 @@ import java.util.List;
 import static app.game.token.TokenColor.*;
 
 public class Player {
-    private final List<Card> boughtCards = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
     private Tokens tokens;
 
@@ -28,25 +28,25 @@ public class Player {
 
     public Tokens getTokensIncludingBoughtCards() {
         return new Tokens(
-                (int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
-                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
-                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
-                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
-                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.is(Red) && !card.isReserved()).count()),
+                (int) (tokens.getGreen() + cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
+                (int) (tokens.getPurple() + cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
+                (int) (tokens.getBlue() + cards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
+                (int) (tokens.getBlack() + cards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
+                (int) (tokens.getRed() + cards.stream().filter(card -> card.is(Red) && !card.isReserved()).count()),
                 tokens.getVersatile()
         );
     }
 
     public List<Card> getCards() {
-        return boughtCards;
+        return cards;
     }
 
     public boolean hasCards() {
-        return !boughtCards.isEmpty();
+        return !cards.isEmpty();
     }
 
     public void addCard(Card card) {
-        boughtCards.add(card);
+        cards.add(card);
     }
 
     public void addNobility(Nobility nobility) {
@@ -66,7 +66,7 @@ public class Player {
     }
 
     private int getPointsFromCards() {
-        return boughtCards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
+        return cards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
     }
 
     private int getPointsFromNobility() {
@@ -76,5 +76,9 @@ public class Player {
     public boolean isAbleToBuyCard(Tokens cost) {
         Tokens playerTokens = getTokensIncludingBoughtCards();
         return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
+    }
+
+    public boolean hasCard(Card card) {
+        return cards.contains(card);
     }
 }
