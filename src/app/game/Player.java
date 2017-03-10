@@ -30,7 +30,8 @@ public class Player {
                 (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Purple).count()),
                 (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Blue).count()),
                 (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Black).count()),
-                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red).count()), tokens.getVersatile());
+                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red).count()),
+                tokens.getVersatile());
     }
 
     public List<Card> getCards() {
