@@ -68,4 +68,43 @@ public class TokensTest {
             put(Red, 3);
         }}, map);
     }
+
+    @Test
+    public void shouldCopyTokens() {
+        // given
+        Tokens original = new Tokens(1, 2, 3, 4, 5);
+
+        // when
+        Tokens copy = new Tokens(original);
+
+        // then
+        assertEquals(copy, original);
+    }
+
+    @Test
+    public void shouldAddTokens() {
+        // given
+        Tokens first = new Tokens(1, 2, 3, 4, 5, 6);
+        Tokens second = new Tokens(0, 4, 4, 1, 5, 6);
+
+        // when
+        Tokens result = first.add(second);
+
+        // then
+        assertEquals(new Tokens(1, 6, 7, 5, 10, 12), result);
+    }
+
+    @Test
+    public void shouldSubtractTokens() {
+        // given
+        Tokens first = new Tokens(1, 2, 3, 4, 5, 6);
+        Tokens second = new Tokens(0, 4, 4, 1, 5, 5);
+
+        // when
+        Tokens result = first.subtract(second);
+
+        // then
+        assertEquals(new Tokens(1, -2, -1, 3, 0, 1), result);
+    }
+
 }

@@ -93,4 +93,12 @@ public class Tokens {
             return false;
         }
     }
+
+    public Tokens add(Tokens tokens) {
+        return new Tokens();
+    }
+
+    public Tokens subtract(Tokens tokens) {
+        return new Tokens();
+    }
 }
