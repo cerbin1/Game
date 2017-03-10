@@ -26,11 +26,11 @@ public class Player {
     }
 
     public Tokens getTokensIncludingBoughtCards() {
-        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Green).count()),
-                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Purple).count()),
-                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Blue).count()),
-                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Black).count()),
-                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red).count()),
+        return new Tokens((int) (tokens.getGreen() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Green && !card.isReserved()).count()),
+                (int) (tokens.getPurple() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Purple && !card.isReserved()).count()),
+                (int) (tokens.getBlue() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Blue && !card.isReserved()).count()),
+                (int) (tokens.getBlack() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Black && !card.isReserved()).count()),
+                (int) (tokens.getRed() + boughtCards.stream().filter(card -> card.getColor() == TokenColor.Red && !card.isReserved()).count()),
                 tokens.getVersatile());
     }
 
