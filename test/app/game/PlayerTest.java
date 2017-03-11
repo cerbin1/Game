@@ -97,19 +97,19 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldIncludeReservedCardToPlayerResources() {
+    public void shouldNotIncludeReservedCardToPlayerResources() {
         // given
-        Player player = new Player(new Tokens(0, 1, 1, 1, 1));
+        Player player = new Player();
         Card card = new CheapCard(new Tokens(), 0, Green);
         card.setReserved(true);
         player.addCard(card);
-        player.addCard(new CheapCard(new Tokens(1, 0, 0, 0, 0), 0, Green));
+        player.addCard(new CheapCard(new Tokens(), 0, Green));
 
         // when
         Tokens tokens = player.getResources();
 
         // then
-        assertEquals(new Tokens(1, 1, 1, 1, 1), tokens);
+        assertEquals(new Tokens(1, 0, 0, 0, 0), tokens);
     }
 
     @Test
