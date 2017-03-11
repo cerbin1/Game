@@ -2,10 +2,12 @@ package app.game;
 
 import app.game.card.Card;
 import app.game.card.nobility.Nobility;
+import app.game.token.TokenColor;
 import app.game.token.Tokens;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import static app.game.token.TokenColor.*;
 
@@ -26,7 +28,7 @@ public class Player {
         return tokens;
     }
 
-    public Tokens getResources() {
+    Tokens getResources() {
         return new Tokens(
                 (int) (tokens.getGreen() + cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
                 (int) (tokens.getPurple() + cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
@@ -49,11 +51,11 @@ public class Player {
         cards.add(card);
     }
 
-    public void addNobility(Nobility nobility) {
+    void addNobility(Nobility nobility) {
         nobilities.add(nobility);
     }
 
-    public int getPoints() {
+    int getPoints() {
         return getPointsFromCards() + getPointsFromNobility();
     }
 

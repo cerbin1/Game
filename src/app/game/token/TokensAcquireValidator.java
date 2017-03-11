@@ -1,16 +1,15 @@
 package app.game.token;
 
-import java.util.Map;
 import java.util.function.BiConsumer;
 
-public class TokensAcquireValidator {
+class TokensAcquireValidator {
     private final Tokens tokens;
 
-    public TokensAcquireValidator(Tokens tokens) {
+    TokensAcquireValidator(Tokens tokens) {
         this.tokens = tokens;
     }
 
-    public boolean canAcquire(Tokens requested) {
+    boolean canAcquire(Tokens requested) {
         if (requested.getVersatile() != 0) {
             return false;
         }
