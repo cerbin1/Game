@@ -9,18 +9,16 @@ import app.game.token.Tokens;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 public class PlayerTest {
     @Test
-    public void shouldCreatePlayerWithDefaultTokens() {
+    public void shouldCreatePlayer() {
         // when
         Player player = new Player(new Tokens(0, 1, 2, 3, 4));
 
         // then
-        assertTrue(new Tokens(0, 1, 2, 3, 4).equals(player.getTokens()));
+        assertEquals(new Tokens(0, 1, 2, 3, 4), player.getTokens());
     }
 
     @Test
@@ -40,18 +38,15 @@ public class PlayerTest {
     }
 
     @Test
-    public void shouldCountPointsFromReservedCards() {
+    public void shouldNotCountPointsFromReservedCards() {
         // given
         Player player = new Player();
         Card reservedCard1 = new CheapCard(new Tokens(), 1, Green);
         Card reservedCard2 = new MediumCard(new Tokens(), 2, Green);
-        Card reservedCard3 = new ExpensiveCard(new Tokens(), 5, Green);
         reservedCard1.setReserved(true);
         reservedCard2.setReserved(true);
-        reservedCard3.setReserved(true);
         player.addCard(reservedCard1);
         player.addCard(reservedCard2);
-        player.addCard(reservedCard3);
 
         // when
         int points = player.getPoints();
@@ -79,15 +74,13 @@ public class PlayerTest {
         // given
         Player player = new Player();
         player.addCard(new MediumCard(new Tokens(), 4, Green));
-        player.addCard(new MediumCard(new Tokens(), 3, Green));
-        player.addCard(new ExpensiveCard(new Tokens(), 5, Green));
         player.addNobility(new Nobility(new Tokens(), 3));
 
         // when
         int points = player.getPoints();
 
         // then
-        assertEquals(15, points);
+        assertEquals(7, points);
     }
 
     @Test
@@ -113,7 +106,7 @@ public class PlayerTest {
         player.addCard(new CheapCard(new Tokens(1, 0, 0, 0, 0), 0, Green));
 
         // when
-        Tokens tokens = player.getTokensIncludingBoughtCards();
+        Tokens tokens = player.getResources();
 
         // then
         assertEquals(new Tokens(1, 1, 1, 1, 1), tokens);

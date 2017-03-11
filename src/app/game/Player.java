@@ -26,7 +26,7 @@ public class Player {
         return tokens;
     }
 
-    public Tokens getTokensIncludingBoughtCards() {
+    public Tokens getResources() {
         return new Tokens(
                 (int) (tokens.getGreen() + cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
                 (int) (tokens.getPurple() + cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
@@ -74,7 +74,7 @@ public class Player {
     }
 
     public boolean isAbleToBuyCard(Tokens cost) {
-        Tokens playerTokens = getTokensIncludingBoughtCards();
+        Tokens playerTokens = getResources();
         return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
     }
 
