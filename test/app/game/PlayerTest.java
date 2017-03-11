@@ -74,13 +74,12 @@ public class PlayerTest {
         // given
         Player player = new Player(new Tokens(1, 1, 1, 1, 1, 1));
         player.addCard(new CheapCard(new Tokens(), 0, Red));
-        player.addCard(new CheapCard());
 
         // when
         Tokens resources = player.getResources();
 
         // then
-        assertEquals(new Tokens(2, 1, 1, 1, 2, 1), resources);
+        assertEquals(new Tokens(1, 1, 1, 1, 2, 1), resources);
     }
 
     @Test
