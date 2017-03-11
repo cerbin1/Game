@@ -78,7 +78,9 @@ public class Tokens {
     }
 
     public Map<TokenColor, Integer> asMap() {
-        return tokens;
+        Map<TokenColor, Integer> map = new EnumMap<>(TokenColor.class);
+        map.putAll(tokens);
+        return map;
     }
 
     @Override
