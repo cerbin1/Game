@@ -15,7 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 public class ReservationTurnTest {
     @Rule
-    ExpectedException expectedException = ExpectedException.none();
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void shouldReserveCard() {
@@ -86,12 +86,11 @@ public class ReservationTurnTest {
         Turn turn = new ReservationTurn(new CheapCard());
         Game game = builder().add(new Player()).create();
 
-        // when
-        turn.invoke(game);
-
-        // then
         expectedException.expect(IllegalTurnException.class);
         expectedException.expectMessage("Card is not available in game");
+
+        // when
+        turn.invoke(game);
     }
 
     @Test(expected = IllegalTurnException.class)
@@ -103,12 +102,11 @@ public class ReservationTurnTest {
 
         card.setReserved(true);
 
-        // when
-        turn.invoke(game);
-
-        // then
         expectedException.expect(IllegalTurnException.class);
         expectedException.expectMessage("Card already reserved");
+
+        // when
+        turn.invoke(game);
     }
 
     @Test(expected = IllegalTurnException.class)
@@ -121,11 +119,10 @@ public class ReservationTurnTest {
 
         player.addCard(card);
 
-        // when
-        turn.invoke(game);
-
-        // then
         expectedException.expect(IllegalTurnException.class);
         expectedException.expectMessage("Card is already possessed by player");
+
+        // when
+        turn.invoke(game);
     }
 }
