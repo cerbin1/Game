@@ -9,6 +9,7 @@ import app.game.token.Tokens;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;
+import static app.game.token.TokenColor.Red;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
@@ -18,7 +19,7 @@ public class PlayerTest {
         Player player = new Player(new Tokens(0, 1, 2, 3, 4));
 
         // then
-        assertEquals(new Tokens(0, 1, 2, 3, 4), player.getTokens());
+        assertEquals(new Tokens(0, 1, 2, 3, 4, 0), player.getTokens());
     }
 
     @Test
@@ -69,6 +70,20 @@ public class PlayerTest {
     }
 
     @Test
+    public void shouldGetResources() {
+        // given
+        Player player = new Player(new Tokens(1, 1, 1, 1, 1, 1));
+        player.addCard(new CheapCard(new Tokens(), 0, Red));
+        player.addCard(new CheapCard());
+
+        // when
+        Tokens resources = player.getResources();
+
+        // then
+        assertEquals(new Tokens(2, 1, 1, 1, 2, 1), resources);
+    }
+
+    @Test
     public void shouldNotIncludeReservedCardToPlayerResources() {
         // given
         Player player = new Player();
@@ -109,5 +124,17 @@ public class PlayerTest {
 
         // then
         assertFalse(hasCard);
+    }
+
+    @Test
+    public void shouldIncrementVersatile() {
+        // given
+        Player player = new Player(new Tokens(0, 2));
+
+        // when
+        player.incVersatile(1);
+
+        // then
+        assertEquals(new Tokens(0, 3), player.getTokens());
     }
 }
