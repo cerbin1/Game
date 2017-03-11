@@ -2,12 +2,11 @@ package app.game;
 
 import app.game.card.Card;
 import app.game.card.nobility.Nobility;
-import app.game.token.TokenColor;
+import app.game.token.Resources;
 import app.game.token.Tokens;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 import static app.game.token.TokenColor.*;
 
@@ -28,7 +27,7 @@ public class Player {
         return tokens;
     }
 
-    Tokens getResources() {
+    public Tokens getResources() {
         return new Tokens(
                 (int) (tokens.getGreen() + cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
                 (int) (tokens.getPurple() + cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
@@ -37,6 +36,10 @@ public class Player {
                 (int) (tokens.getRed() + cards.stream().filter(card -> card.is(Red) && !card.isReserved()).count()),
                 tokens.getVersatile()
         );
+    }
+
+    public Resources getResourcesNEW() {
+        return new Resources(getTokensFromCards(), getTokens(), tokens.getVersatile());
     }
 
     public List<Card> getCards() {
@@ -78,6 +81,16 @@ public class Player {
     public boolean isAbleToBuyCard(Tokens cost) {
         Tokens playerTokens = getResources();
         return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
+    }
+
+    public Tokens getTokensFromCards() {
+        return new Tokens(
+                (int) (cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
+                (int) (cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
+                (int) (cards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
+                (int) (cards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
+                (int) (cards.stream().filter(card -> card.is(Red) && !card.isReserved()).count())
+        );
     }
 
     public boolean hasCard(Card card) {
