@@ -8,10 +8,12 @@ import static java.lang.Math.min;
 
 class Resources {
     private final Tokens stationary, temporary;
+    private final int versatile;
 
-    Resources(Tokens stationary, Tokens temporary) {
+    Resources(Tokens stationary, Tokens temporary, int versatile) {
         this.stationary = stationary.asCost();
         this.temporary = temporary.asCost();
+        this.versatile = versatile;
     }
 
     boolean canBuy(Tokens cost) {
@@ -25,7 +27,7 @@ class Resources {
     }
 
     private Tokens compensateInsufficientTokens(Tokens paidCost) {
-        InsufficientTokens compensator = new InsufficientTokens(temporary.getVersatile());
+        InsufficientTokens compensator = new InsufficientTokens(versatile);
         paidCost.asMap().entrySet().forEach(compensator);
         return compensator.getTokensLeft();
     }
