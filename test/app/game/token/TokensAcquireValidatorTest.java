@@ -43,7 +43,6 @@ public class TokensAcquireValidatorTest {
         boolean result5 = validator.canAcquire(new Tokens(2, 0, 2, 0, 0));
         boolean result6 = validator.canAcquire(new Tokens(3, 0, 0, 0, 0));
         boolean result7 = validator.canAcquire(new Tokens(1, 0, 0, 2, 0));
-        boolean result8 = validator.canAcquire(new Tokens(10, 0, 0, 0, 0));
 
         // then
         assertFalse(result1);
@@ -53,11 +52,10 @@ public class TokensAcquireValidatorTest {
         assertFalse(result5);
         assertFalse(result6);
         assertFalse(result7);
-        assertFalse(result8);
     }
 
     @Test
-    public void shouldNotAcquireTokensWhenAfterAcquireNoTokens() {
+    public void shouldNotAcquireTokensWhenAfterAcquireNoTokensLeft() {
         // given
         TokensAcquireValidator validator = new TokensAcquireValidator(new Tokens(0, 0, 0, 2, 0));
 
