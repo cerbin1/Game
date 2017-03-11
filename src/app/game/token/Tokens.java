@@ -114,4 +114,10 @@ public class Tokens {
         }
         return result;
     }
+
+    public Tokens asCost() {
+        Tokens tokens = new Tokens();
+        tokens.tokens.putAll(this.tokens);
+        return tokens;
+    }
 }

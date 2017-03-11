@@ -107,4 +107,15 @@ public class TokensTest {
         assertEquals(new Tokens(1, -2, -1, 3, 0, 1), result);
     }
 
+    @Test
+    public void shouldReturnAsCost() {
+        // given
+        Tokens tokens = new Tokens(1, 2, 3, 4, 5, 6);
+
+        // when
+        Tokens cost = tokens.asCost();
+
+        // then
+        assertEquals(new Tokens(1, 2, 3, 4, 5, 0), cost);
+    }
 }
