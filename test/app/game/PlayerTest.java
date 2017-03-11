@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 public class PlayerTest {
@@ -116,5 +117,32 @@ public class PlayerTest {
 
         // then
         assertEquals(new Tokens(1, 1, 1, 1, 1), tokens);
+    }
+
+    @Test
+    public void shouldHaveCard() {
+        // given
+        Player player = new Player();
+        Card card = new CheapCard();
+        player.addCard(card);
+
+        // when
+        boolean hasCard = player.hasCard(card);
+
+        // then
+        assertTrue(hasCard);
+    }
+
+    @Test
+    public void shouldNotHaveCard() {
+        // given
+        Player player = new Player();
+        Card card = new CheapCard();
+
+        // when
+        boolean hasCard = player.hasCard(card);
+
+        // then
+        assertFalse(hasCard);
     }
 }
