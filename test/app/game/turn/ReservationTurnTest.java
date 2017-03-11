@@ -111,4 +111,19 @@ public class ReservationTurnTest {
         // when
         turn.invoke(game);
     }
+
+    @Test(expected = IllegalTurnException.class)
+    public void shouldThrowOnOtherPlayersCard() {
+        // given
+        CheapCard card = new CheapCard();
+        Player first = new Player();
+        Player second = new Player();
+        Turn turn = new ReservationTurn(card);
+        Game game = builder().add(first).add(second).add(card).create();
+
+        second.addCard(card);
+
+        // when
+        turn.invoke(game);
+    }
 }
