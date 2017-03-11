@@ -32,13 +32,7 @@ public class TokensAcquireValidator {
     }
 
     private boolean isTooManyTokensChose(Tokens requested) {
-        Map<TokenColor, Integer> tokens = requested.asMap();
-        for(Map.Entry<TokenColor, Integer> token : tokens.entrySet()) {
-            if(token.getValue() > 2) {
-                return true;
-            }
-        }
-        return false;
+        return requested.asMap().entrySet().stream().anyMatch(token -> token.getValue() > 2);
     }
 
     private boolean validate(Tokens requestedTokens, int value, int amount) {
