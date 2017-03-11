@@ -6,22 +6,22 @@ import java.util.function.Consumer;
 import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
-class Resources {
+public class Resources {
     private final Tokens stationary, temporary;
     private final int versatile;
 
-    Resources(Tokens stationary, Tokens temporary, int versatile) {
+    public Resources(Tokens stationary, Tokens temporary, int versatile) {
         this.stationary = stationary.asCost();
         this.temporary = temporary.asCost();
         this.versatile = versatile;
     }
 
-    boolean canBuy(Tokens cost) {
+    public boolean canBuy(Tokens cost) {
         return calculateChange(cost).asMap().entrySet().stream()
                 .allMatch(entry -> entry.getValue() >= 0);
     }
 
-    Tokens calculateChange(Tokens cost) {
+    public Tokens calculateChange(Tokens cost) {
         Tokens paidCost = stationary.add(temporary).subtract(cost);
         return compensateInsufficientTokens(paidCost);
     }
