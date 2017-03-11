@@ -5,13 +5,18 @@ import app.game.Player;
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.token.Tokens;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import static app.game.GameBuilder.builder;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class ReservationTurnTest {
+    @Rule
+    ExpectedException expectedException = ExpectedException.none();
+
     @Test
     public void shouldReserveCard() {
         // given
@@ -83,6 +88,10 @@ public class ReservationTurnTest {
 
         // when
         turn.invoke(game);
+
+        // then
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Card is not available in game");
     }
 
     @Test(expected = IllegalTurnException.class)
@@ -96,6 +105,10 @@ public class ReservationTurnTest {
 
         // when
         turn.invoke(game);
+
+        // then
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Card already reserved");
     }
 
     @Test(expected = IllegalTurnException.class)
@@ -110,20 +123,9 @@ public class ReservationTurnTest {
 
         // when
         turn.invoke(game);
-    }
 
-    @Test(expected = IllegalTurnException.class)
-    public void shouldThrowOnOtherPlayersCard() {
-        // given
-        CheapCard card = new CheapCard();
-        Player first = new Player();
-        Player second = new Player();
-        Turn turn = new ReservationTurn(card);
-        Game game = builder().add(first).add(second).create();
-
-        second.addCard(card);
-
-        // when
-        turn.invoke(game);
+        // then
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Card is already possessed by player");
     }
 }
