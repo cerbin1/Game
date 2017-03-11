@@ -119,7 +119,7 @@ public class ReservationTurnTest {
         Player first = new Player();
         Player second = new Player();
         Turn turn = new ReservationTurn(card);
-        Game game = builder().add(first).add(second).add(card).create();
+        Game game = builder().add(first).add(second).create();
 
         second.addCard(card);
 
