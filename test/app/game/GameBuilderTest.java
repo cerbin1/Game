@@ -17,7 +17,7 @@ public class GameBuilderTest {
         Tokens tokens = new Tokens();
 
         // when
-        Game game = builder.set(tokens).create();
+        Game game = builder.set(tokens).add(new Player()).create();
 
         // then
         assertEquals(game.getTokens(), tokens);
@@ -33,7 +33,8 @@ public class GameBuilderTest {
         Game game = builder.add(first).add(second).create();
 
         // then
-        assertEquals(game.getTokens(), asList(first, second));
+        assertEquals(game.getPlayers(), asList(first, second));
+        assertEquals(game.getCurrentPlayer(), first);
     }
 
     @Test
@@ -43,7 +44,7 @@ public class GameBuilderTest {
         Card first = new CheapCard(), second = new CheapCard();
 
         // when
-        Game game = builder.add(first).add(second).create();
+        Game game = builder.add(first).add(second).add(new Player()).create();
 
         // then
         assertEquals(game.getAvailableCards(), asList(first, second));
@@ -57,7 +58,7 @@ public class GameBuilderTest {
                 second = new Nobility(new Tokens(), 3);
 
         // when
-        Game game = builder.add(first).add(second).create();
+        Game game = builder.add(first).add(second).add(new Player()).create();
 
         // then
         assertEquals(game.getNobility(), asList(first, second));
