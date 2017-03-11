@@ -1,5 +1,7 @@
-import app.game.card.CardPoints;
+package app.game.card;
+
 import org.junit.Test;
+import testUtils.MockProbability;
 
 import static org.junit.Assert.assertEquals;
 

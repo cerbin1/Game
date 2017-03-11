@@ -1,6 +1,8 @@
-import app.game.card.CardCost;
+package app.game.card;
+
 import app.game.token.Tokens;
 import org.junit.Test;
+import testUtils.MockProbability;
 
 import static org.junit.Assert.assertEquals;
 

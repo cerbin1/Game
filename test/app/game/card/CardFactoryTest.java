@@ -1,7 +1,8 @@
-import app.game.card.Card;
-import app.game.card.CardFactory;
+package app.game.card;
+
 import app.game.token.Tokens;
 import org.junit.Test;
+import testUtils.MockProbability;
 
 import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;

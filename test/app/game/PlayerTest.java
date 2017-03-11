@@ -1,4 +1,5 @@
-import app.game.Player;
+package app.game;
+
 import app.game.card.Card;
 import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;

@@ -1,5 +1,5 @@
-import app.game.Game;
-import app.game.Player;
+package app.game;
+
 import app.game.turn.PassTurn;
 import org.junit.Test;
 

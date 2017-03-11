@@ -1,8 +1,9 @@
-import app.game.card.nobility.Nobility;
-import app.game.card.nobility.NobilityFactory;
+package app.game.card.nobility;
+
 import app.game.token.Tokens;
 import org.junit.Assert;
 import org.junit.Test;
+import testUtils.MockProbability;
 
 import static org.junit.Assert.assertEquals;
 

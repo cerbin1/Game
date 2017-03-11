@@ -1,5 +1,7 @@
-import app.game.token.TokenColor;
+package app.game.token;
+
 import org.junit.Test;
+import testUtils.MockProbability;
 
 import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;

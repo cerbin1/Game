@@ -1,10 +1,12 @@
+package testUtils;
+
 import app.util.Probability;
 
-class MockProbability extends Probability {
+public class MockProbability extends Probability {
     private int index;
     private int[] array;
 
-    MockProbability(int... array) {
+    public MockProbability(int... array) {
         this.array = array;
     }
 
@@ -12,7 +14,7 @@ class MockProbability extends Probability {
         try {
             return array[index++];
         } catch (ArrayIndexOutOfBoundsException ex) {
-            throw new RuntimeException("Not enough values specified for MockProbability");
+            throw new RuntimeException("Not enough values specified for testUtils.MockProbability");
         }
     }
 }

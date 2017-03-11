@@ -1,5 +1,5 @@
-import app.game.token.TokenColor;
-import app.game.token.Tokens;
+package app.game.token;
+
 import org.junit.Test;
 
 import java.util.EnumMap;

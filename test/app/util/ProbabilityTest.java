@@ -1,5 +1,7 @@
-import app.util.Probability;
+package app.util;
+
 import org.junit.Test;
+import testUtils.MockJavaRandom;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
