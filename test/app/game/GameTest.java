@@ -59,7 +59,7 @@ public class GameTest {
         Card card = new CheapCard();
 
         // when
-        Game game = builder().add(card).create();
+        Game game = builder().add(card).add(new Player()).create();
 
         // then
         assertTrue(game.hasCard(card));
