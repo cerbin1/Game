@@ -61,4 +61,8 @@ public class Game {
     public static void main(String[] args) {
         new GameBuilder().create();
     }
+
+    public boolean hasCard(Card card) {
+        return cards.contains(card);
+    }
 }

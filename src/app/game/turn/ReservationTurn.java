@@ -17,7 +17,7 @@ public class ReservationTurn extends Turn {
         if (player.hasCard(card)) {
             throw new IllegalTurnException("Card is already possessed by player");
         }
-        if (!game.getAvailableCards().contains(card)) {
+        if (!game.hasCard(card)) {
             throw new IllegalTurnException("Card is not available in game");
         }
         if (card.isReserved()) {
