@@ -18,6 +18,11 @@ public class Tokens {
         this.versatile = tokens.versatile;
     }
 
+    public Tokens(Map<TokenColor, Integer> tokens, int versatile) {
+        this.tokens.putAll(tokens);
+        this.versatile = versatile;
+    }
+
     public Tokens(Tokens tokens, int versatile) {
         this.tokens.putAll(tokens.asMap());
         this.versatile = versatile;
@@ -83,10 +88,9 @@ public class Tokens {
     }
 
     public Map<TokenColor, Integer> asMap() {
-        return tokens;
-//        Map<TokenColor, Integer> map = new EnumMap<>(TokenColor.class);
-//        map.putAll(tokens);
-//        return map;
+        Map<TokenColor, Integer> map = new EnumMap<>(TokenColor.class);
+        map.putAll(tokens);
+        return map;
     }
 
     @Override
