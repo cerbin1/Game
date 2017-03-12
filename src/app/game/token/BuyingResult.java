@@ -1,10 +1,11 @@
 package app.game.token;
 
 public class BuyingResult {
-    private final Tokens remaining;
+    private final Tokens remaining, spent;
 
-    public BuyingResult(Tokens remaining) {
+    public BuyingResult(Tokens remaining, Tokens spent) {
         this.remaining = remaining;
+        this.spent = spent;
     }
 
     public boolean canBuy() {
@@ -13,5 +14,9 @@ public class BuyingResult {
 
     public Tokens getRemaining() {
         return remaining;
+    }
+
+    public Tokens getSpent() {
+        return spent;
     }
 }

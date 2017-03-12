@@ -10,22 +10,21 @@ import static java.lang.Math.min;
 
 public class Resources {
     private final Tokens stationary, temporary;
-    private final int versatile;
 
-    public Resources(Tokens stationary, Tokens temporary, int versatile) {
+    public Resources(Tokens stationary, Tokens temporary) {
         this.stationary = stationary.asCost();
-        this.temporary = temporary.asCost();
-        this.versatile = versatile;
+        this.temporary = temporary;
     }
 
     public BuyingResult buy(Tokens cost) {
         Tokens costAfterMines = cost.subtract(stationary);
         Tokens paidCost = temporary.subtract(Tokens.Operations.removeDebts(costAfterMines));
-        return new BuyingResult(compensateInsufficientTokens(paidCost));
+        Tokens remaining = compensateInsufficientTokens(paidCost);
+        return new BuyingResult(remaining, temporary.subtract(remaining));
     }
 
     private Tokens compensateInsufficientTokens(Tokens paidCost) {
-        InsufficientTokens compensator = new InsufficientTokens(versatile);
+        InsufficientTokens compensator = new InsufficientTokens(temporary.getVersatile());
         paidCost.asMap().entrySet().forEach(compensator);
         return compensator.getTokensLeft();
     }
