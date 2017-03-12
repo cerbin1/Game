@@ -93,24 +93,6 @@ public class Tokens {
         return map;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (o == null) return false;
-        if (this == o) return true;
-
-        if (o instanceof Tokens) {
-            Tokens that = (Tokens) o;
-            return tokens.equals(that.tokens) && versatile == that.getVersatile();
-        } else {
-            return false;
-        }
-    }
-
-    @Override
-    public String toString() {
-        return "Tokens{" + tokens + ", versatile=" + versatile + '}';
-    }
-
     public Tokens add(Tokens parameter) {
         Tokens result = new Tokens(0, versatile + parameter.versatile);
         for (TokenColor color : TokenColor.values()) {
@@ -131,5 +113,23 @@ public class Tokens {
         Tokens tokens = new Tokens();
         tokens.tokens.putAll(this.tokens);
         return tokens;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+
+        if (o instanceof Tokens) {
+            Tokens that = (Tokens) o;
+            return tokens.equals(that.tokens) && versatile == that.getVersatile();
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Tokens{" + tokens + ", versatile=" + versatile + '}';
     }
 }
