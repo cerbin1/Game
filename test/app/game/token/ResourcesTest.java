@@ -8,43 +8,57 @@ public class ResourcesTest {
     @Test
     public void shouldCouldBuy() {
         // given
-        Tokens stationary = new Tokens(1, 0, 2, 0, 0);
-        Tokens temporary = new Tokens(2, 1, 2, 0, 1);
-        Resources resources = new Resources(stationary, temporary, 2);
+        Tokens stationary = new Tokens(1, 0);
+        Tokens temporary = new Tokens(1, 0);
+        Resources resources = new Resources(stationary, temporary, 5);
 
         // when
-        boolean canBuy = resources.canBuy(new Tokens(4, 2, 4, 0, 1));
+        BuyingResult result = resources.buy(new Tokens(3, 0));
 
         // then
-        assertTrue(canBuy);
+        assertTrue(result.canBuy());
     }
 
     @Test
     public void shouldNotCouldBuy() {
         // given
-        Tokens stationary = new Tokens(1, 0, 2, 0, 0);
-        Tokens temporary = new Tokens(2, 1, 2, 0, 1);
-        Resources resources = new Resources(stationary, temporary, 1);
+        Tokens stationary = new Tokens(1, 0);
+        Tokens temporary = new Tokens(1, 0);
+        Resources resources = new Resources(stationary, temporary, 4);
 
         // when
-        boolean canBuy = resources.canBuy(new Tokens(4, 2, 4, 0, 1));
+        BuyingResult result = resources.buy(new Tokens(3, 0));
 
         // then
-        assertFalse(canBuy);
+        assertFalse(result.canBuy());
     }
 
     @Test
-    public void shouldCalculateChange() {
+    public void shouldCalculateOverflowingChange() {
         // given
-        Tokens stationary = new Tokens(1, 0, 2, 0, 0);
-        Tokens temporary = new Tokens(2, 1, 2, 1, 0);
+        Tokens stationary = new Tokens(13, 0);
+        Tokens temporary = new Tokens(4, 0);
         Resources resources = new Resources(stationary, temporary, 0);
 
         // when
-        Tokens tokens = resources.calculateChange(new Tokens(2, 2, 2, 1, 1));
+        BuyingResult result = resources.buy(new Tokens(2, 0));
 
         // then
-        assertEquals(new Tokens(1, -1, 2, 0, -1), tokens);
+        assertEquals(new Tokens(4, 0), result.getRemaining());
+    }
+
+    @Test
+    public void shouldNotLoseVersatile() {
+        // given
+        Tokens stationary = new Tokens(1, 0, 0, 0, 0, 0);
+        Tokens temporary = new Tokens(4, 0, 0, 0, 0, 0);
+        Resources resources = new Resources(stationary, temporary, 1);
+
+        // when
+        BuyingResult result = resources.buy(new Tokens(5, 0, 0, 0, 0, 0));
+
+        // then
+        assertEquals(new Tokens(0, 1), result.getRemaining());
     }
 
     @Test
@@ -55,9 +69,9 @@ public class ResourcesTest {
         Resources resources = new Resources(stationary, temporary, 3);
 
         // when
-        Tokens tokens = resources.calculateChange(new Tokens(2, 2, 2, 1, 1));
+        BuyingResult result = resources.buy(new Tokens(2, 2, 2, 1, 1));
 
         // then
-        assertEquals(new Tokens(1, 0, 2, 0, 0, 1), tokens);
+        assertEquals(new Tokens(1, 0, 2, 0, 0, 1), result.getRemaining());
     }
 }

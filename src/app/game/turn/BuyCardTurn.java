@@ -3,6 +3,7 @@ package app.game.turn;
 import app.game.Game;
 import app.game.Player;
 import app.game.card.Card;
+import app.game.token.BuyingResult;
 import app.game.token.Resources;
 import app.game.token.Tokens;
 
@@ -18,12 +19,13 @@ public class BuyCardTurn extends Turn {
         Player player = game.getCurrentPlayer();
         Resources resources = player.getResourcesNEW();
         Tokens cardCost = card.getCost();
-        if (!resources.canBuy(cardCost) || !game.getAvailableCards().contains(card) && !player.getCards().contains(card)) {
+        BuyingResult result = resources.buy(cardCost);
+        if (!result.canBuy() || !game.getAvailableCards().contains(card) && !player.getCards().contains(card)) {
             throw new IllegalTurnException();
         } else {
-            Tokens tokensSpent = player.getTokens().subtract(resources.calculateChange(cardCost));
+            Tokens tokensSpent = player.getTokens().subtract(result.getRemaining());
             game.setTokens(game.getTokens().add(tokensSpent));
-            player.setTokens(resources.calculateChange(cardCost));
+            player.setTokens(result.getRemaining());
             card.setReserved(false);
             game.removeCard(card);
             player.addCard(card);

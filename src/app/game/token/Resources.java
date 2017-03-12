@@ -16,14 +16,9 @@ public class Resources {
         this.versatile = versatile;
     }
 
-    public boolean canBuy(Tokens cost) {
-        return calculateChange(cost).asMap().entrySet().stream()
-                .allMatch(entry -> entry.getValue() >= 0);
-    }
-
-    public Tokens calculateChange(Tokens cost) {
+    public BuyingResult buy(Tokens cost) {
         Tokens paidCost = stationary.add(temporary).subtract(cost);
-        return compensateInsufficientTokens(paidCost);
+        return new BuyingResult(compensateInsufficientTokens(paidCost));
     }
 
     private Tokens compensateInsufficientTokens(Tokens paidCost) {
