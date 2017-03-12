@@ -80,7 +80,7 @@ public class ReservationTurnTest {
         assertEquals(new Tokens(), player.getTokens());
     }
 
-    @Test(expected = IllegalTurnException.class)
+    @Test
     public void shouldThrowOnMissingCard() {
         // given
         Turn turn = new ReservationTurn(new CheapCard());
@@ -93,7 +93,7 @@ public class ReservationTurnTest {
         turn.invoke(game);
     }
 
-    @Test(expected = IllegalTurnException.class)
+    @Test
     public void shouldThrowOnAlreadyReservedCard() {
         // given
         CheapCard card = new CheapCard();
@@ -109,7 +109,7 @@ public class ReservationTurnTest {
         turn.invoke(game);
     }
 
-    @Test(expected = IllegalTurnException.class)
+    @Test
     public void shouldThrowOnPossessedCard() {
         // given
         CheapCard card = new CheapCard();
