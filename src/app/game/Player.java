@@ -39,7 +39,7 @@ public class Player {
     }
 
     public Resources getResourcesNEW() {
-        return new Resources(getTokensFromCards(), getTokens(), tokens.getVersatile());
+        return new Resources(getTokensFromCards(), getTokens());
     }
 
     public List<Card> getCards() {

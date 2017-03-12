@@ -41,8 +41,8 @@ public class Game {
         return cards;
     }
 
-    public void setTokens(Tokens cost) {
-        tokens = new Tokens(tokens.getGreen() + cost.getGreen(), tokens.getPurple() + cost.getPurple(), tokens.getBlue() + cost.getBlue(), tokens.getBlack() + cost.getBlack(), tokens.getRed() + cost.getRed(), tokens.getVersatile() - cost.getVersatile());
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
     }
 
     public void performTurn(Turn turn) {

@@ -23,8 +23,7 @@ public class BuyCardTurn extends Turn {
         if (!result.canBuy() || !game.hasCard(card) && !player.hasCard(card)) {
             throw new IllegalTurnException();
         } else {
-            Tokens tokensSpent = player.getTokens().subtract(result.getRemaining());
-            game.setTokens(game.getTokens().add(tokensSpent));
+            game.setTokens(game.getTokens().add(result.getSpent()));
             player.setTokens(result.getRemaining());
             card.setReserved(false);
             game.removeCard(card);
