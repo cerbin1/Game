@@ -1,5 +1,7 @@
 package app.game.token;
 
+import java.util.EnumMap;
+import java.util.Map;
 import java.util.Map.Entry;
 import java.util.function.Consumer;
 
@@ -28,7 +30,7 @@ public class Resources {
     }
 
     private class InsufficientTokens implements Consumer<Entry<TokenColor, Integer>> {
-        private final Tokens change = new Tokens();
+        private final Map<TokenColor, Integer> change = new EnumMap<>(TokenColor.class);
         private int versatile;
 
         InsufficientTokens(int versatile) {
@@ -39,7 +41,7 @@ public class Resources {
         public void accept(Entry<TokenColor, Integer> entry) {
             int consumedVersatile = consumeVersatile(entry.getValue());
             versatile -= consumedVersatile;
-            change.asMap().put(entry.getKey(), entry.getValue() + consumedVersatile);
+            change.put(entry.getKey(), entry.getValue() + consumedVersatile);
         }
 
         private int consumeVersatile(Integer entry) {
