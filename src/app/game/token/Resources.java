@@ -19,7 +19,8 @@ public class Resources {
     }
 
     public BuyingResult buy(Tokens cost) {
-        Tokens paidCost = stationary.add(temporary).subtract(cost);
+        Tokens costAfterMines = cost.subtract(stationary);
+        Tokens paidCost = temporary.subtract(Tokens.Operations.removeDebts(costAfterMines));
         return new BuyingResult(compensateInsufficientTokens(paidCost));
     }
 

@@ -135,4 +135,16 @@ public class TokensTest {
         // then
         assertEquals(new Tokens(2, 2, 2, 2, 2, 2), tokens);
     }
+
+    @Test
+    public void shouldRemoveDebts() {
+        // given
+        Tokens debts = new Tokens(1, -1, 0, 4, -5, -3);
+
+        // when
+        Tokens tokens = Tokens.Operations.removeDebts(debts);
+
+        // then
+        assertEquals(new Tokens(1, 0, 0, 4, 0, -3), tokens);
+    }
 }

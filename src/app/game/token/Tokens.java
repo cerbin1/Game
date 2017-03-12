@@ -4,6 +4,7 @@ import java.util.EnumMap;
 import java.util.Map;
 
 import static app.game.token.TokenColor.*;
+import static java.lang.Math.max;
 
 public class Tokens {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
@@ -91,6 +92,14 @@ public class Tokens {
         Map<TokenColor, Integer> map = new EnumMap<>(TokenColor.class);
         map.putAll(tokens);
         return map;
+    }
+
+    static class Operations {
+        static Tokens removeDebts(Tokens tokens) {
+            Map<TokenColor, Integer> mapCopy = tokens.asMap();
+            mapCopy.entrySet().forEach(entry -> entry.setValue(max(0, entry.getValue())));
+            return new Tokens(mapCopy, tokens.versatile);
+        }
     }
 
     @Override
