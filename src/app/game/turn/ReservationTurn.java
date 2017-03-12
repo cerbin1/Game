@@ -15,13 +15,13 @@ public class ReservationTurn extends Turn {
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
         if (player.hasCard(card)) {
-            throw new IllegalTurnException();
+            throw new IllegalTurnException("Card is already possessed by player");
         }
         if (!game.getAvailableCards().contains(card)) {
-            throw new IllegalTurnException();
+            throw new IllegalTurnException("Card is not available in game");
         }
         if (card.isReserved()) {
-            throw new IllegalTurnException();
+            throw new IllegalTurnException("Card already reserved");
         }
         if (game.getTokens().getVersatile() >= 1) {
             player.incVersatile(1);
