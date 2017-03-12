@@ -1,10 +1,13 @@
 package app.game;
 
+import app.game.card.Card;
+import app.game.card.CheapCard;
 import app.game.turn.PassTurn;
 import org.junit.Test;
 
 import static app.game.GameBuilder.builder;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 public class GameTest {
     @Test
@@ -48,5 +51,17 @@ public class GameTest {
 
         // then
         assertEquals(first, currentPlayer);
+    }
+
+    @Test
+    public void shouldHaveCard() {
+        // given
+        Card card = new CheapCard();
+
+        // when
+        Game game = builder().add(card).create();
+
+        // then
+        assertTrue(game.hasCard(card));
     }
 }
