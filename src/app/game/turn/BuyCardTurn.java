@@ -23,11 +23,16 @@ public class BuyCardTurn extends Turn {
         if (!result.canBuy() || !game.hasCard(card) && !player.hasCard(card)) {
             throw new IllegalTurnException();
         } else {
-            game.setTokens(game.getTokens().add(result.getSpent()));
-            player.setTokens(result.getRemaining());
-            card.setReserved(false);
-            game.removeCard(card);
-            player.addCard(card);
+            buyCard(game, result);
         }
+    }
+
+    private void buyCard(Game game, BuyingResult result) {
+        Player player = game.getCurrentPlayer();
+        game.setTokens(game.getTokens().add(result.getSpent()));
+        player.setTokens(result.getRemaining());
+        card.setReserved(false);
+        game.removeCard(card);
+        player.addCard(card);
     }
 }
