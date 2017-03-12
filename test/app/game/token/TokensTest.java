@@ -118,4 +118,21 @@ public class TokensTest {
         // then
         assertEquals(new Tokens(1, 2, 3, 4, 5, 0), cost);
     }
+
+    @Test
+    public void shouldGetMapAndVersatile() {
+        // given
+        Map<TokenColor, Integer> map = new EnumMap<>(TokenColor.class);
+        map.put(Green, 2);
+        map.put(Purple, 2);
+        map.put(Blue, 2);
+        map.put(Black, 2);
+        map.put(Red, 2);
+
+        // when
+        Tokens tokens = new Tokens(map, 2);
+
+        // then
+        assertEquals(new Tokens(2, 2, 2, 2, 2, 2), tokens);
+    }
 }
