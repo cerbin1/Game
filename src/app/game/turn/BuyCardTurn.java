@@ -20,11 +20,13 @@ public class BuyCardTurn extends Turn {
         Resources resources = player.getResourcesNEW();
         Tokens cardCost = card.getCost();
         BuyingResult result = resources.buy(cardCost);
-        if (!result.canBuy() || !game.hasCard(card) && !player.hasCard(card)) {
+        if (!result.canBuy()) {
             throw new IllegalTurnException();
-        } else {
-            buyCard(game, result);
         }
+        if (!game.hasCard(card) && !player.hasCard(card)) {
+            throw new IllegalTurnException();
+        }
+        buyCard(game, result);
     }
 
     private void buyCard(Game game, BuyingResult result) {
