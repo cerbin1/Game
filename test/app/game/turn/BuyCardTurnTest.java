@@ -121,33 +121,31 @@ public class BuyCardTurnTest {
         assertEquals(new Tokens(1, 0, 0, 0, 0, 1), game.getTokens());
     }
 
-    @Test(expected = IllegalTurnException.class)
+    @Test
     public void shouldThrowOnCardNotInGame() {
         // given
         Turn turn = new BuyCardTurn(new CheapCard());
         Game game = builder().add(new Player()).create();
 
-        // when
-        turn.invoke(game);
-
-        // then
         expectedException.expect(IllegalTurnException.class);
         expectedException.expectMessage("Card not in game");
+
+        // when
+        turn.invoke(game);
     }
 
-    @Test(expected = IllegalTurnException.class)
+    @Test
     public void shouldThrowOnNotEnoughResources() {
         // given
         Card card = new CheapCard(new Tokens(2, 0), 0, Green);
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(new Player()).create();
 
-        // when
-        turn.invoke(game);
-
-        // then
         expectedException.expect(IllegalTurnException.class);
         expectedException.expectMessage("Not enough resources");
+
+        // when
+        turn.invoke(game);
     }
 
     @Test
