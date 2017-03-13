@@ -78,11 +78,6 @@ public class Player {
         return nobilities.stream().mapToInt(Nobility::getPoints).sum();
     }
 
-    public boolean isAbleToBuyCard(Tokens cost) {
-        Tokens playerTokens = getResources();
-        return playerTokens.getGreen() >= cost.getGreen() && playerTokens.getPurple() >= cost.getPurple() && playerTokens.getBlue() >= cost.getBlue() && playerTokens.getBlack() >= cost.getBlack() && playerTokens.getRed() >= cost.getRed();
-    }
-
     public Tokens getTokensFromCards() {
         return new Tokens(
                 (int) (cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
