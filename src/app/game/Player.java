@@ -35,39 +35,27 @@ public class Player {
         return cards;
     }
 
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
     public boolean hasCards() {
         return !cards.isEmpty();
     }
 
-    public void addCard(Card card) {
-        cards.add(card);
+    public boolean hasCard(Card card) {
+        return cards.contains(card);
     }
 
     void addNobility(Nobility nobility) {
         nobilities.add(nobility);
     }
 
-    int getPoints() {
-        return getPointsFromCards() + getPointsFromNobility();
-    }
-
     public void setTokens(Tokens tokens) {
         this.tokens = tokens;
     }
 
-    public void incVersatile(int value) {
-        tokens = tokens.add(new Tokens(0, value));
-    }
-
-    private int getPointsFromCards() {
-        return cards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
-    }
-
-    private int getPointsFromNobility() {
-        return nobilities.stream().mapToInt(Nobility::getPoints).sum();
-    }
-
-    public Tokens getTokensFromCards() {
+    private Tokens getTokensFromCards() {
         return new Tokens(
                 (int) (cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
                 (int) (cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
@@ -77,7 +65,19 @@ public class Player {
         );
     }
 
-    public boolean hasCard(Card card) {
-        return cards.contains(card);
+    public void incVersatile(int value) {
+        tokens = tokens.add(new Tokens(0, value));
+    }
+
+    int getPoints() {
+        return getPointsFromCards() + getPointsFromNobility();
+    }
+
+    private int getPointsFromCards() {
+        return cards.stream().filter(card -> !card.isReserved()).mapToInt(Card::getPoints).sum();
+    }
+
+    private int getPointsFromNobility() {
+        return nobilities.stream().mapToInt(Nobility::getPoints).sum();
     }
 }

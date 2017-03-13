@@ -5,7 +5,6 @@ import app.game.Player;
 import app.game.card.Card;
 import app.game.token.BuyingResult;
 import app.game.token.Resources;
-import app.game.token.Tokens;
 
 public class BuyCardTurn extends Turn {
     private final Card card;
@@ -18,8 +17,7 @@ public class BuyCardTurn extends Turn {
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
         Resources resources = player.getResources();
-        Tokens cardCost = card.getCost();
-        BuyingResult result = resources.buy(cardCost);
+        BuyingResult result = resources.buy(card.getCost());
         if (!result.canBuy()) {
             throw new IllegalTurnException("Not enough resources");
         }

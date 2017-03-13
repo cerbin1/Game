@@ -15,14 +15,22 @@ public class Game {
     private int currentPlayer = 0;
 
     public Game(Tokens tokens, List<Player> players, List<Card> cards, List<Nobility> nobilities) {
-        this.players = players;
         this.tokens = tokens;
+        this.players = players;
         this.cards = cards;
         this.nobilities = nobilities;
     }
 
     public Tokens getTokens() {
         return tokens;
+    }
+
+    public void setTokens(Tokens tokens) {
+        this.tokens = tokens;
+    }
+
+    public void decVersatile(int value) {
+        tokens = tokens.subtract(new Tokens(0, value));
     }
 
     public List<Player> getPlayers() {
@@ -33,16 +41,20 @@ public class Game {
         return players.get(currentPlayer);
     }
 
-    public List<Nobility> getNobility() {
-        return nobilities;
-    }
-
     public List<Card> getAvailableCards() {
         return cards;
     }
 
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
+    public boolean hasCard(Card card) {
+        return cards.contains(card);
+    }
+
+    public void removeCard(Card card) {
+        cards.remove(card);
+    }
+
+    public List<Nobility> getNobility() {
+        return nobilities;
     }
 
     public void performTurn(Turn turn) {
@@ -50,19 +62,7 @@ public class Game {
         currentPlayer = (currentPlayer + 1) % players.size();
     }
 
-    public void decVersatile(int value) {
-        tokens = tokens.subtract(new Tokens(0, value));
-    }
-
-    public void removeCard(Card card) {
-        cards.remove(card);
-    }
-
     public static void main(String[] args) {
         new GameBuilder().create();
-    }
-
-    public boolean hasCard(Card card) {
-        return cards.contains(card);
     }
 }
