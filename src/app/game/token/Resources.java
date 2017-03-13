@@ -55,4 +55,22 @@ public class Resources {
             return new Tokens(change, versatile);
         }
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null) return false;
+        if (this == o) return true;
+
+        if (o instanceof Resources) {
+            Resources that = (Resources) o;
+            return stationary.equals(that.stationary) && temporary.equals(that.temporary);
+        } else {
+            return false;
+        }
+    }
+
+    @Override
+    public String toString() {
+        return "Stationary: " + stationary + ", temporary: " + temporary;
+    }
 }
