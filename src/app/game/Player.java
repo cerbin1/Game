@@ -27,17 +27,6 @@ public class Player {
         return tokens;
     }
 
-    public Tokens getResources() {
-        return new Tokens(
-                (int) (tokens.getGreen() + cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
-                (int) (tokens.getPurple() + cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
-                (int) (tokens.getBlue() + cards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
-                (int) (tokens.getBlack() + cards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
-                (int) (tokens.getRed() + cards.stream().filter(card -> card.is(Red) && !card.isReserved()).count()),
-                tokens.getVersatile()
-        );
-    }
-
     public Resources getResourcesNEW() {
         return new Resources(getTokensFromCards(), getTokens());
     }
