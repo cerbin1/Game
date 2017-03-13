@@ -5,6 +5,7 @@ import app.game.card.CheapCard;
 import app.game.card.ExpensiveCard;
 import app.game.card.MediumCard;
 import app.game.card.nobility.Nobility;
+import app.game.token.Resources;
 import app.game.token.Tokens;
 import org.junit.Test;
 
@@ -76,10 +77,10 @@ public class PlayerTest {
         player.addCard(new CheapCard(new Tokens(), 0, Red));
 
         // when
-        Tokens resources = player.getResources();
+        Resources resources = player.getResourcesNEW();
 
         // then
-        assertEquals(new Tokens(1, 1, 1, 1, 2, 1), resources);
+        assertEquals(new Resources(new Tokens(0, 0, 0, 0, 1), new Tokens(1, 1, 1, 1, 1, 1)), resources);
     }
 
     @Test
@@ -92,10 +93,11 @@ public class PlayerTest {
         player.addCard(new CheapCard(new Tokens(), 0, Green));
 
         // when
-        Tokens tokens = player.getResources();
+        Resources resources = player.getResourcesNEW();
 
         // then
-        assertEquals(new Tokens(1, 0, 0, 0, 0), tokens);
+        Resources expected = new Resources(new Tokens(1, 0, 0, 0, 0), new Tokens(0, 0, 0, 0, 0));
+        assertEquals(expected, resources);
     }
 
     @Test
