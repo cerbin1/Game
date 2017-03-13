@@ -27,7 +27,7 @@ public class Player {
         return tokens;
     }
 
-    public Resources getResourcesNEW() {
+    public Resources getResources() {
         return new Resources(getTokensFromCards(), getTokens());
     }
 

@@ -17,7 +17,7 @@ public class BuyCardTurn extends Turn {
     @Override
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
-        Resources resources = player.getResourcesNEW();
+        Resources resources = player.getResources();
         Tokens cardCost = card.getCost();
         BuyingResult result = resources.buy(cardCost);
         if (!result.canBuy()) {

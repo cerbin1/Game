@@ -77,7 +77,7 @@ public class PlayerTest {
         player.addCard(new CheapCard(new Tokens(), 0, Red));
 
         // when
-        Resources resources = player.getResourcesNEW();
+        Resources resources = player.getResources();
 
         // then
         assertEquals(new Resources(new Tokens(0, 0, 0, 0, 1), new Tokens(1, 1, 1, 1, 1, 1)), resources);
@@ -93,7 +93,7 @@ public class PlayerTest {
         player.addCard(new CheapCard(new Tokens(), 0, Green));
 
         // when
-        Resources resources = player.getResourcesNEW();
+        Resources resources = player.getResources();
 
         // then
         Resources expected = new Resources(new Tokens(1, 0, 0, 0, 0), new Tokens(0, 0, 0, 0, 0));
