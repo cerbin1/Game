@@ -60,11 +60,11 @@ public class Player {
     }
 
     private Tokens getTokensFromCards() {
-        Map<TokenColor, Integer> dupa = new EnumMap<>(TokenColor.class);
+        Map<TokenColor, Integer> tokensFromCards = new EnumMap<>(TokenColor.class);
         for (TokenColor color : values()) {
-            dupa.put(color, (int) (cards.stream().filter(card -> card.is(color) && !card.isReserved()).count()));
+            tokensFromCards.put(color, (int) (cards.stream().filter(card -> card.is(color) && !card.isReserved()).count()));
         }
-        return new Tokens(dupa, 0);
+        return new Tokens(tokensFromCards, 0);
     }
 
     public void incVersatile(int value) {
