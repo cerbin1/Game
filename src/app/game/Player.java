@@ -14,7 +14,6 @@ import java.util.Map;
 import static app.game.token.TokenColor.values;
 
 public class Player {
-    private final Map<TokenColor, Integer> dupa = new EnumMap<>(TokenColor.class);
     private final List<Card> cards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
     private Tokens tokens;
