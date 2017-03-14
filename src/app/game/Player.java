@@ -3,14 +3,18 @@ package app.game;
 import app.game.card.Card;
 import app.game.card.nobility.Nobility;
 import app.game.token.Resources;
+import app.game.token.TokenColor;
 import app.game.token.Tokens;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 
-import static app.game.token.TokenColor.*;
+import static app.game.token.TokenColor.values;
 
 public class Player {
+    private final Map<TokenColor, Integer> dupa = new EnumMap<>(TokenColor.class);
     private final List<Card> cards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
     private Tokens tokens;
@@ -56,13 +60,11 @@ public class Player {
     }
 
     private Tokens getTokensFromCards() {
-        return new Tokens(
-                (int) (cards.stream().filter(card -> card.is(Green) && !card.isReserved()).count()),
-                (int) (cards.stream().filter(card -> card.is(Purple) && !card.isReserved()).count()),
-                (int) (cards.stream().filter(card -> card.is(Blue) && !card.isReserved()).count()),
-                (int) (cards.stream().filter(card -> card.is(Black) && !card.isReserved()).count()),
-                (int) (cards.stream().filter(card -> card.is(Red) && !card.isReserved()).count())
-        );
+        Map<TokenColor, Integer> dupa = new EnumMap<>(TokenColor.class);
+        for (TokenColor color : values()) {
+            dupa.put(color, (int) (cards.stream().filter(card -> card.is(color) && !card.isReserved()).count()));
+        }
+        return new Tokens(dupa, 0);
     }
 
     public void incVersatile(int value) {
