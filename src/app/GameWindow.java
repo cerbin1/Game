@@ -79,6 +79,7 @@ public class GameWindow implements Updatable {
         renderers.add(new TokenRenderer(versatileVO));
     }
 
+    @Override
     public void update(double secondsElapsed) {
         updatables.forEach(updatable -> updatable.update(secondsElapsed));
     }
