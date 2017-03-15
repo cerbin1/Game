@@ -59,7 +59,7 @@ public class AnimatedValue {
         int compare = compare(startValue, destinationValue);
         double progress = min(1.0, passedDuration / duration);
         double difference = destinationValue - startValue;
-        double newValue = startValue + difference * transition.valueOf(progress);
+        double newValue = startValue + difference * transition.valueOf(progress, duration);
 
         if (compare < 0) {
             currentValue = min(newValue, destinationValue);
