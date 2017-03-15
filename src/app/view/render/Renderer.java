@@ -22,6 +22,7 @@ public abstract class Renderer {
 
     private AffineTransform getTransform() {
         AffineTransform transform = new AffineTransform();
+        transform.scale(0.8, 0.8);
         transform.translate(viewObject.getX(), viewObject.getY());
         transform.scale(viewObject.getPerspectiveX(), viewObject.getPerspectiveY());
         transform.rotate(viewObject.getRotation());
