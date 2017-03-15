@@ -34,7 +34,7 @@ public class GameWindow implements Updatable {
 
     private Probability probability = new Probability();
 
-    private Point previosPoint;
+    private Point previousPoint;
     private ViewObject previousVO;
 
     GameWindow() {
@@ -130,15 +130,15 @@ public class GameWindow implements Updatable {
         private void clickedRenderer(Renderer renderer) {
             ViewObject currentVO = renderer.getViewObject();
             if (currentVO == previousVO) {
-                currentVO.moveTo(previosPoint.x, previosPoint.y, 1.0);
+                currentVO.moveTo(previousPoint.x, previousPoint.y, 1.0);
                 previousVO = null;
-                previosPoint = null;
+                previousPoint = null;
             } else {
                 if (previousVO != null) {
-                    previousVO.moveTo(previosPoint.x, previosPoint.y, 1.0);
+                    previousVO.moveTo(previousPoint.x, previousPoint.y, 1.0);
                 }
                 previousVO = currentVO;
-                previosPoint = new Point(currentVO.getX(), currentVO.getY());
+                previousPoint = new Point(currentVO.getX(), currentVO.getY());
                 currentVO.moveTo(1800, 600, 1.0);
             }
         }
