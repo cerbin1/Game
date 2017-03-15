@@ -23,7 +23,7 @@ public class SubsequentCardDealer {
     }
 
     public void deal() {
-        if (current < amount) {
+        if (current < cardVOs.size()) {
             dealCurrentCard();
             current++;
         }
@@ -31,7 +31,7 @@ public class SubsequentCardDealer {
 
     private void dealCurrentCard() {
         CardVO vo = getCurrentCardVO();
-        vo.moveX(xValue.apply(current), 2.0, this::deal);
+        vo.moveX(xValue.apply(current % amount), 2.0, this::deal);
         vo.setFlipped(true);
     }
 

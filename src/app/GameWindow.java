@@ -23,11 +23,9 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static app.game.token.TokenColor.Green;
 import static app.view.render.ViewObject.slightRotation;
 import static java.awt.RenderingHints.*;
 import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
-import static java.util.stream.Collectors.toList;
 
 public class GameWindow implements Updatable {
     private final Window window = new Window();
@@ -60,6 +58,8 @@ public class GameWindow implements Updatable {
         Tokens tokens = new Tokens(7, 5);
         Player player = new Player();
         Game game = builder.set(tokens).add(player).create();
+        List<Card> cards = new ArrayList<>();
+        List<CardVO> cardVOs = new ArrayList<>();
         List<TokenVO> tokenVOs = new ArrayList<>();
 
 
@@ -74,18 +74,27 @@ public class GameWindow implements Updatable {
             tokenVOs.add(new TokenVO(probability.nextInt(2200, 2300), probability.nextInt(100, 300), new Token(null)));
         }
 
+        for (int i = 0; i < 4; i++) {
+            Card card1 = cardFactory.createCheapCard();
+            cards.add(card1);
+            CardVO cardVO1 = new CardVO(card1, 300, 200);
+            cardVO1.setRotation(slightRotation());
+            cardVOs.add(cardVO1);
+        }
 
-
-
-        List<Card> cards = new ArrayList<>();
-        List<CardVO> cardVOs = new ArrayList<>();
-
-        for (int i = 0; i < 5; i++) {
-            Card card = cardFactory.createCheapCard();
-            cards.add(card);
-            CardVO cardVO = new CardVO(card, 300, 200);
-            cardVO.setRotation(slightRotation());
-            cardVOs.add(cardVO);
+        for (int i = 0; i < 4; i++) {
+            Card card2 = cardFactory.createMediumCard();
+            cards.add(card2);
+            CardVO cardVO2 = new CardVO(card2, 300, 500);
+            cardVO2.setRotation(slightRotation());
+            cardVOs.add(cardVO2);
+        }
+        for (int i = 0; i < 4; i++) {
+            Card card3 = cardFactory.createExpensiveCard();
+            cards.add(card3);
+            CardVO cardVO3 = new CardVO(card3, 300, 800);
+            cardVO3.setRotation(slightRotation());
+            cardVOs.add(cardVO3);
         }
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
