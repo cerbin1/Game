@@ -4,7 +4,7 @@ import static java.lang.Math.PI;
 import static java.lang.Math.cos;
 
 public interface Transition {
-    double valueOf(double value, double duration);
+    double valueOf(double value);
 
     static double linearTransition(double value) {
         return value;

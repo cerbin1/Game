@@ -1,13 +1,11 @@
 package app.view.render;
 
 import app.game.Updatable;
-import app.view.fx.LinearTransition;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-import static java.lang.Math.random;
-import static java.lang.Math.round;
+import static java.lang.Math.*;
 
 public abstract class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
@@ -15,8 +13,8 @@ public abstract class ViewObject implements Updatable {
     private boolean hover = false;
 
     ViewObject(int x, int y, int width, int height) {
-        this.x = new AnimatedValue(x, new LinearTransition());
-        this.y = new AnimatedValue(y, new LinearTransition());
+        this.x = new AnimatedValue(x);
+        this.y = new AnimatedValue(y);
         this.rotation = new AnimatedValue(0);
         this.width = width;
         this.height = height;
@@ -85,13 +83,15 @@ public abstract class ViewObject implements Updatable {
         this.y.setValue(y, duration);
     }
 
-    public void moveX(int x, double duration, Runnable onFinish) {
-        this.x.setValue(x, duration, onFinish);
+    public void moveToConstantSpeed(int x, int y, double durationPer100px) {
+        double distance = sqrt(pow((this.x.getValue() - x), 2) + pow((this.y.getValue() - y), 2));
+        System.out.println(distance);
+        this.x.setValue(x, durationPer100px * distance / 100.0);
+        this.y.setValue(y, durationPer100px * distance / 100.0);
     }
 
-    public void reposition(int x, int y, double duration) {
-        moveTo(x, y, duration);
-        setRotation(slightRotation());
+    public void moveX(int x, double duration, Runnable onFinish) {
+        this.x.setValue(x, duration, onFinish);
     }
 
     public static double slightRotation() {

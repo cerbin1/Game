@@ -130,16 +130,16 @@ public class GameWindow implements Updatable {
         private void clickedRenderer(Renderer renderer) {
             ViewObject currentVO = renderer.getViewObject();
             if (currentVO == previousVO) {
-                currentVO.moveTo(previousPoint.x, previousPoint.y, 1.0);
+                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 0.3);
                 previousVO = null;
                 previousPoint = null;
             } else {
                 if (previousVO != null) {
-                    previousVO.moveTo(previousPoint.x, previousPoint.y, 1.0);
+                    previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 0.3);
                 }
                 previousVO = currentVO;
                 previousPoint = new Point(currentVO.getX(), currentVO.getY());
-                currentVO.moveTo(1800, 600, 1.0);
+                currentVO.moveToConstantSpeed(1800, 600, 0.3);
             }
         }
 
