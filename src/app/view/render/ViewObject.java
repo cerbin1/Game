@@ -38,11 +38,11 @@ public abstract class ViewObject implements Updatable {
         );
     }
 
-    int getX() {
+    public int getX() {
         return (int) round(x.getValue());
     }
 
-    int getY() {
+    public int getY() {
         return (int) round(y.getValue());
     }
 

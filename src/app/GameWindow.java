@@ -34,6 +34,9 @@ public class GameWindow implements Updatable {
 
     private Probability probability = new Probability();
 
+    private Point prevoisPoint;
+    private ViewObject previousViewObject;
+
     GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
         initializeGame();
@@ -125,8 +128,14 @@ public class GameWindow implements Updatable {
         }
 
         private void clickedRenderer(Renderer renderer) {
-            renderer.getViewObject().setRotation(slightRotation() * 10);
-            renderer.getViewObject().moveTo(1400, 350, 3.0);
+            if (previousViewObject != null) {
+                previousViewObject.moveTo(prevoisPoint.x, prevoisPoint.y, 1.0);
+                prevoisPoint = null;
+                previousViewObject = null;
+            }
+            previousViewObject = renderer.getViewObject();
+            prevoisPoint = new Point(renderer.getViewObject().getX(), renderer.getViewObject().getY());
+            renderer.getViewObject().moveTo(1800, 600, 1.0);
         }
 
         @Override
