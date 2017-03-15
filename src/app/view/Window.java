@@ -10,12 +10,12 @@ import static java.awt.Cursor.*;
 import static javax.swing.WindowConstants.EXIT_ON_CLOSE;
 
 public class Window {
-    public final JFrame frame = new JFrame();
+    private final JFrame frame = new JFrame();
 
     private final Cursor handCursor = getPredefinedCursor(HAND_CURSOR);
     private final Cursor defaultCursor = getPredefinedCursor(DEFAULT_CURSOR);
 
-    public Window() {
+    Window() {
         frame.setResizable(false);
         frame.setTitle("Game");
         frame.setSize(1920, 1080);
@@ -32,7 +32,7 @@ public class Window {
         frame.setVisible(true);
     }
 
-    public Graphics getGraphics() {
+    Graphics getGraphics() {
         return frame.getGraphics();
     }
 

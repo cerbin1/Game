@@ -11,46 +11,32 @@ import app.game.token.Token;
 import app.game.token.TokenColor;
 import app.game.token.Tokens;
 import app.util.Probability;
+import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
-import app.view.Window;
 import app.view.render.*;
 
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static app.view.render.ViewObject.slightRotation;
-import static java.awt.RenderingHints.*;
-import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
+import static java.awt.RenderingHints.Entry;
 
 public class GameWindow implements Updatable {
-    private final Window window = new Window();
+    private final BufferWindow window = new BufferWindow();
 
     private List<Updatable> updatables = new ArrayList<>();
     private List<Renderer> renderers = new ArrayList<>();
-
-    private Graphics windowGraphics;
-    private BufferedImage backBuffer;
-    private Graphics2D canvas;
 
     private Probability probability = new Probability();
 
     GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
-        initializeBackBuffer();
         initializeGame();
-    }
-
-    private void initializeBackBuffer() {
-        backBuffer = new BufferedImage(1920, 1080, TYPE_INT_ARGB);
-        canvas = backBuffer.createGraphics();
-        canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
-        canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
     }
 
     private void initializeGame() {
@@ -117,13 +103,12 @@ public class GameWindow implements Updatable {
     }
 
     public void render() {
-        renderers.forEach(renderer -> renderer.renderOn(canvas));
-        windowGraphics.drawImage(backBuffer, 0, 0, null);
+        renderers.forEach(renderer -> renderer.renderOn(window.getCanvas()));
+        window.flip();
     }
 
     void show() {
         window.show();
-        windowGraphics = window.getGraphics();
     }
 
     private Optional<Renderer> getRendererOnPoint(Point point) {
