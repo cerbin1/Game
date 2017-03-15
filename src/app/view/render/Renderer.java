@@ -17,7 +17,6 @@ public abstract class Renderer {
         graphics2D.setTransform(getTransform());
         render(graphics2D);
         graphics2D.setTransform(previous);
-        drawOutline(graphics2D);
     }
 
     private AffineTransform getTransform() {
