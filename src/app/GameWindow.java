@@ -142,6 +142,7 @@ public class GameWindow implements Updatable {
 
         private void clickedRenderer(Renderer renderer) {
             renderer.getViewObject().setRotation(slightRotation() * 10);
+            renderer.getViewObject().moveTo(1400, 350, 3.0);
         }
 
         @Override
