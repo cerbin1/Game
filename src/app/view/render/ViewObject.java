@@ -95,7 +95,7 @@ public abstract class ViewObject implements Updatable {
     }
 
     public static double slightRotation() {
-        return random() * 0.14 - 0.07;
+        return random() * 0.03 - 0.015;
     }
 
     public void setHover(boolean hover) {
