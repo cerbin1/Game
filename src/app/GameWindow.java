@@ -50,7 +50,6 @@ public class GameWindow implements Updatable {
         List<TokenVO> tokenVOs = new ArrayList<>();
         NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(), 3), 300, 800);
 
-
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 tokenVOs.add(new TokenVO(probability.nextInt(1700, 2100), probability.nextInt(100, 300), new Token(entry.getKey())));
