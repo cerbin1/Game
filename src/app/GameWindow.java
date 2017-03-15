@@ -6,6 +6,7 @@ import app.game.Player;
 import app.game.Updatable;
 import app.game.card.Card;
 import app.game.card.CardFactory;
+import app.game.card.nobility.Nobility;
 import app.game.token.Token;
 import app.game.token.TokenColor;
 import app.game.token.Tokens;
@@ -61,6 +62,7 @@ public class GameWindow implements Updatable {
         List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
         List<TokenVO> tokenVOs = new ArrayList<>();
+        NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(), 3), 300, 800);
 
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
@@ -85,14 +87,14 @@ public class GameWindow implements Updatable {
         for (int i = 0; i < 4; i++) {
             Card card2 = cardFactory.createMediumCard();
             cards.add(card2);
-            CardVO cardVO2 = new CardVO(card2, 300, 500);
+            CardVO cardVO2 = new CardVO(card2, 300, 530);
             cardVO2.setRotation(slightRotation());
             cardVOs.add(cardVO2);
         }
         for (int i = 0; i < 4; i++) {
             Card card3 = cardFactory.createExpensiveCard();
             cards.add(card3);
-            CardVO cardVO3 = new CardVO(card3, 300, 800);
+            CardVO cardVO3 = new CardVO(card3, 300, 860);
             cardVO3.setRotation(slightRotation());
             cardVOs.add(cardVO3);
         }
@@ -101,8 +103,10 @@ public class GameWindow implements Updatable {
 
         cardVOs.forEach(vo -> updatables.add(vo));
         tokenVOs.forEach(vo -> updatables.add(vo));
+        updatables.add(nobilityVO);
 
         renderers.add(new BackgroundRenderer());
+        renderers.add(new NobilityRenderer(nobilityVO));
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
     }
