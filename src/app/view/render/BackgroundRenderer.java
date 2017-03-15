@@ -16,6 +16,7 @@ public class BackgroundRenderer extends Renderer {
 
     @Override
     protected void render(Graphics2D graphics) {
+        graphics.scale(1.25, 1.25);
         graphics.drawImage(background, 0, 0, null);
     }
 
