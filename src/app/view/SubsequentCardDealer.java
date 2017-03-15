@@ -31,7 +31,7 @@ public class SubsequentCardDealer {
 
     private void dealCurrentCard() {
         CardVO vo = getCurrentCardVO();
-        vo.moveX(xValue.apply(current % amount), 2.0, this::deal);
+        vo.moveXConstantSpeed(xValue.apply(current % amount), 1.0, this::deal);
         vo.setFlipped(true);
     }
 

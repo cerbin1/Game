@@ -24,7 +24,7 @@ public class CardVO extends ViewObject {
     }
 
     public void setFlipped(boolean flipped) {
-        flip.setValue(flipped ? 1.0 : -1.0, 2.0);
+        flip.setValue(flipped ? 1.0 : -1.0, 0.6);
     }
 
     @Override

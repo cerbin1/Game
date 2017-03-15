@@ -83,10 +83,10 @@ public abstract class ViewObject implements Updatable {
         this.y.setValue(y, duration);
     }
 
-    public void moveToConstantSpeed(int x, int y, double durationPer100px) {
+    public void moveToConstantSpeed(int x, int y, double durationPer1000px) {
         double distance = distanceTo(x, y);
-        this.x.setValue(x, durationPer100px * distance / 100.0);
-        this.y.setValue(y, durationPer100px * distance / 100.0);
+        this.x.setValue(x, durationPer1000px * distance / 1000.0);
+        this.y.setValue(y, durationPer1000px * distance / 1000.0);
     }
 
     private double distanceTo(int x, int y) {
@@ -97,6 +97,11 @@ public abstract class ViewObject implements Updatable {
 
     public void moveX(int x, double duration, Runnable onFinish) {
         this.x.setValue(x, duration, onFinish);
+    }
+
+    public void moveXConstantSpeed(int x, double durationPer1000px, Runnable onFinish) {
+        double distance = abs(this.getX() - x);
+        this.x.setValue(x, durationPer1000px * distance / 1000.0, onFinish);
     }
 
     public static double slightRotation() {

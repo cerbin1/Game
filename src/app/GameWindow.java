@@ -65,26 +65,26 @@ public class GameWindow implements Updatable {
         }
 
         for (int i = 0; i < 4; i++) {
-            Card card1 = cardFactory.createCheapCard();
-            cards.add(card1);
-            CardVO cardVO1 = new CardVO(card1, 300, 200);
-            cardVO1.setRotation(slightRotation());
-            cardVOs.add(cardVO1);
+            Card card = cardFactory.createCheapCard();
+            cards.add(card);
+            CardVO vo = new CardVO(card, 300, 200);
+            vo.setRotation(slightRotation());
+            cardVOs.add(vo);
         }
 
         for (int i = 0; i < 4; i++) {
-            Card card2 = cardFactory.createMediumCard();
-            cards.add(card2);
-            CardVO cardVO2 = new CardVO(card2, 300, 530);
-            cardVO2.setRotation(slightRotation());
-            cardVOs.add(cardVO2);
+            Card card = cardFactory.createMediumCard();
+            cards.add(card);
+            CardVO vo = new CardVO(card, 300, 530);
+            vo.setRotation(slightRotation());
+            cardVOs.add(vo);
         }
         for (int i = 0; i < 4; i++) {
-            Card card3 = cardFactory.createExpensiveCard();
-            cards.add(card3);
-            CardVO cardVO3 = new CardVO(card3, 300, 860);
-            cardVO3.setRotation(slightRotation());
-            cardVOs.add(cardVO3);
+            Card card = cardFactory.createExpensiveCard();
+            cards.add(card);
+            CardVO vo = new CardVO(card, 300, 860);
+            vo.setRotation(slightRotation());
+            cardVOs.add(vo);
         }
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
@@ -130,16 +130,16 @@ public class GameWindow implements Updatable {
         private void clickedRenderer(Renderer renderer) {
             ViewObject currentVO = renderer.getViewObject();
             if (currentVO == previousVO) {
-                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 0.1);
+                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
                 previousVO = null;
                 previousPoint = null;
             } else {
                 if (previousVO != null) {
-                    previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 0.1);
+                    previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
                 }
                 previousVO = currentVO;
                 previousPoint = new Point(currentVO.getX(), currentVO.getY());
-                currentVO.moveToConstantSpeed(1800, 600, 0.1);
+                currentVO.moveToConstantSpeed(1800, 600, 1.0);
             }
         }
 
