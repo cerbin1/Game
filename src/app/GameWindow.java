@@ -90,25 +90,12 @@ public class GameWindow implements Updatable {
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
-        TokenVO tokenVO = new TokenVO(1800 - 30, 500, new Token(Green));
-        TokenVO tokenVO2 = new TokenVO(1810 - 30, 520, new Token(Green));
-        TokenVO tokenVO3 = new TokenVO(1790 - 30, 540, new Token(Green));
-        TokenVO versatileVO = new TokenVO(1900 - 30, 550, new Token(null));
-
         cardVOs.forEach(vo -> updatables.add(vo));
-        updatables.add(tokenVO);
-        updatables.add(tokenVO2);
-        updatables.add(tokenVO3);
-        updatables.add(versatileVO);
+        tokenVOs.forEach(vo -> updatables.add(vo));
 
         renderers.add(new BackgroundRenderer());
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
-        renderers.add(new TokenRenderer(tokenVO));
-        renderers.add(new TokenRenderer(tokenVO2));
-        renderers.add(new TokenRenderer(tokenVO3));
-        renderers.add(new TokenRenderer(versatileVO));
-
-        renderers.addAll(tokenVOs.stream().map(TokenRenderer::new).collect(toList()));
+        tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
     }
 
     @Override
