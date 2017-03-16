@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class BuyCardTurnTest {
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public  ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void shouldBuyCardToPlayer() {

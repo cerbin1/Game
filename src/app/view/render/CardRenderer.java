@@ -18,8 +18,8 @@ import static java.awt.Font.PLAIN;
 public class CardRenderer extends Renderer {
     private final Card card;
     private final BufferedImage cardImage, cardBack;
-    private Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
-    private Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
+    private final Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
+    private final Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
 
     public CardRenderer(CardVO cardVO) {
         super(cardVO);
