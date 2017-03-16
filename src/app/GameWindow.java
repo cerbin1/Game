@@ -52,7 +52,7 @@ public class GameWindow implements Updatable {
         List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
         List<TokenVO> tokenVOs = new ArrayList<>();
-        NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(), 3), 300, 800);
+        NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(1, 2, 3, 4, 0), 3), 1000, 1500);
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
