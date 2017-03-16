@@ -9,4 +9,8 @@ public class NobilityVO extends ViewObject {
         super(x, y, 236, 236);
         this.nobility = nobility;
     }
+
+    public Nobility getNobility() {
+        return nobility;
+    }
 }
