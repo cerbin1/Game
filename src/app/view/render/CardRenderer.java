@@ -42,8 +42,7 @@ public class CardRenderer extends Renderer {
 
     private void drawTopHeader(Graphics2D graphics) {
         graphics.setColor(new Color(255, 255, 255, 180));
-        graphics.fillRoundRect(0, 0, cardImage.getWidth(), 80,
-                20, 20);
+        graphics.fillRoundRect(0, 0, cardImage.getWidth(), 80, 20, 20);
 
         graphics.setColor(black);
         graphics.setFont(pointsFont);
