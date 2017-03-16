@@ -3,7 +3,6 @@ package app.view;
 import app.GameWindow;
 
 import javax.swing.*;
-import java.awt.Cursor;
 import java.awt.*;
 
 import static java.awt.Cursor.*;

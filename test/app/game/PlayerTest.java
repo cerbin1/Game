@@ -10,7 +10,6 @@ import app.game.token.Tokens;
 import org.junit.Test;
 
 import static app.game.token.TokenColor.Green;
-import static app.game.token.TokenColor.Red;
 import static org.junit.Assert.*;
 
 public class PlayerTest {
