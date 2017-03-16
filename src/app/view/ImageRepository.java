@@ -16,6 +16,7 @@ public class ImageRepository {
     public BufferedImage cardBench = get("images/cards/view/bench.png");
     public BufferedImage cardCastle = get("images/cards/view/castle.png");
     public BufferedImage nobility = get("images/nobilities/nobility.png");
+    public BufferedImage button = get("images/button.png");
 
     public BufferedImage background1 = get("images/background_1.png");
 

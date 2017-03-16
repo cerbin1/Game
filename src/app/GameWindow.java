@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
+import static app.view.ImageRepository.imageRepository;
 import static app.view.render.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
 
@@ -97,6 +98,15 @@ public class GameWindow implements Updatable {
         renderers.add(new NobilityRenderer(nobilityVO));
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
+
+        renderers.add(new Renderer(new ViewObject(1600, 1710, 670, 126) {
+        }) {
+            @Override
+            protected void render(Graphics2D graphics) {
+                graphics.scale(1 / 0.55, 1 / 0.55);
+                graphics.drawImage(imageRepository().button, -10, -5, null);
+            }
+        });
     }
 
     @Override

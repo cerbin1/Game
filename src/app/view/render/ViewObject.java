@@ -12,7 +12,7 @@ public abstract class ViewObject implements Updatable {
     final int width, height;
     private boolean hover = false;
 
-    ViewObject(int x, int y, int width, int height) {
+    public ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
         this.y = new AnimatedValue(y);
         this.rotation = new AnimatedValue(0);
