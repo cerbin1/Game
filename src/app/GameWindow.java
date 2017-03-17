@@ -99,7 +99,7 @@ public class GameWindow implements Updatable {
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
-        renderers.add(new Renderer(new ViewObject(1600, 1710, 670, 126) {
+        renderers.add(new Renderer(new ViewObject(1600, 1600, 670, 126) {
         }) {
             @Override
             protected void render(Graphics2D graphics) {
