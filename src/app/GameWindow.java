@@ -23,7 +23,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static app.view.ImageRepository.imageRepository;
 import static app.view.render.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
 
@@ -133,17 +132,19 @@ public class GameWindow implements Updatable {
 
         private void clickedRenderer(Renderer renderer) {
             ViewObject currentVO = renderer.getViewObject();
-            if (currentVO == previousVO) {
-                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
-                previousVO = null;
-                previousPoint = null;
-            } else {
-                if (previousVO != null) {
-                    previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
+            if (currentVO instanceof CardVO || currentVO instanceof TokenVO || currentVO instanceof NobilityVO) {
+                if (currentVO == previousVO) {
+                    currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
+                    previousVO = null;
+                    previousPoint = null;
+                } else {
+                    if (previousVO != null) {
+                        previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
+                    }
+                    previousVO = currentVO;
+                    previousPoint = new Point(currentVO.getX(), currentVO.getY());
+                    currentVO.moveToConstantSpeed(1800, 600, 1.0);
                 }
-                previousVO = currentVO;
-                previousPoint = new Point(currentVO.getX(), currentVO.getY());
-                currentVO.moveToConstantSpeed(1800, 600, 1.0);
             }
         }
 
