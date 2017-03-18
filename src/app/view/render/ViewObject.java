@@ -13,7 +13,7 @@ public abstract class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
     final int width, height;
     private boolean hover = false;
-    private List<Runnable> listeners = new ArrayList<>();
+    private List<RendererClicked> listeners = new ArrayList<>();
 
     public ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
@@ -119,11 +119,11 @@ public abstract class ViewObject implements Updatable {
         return this.hover;
     }
 
-    public void addListener(Runnable listener) {
-       listeners.add(listener);
+    public void addClickListener(RendererClicked listener) {
+        listeners.add(listener);
     }
 
     public void triggerClicked() {
-        listeners.forEach(Runnable::run);
+        listeners.forEach(listener -> listener.clicked(this));
     }
 }

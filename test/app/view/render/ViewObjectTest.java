@@ -11,7 +11,7 @@ public class ViewObjectTest {
         ViewObject viewObject = new ViewObject(0, 0, 0, 0) {
         };
         MockRunnable listener = new MockRunnable();
-        viewObject.addListener(listener);
+        viewObject.addClickListener(listener);
 
         // when
         viewObject.triggerClicked();
@@ -20,11 +20,11 @@ public class ViewObjectTest {
         assertTrue(listener.isInvoked());
     }
 
-    private class MockRunnable implements Runnable {
+    private class MockRunnable implements RendererClicked {
         boolean invoked;
 
         @Override
-        public void run() {
+        public void clicked(ViewObject viewObject) {
             invoked = true;
         }
 

@@ -35,7 +35,7 @@ public class GameWindow implements Updatable {
     private Probability probability = new Probability();
 
     private Point previousPoint;
-    private ViewObject previousVO;
+    private ViewObject currentVO;
 
     GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
@@ -56,7 +56,9 @@ public class GameWindow implements Updatable {
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
-                tokenVOs.add(new TokenVO(probability.nextInt(1700, 2100), probability.nextInt(100, 300), new Token(entry.getKey())));
+                TokenVO tokenVO = new TokenVO(probability.nextInt(1700, 2100), probability.nextInt(100, 300), new Token(entry.getKey()));
+                tokenVO.addClickListener(this::viewObjectClicked);
+                tokenVOs.add(tokenVO);
             }
         }
         Collections.shuffle(tokenVOs);
@@ -69,6 +71,7 @@ public class GameWindow implements Updatable {
             Card card = cardFactory.createCheapCard();
             cards.add(card);
             CardVO vo = new CardVO(card, 300, 200);
+            vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
@@ -77,6 +80,7 @@ public class GameWindow implements Updatable {
             Card card = cardFactory.createMediumCard();
             cards.add(card);
             CardVO vo = new CardVO(card, 300, 530);
+            vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
@@ -84,6 +88,7 @@ public class GameWindow implements Updatable {
             Card card = cardFactory.createExpensiveCard();
             cards.add(card);
             CardVO vo = new CardVO(card, 300, 860);
+            vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
@@ -124,6 +129,21 @@ public class GameWindow implements Updatable {
                 .reduce((a, b) -> b);
     }
 
+    private void viewObjectClicked(ViewObject clickedVO) {
+        if (clickedVO == currentVO) {
+            clickedVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
+            currentVO = null;
+            previousPoint = null;
+        } else {
+            if (currentVO != null) {
+                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
+            }
+            currentVO = clickedVO;
+            previousPoint = new Point(clickedVO.getX(), clickedVO.getY());
+            clickedVO.moveToConstantSpeed(1800, 600, 1.0);
+        }
+    }
+
     public class GameMouseAdapter extends MouseAdapter {
         @Override
         public void mouseClicked(MouseEvent e) {
@@ -131,21 +151,8 @@ public class GameWindow implements Updatable {
         }
 
         private void clickedRenderer(Renderer renderer) {
-            ViewObject currentVO = renderer.getViewObject();
-            if (currentVO instanceof CardVO || currentVO instanceof TokenVO || currentVO instanceof NobilityVO) {
-                if (currentVO == previousVO) {
-                    currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
-                    previousVO = null;
-                    previousPoint = null;
-                } else {
-                    if (previousVO != null) {
-                        previousVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 1.0);
-                    }
-                    previousVO = currentVO;
-                    previousPoint = new Point(currentVO.getX(), currentVO.getY());
-                    currentVO.moveToConstantSpeed(1800, 600, 1.0);
-                }
-            }
+            ViewObject clickedVO = renderer.getViewObject();
+            clickedVO.triggerClicked();
         }
 
         @Override
