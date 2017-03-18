@@ -53,6 +53,7 @@ public class GameWindow implements Updatable {
         List<CardVO> cardVOs = new ArrayList<>();
         List<TokenVO> tokenVOs = new ArrayList<>();
         NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(1, 2, 3, 4, 0), 3), 1000, 1500);
+        ButtonVO buttonVO = new ButtonVO(1600, 1600);
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
@@ -99,14 +100,7 @@ public class GameWindow implements Updatable {
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
-        renderers.add(new Renderer(new ViewObject(1600, 1600, 670, 126) {
-        }) {
-            @Override
-            protected void render(Graphics2D graphics) {
-                graphics.scale(1 / 0.55, 1 / 0.55);
-                graphics.drawImage(imageRepository().button, -10, -5, null);
-            }
-        });
+        renderers.add(new ButtonRenderer(buttonVO));
     }
 
     @Override
