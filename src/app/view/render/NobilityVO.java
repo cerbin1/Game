@@ -2,11 +2,11 @@ package app.view.render;
 
 import app.game.card.nobility.Nobility;
 
-public class NobilityVO extends ViewObject {
+public class NobilityVO extends FigureVO {
     private final Nobility nobility;
 
     public NobilityVO(Nobility nobility, int x, int y) {
-        super(x, y, 236, 236);
+        super(nobility, x, y, 236, 236);
         this.nobility = nobility;
     }
 

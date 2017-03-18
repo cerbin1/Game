@@ -27,7 +27,7 @@ public class NobilityFactoryTest {
         Nobility nobility = factory.create();
 
         // when
-        Tokens tokens = nobility.getCondition();
+        Tokens tokens = nobility.getCost();
 
         // then
         Assert.assertEquals(new Tokens(0, 3, 3, 3, 0), tokens);
@@ -40,7 +40,7 @@ public class NobilityFactoryTest {
         Nobility nobility = factory.create();
 
         // when
-        Tokens tokens = nobility.getCondition();
+        Tokens tokens = nobility.getCost();
 
         // then
         Assert.assertEquals(new Tokens(0, 0, 0, 4, 4), tokens);

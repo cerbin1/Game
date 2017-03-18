@@ -7,7 +7,7 @@ import java.awt.geom.RoundRectangle2D;
 
 import static java.lang.Math.PI;
 
-public class CardVO extends ViewObject {
+public class CardVO extends FigureVO {
     private final static double RESERVATION_ANIMATION_LENGTH = 2.5;
 
     private final Card card;
@@ -15,7 +15,7 @@ public class CardVO extends ViewObject {
     private AnimatedValue flip = new AnimatedValue(-1.0);
 
     public CardVO(Card card, int x, int y) {
-        super(x, y, 236, 330);
+        super(card, x, y, 236, 330);
         this.card = card;
     }
 
