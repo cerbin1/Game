@@ -1,29 +1,33 @@
 package app.view.render;
 
 import app.game.card.Figure;
+import app.game.token.TokenColor;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
+import java.util.function.BiConsumer;
 
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import static java.awt.Font.ITALIC;
+import static java.awt.Font.PLAIN;
 
 abstract class FigureRenderer extends Renderer {
     private final Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
+    private final Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
     private final Figure figure;
-    private final BufferedImage bufferedImage;
+    private final BufferedImage figureImage;
 
-    FigureRenderer(FigureVO figureVO, BufferedImage bufferedImage) {
+    FigureRenderer(FigureVO figureVO, BufferedImage figureImage) {
         super(figureVO);
         this.figure = figureVO.getFigure();
-        this.bufferedImage = bufferedImage;
+        this.figureImage = figureImage;
     }
 
     void drawTopHeader(Graphics2D graphics) {
         graphics.setColor(new Color(255, 255, 255, 180));
-        graphics.fillRoundRect(0, 0, bufferedImage.getWidth(), 80, 20, 20);
+        graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
         graphics.setColor(black);
         graphics.setFont(pointsFont);
