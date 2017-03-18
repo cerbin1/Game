@@ -34,4 +34,3 @@ public class ButtonRenderer extends Renderer {
         graphics.translate(-x, -y);
     }
 }
-
