@@ -75,7 +75,7 @@ public class NobilityRenderer extends Renderer {
         graphics.translate(-x, -y);
     }
 
-    class NobilityConditionDrawer implements BiConsumer<TokenColor, Integer> {
+    private class NobilityConditionDrawer implements BiConsumer<TokenColor, Integer> {
         private final Graphics2D graphics;
         private int elementsRendered = 0;
 

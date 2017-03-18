@@ -80,7 +80,7 @@ public class CardRenderer extends Renderer {
         graphics.translate(-x, -y);
     }
 
-    class CardCostDrawer implements BiConsumer<TokenColor, Integer> {
+    private class CardCostDrawer implements BiConsumer<TokenColor, Integer> {
         private final Graphics2D graphics;
         private int elementsRendered = 0;
 
