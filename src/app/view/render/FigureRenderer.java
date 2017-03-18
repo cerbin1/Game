@@ -5,6 +5,7 @@ import app.game.token.TokenColor;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;
+import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.function.BiConsumer;
 
@@ -25,7 +26,15 @@ abstract class FigureRenderer extends Renderer {
         this.figureImage = figureImage;
     }
 
-    void drawTopHeader(Graphics2D graphics) {
+    @Override
+    protected void render(Graphics2D graphics) {
+        graphics.drawImage(figureImage, 0, 0, null);
+        drawTopHeader(graphics);
+        drawCost(graphics);
+        drawOutline(graphics);
+    }
+
+    private void drawTopHeader(Graphics2D graphics) {
         graphics.setColor(new Color(255, 255, 255, 180));
         graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
@@ -48,5 +57,41 @@ abstract class FigureRenderer extends Renderer {
         graphics.setColor(white);
         graphics.fill(textShape);
         graphics.translate(-x, -y);
+    }
+
+
+    private void drawCost(Graphics2D graphics) {
+        graphics.setColor(white);
+        figure.getCost().asMap().forEach(new CostDrawer(graphics));
+    }
+
+    private void drawOutline(Graphics2D graphics) {
+        graphics.setStroke(new BasicStroke(2));
+        graphics.setColor(black);
+        graphics.draw(new RoundRectangle2D.Float(
+                0, 0,
+                figureImage.getWidth(), figureImage.getHeight(),
+                20, 20
+        ));
+    }
+
+    private class CostDrawer implements BiConsumer<TokenColor, Integer> {
+        private final Graphics2D graphics;
+        private int elementsRendered = 0;
+
+        CostDrawer(Graphics2D graphics) {
+            this.graphics = graphics;
+        }
+
+        @Override
+        public void accept(TokenColor color, Integer amount) {
+            if (amount == 0) return;
+            graphics.setFont(costFont);
+            graphics.drawString(color.name() + ": " + amount, 19, nextElementHeight());
+        }
+
+        private int nextElementHeight() {
+            return figureImage.getHeight() - 15 - elementsRendered++ * 45;
+        }
     }
 }
