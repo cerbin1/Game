@@ -4,6 +4,8 @@ import app.game.Updatable;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
+import java.util.ArrayList;
+import java.util.List;
 
 import static java.lang.Math.*;
 
@@ -11,6 +13,7 @@ public abstract class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
     final int width, height;
     private boolean hover = false;
+    private List<Runnable> listeners = new ArrayList<>();
 
     public ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
@@ -114,5 +117,13 @@ public abstract class ViewObject implements Updatable {
 
     boolean hasHover() {
         return this.hover;
+    }
+
+    public void addListener(Runnable listener) {
+       listeners.add(listener);
+    }
+
+    public void triggerClicked() {
+        listeners.forEach(Runnable::run);
     }
 }
