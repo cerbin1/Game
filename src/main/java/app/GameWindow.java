@@ -56,7 +56,7 @@ public class GameWindow implements Updatable {
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
-                TokenVO tokenVO = new TokenVO(probability.nextInt(1700, 2100), probability.nextInt(100, 300), new Token(entry.getKey()));
+                TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
                 tokenVO.addClickListener(this::viewObjectClicked);
                 tokenVOs.add(tokenVO);
             }
@@ -64,7 +64,7 @@ public class GameWindow implements Updatable {
         Collections.shuffle(tokenVOs);
 
         for (int i = 0; i < tokens.getVersatile(); i++) {
-            tokenVOs.add(new TokenVO(probability.nextInt(2200, 2300), probability.nextInt(100, 300), new Token(null)));
+            tokenVOs.add(new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300)));
         }
 
         for (int i = 0; i < 4; i++) {

@@ -9,7 +9,7 @@ import java.awt.geom.Ellipse2D;
 public class TokenVO extends ViewObject {
     private final Token token;
 
-    public TokenVO(int x, int y, Token token) {
+    public TokenVO(Token token, int x, int y) {
         super(x, y, 122, 122);
         this.token = token;
     }
