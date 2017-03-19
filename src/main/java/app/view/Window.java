@@ -1,6 +1,6 @@
 package app.view;
 
-import app.GameWindow;
+import app.presenter.GameWindow;
 
 import javax.swing.*;
 import java.awt.*;

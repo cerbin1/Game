@@ -2,6 +2,7 @@ package app;
 
 import app.model.EngineExecutor;
 import app.model.EngineFactory;
+import app.presenter.GameWindow;
 
 public class Application {
     public static void main(String... args) {

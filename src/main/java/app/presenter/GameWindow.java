@@ -1,4 +1,4 @@
-package app;
+package app.presenter;
 
 import app.model.Game;
 import app.model.GameBuilder;
@@ -37,7 +37,7 @@ public class GameWindow implements Updatable {
     private Point previousPoint;
     private ViewObject currentVO;
 
-    GameWindow() {
+    public GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
         initializeGame();
     }
@@ -117,7 +117,7 @@ public class GameWindow implements Updatable {
         window.flip();
     }
 
-    void show() {
+    public void show() {
         window.show();
     }
 
