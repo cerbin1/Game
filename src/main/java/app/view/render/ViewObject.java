@@ -1,6 +1,6 @@
 package app.view.render;
 
-import app.game.Updatable;
+import app.model.Updatable;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

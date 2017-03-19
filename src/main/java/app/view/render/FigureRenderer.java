@@ -1,7 +1,7 @@
 package app.view.render;
 
-import app.game.card.Figure;
-import app.game.token.TokenColor;
+import app.model.card.Figure;
+import app.model.token.TokenColor;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;

@@ -1,15 +1,15 @@
 package app;
 
-import app.game.Game;
-import app.game.GameBuilder;
-import app.game.Player;
-import app.game.Updatable;
-import app.game.card.Card;
-import app.game.card.CardFactory;
-import app.game.card.nobility.Nobility;
-import app.game.token.Token;
-import app.game.token.TokenColor;
-import app.game.token.Tokens;
+import app.model.Game;
+import app.model.GameBuilder;
+import app.model.Player;
+import app.model.Updatable;
+import app.model.card.Card;
+import app.model.card.CardFactory;
+import app.model.card.nobility.Nobility;
+import app.model.token.Token;
+import app.model.token.TokenColor;
+import app.model.token.Tokens;
 import app.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;

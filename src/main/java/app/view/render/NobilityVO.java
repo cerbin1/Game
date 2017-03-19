@@ -1,6 +1,6 @@
 package app.view.render;
 
-import app.game.card.nobility.Nobility;
+import app.model.card.nobility.Nobility;
 
 public class NobilityVO extends FigureVO {
     private final Nobility nobility;

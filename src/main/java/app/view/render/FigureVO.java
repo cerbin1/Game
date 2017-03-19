@@ -1,6 +1,6 @@
 package app.view.render;
 
-import app.game.card.Figure;
+import app.model.card.Figure;
 
 class FigureVO extends ViewObject {
     private final Figure figure;

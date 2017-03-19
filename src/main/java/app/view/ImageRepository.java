@@ -1,13 +1,13 @@
 package app.view;
 
-import app.game.Load;
-import app.game.token.TokenColor;
+import app.model.Load;
+import app.model.token.TokenColor;
 
 import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Map;
 
-import static app.game.token.TokenColor.*;
+import static app.model.token.TokenColor.*;
 
 public class ImageRepository {
     private static final ImageRepository imageRepository = new ImageRepository();

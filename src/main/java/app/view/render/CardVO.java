@@ -1,6 +1,6 @@
 package app.view.render;
 
-import app.game.card.Card;
+import app.model.card.Card;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
