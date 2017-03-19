@@ -13,11 +13,11 @@ public class TokenColorTest {
         MockProbability probability = new MockProbability(0, 1, 2, 3, 4);
 
         // when
-        TokenColor color1 = TokenColor.getRandom(probability);
-        TokenColor color2 = TokenColor.getRandom(probability);
-        TokenColor color3 = TokenColor.getRandom(probability);
-        TokenColor color4 = TokenColor.getRandom(probability);
-        TokenColor color5 = TokenColor.getRandom(probability);
+        TokenColor color1 = getRandom(probability);
+        TokenColor color2 = getRandom(probability);
+        TokenColor color3 = getRandom(probability);
+        TokenColor color4 = getRandom(probability);
+        TokenColor color5 = getRandom(probability);
 
         // then
         assertEquals(Green, color1);
