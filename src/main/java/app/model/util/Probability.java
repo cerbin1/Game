@@ -1,4 +1,4 @@
-package app.util;
+package app.model.util;
 
 import java.util.Random;
 

@@ -1,6 +1,6 @@
 package app.model.card;
 
-import app.util.Probability;
+import app.model.util.Probability;
 
 public class CardPoints {
     private final Probability probability;

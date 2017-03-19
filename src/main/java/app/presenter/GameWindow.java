@@ -10,7 +10,7 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
-import app.util.Probability;
+import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
 import app.view.render.*;

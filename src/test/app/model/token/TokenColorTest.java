@@ -1,6 +1,6 @@
 package app.model.token;
 
-import app.util.Probability;
+import app.model.util.Probability;
 import org.junit.Test;
 
 import static app.model.token.TokenColor.*;

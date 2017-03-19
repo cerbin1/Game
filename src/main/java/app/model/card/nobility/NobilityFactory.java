@@ -1,7 +1,7 @@
 package app.model.card.nobility;
 
 import app.model.token.Tokens;
-import app.util.Probability;
+import app.model.util.Probability;
 
 public class NobilityFactory {
     private final Probability probability;

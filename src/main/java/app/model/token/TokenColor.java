@@ -1,6 +1,6 @@
 package app.model.token;
 
-import app.util.Probability;
+import app.model.util.Probability;
 
 public enum TokenColor {
     Green, Purple, Blue, Black, Red;

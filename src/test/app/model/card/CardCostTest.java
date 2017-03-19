@@ -1,7 +1,7 @@
 package app.model.card;
 
 import app.model.token.Tokens;
-import app.util.Probability;
+import app.model.util.Probability;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
