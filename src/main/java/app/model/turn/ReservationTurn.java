@@ -5,9 +5,9 @@ import app.model.Player;
 import app.model.card.Card;
 
 public class ReservationTurn extends Turn {
-    private Card card;
+    private final Card card;
 
-    public ReservationTurn(Card card) {
+    ReservationTurn(Card card) {
         this.card = card;
     }
 

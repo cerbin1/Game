@@ -8,8 +8,9 @@ import java.util.function.Function;
 public class SubsequentCardDealer {
     private final List<CardVO> cardVOs;
     private final Function<Integer, Integer> xValue;
+    private final int amount;
 
-    private int amount, current = 0;
+    private int current = 0;
 
     public SubsequentCardDealer(List<CardVO> cardVOs, int amount, Function<Integer, Integer> xValue) {
         this.cardVOs = cardVOs;

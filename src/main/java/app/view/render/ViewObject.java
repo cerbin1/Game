@@ -11,11 +11,12 @@ import static java.lang.Math.*;
 
 public abstract class ViewObject implements Updatable {
     private final AnimatedValue x, y, rotation;
-    final int width, height;
+    private final List<RendererClicked> listeners = new ArrayList<>();
     private boolean hover = false;
-    private List<RendererClicked> listeners = new ArrayList<>();
 
-    public ViewObject(int x, int y, int width, int height) {
+    final int width, height;
+
+    ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
         this.y = new AnimatedValue(y);
         this.rotation = new AnimatedValue(0);

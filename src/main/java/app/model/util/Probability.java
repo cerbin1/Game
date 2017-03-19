@@ -3,7 +3,7 @@ package app.model.util;
 import java.util.Random;
 
 public class Probability {
-    private Random random;
+    private final Random random;
 
     public Probability() {
         this(new Random());
