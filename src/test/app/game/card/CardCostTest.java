@@ -5,8 +5,7 @@ import app.util.Probability;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CardCostTest {
 
@@ -21,6 +20,7 @@ public class CardCostTest {
         Tokens tokens = cost.getCheap();
 
         // then
+        verify(probability, times(4)).nextInt(3, 5);
         assertEquals(new Tokens(3, 0, 0, 0, 0), tokens);
     }
 
@@ -35,6 +35,7 @@ public class CardCostTest {
         Tokens tokens = cost.getCheap();
 
         // then
+        verify(probability, times(5)).nextInt(3, 5);
         assertEquals(new Tokens(0, 0, 2, 2, 0), tokens);
     }
 
@@ -49,6 +50,7 @@ public class CardCostTest {
         Tokens tokens = cost.getCheap();
 
         // then
+        verify(probability, times(6)).nextInt(3, 5);
         assertEquals(new Tokens(3, 1, 0, 0, 1), tokens);
     }
 
@@ -63,6 +65,7 @@ public class CardCostTest {
         Tokens tokens = cost.getCheap();
 
         // then
+        verify(probability, times(6)).nextInt(3, 5);
         assertEquals(new Tokens(2, 1, 1, 0, 1), tokens);
     }
 
@@ -77,6 +80,7 @@ public class CardCostTest {
         Tokens tokens = cost.getCheap();
 
         // then
+        verify(probability, times(6)).nextInt(3, 5);
         assertEquals(new Tokens(1, 1, 1, 1, 1), tokens);
     }
 
@@ -91,6 +95,7 @@ public class CardCostTest {
         Tokens tokens = cost.getMedium();
 
         // then
+        verify(probability, times(6)).nextInt(3, 5);
         assertEquals(new Tokens(0, 0, 5, 0, 0), tokens);
     }
 
@@ -105,6 +110,7 @@ public class CardCostTest {
         Tokens tokens = cost.getMedium();
 
         // then
+        verify(probability, times(7)).nextInt(3, 5);
         assertEquals(new Tokens(3, 0, 3, 0, 0), tokens);
     }
 
@@ -119,6 +125,7 @@ public class CardCostTest {
         Tokens tokens = cost.getMedium();
 
         // then
+        verify(probability, times(9)).nextInt(3, 5);
         assertEquals(new Tokens(0, 3, 2, 0, 3), tokens);
     }
 
@@ -133,6 +140,7 @@ public class CardCostTest {
         Tokens tokens = cost.getMedium();
 
         // then
+        verify(probability, times(9)).nextInt(3, 5);
         assertEquals(new Tokens(2, 2, 2, 2, 0), tokens);
     }
 
@@ -147,6 +155,7 @@ public class CardCostTest {
         Tokens tokens = cost.getMedium();
 
         // then
+        verify(probability, times(9)).nextInt(3, 5);
         assertEquals(new Tokens(1, 1, 1, 4, 1), tokens);
     }
 
@@ -161,6 +170,7 @@ public class CardCostTest {
         Tokens tokens = cost.getExpensive();
 
         // then
+        verify(probability, times(8)).nextInt(3, 5);
         assertEquals(new Tokens(0, 7, 0, 0, 0), tokens);
     }
 
@@ -175,6 +185,7 @@ public class CardCostTest {
         Tokens tokens = cost.getExpensive();
 
         // then
+        verify(probability, times(11)).nextInt(3, 5);
         assertEquals(new Tokens(5, 0, 0, 5, 0), tokens);
     }
 
@@ -189,6 +200,7 @@ public class CardCostTest {
         Tokens tokens = cost.getExpensive();
 
         // then
+        verify(probability, times(12)).nextInt(3, 5);
         assertEquals(new Tokens(1, 0, 0, 2, 8), tokens);
     }
 
@@ -203,6 +215,7 @@ public class CardCostTest {
         Tokens tokens = cost.getExpensive();
 
         // then
+        verify(probability, times(13)).nextInt(3, 5);
         assertEquals(new Tokens(3, 0, 3, 3, 3), tokens);
     }
 
@@ -217,6 +230,7 @@ public class CardCostTest {
         Tokens tokens = cost.getExpensive();
 
         // then
+        verify(probability, times(15)).nextInt(3, 5);
         assertEquals(new Tokens(2, 2, 1, 4, 5), tokens);
     }
 }

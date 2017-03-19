@@ -36,7 +36,7 @@ public class NobilityFactoryTest {
         Tokens tokens = nobility.getCost();
 
         // then
-        Assert.assertEquals(new Tokens(0, 3, 3, 3, 0), tokens);
+        assertEquals(new Tokens(0, 3, 3, 3, 0), tokens);
     }
 
     @Test
@@ -51,6 +51,6 @@ public class NobilityFactoryTest {
         Tokens tokens = nobility.getCost();
 
         // then
-        Assert.assertEquals(new Tokens(0, 0, 0, 4, 4), tokens);
+        assertEquals(new Tokens(0, 0, 0, 4, 4), tokens);
     }
 }
