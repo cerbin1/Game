@@ -11,8 +11,8 @@ public class CardVO extends FigureVO {
     private final static double RESERVATION_ANIMATION_LENGTH = 2.5;
 
     private final Card card;
-    private AnimatedValue reservation = new AnimatedValue(0.0);
-    private AnimatedValue flip = new AnimatedValue(-1.0);
+    private final AnimatedValue reservation = new AnimatedValue(0.0);
+    private final AnimatedValue flip = new AnimatedValue(-1.0);
 
     public CardVO(Card card, int x, int y) {
         super(card, x, y, 236, 330);

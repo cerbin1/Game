@@ -3,8 +3,8 @@ package app.model.card;
 import app.model.token.Tokens;
 
 public abstract class Figure {
-    private Tokens cost;
-    private int points;
+    private final Tokens cost;
+    private final int points;
 
     public Figure(Tokens cost, int points) {
         this.cost = cost;

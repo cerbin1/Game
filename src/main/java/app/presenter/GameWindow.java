@@ -1,10 +1,8 @@
 package app.presenter;
 
-import app.model.Game;
 import app.model.GameBuilder;
 import app.model.Player;
 import app.model.Updatable;
-import app.model.card.Card;
 import app.model.card.CardFactory;
 import app.model.card.nobility.Nobility;
 import app.model.token.Token;
@@ -47,8 +45,7 @@ public class GameWindow implements Updatable {
         GameBuilder builder = new GameBuilder();
         Tokens tokens = new Tokens(7, 5);
         Player player = new Player();
-        Game game = builder.set(tokens).add(player).create();
-        List<Card> cards = new ArrayList<>();
+
         List<CardVO> cardVOs = new ArrayList<>();
         List<TokenVO> tokenVOs = new ArrayList<>();
         NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(1, 2, 3, 4, 0), 3), 1000, 1500);
@@ -68,26 +65,20 @@ public class GameWindow implements Updatable {
         }
 
         for (int i = 0; i < 4; i++) {
-            Card card = cardFactory.createCheapCard();
-            cards.add(card);
-            CardVO vo = new CardVO(card, 300, 200);
+            CardVO vo = new CardVO(cardFactory.createCheapCard(), 300, 200);
             vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
 
         for (int i = 0; i < 4; i++) {
-            Card card = cardFactory.createMediumCard();
-            cards.add(card);
-            CardVO vo = new CardVO(card, 300, 530);
+            CardVO vo = new CardVO(cardFactory.createMediumCard(), 300, 530);
             vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
         for (int i = 0; i < 4; i++) {
-            Card card = cardFactory.createExpensiveCard();
-            cards.add(card);
-            CardVO vo = new CardVO(card, 300, 860);
+            CardVO vo = new CardVO(cardFactory.createExpensiveCard(), 300, 860);
             vo.addClickListener(this::viewObjectClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
@@ -95,8 +86,8 @@ public class GameWindow implements Updatable {
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
-        cardVOs.forEach(vo -> updatables.add(vo));
-        tokenVOs.forEach(vo -> updatables.add(vo));
+        cardVOs.forEach(updatables::add);
+        tokenVOs.forEach(updatables::add);
         updatables.add(nobilityVO);
 
         renderers.add(new BackgroundRenderer());
@@ -131,34 +122,33 @@ public class GameWindow implements Updatable {
 
     private void viewObjectClicked(ViewObject clickedVO) {
         if (clickedVO == currentVO) {
-            clickedVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 10.0);
+            clickedVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 3.0);
             currentVO = null;
             currentVoPreviousPoint = null;
         } else {
             if (currentVO != null) {
-                currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 10.0);
+                currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 3.0);
             }
             currentVO = clickedVO;
             currentVoPreviousPoint = new Point(clickedVO.getX(), clickedVO.getY());
-            clickedVO.moveToConstantSpeed(1800, 600, 10.0);
+            clickedVO.moveToConstantSpeed(1800, 600, 3.0);
         }
     }
 
     public class GameMouseAdapter extends MouseAdapter {
         @Override
-        public void mouseClicked(MouseEvent e) {
-            getRendererOnPoint(e.getPoint()).ifPresent(this::clickedRenderer);
+        public void mouseClicked(MouseEvent event) {
+            getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
         }
 
         private void clickedRenderer(Renderer renderer) {
-            ViewObject clickedVO = renderer.getViewObject();
-            clickedVO.triggerClicked();
+            renderer.getViewObject().triggerClicked();
         }
 
         @Override
-        public void mouseMoved(MouseEvent e) {
-            renderers.forEach(r -> r.getViewObject().setHover(false));
-            Optional<Renderer> optional = getRendererOnPoint(e.getPoint());
+        public void mouseMoved(MouseEvent event) {
+            renderers.forEach(renderer -> renderer.getViewObject().setHover(false));
+            Optional<Renderer> optional = getRendererOnPoint(event.getPoint());
 
             if (optional.isPresent()) {
                 optional.get().getViewObject().setHover(true);

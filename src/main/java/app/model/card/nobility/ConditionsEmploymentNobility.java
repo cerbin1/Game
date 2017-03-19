@@ -4,7 +4,7 @@ import app.model.token.Tokens;
 import app.model.util.Probability;
 
 class ConditionsEmploymentNobility {
-    private int[] tokenValue = new int[5];
+    private final int[] tokenValue = new int[5];
     private final Probability probability;
 
     ConditionsEmploymentNobility() {
