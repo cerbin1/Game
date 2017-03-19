@@ -1,17 +1,21 @@
 package app.game.card;
 
 import app.game.token.Tokens;
+import app.util.Probability;
 import org.junit.Test;
-import testUtils.MockProbability;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CardCostTest {
 
     @Test
     public void shouldRandomOneTypeOfCheapCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(3, 0, 0, 0));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(3, 0, 0, 0);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getCheap();
@@ -23,7 +27,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomTwoTypesOfCheapCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(4, 2, 2, 3, 3));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(4, 2, 2, 3, 3);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getCheap();
@@ -35,7 +41,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomThreeTypesOfCheapCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(5, 0, 0, 0, 1, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(5, 0, 0, 0, 1, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getCheap();
@@ -47,7 +55,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFourTypesOfCheapCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(5, 0, 0, 1, 2, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(5, 0, 0, 1, 2, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getCheap();
@@ -59,7 +69,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFiveTypesOfCheapCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(5, 0, 1, 2, 3, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(5, 0, 1, 2, 3, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getCheap();
@@ -71,7 +83,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomOneTypeOfMediumCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(5, 2, 2, 2, 2, 2));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(5, 2, 2, 2, 2, 2);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getMedium();
@@ -83,7 +97,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomTwoTypesOfMediumCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(6, 0, 0, 0, 2, 2, 2));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(6, 0, 0, 0, 2, 2, 2);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getMedium();
@@ -95,7 +111,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomThreeTypesOfMediumCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(8, 1, 1, 1, 2, 2, 4, 4, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(8, 1, 1, 1, 2, 2, 4, 4, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getMedium();
@@ -107,7 +125,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFourTypesOfMediumCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(8, 0, 0, 1, 1, 2, 2, 3, 3));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(8, 0, 0, 1, 1, 2, 2, 3, 3);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getMedium();
@@ -119,7 +139,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFiveTypesOfMediumCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(8, 0, 1, 2, 3, 3, 3, 3, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(8, 0, 1, 2, 3, 3, 3, 3, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getMedium();
@@ -131,7 +153,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomOneTypeOfExpensiveCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(7, 1, 1, 1, 1, 1, 1, 1));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(7, 1, 1, 1, 1, 1, 1, 1);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getExpensive();
@@ -143,7 +167,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomTwoTypesOfExpensiveCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(10, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(10, 0, 0, 0, 0, 0, 3, 3, 3, 3, 3);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getExpensive();
@@ -155,7 +181,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomThreeTypesOfExpensiveCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(11, 0, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(11, 0, 3, 3, 4, 4, 4, 4, 4, 4, 4, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getExpensive();
@@ -167,7 +195,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFourTypesOfExpensiveCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(12, 0, 0, 0, 2, 2, 2, 3, 3, 3, 4, 4, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(12, 0, 0, 0, 2, 2, 2, 3, 3, 3, 4, 4, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getExpensive();
@@ -179,7 +209,9 @@ public class CardCostTest {
     @Test
     public void shouldRandomFiveTypesOfExpensiveCostCard() {
         // given
-        CardCost cost = new CardCost(new MockProbability(14, 0, 0, 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(14, 0, 0, 1, 1, 2, 3, 3, 3, 3, 4, 4, 4, 4, 4);
+        CardCost cost = new CardCost(probability);
 
         // when
         Tokens tokens = cost.getExpensive();

@@ -1,15 +1,19 @@
 package app.game.card;
 
+import app.util.Probability;
 import org.junit.Test;
-import testUtils.MockProbability;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CardPointsTest {
     @Test
     public void shouldGenerateCheapCardPoints() {
         // given
-        CardPoints points = new CardPoints(new MockProbability(1));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(1);
+        CardPoints points = new CardPoints(probability);
 
         // when
         int cheapCardPoints = points.getCheap();
@@ -21,7 +25,9 @@ public class CardPointsTest {
     @Test
     public void shouldGenerateMediumCardPoints() {
         // given
-        CardPoints points = new CardPoints(new MockProbability(3));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(12);
+        CardPoints points = new CardPoints(probability);
 
         // when
         int mediumCardPoints = points.getMedium();
@@ -33,7 +39,9 @@ public class CardPointsTest {
     @Test
     public void shouldGenerateExpensiveCardPoints() {
         // given
-        CardPoints points = new CardPoints(new MockProbability(5));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(124125);
+        CardPoints points = new CardPoints(probability);
 
         // when
         int expensiveCardPoints = points.getExpensive();

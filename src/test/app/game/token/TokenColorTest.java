@@ -1,16 +1,19 @@
 package app.game.token;
 
+import app.util.Probability;
 import org.junit.Test;
-import testUtils.MockProbability;
 
 import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class TokenColorTest {
     @Test
     public void shouldGetRandomCardColor() {
         // given
-        MockProbability probability = new MockProbability(0, 1, 2, 3, 4);
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(0, values().length)).thenReturn(0, 1, 2, 3, 4);
 
         // when
         TokenColor color1 = getRandom(probability);

@@ -1,17 +1,21 @@
 package app.game.card;
 
 import app.game.token.Tokens;
+import app.util.Probability;
 import org.junit.Test;
-import testUtils.MockProbability;
 
 import static app.game.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CardFactoryTest {
     @Test
     public void shouldCreateCheapCard() {
         // given
-        CardFactory factory = new CardFactory(new MockProbability(3, 0, 0, 0, 1, 3));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(3, 0, 0, 0, 1, 3);
+        CardFactory factory = new CardFactory(probability);
 
         // when
         Card cheapCard = factory.createCheapCard();
@@ -25,7 +29,9 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateMediumCard() {
         // given
-        CardFactory factory = new CardFactory(new MockProbability(5, 0, 1, 1, 2, 4, 3, 1));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(5, 0, 1, 1, 2, 4, 3, 1);
+        CardFactory factory = new CardFactory(probability);
 
         // when
         Card mediumCard = factory.createMediumCard();
@@ -39,10 +45,12 @@ public class CardFactoryTest {
     @Test
     public void shouldCreateExpensiveCard() {
         // given
-        CardFactory builder = new CardFactory(new MockProbability(10, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 0));
+        Probability probability = mock(Probability.class);
+        when(probability.nextInt(3, 5)).thenReturn(10, 0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 4, 0);
+        CardFactory factory = new CardFactory(probability);
 
         // when
-        Card expensiveCard = builder.createExpensiveCard();
+        Card expensiveCard = factory.createExpensiveCard();
 
         // then
         assertEquals(new Tokens(2, 2, 2, 2, 2), expensiveCard.getCost());
