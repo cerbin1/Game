@@ -27,14 +27,14 @@ import static app.view.render.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
 
 public class GameWindow implements Updatable {
+    private final static Probability probability = new Probability();
+
     private final BufferWindow window = new BufferWindow();
 
-    private List<Updatable> updatables = new ArrayList<>();
-    private List<Renderer> renderers = new ArrayList<>();
+    private final List<Updatable> updatables = new ArrayList<>();
+    private final List<Renderer> renderers = new ArrayList<>();
 
-    private Probability probability = new Probability();
-
-    private Point previousPoint;
+    private Point currentVoPreviousPoint;
     private ViewObject currentVO;
 
     public GameWindow() {
@@ -131,15 +131,15 @@ public class GameWindow implements Updatable {
 
     private void viewObjectClicked(ViewObject clickedVO) {
         if (clickedVO == currentVO) {
-            clickedVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 10.0);
+            clickedVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 10.0);
             currentVO = null;
-            previousPoint = null;
+            currentVoPreviousPoint = null;
         } else {
             if (currentVO != null) {
-                currentVO.moveToConstantSpeed(previousPoint.x, previousPoint.y, 10.0);
+                currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 10.0);
             }
             currentVO = clickedVO;
-            previousPoint = new Point(clickedVO.getX(), clickedVO.getY());
+            currentVoPreviousPoint = new Point(clickedVO.getX(), clickedVO.getY());
             clickedVO.moveToConstantSpeed(1800, 600, 10.0);
         }
     }
