@@ -6,20 +6,19 @@ import app.view.render.TokenVO;
 import app.view.render.VersatileVO;
 import app.view.render.ViewObject;
 
-import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.HashSet;
-import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 public class Table {
     private final Set<ViewObject> viewObjects = new HashSet<>();
-    private final List<TokenColor> tokenColors = new ArrayList<>();
+    private final Map<TokenColor, Integer> tokenColors = new EnumMap<>(TokenColor.class);
 
     boolean put(ViewObject vo) {
         if (viewObjects.isEmpty() && (vo instanceof CardVO || vo instanceof TokenVO)) {
             if (vo instanceof TokenVO) {
-                TokenVO tokenVO = (TokenVO) vo;
-                tokenColors.add(tokenVO.getColor());
+                putTokenColor(vo);
             }
             viewObjects.add(vo);
             return true;
@@ -28,35 +27,44 @@ public class Table {
             if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof VersatileVO)) {
                 viewObjects.add(vo);
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
         if (vo instanceof VersatileVO) {
             if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
                 viewObjects.add(vo);
                 return true;
-            } else {
-                return false;
             }
+            return false;
         }
         if (vo instanceof TokenVO) {
             if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof TokenVO)) {
+                putTokenColor(vo);
                 viewObjects.add(vo);
                 return true;
-            } else {
-                return false;
             }
-            if (viewObjects.size() == 2 &&) {
-
+            if (viewObjects.size() == 2 && tokenColors.values().stream().noneMatch(integer -> integer == 2)) {
+                putTokenColor(vo);
+                viewObjects.add(vo);
+                return true;
             }
+            return false;
         }
 
         return false;
     }
 
+    private void putTokenColor(ViewObject vo) {
+        TokenVO tokenVO = (TokenVO) vo;
+        tokenColors.put(tokenVO.getColor(), 1);
+    }
+
     public void take(ViewObject vo) {
         if (viewObjects.contains(vo)) {
+            if (vo instanceof TokenVO) {
+                TokenVO tokenVO = (TokenVO) vo;
+                tokenColors.remove(tokenVO.getColor());
+            }
             viewObjects.remove(vo);
         } else {
             throw new IllegalViewObjectTaking("Unexpected gather");
