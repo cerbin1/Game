@@ -60,6 +60,8 @@ public class GameWindow implements Updatable {
         }
         Collections.shuffle(tokenVOs);
 
+        FpsRenderer fpsRenderer = new FpsRenderer(100, 1100);
+
         for (int i = 0; i < tokens.getVersatile(); i++) {
             tokenVOs.add(new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300)));
         }
@@ -89,9 +91,11 @@ public class GameWindow implements Updatable {
         cardVOs.forEach(updatables::add);
         tokenVOs.forEach(updatables::add);
         updatables.add(nobilityVO);
+        updatables.add(fpsRenderer);
 
         renderers.add(new BackgroundRenderer());
         renderers.add(new NobilityRenderer(nobilityVO));
+        renderers.add(fpsRenderer);
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
