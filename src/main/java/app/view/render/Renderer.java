@@ -33,7 +33,7 @@ public abstract class Renderer {
     }
 
     private void drawOutline(Graphics2D graphics2D) {
-        graphics2D.setStroke(new BasicStroke(3));
+        graphics2D.setStroke(new BasicStroke(1));
         graphics2D.setColor(Color.red);
         graphics2D.draw(viewObject.getOutline());
     }
