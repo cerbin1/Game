@@ -1,15 +1,14 @@
 package app.view.render;
 
+import app.view.Resolution;
+
 import java.awt.*;
 import java.awt.geom.AffineTransform;
 
-import static java.awt.Toolkit.getDefaultToolkit;
-
 public abstract class Renderer {
     final ViewObject viewObject;
-    final Dimension screenSize = getDefaultToolkit().getScreenSize();
 
-    public Renderer(ViewObject viewObject) {
+    Renderer(ViewObject viewObject) {
         this.viewObject = viewObject;
     }
 
@@ -25,12 +24,7 @@ public abstract class Renderer {
     private AffineTransform getTransform() {
         AffineTransform transform = new AffineTransform();
         transform.scale(0.6, 0.6);
-
-        double width = screenSize.getWidth();
-        double height = screenSize.getHeight();
-
-        transform.scale(width / 1920.0, height / 1080);
-
+        Resolution.scaleFullHdToResolution(transform);
         transform.translate(viewObject.getX(), viewObject.getY());
         transform.scale(viewObject.getPerspectiveX(), viewObject.getPerspectiveY());
         transform.rotate(viewObject.getRotation());
