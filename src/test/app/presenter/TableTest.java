@@ -18,10 +18,11 @@ import java.util.List;
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
+import static org.junit.rules.ExpectedException.*;
 
 public class TableTest {
     @Rule
-    public ExpectedException expectedException = ExpectedException.none();
+    public ExpectedException expectedException = none();
 
     private static CardVO cardVO() {
         return new CardVO(new CheapCard(new Tokens(), 0, Green), 0, 0);
