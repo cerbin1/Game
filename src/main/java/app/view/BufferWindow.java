@@ -1,6 +1,6 @@
 package app.view;
 
-import app.view.util.Optimalization;
+import app.view.util.Optimization;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
@@ -14,7 +14,7 @@ public class BufferWindow extends Window {
     private Graphics windowGraphics;
 
     public BufferWindow() {
-        backBuffer = Optimalization.createCompatibleImage(1920, 1080);
+        backBuffer = Optimization.createCompatibleImage(1920, 1080);
         canvas = backBuffer.createGraphics();
 
         canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
