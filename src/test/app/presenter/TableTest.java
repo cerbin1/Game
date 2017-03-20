@@ -1,10 +1,13 @@
 package app.presenter;
 
+import app.model.Game;
+import app.model.Player;
 import app.model.card.CheapCard;
 import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
+import app.model.turn.IllegalTurnException;
 import app.view.render.CardVO;
 import app.view.render.NobilityVO;
 import app.view.render.TokenVO;
@@ -13,8 +16,9 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.List;
+import java.util.Set;
 
+import static app.model.GameBuilder.builder;
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
@@ -114,6 +118,18 @@ public class TableTest {
     }
 
     @Test
+    public void shouldThrowOnTakeUnexistingViewObject() {
+        // given
+        Table table = new Table();
+
+        expectedException.expect(Illegal.class);
+        expectedException.expectMessage("Card already reserved");
+
+        // when
+        table.take(cardVO());
+    }
+
+    @Test
     public void shouldNotPutThirdTokenSameColor() {
         // given
         Table table = new Table();
@@ -202,7 +218,7 @@ public class TableTest {
         table.put(tokenVo);
 
         // when
-        List<ViewObject> gathered = table.gather();
+        Set<ViewObject> gathered = table.gather();
 
         // then
         assertEquals(gathered, asList(cardVO, tokenVo));
