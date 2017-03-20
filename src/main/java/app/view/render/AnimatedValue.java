@@ -17,7 +17,7 @@ public class AnimatedValue {
     private double currentValue;
     private double destinationValue;
 
-    public AnimatedValue(double value) {
+    AnimatedValue(double value) {
         this(value, new LinearTransition());
     }
 
@@ -31,11 +31,11 @@ public class AnimatedValue {
         setValue(value, 1.0);
     }
 
-    public void setValue(double value, double duration) {
+    void setValue(double value, double duration) {
         setValue(value, duration, null);
     }
 
-    public void setValue(double value, double duration, Runnable onFinish) {
+    void setValue(double value, double duration, Runnable onFinish) {
         this.startValue = currentValue;
         this.destinationValue = value;
         this.duration = duration;
@@ -47,7 +47,11 @@ public class AnimatedValue {
         return currentValue;
     }
 
-    public void update(double seconds) {
+    public double getDestinationValue() {
+        return destinationValue;
+    }
+
+    void update(double seconds) {
         if (seconds < 0) {
             throw new RuntimeException("Negative argument for AnimationValue.update()");
         }
