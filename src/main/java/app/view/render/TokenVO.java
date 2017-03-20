@@ -21,7 +21,7 @@ public class TokenVO extends ViewObject {
                 width, height);
     }
 
-    TokenColor getColor() {
+    public TokenColor getColor() {
         return token.getColor();
     }
 }
