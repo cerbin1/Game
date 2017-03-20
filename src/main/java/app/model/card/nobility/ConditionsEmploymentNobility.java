@@ -32,7 +32,7 @@ class ConditionsEmploymentNobility {
 
     private void setSingleToken(int value) {
         while (true) {
-            int token = getRandomToken(0, 4);
+            int token = getRandomToken();
             if (tokenValue[token] == 0) {
                 tokenValue[token] = value;
                 break;
@@ -40,8 +40,8 @@ class ConditionsEmploymentNobility {
         }
     }
 
-    private int getRandomToken(int min, int max) {
-        return probability.nextInt(min, max);
+    private int getRandomToken() {
+        return probability.nextInt(0, 4);
     }
 
     private Tokens getAssignedTokens() {
