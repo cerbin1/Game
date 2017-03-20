@@ -25,6 +25,10 @@ public class FpsRenderer extends Renderer implements Updatable {
     @Override
     public void update(double secondsPassed) {
         seconds += secondsPassed;
+        if (seconds >= 5.0) {
+            seconds = 0;
+            frames = 0;
+        }
     }
 
     @Override
