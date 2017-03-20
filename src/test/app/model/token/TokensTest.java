@@ -15,11 +15,11 @@ public class TokensTest {
         Tokens tokens = new Tokens(3, 2);
 
         // when
-        int green = tokens.getGreen();
-        int purple = tokens.getPurple();
-        int blue = tokens.getBlue();
-        int black = tokens.getBlack();
-        int red = tokens.getRed();
+        int green = tokens.get(Green);
+        int purple = tokens.get(Purple);
+        int blue = tokens.get(Blue);
+        int black = tokens.get(Black);
+        int red = tokens.get(Red);
         int versatile = tokens.getVersatile();
 
         // then
@@ -37,11 +37,11 @@ public class TokensTest {
         Tokens tokens = new Tokens(0, 4, 2, 12, 4);
 
         // when
-        int green = tokens.getGreen();
-        int purple = tokens.getPurple();
-        int blue = tokens.getBlue();
-        int black = tokens.getBlack();
-        int red = tokens.getRed();
+        int green = tokens.get(Green);
+        int purple = tokens.get(Purple);
+        int blue = tokens.get(Blue);
+        int black = tokens.get(Black);
+        int red = tokens.get(Red);
 
         // then
         assertEquals(0, green);

@@ -64,26 +64,6 @@ public class Tokens {
         return tokens.getOrDefault(color, 0);
     }
 
-    public int getGreen() {
-        return tokens.get(Green);
-    }
-
-    public int getPurple() {
-        return tokens.get(Purple);
-    }
-
-    public int getBlue() {
-        return tokens.get(Blue);
-    }
-
-    public int getBlack() {
-        return tokens.get(Black);
-    }
-
-    public int getRed() {
-        return tokens.get(Red);
-    }
-
     public int getVersatile() {
         return versatile;
     }
