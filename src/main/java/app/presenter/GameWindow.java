@@ -122,16 +122,16 @@ public class GameWindow implements Updatable {
 
     private void viewObjectClicked(ViewObject clickedVO) {
         if (clickedVO == currentVO) {
-            clickedVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 0.3);
+            clickedVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 0.9);
             currentVO = null;
             currentVoPreviousPoint = null;
         } else {
             if (currentVO != null) {
-                currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 0.3);
+                currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 0.9);
             }
             currentVO = clickedVO;
             currentVoPreviousPoint = new Point(clickedVO.getDestinationX(), clickedVO.getDestinationY());
-            clickedVO.moveToConstantSpeed(1800, 600, 0.3);
+            clickedVO.moveToConstantSpeed(1800, 600, 0.9);
         }
     }
 
