@@ -1,11 +1,8 @@
 package app.model.turn;
 
-public class IllegalTurnException extends RuntimeException {
-    public IllegalTurnException() {
-        super();
-    }
+class IllegalTurnException extends RuntimeException {
 
-    public IllegalTurnException(String message) {
+    IllegalTurnException(String message) {
         super(message);
     }
 }
