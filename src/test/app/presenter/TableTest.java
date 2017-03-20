@@ -232,7 +232,6 @@ public class TableTest {
         assertFalse(canGather);
     }
 
-
     @Test
     public void shouldGatherCard() {
         // given
@@ -303,7 +302,7 @@ public class TableTest {
     }
 
     @Test
-    public void shouldNotGatherVersatileWithCard() {
+    public void shouldGatherVersatileWithCard() {
         // given
         Table table = new Table();
         table.put(cardVO());
@@ -328,5 +327,4 @@ public class TableTest {
         // then
         assertFalse(canGather);
     }
-
 }

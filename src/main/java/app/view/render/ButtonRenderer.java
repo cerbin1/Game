@@ -22,7 +22,7 @@ public class ButtonRenderer extends Renderer {
     protected void render(Graphics2D graphics) {
         graphics.scale(1.6, 1.6);
         graphics.drawImage(buttonImage, 0, 0, null);
-        graphics.scale(1/1.6, 1/1.6);
+        graphics.scale(1 / 1.6, 1 / 1.6);
         drawText(graphics, "PASS TURN", 160, 80);
     }
 
