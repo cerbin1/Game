@@ -12,9 +12,9 @@ import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
 import app.view.render.*;
+import app.view.util.FastClickMouseAdapter;
 
 import java.awt.*;
-import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -135,20 +135,10 @@ public class GameWindow implements Updatable {
         }
     }
 
-    public class GameMouseAdapter extends MouseAdapter {
-        private boolean canClick;
-
+    public class GameMouseAdapter extends FastClickMouseAdapter {
         @Override
-        public void mousePressed(MouseEvent event) {
-            if (canClick) {
-                getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
-                canClick = false;
-            }
-        }
-
-        @Override
-        public void mouseReleased(MouseEvent event) {
-            canClick = true;
+        public void mouseFastClicked(MouseEvent event) {
+            getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
         }
 
         private void clickedRenderer(Renderer renderer) {

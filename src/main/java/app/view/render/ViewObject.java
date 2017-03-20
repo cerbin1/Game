@@ -1,7 +1,7 @@
 package app.view.render;
 
 import app.model.Updatable;
-import app.view.Resolution;
+import app.view.util.Resolution;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;

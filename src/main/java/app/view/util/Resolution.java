@@ -1,4 +1,4 @@
-package app.view;
+package app.view.util;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
