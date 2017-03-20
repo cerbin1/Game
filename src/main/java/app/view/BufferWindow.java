@@ -1,18 +1,22 @@
 package app.view;
 
+import app.view.util.Optimalization;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static java.awt.RenderingHints.*;
-import static java.awt.image.BufferedImage.TYPE_INT_ARGB;
 
 public class BufferWindow extends Window {
-    private final BufferedImage backBuffer = new BufferedImage(1920, 1080, TYPE_INT_ARGB);
-    private final Graphics2D canvas = backBuffer.createGraphics();
+    private BufferedImage backBuffer;
+    private Graphics2D canvas;
 
     private Graphics windowGraphics;
 
     public BufferWindow() {
+        backBuffer = Optimalization.createCompatibleImage(1920, 1080);
+        canvas = backBuffer.createGraphics();
+
         canvas.setRenderingHint(KEY_ANTIALIASING, VALUE_ANTIALIAS_ON);
         canvas.setRenderingHint(KEY_RENDERING, VALUE_RENDER_QUALITY);
     }
