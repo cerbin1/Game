@@ -136,9 +136,19 @@ public class GameWindow implements Updatable {
     }
 
     public class GameMouseAdapter extends MouseAdapter {
+        private boolean canClick;
+
         @Override
-        public void mouseClicked(MouseEvent event) {
-            getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
+        public void mousePressed(MouseEvent event) {
+            if (canClick) {
+                getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
+                canClick = false;
+            }
+        }
+
+        @Override
+        public void mouseReleased(MouseEvent event) {
+            canClick = true;
         }
 
         private void clickedRenderer(Renderer renderer) {
