@@ -5,10 +5,7 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
-import app.view.render.CardVO;
-import app.view.render.NobilityVO;
-import app.view.render.TokenVO;
-import app.view.render.ViewObject;
+import app.view.render.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -28,16 +25,20 @@ public class TableTest {
         return new CardVO(new CheapCard(new Tokens(), 0, Green), 0, 0);
     }
 
-    private static ViewObject nobilityVo() {
+    private static ViewObject nobilityVO() {
         return new NobilityVO(new Nobility(new Tokens(), 0), 0, 0);
     }
 
-    private static ViewObject tokenVo() {
-        return tokenVo(Green);
+    private static ViewObject tokenVO() {
+        return tokenVO(Green);
     }
 
-    private static ViewObject tokenVo(TokenColor color) {
+    private static ViewObject tokenVO(TokenColor color) {
         return new TokenVO(new Token(color), 0, 0);
+    }
+
+    private static ViewObject versatileVO() {
+        return new VersatileVO(new Token(null), 0, 0);
     }
 
     @Test
@@ -71,8 +72,8 @@ public class TableTest {
         Table table = new Table();
 
         // when
-        boolean canPut1 = table.put(tokenVo(Green));
-        boolean canPut2 = table.put(tokenVo(Green));
+        boolean canPut1 = table.put(tokenVO(Green));
+        boolean canPut2 = table.put(tokenVO(Green));
 
         // then
         assertTrue(canPut1);
@@ -85,9 +86,9 @@ public class TableTest {
         Table table = new Table();
 
         // when
-        boolean canPut1 = table.put(tokenVo(Green));
-        boolean canPut2 = table.put(tokenVo(Blue));
-        boolean canPut3 = table.put(tokenVo(Black));
+        boolean canPut1 = table.put(tokenVO(Green));
+        boolean canPut2 = table.put(tokenVO(Blue));
+        boolean canPut3 = table.put(tokenVO(Black));
 
         // then
         assertTrue(canPut1);
@@ -101,10 +102,10 @@ public class TableTest {
         Table table = new Table();
 
         // when
-        boolean canPut1 = table.put(tokenVo(Green));
-        boolean canPut2 = table.put(tokenVo(Blue));
-        boolean canPut3 = table.put(tokenVo(Black));
-        boolean canPut4 = table.put(tokenVo(Red));
+        boolean canPut1 = table.put(tokenVO(Green));
+        boolean canPut2 = table.put(tokenVO(Blue));
+        boolean canPut3 = table.put(tokenVO(Black));
+        boolean canPut4 = table.put(tokenVO(Red));
 
         // then
         assertTrue(canPut1);
@@ -129,11 +130,11 @@ public class TableTest {
     public void shouldNotPutThirdTokenSameColor() {
         // given
         Table table = new Table();
-        table.put(tokenVo(Green));
-        table.put(tokenVo(Green));
+        table.put(tokenVO(Green));
+        table.put(tokenVO(Green));
 
         // when
-        boolean canPut = table.put(tokenVo(Blue));
+        boolean canPut = table.put(tokenVO(Blue));
 
         // then
         assertFalse(canPut);
@@ -143,11 +144,11 @@ public class TableTest {
     public void shouldNotPutThirdTokenAlreadyPut() {
         // given
         Table table = new Table();
-        table.put(tokenVo(Green));
-        table.put(tokenVo(Blue));
+        table.put(tokenVO(Green));
+        table.put(tokenVO(Blue));
 
         // when
-        boolean canPut = table.put(tokenVo(Green));
+        boolean canPut = table.put(tokenVO(Green));
 
         // then
         assertFalse(canPut);
@@ -157,7 +158,7 @@ public class TableTest {
     public void shouldNotPutCardOnToken() {
         // given
         Table table = new Table();
-        table.put(tokenVo());
+        table.put(tokenVO());
 
         // when
         boolean canPut = table.put(cardVO());
@@ -170,7 +171,7 @@ public class TableTest {
     public void shouldPutCardOnVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVo(null));
+        table.put(versatileVO());
 
         // when
         boolean canPut = table.put(cardVO());
@@ -186,7 +187,7 @@ public class TableTest {
         table.put(cardVO());
 
         // when
-        boolean canPut = table.put(tokenVo(null));
+        boolean canPut = table.put(versatileVO());
 
         // then
         assertTrue(canPut);
@@ -198,7 +199,7 @@ public class TableTest {
         Table table = new Table();
 
         // when
-        boolean canPut = table.put(nobilityVo());
+        boolean canPut = table.put(nobilityVO());
 
         // then
         assertFalse(canPut);
@@ -208,7 +209,7 @@ public class TableTest {
     public void shouldGather() {
         // given
         Table table = new Table();
-        ViewObject cardVO = cardVO(), tokenVo = tokenVo(null);
+        ViewObject cardVO = cardVO(), tokenVo = tokenVO();
 
         table.put(cardVO);
         table.put(tokenVo);
@@ -261,7 +262,7 @@ public class TableTest {
     public void shouldGatherSingleToken() {
         // given
         Table table = new Table();
-        table.put(tokenVo());
+        table.put(tokenVO());
 
         // when
         boolean canGather = table.canGather();
@@ -274,8 +275,8 @@ public class TableTest {
     public void shouldNotGatherTwoDifferentTokens() {
         // given
         Table table = new Table();
-        table.put(tokenVo(Blue));
-        table.put(tokenVo(Green));
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Green));
 
         // when
         boolean canGather = table.canGather();
@@ -288,8 +289,8 @@ public class TableTest {
     public void shouldGatherTwoSameTokens() {
         // given
         Table table = new Table();
-        table.put(tokenVo(Blue));
-        table.put(tokenVo(Blue));
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Blue));
 
         // when
         boolean canGather = table.canGather();
@@ -302,9 +303,9 @@ public class TableTest {
     public void shouldGatherThreeDifferentTokens() {
         // given
         Table table = new Table();
-        table.put(tokenVo(Blue));
-        table.put(tokenVo(Green));
-        table.put(tokenVo(Red));
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Green));
+        table.put(tokenVO(Red));
 
         // when
         boolean canGather = table.canGather();
@@ -318,7 +319,7 @@ public class TableTest {
         // given
         Table table = new Table();
         table.put(cardVO());
-        table.put(tokenVo(null));
+        table.put(versatileVO());
 
         // when
         boolean canGather = table.canGather();
@@ -331,7 +332,7 @@ public class TableTest {
     public void shouldNotGatherVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVo(null));
+        table.put(versatileVO());
 
         // when
         boolean canGather = table.canGather();
