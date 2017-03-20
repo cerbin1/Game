@@ -9,11 +9,15 @@ public class Table {
     private final Set<ViewObject> viewObjects = new HashSet<>();
 
     boolean put(ViewObject vo) {
-
+        return false;
     }
 
     public void take(ViewObject vo) {
-        viewObjects.remove(vo);
+        if (viewObjects.contains(vo)) {
+            viewObjects.remove(vo);
+        } else {
+            throw new IllegalViewObjectTaking("Unexpected gather");
+        }
     }
 
     boolean canGather() {
