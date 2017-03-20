@@ -18,7 +18,7 @@ import java.util.List;
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
-import static org.junit.rules.ExpectedException.*;
+import static org.junit.rules.ExpectedException.none;
 
 public class TableTest {
     @Rule
