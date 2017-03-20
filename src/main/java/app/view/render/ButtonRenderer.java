@@ -1,11 +1,10 @@
 package app.view.render;
 
-import app.view.ImageRepository;
-
 import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
 
+import static app.view.ImageRepository.imageRepository;
 import static java.awt.Color.white;
 import static java.awt.Font.ITALIC;
 
@@ -15,7 +14,7 @@ public class ButtonRenderer extends Renderer {
 
     public ButtonRenderer(ButtonVO buttonVO) {
         super(buttonVO);
-        buttonImage = ImageRepository.imageRepository().button;
+        buttonImage = imageRepository().button;
     }
 
     @Override
