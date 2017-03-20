@@ -130,7 +130,7 @@ public class GameWindow implements Updatable {
                 currentVO.moveToConstantSpeed(currentVoPreviousPoint.x, currentVoPreviousPoint.y, 3.0);
             }
             currentVO = clickedVO;
-            currentVoPreviousPoint = new Point(clickedVO.getX(), clickedVO.getY());
+            currentVoPreviousPoint = new Point(clickedVO.getDestinationX(), clickedVO.getDestinationY());
             clickedVO.moveToConstantSpeed(1800, 600, 3.0);
         }
     }

@@ -50,6 +50,14 @@ public abstract class ViewObject implements Updatable {
         return (int) round(y.getValue());
     }
 
+    public int getDestinationX() {
+        return (int) round(x.getDestinationValue());
+    }
+
+    public int getDestinationY() {
+        return (int) round(y.getDestinationValue());
+    }
+
     public void setRotation(double rotation) {
         this.rotation.setValue(rotation);
     }
