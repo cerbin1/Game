@@ -1,6 +1,7 @@
 package app.view.render;
 
 import app.model.Updatable;
+import app.view.Resolution;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -27,6 +28,7 @@ public abstract class ViewObject implements Updatable {
     final public Shape getOutline() {
         AffineTransform transform = new AffineTransform();
         transform.scale(0.6, 0.6);
+        Resolution.scaleFullHdToResolution(transform);
         transform.translate(getX(), getY());
         transform.scale(getPerspectiveX(), getPerspectiveY());
         transform.rotate(getRotation());
