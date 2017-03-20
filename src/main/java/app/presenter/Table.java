@@ -2,23 +2,28 @@ package app.presenter;
 
 import app.view.render.ViewObject;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Table {
+    private final Set<ViewObject> viewObjects = new HashSet<>();
+
     boolean put(ViewObject vo) {
-        return false;
+
     }
 
     public void take(ViewObject vo) {
-
+        viewObjects.remove(vo);
     }
 
     boolean canGather() {
         return true;
     }
 
-    List<ViewObject> gather() {
-        return new ArrayList<>();
+    Set<ViewObject> gather() {
+        Set<ViewObject> copy = new HashSet<>();
+        copy.addAll(viewObjects);
+        viewObjects.clear();
+        return copy;
     }
 }
