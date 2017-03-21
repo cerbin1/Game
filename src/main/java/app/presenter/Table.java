@@ -9,11 +9,11 @@ import java.util.*;
 
 import static app.model.token.TokenColor.*;
 
-public class Table {
+class Table {
     private final List<ViewObject> viewObjects = new ArrayList<>();
     private final Map<TokenColor, Integer> tokenColors = new EnumMap<>(TokenColor.class);
 
-    public Table() {
+    Table() {
         tokenColors.put(Green, 0);
         tokenColors.put(Purple, 0);
         tokenColors.put(Blue, 0);
@@ -63,11 +63,14 @@ public class Table {
                 if (viewObjects.stream().anyMatch(v -> ((TokenVO) v).getColor() == ((TokenVO) vo).getColor())) {
                     return false;
                 }
-                if (tokenColors.values().stream().noneMatch(integer -> integer == 2)) {
-                    putTokenColor(vo);
-                    viewObjects.add(vo);
-                    return true;
+                for (TokenColor color : TokenColor.values()) {
+                    if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() == 2) {
+                        return false;
+                    }
                 }
+                putTokenColor(vo);
+                viewObjects.add(vo);
+                return true;
             }
         }
         return false;
@@ -79,7 +82,7 @@ public class Table {
         tokenColors.put(color, tokenColors.get(color) + 1);
     }
 
-    public void take(ViewObject vo) {
+    void take(ViewObject vo) {
         if (viewObjects.contains(vo)) {
             if (vo instanceof TokenVO) {
                 TokenVO tokenVO = (TokenVO) vo;
