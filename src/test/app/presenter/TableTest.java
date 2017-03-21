@@ -14,7 +14,9 @@ import java.util.Set;
 
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
-import static org.junit.Assert.*;
+import static junit.framework.TestCase.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
 public class TableTest {
@@ -61,6 +63,109 @@ public class TableTest {
 
         // when
         boolean canPut = table.put(cardVO());
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldPutCardOnVersatile() {
+        // given
+        Table table = new Table();
+        table.put(versatileVO());
+
+        // when
+        boolean canPut = table.put(cardVO());
+
+        // then
+        assertTrue(canPut);
+    }
+
+    @Test
+    public void shouldPutVersatileOnCard() {
+        // given
+        Table table = new Table();
+        table.put(cardVO());
+
+        // when
+        boolean canPut = table.put(versatileVO());
+
+        // then
+        assertTrue(canPut);
+    }
+
+    @Test
+    public void shouldNotPutCardOnToken() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO());
+
+        // when
+        boolean canPut = table.put(cardVO());
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldNotPutTokenOnCard() {
+        // given
+        Table table = new Table();
+        table.put(cardVO());
+
+        // when
+        boolean canPut = table.put(tokenVO());
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldPutVersatile() {
+        // given
+        Table table = new Table();
+
+        // when
+        boolean canPut = table.put(versatileVO());
+
+        // then
+        assertTrue(canPut);
+    }
+
+    @Test
+    public void shouldNotPutSecondVersatile() {
+        // given
+        Table table = new Table();
+        table.put(versatileVO());
+
+        // when
+        boolean canPut = table.put(versatileVO());
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldNotPutVersatileOnToken() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO());
+
+        // when
+        boolean canPut = table.put(versatileVO());
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldNotPutTokenOnVersatile() {
+        // given
+        Table table = new Table();
+        table.put(versatileVO());
+
+        // when
+        boolean canPut = table.put(tokenVO());
 
         // then
         assertFalse(canPut);
@@ -115,18 +220,6 @@ public class TableTest {
     }
 
     @Test
-    public void shouldThrowOnTakeUnexistingViewObject() {
-        // given
-        Table table = new Table();
-
-        expectedException.expect(IllegalViewObjectTaking.class);
-        expectedException.expectMessage("Unexpected gather");
-
-        // when
-        table.take(cardVO());
-    }
-
-    @Test
     public void shouldNotPutThirdTokenSameColor() {
         // given
         Table table = new Table();
@@ -155,45 +248,6 @@ public class TableTest {
     }
 
     @Test
-    public void shouldNotPutCardOnToken() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO());
-
-        // when
-        boolean canPut = table.put(cardVO());
-
-        // then
-        assertFalse(canPut);
-    }
-
-    @Test
-    public void shouldPutCardOnVersatile() {
-        // given
-        Table table = new Table();
-        table.put(versatileVO());
-
-        // when
-        boolean canPut = table.put(cardVO());
-
-        // then
-        assertTrue(canPut);
-    }
-
-    @Test
-    public void shouldPutVersatileOnCard() {
-        // given
-        Table table = new Table();
-        table.put(cardVO());
-
-        // when
-        boolean canPut = table.put(versatileVO());
-
-        // then
-        assertTrue(canPut);
-    }
-
-    @Test
     public void shouldNotPutNobility() {
         // given
         Table table = new Table();
@@ -203,6 +257,18 @@ public class TableTest {
 
         // then
         assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldThrowOnTakingNotExistingViewObject() {
+        // given
+        Table table = new Table();
+
+        expectedException.expect(IllegalViewObjectTaking.class);
+        expectedException.expectMessage("Unexpected gather");
+
+        // when
+        table.take(cardVO());
     }
 
     @Test
