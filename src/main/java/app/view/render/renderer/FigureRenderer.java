@@ -1,4 +1,4 @@
-package app.view.render;
+package app.view.render.renderer;
 
 import app.model.card.Figure;
 import app.model.token.TokenColor;

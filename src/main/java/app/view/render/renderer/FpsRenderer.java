@@ -1,4 +1,4 @@
-package app.view.render;
+package app.view.render.renderer;
 
 import app.model.Updatable;
 import app.view.render.vo.ViewObject;

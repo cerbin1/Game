@@ -11,7 +11,7 @@ import app.model.token.Tokens;
 import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
-import app.view.render.*;
+import app.view.render.renderer.*;
 import app.view.render.vo.*;
 import app.view.util.FastClickMouseAdapter;
 
