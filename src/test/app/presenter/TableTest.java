@@ -5,7 +5,10 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
-import app.view.render.vo.*;
+import app.view.render.vo.CardVO;
+import app.view.render.vo.NobilityVO;
+import app.view.render.vo.TokenVO;
+import app.view.render.vo.ViewObject;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -68,7 +71,7 @@ public class TableTest {
     public void shouldPutCardOnVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO());
+        table.put(tokenVO(null));
 
         // when
         boolean canPut = table.put(cardVO());
@@ -132,7 +135,7 @@ public class TableTest {
     public void shouldNotPutSecondVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO());
+        table.put(tokenVO(null));
 
         // when
         boolean canPut = table.put(tokenVO(null));
@@ -266,6 +269,7 @@ public class TableTest {
         // when
         table.take(cardVO());
     }
+
     @Test
     public void shouldGather() {
         // given

@@ -33,12 +33,15 @@ public class Table {
         }
         if (vo instanceof TokenVO) {
             if (((TokenVO) vo).isVersatile()) {
-                if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
-                    viewObjects.add(vo);
-                    return true;
+                if (viewObjects.size() == 1) {
+                    if (viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
+                        viewObjects.add(vo);
+                        return true;
+                    }
+                    return false;
                 }
             }
-            if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> !((TokenVO) v).isVersatile())) {
+            if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> (v instanceof TokenVO) && !((TokenVO) v).isVersatile())) {
                 putTokenColor(vo);
                 viewObjects.add(vo);
                 return true;
