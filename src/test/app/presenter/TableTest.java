@@ -84,7 +84,7 @@ public class TableTest {
         table.put(cardVO());
 
         // when
-        boolean canPut = table.put(tokenVO());
+        boolean canPut = table.put(tokenVO(null));
 
         // then
         assertTrue(canPut);
@@ -266,7 +266,6 @@ public class TableTest {
         // when
         table.take(cardVO());
     }
-
     @Test
     public void shouldGather() {
         // given

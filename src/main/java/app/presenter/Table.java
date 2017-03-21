@@ -3,7 +3,6 @@ package app.presenter;
 import app.model.token.TokenColor;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
-import app.view.render.vo.VersatileVO;
 import app.view.render.vo.ViewObject;
 
 import java.util.EnumMap;
@@ -17,7 +16,7 @@ public class Table {
 
     boolean put(ViewObject vo) {
         if (viewObjects.isEmpty() && (vo instanceof CardVO || vo instanceof TokenVO)) {
-            if (vo instanceof TokenVO && ((TokenVO) vo).isVersatile()) {
+            if (vo instanceof TokenVO && !((TokenVO) vo).isVersatile()) {
                 putTokenColor(vo);
             }
             viewObjects.add(vo);
@@ -25,21 +24,20 @@ public class Table {
         }
         if (vo instanceof CardVO) {
             if (viewObjects.size() == 1) {
-                if (viewObjects.stream().anyMatch(v -> ((TokenVO) v).isVersatile())) {
+                if (viewObjects.stream().anyMatch(v -> ((v instanceof TokenVO) && ((TokenVO) v).isVersatile()))) {
                     viewObjects.add(vo);
                     return true;
                 }
             }
             return false;
         }
-        if (vo instanceof VersatileVO) {
-            if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
-                viewObjects.add(vo);
-                return true;
-            }
-            return false;
-        }
         if (vo instanceof TokenVO) {
+            if (((TokenVO) vo).isVersatile()) {
+                if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
+                    viewObjects.add(vo);
+                    return true;
+                }
+            }
             if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> !((TokenVO) v).isVersatile())) {
                 putTokenColor(vo);
                 viewObjects.add(vo);
