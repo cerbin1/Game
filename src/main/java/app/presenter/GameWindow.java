@@ -12,6 +12,7 @@ import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
 import app.view.render.*;
+import app.view.render.vo.*;
 import app.view.util.FastClickMouseAdapter;
 
 import java.awt.*;
@@ -21,7 +22,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-import static app.view.render.ViewObject.slightRotation;
+import static app.view.render.vo.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
 
 public class GameWindow implements Updatable {

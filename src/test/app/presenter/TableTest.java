@@ -5,7 +5,7 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
-import app.view.render.*;
+import app.view.render.vo.*;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;

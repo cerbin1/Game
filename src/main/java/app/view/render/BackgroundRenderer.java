@@ -1,5 +1,7 @@
 package app.view.render;
 
+import app.view.render.vo.ViewObject;
+
 import java.awt.*;
 import java.awt.image.BufferedImage;
 

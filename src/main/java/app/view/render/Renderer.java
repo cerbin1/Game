@@ -1,5 +1,6 @@
 package app.view.render;
 
+import app.view.render.vo.ViewObject;
 import app.view.util.Resolution;
 
 import java.awt.*;

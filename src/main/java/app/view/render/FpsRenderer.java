@@ -1,6 +1,7 @@
 package app.view.render;
 
 import app.model.Updatable;
+import app.view.render.vo.ViewObject;
 
 import java.awt.*;
 

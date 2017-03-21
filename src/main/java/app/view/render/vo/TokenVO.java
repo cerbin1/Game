@@ -1,4 +1,4 @@
-package app.view.render;
+package app.view.render.vo;
 
 import app.model.token.Token;
 import app.model.token.TokenColor;

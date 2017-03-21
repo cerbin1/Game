@@ -1,6 +1,7 @@
-package app.view.render;
+package app.view.render.vo;
 
 import app.model.card.Card;
+import app.view.render.AnimatedValue;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
@@ -44,12 +45,12 @@ public class CardVO extends FigureVO {
     }
 
     @Override
-    double getRotation() {
+    public double getRotation() {
         return super.getRotation() + reservation.getValue() * PI / 2;
     }
 
     @Override
-    double getPerspectiveX() {
+    public double getPerspectiveX() {
         return flip.getValue();
     }
 }

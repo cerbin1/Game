@@ -1,6 +1,6 @@
 package app.view;
 
-import app.view.render.CardVO;
+import app.view.render.vo.CardVO;
 
 import java.util.List;
 import java.util.function.Function;

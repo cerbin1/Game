@@ -1,5 +1,6 @@
 package app.view.render;
 
+import app.view.render.vo.ViewObject;
 import org.junit.Test;
 
 import static org.junit.Assert.assertTrue;

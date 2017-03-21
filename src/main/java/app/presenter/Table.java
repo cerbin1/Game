@@ -1,10 +1,10 @@
 package app.presenter;
 
 import app.model.token.TokenColor;
-import app.view.render.CardVO;
-import app.view.render.TokenVO;
-import app.view.render.VersatileVO;
-import app.view.render.ViewObject;
+import app.view.render.vo.CardVO;
+import app.view.render.vo.TokenVO;
+import app.view.render.vo.VersatileVO;
+import app.view.render.vo.ViewObject;
 
 import java.util.EnumMap;
 import java.util.HashSet;

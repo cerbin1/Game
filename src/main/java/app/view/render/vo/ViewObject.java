@@ -1,6 +1,8 @@
-package app.view.render;
+package app.view.render.vo;
 
 import app.model.Updatable;
+import app.view.render.AnimatedValue;
+import app.view.render.RendererClicked;
 import app.view.util.Resolution;
 
 import java.awt.*;
@@ -17,7 +19,7 @@ public abstract class ViewObject implements Updatable {
 
     final int width, height;
 
-    ViewObject(int x, int y, int width, int height) {
+    public ViewObject(int x, int y, int width, int height) {
         this.x = new AnimatedValue(x);
         this.y = new AnimatedValue(y);
         this.rotation = new AnimatedValue(0);
@@ -62,7 +64,7 @@ public abstract class ViewObject implements Updatable {
         this.rotation.setValue(rotation);
     }
 
-    double getRotation() {
+    public double getRotation() {
         return rotation.getValue();
     }
 
@@ -72,23 +74,23 @@ public abstract class ViewObject implements Updatable {
         rotation.update(secondsPassed);
     }
 
-    int getWidth() {
+    public int getWidth() {
         return width;
     }
 
-    int getHeight() {
+    public int getHeight() {
         return height;
     }
 
-    double getPerspectiveX() {
+    public double getPerspectiveX() {
         return 1.0;
     }
 
-    double getPerspectiveY() {
+    public double getPerspectiveY() {
         return 1.0;
     }
 
-    boolean isFlipped() {
+    public boolean isFlipped() {
         return getPerspectiveY() < 0 || getPerspectiveX() < 0;
     }
 

@@ -2,6 +2,7 @@ package app.view.render;
 
 import app.model.card.Figure;
 import app.model.token.TokenColor;
+import app.view.render.vo.FigureVO;
 
 import java.awt.*;
 import java.awt.font.GlyphVector;

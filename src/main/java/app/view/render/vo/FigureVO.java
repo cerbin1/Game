@@ -1,8 +1,8 @@
-package app.view.render;
+package app.view.render.vo;
 
 import app.model.card.Figure;
 
-class FigureVO extends ViewObject {
+public class FigureVO extends ViewObject {
     private final Figure figure;
 
     FigureVO(Figure figure, int x, int y, int width, int height) {
@@ -10,7 +10,7 @@ class FigureVO extends ViewObject {
         this.figure = figure;
     }
 
-    Figure getFigure() {
+    public Figure getFigure() {
         return figure;
     }
 }
