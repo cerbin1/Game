@@ -1,7 +1,7 @@
 package app.view.render;
 
-import app.view.fx.LinearTransition;
-import app.view.fx.Transition;
+import app.view.transition.LinearTransition;
+import app.view.transition.Transition;
 
 import static java.lang.Double.compare;
 import static java.lang.Math.max;

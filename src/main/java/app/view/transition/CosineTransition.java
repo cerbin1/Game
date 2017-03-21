@@ -1,4 +1,4 @@
-package app.view.fx;
+package app.view.transition;
 
 public class CosineTransition implements Transition {
     @Override
