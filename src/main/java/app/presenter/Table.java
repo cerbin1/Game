@@ -69,7 +69,7 @@ public class Table {
             }
             viewObjects.remove(vo);
         } else {
-            throw new IllegalViewObjectTaking("Unexpected gather");
+            throw new UnexpectedTakeException("Unexpected gather");
         }
     }
 

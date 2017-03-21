@@ -264,7 +264,7 @@ public class TableTest {
         // given
         Table table = new Table();
 
-        expectedException.expect(IllegalViewObjectTaking.class);
+        expectedException.expect(UnexpectedTakeException.class);
         expectedException.expectMessage("Unexpected gather");
 
         // when
