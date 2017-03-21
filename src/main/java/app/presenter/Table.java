@@ -17,7 +17,7 @@ public class Table {
 
     boolean put(ViewObject vo) {
         if (viewObjects.isEmpty() && (vo instanceof CardVO || vo instanceof TokenVO)) {
-            if (vo instanceof TokenVO && !(vo instanceof VersatileVO)) {
+            if (vo instanceof TokenVO && ((TokenVO) vo).isVersatile()) {
                 putTokenColor(vo);
             }
             viewObjects.add(vo);
@@ -25,7 +25,7 @@ public class Table {
         }
         if (vo instanceof CardVO) {
             if (viewObjects.size() == 1) {
-                if (viewObjects.stream().anyMatch(v -> v instanceof VersatileVO)) {
+                if (viewObjects.stream().anyMatch(v -> ((TokenVO) v).isVersatile())) {
                     viewObjects.add(vo);
                     return true;
                 }
@@ -40,7 +40,7 @@ public class Table {
             return false;
         }
         if (vo instanceof TokenVO) {
-            if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> v instanceof TokenVO && !(v instanceof VersatileVO))) {
+            if (viewObjects.size() == 1 && viewObjects.stream().anyMatch(v -> !((TokenVO) v).isVersatile())) {
                 putTokenColor(vo);
                 viewObjects.add(vo);
                 return true;
@@ -52,7 +52,6 @@ public class Table {
             }
             return false;
         }
-
         return false;
     }
 

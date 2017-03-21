@@ -64,7 +64,7 @@ public class GameWindow implements Updatable {
         FpsRenderer fpsRenderer = new FpsRenderer(100, 1100);
 
         for (int i = 0; i < tokens.getVersatile(); i++) {
-            TokenVO versatileVO = new VersatileVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
+            TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
             versatileVO.addClickListener(this::viewObjectClicked);
             tokenVOs.add(versatileVO);
         }
