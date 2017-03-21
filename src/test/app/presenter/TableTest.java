@@ -148,7 +148,7 @@ public class TableTest {
     public void shouldNotPutVersatileOnToken() {
         // given
         Table table = new Table();
-        table.put(tokenVO());
+        table.put(tokenVO(Green));
 
         // when
         boolean canPut = table.put(tokenVO(null));
@@ -164,7 +164,7 @@ public class TableTest {
         table.put(tokenVO(null));
 
         // when
-        boolean canPut = table.put(tokenVO());
+        boolean canPut = table.put(tokenVO(Green));
 
         // then
         assertFalse(canPut);
@@ -397,7 +397,7 @@ public class TableTest {
     public void shouldNotGatherVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO());
+        table.put(tokenVO(null));
 
         // when
         boolean canGather = table.canGather();

@@ -10,9 +10,19 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import static app.model.token.TokenColor.*;
+
 public class Table {
     private final Set<ViewObject> viewObjects = new HashSet<>();
     private final Map<TokenColor, Integer> tokenColors = new EnumMap<>(TokenColor.class);
+
+    public Table() {
+        tokenColors.put(Green, 0);
+        tokenColors.put(Purple, 0);
+        tokenColors.put(Blue, 0);
+        tokenColors.put(Black, 0);
+        tokenColors.put(Red, 0);
+    }
 
     boolean put(ViewObject vo) {
         if (viewObjects.isEmpty() && (vo instanceof CardVO || vo instanceof TokenVO)) {
@@ -58,7 +68,8 @@ public class Table {
 
     private void putTokenColor(ViewObject vo) {
         TokenVO tokenVO = (TokenVO) vo;
-        tokenColors.put(tokenVO.getColor(), 1);
+        tokenColors.put(tokenVO.getColor(), tokenColors.get(tokenVO.getColor()) + 1);
+        System.out.println(tokenColors.get(tokenVO.getColor()));
     }
 
     public void take(ViewObject vo) {
