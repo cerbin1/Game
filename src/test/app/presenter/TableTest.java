@@ -264,26 +264,10 @@ public class TableTest {
         Table table = new Table();
 
         expectedException.expect(UnexpectedTakeException.class);
-        expectedException.expectMessage("Unexpected gather");
+        expectedException.expectMessage("Unexpected take");
 
         // when
         table.take(cardVO());
-    }
-
-    @Test
-    public void shouldGather() {
-        // given
-        Table table = new Table();
-        ViewObject cardVO = cardVO(), tokenVO = tokenVO();
-
-        table.put(cardVO);
-        table.put(tokenVO);
-
-        // when
-        List<ViewObject> gathered = table.gather();
-
-        // then
-        assertEquals(asList(cardVO, tokenVO), gathered);
     }
 
     @Test
@@ -370,7 +354,7 @@ public class TableTest {
         // given
         Table table = new Table();
         table.put(tokenVO(Blue));
-        table.put(tokenVO(Blue));
+        table.put(tokenVO(Green));
 
         // when
         boolean canGather = table.canGather();
@@ -385,13 +369,29 @@ public class TableTest {
         Table table = new Table();
         table.put(tokenVO(Blue));
         table.put(tokenVO(Green));
-        table.put(tokenVO(Red));
+        table.put(tokenVO(Purple));
 
         // when
         boolean canGather = table.canGather();
 
         // then
         assertTrue(canGather);
+    }
+
+    @Test
+    public void shouldGather() {
+        // given
+        Table table = new Table();
+        ViewObject cardVO = cardVO(), tokenVO = tokenVO(null);
+
+        table.put(cardVO);
+        table.put(tokenVO);
+
+        // when
+        List<ViewObject> gathered = table.gather();
+
+        // then
+        assertEquals(asList(cardVO, tokenVO), gathered);
     }
 
     @Test

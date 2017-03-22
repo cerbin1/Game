@@ -51,7 +51,7 @@ class Table {
                 }
                 for (TokenColor color : values()) {
                     if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() == 2) {
-                        return true;
+                        return false;
                     }
                 }
                 viewObjects.add(vo);
@@ -65,7 +65,7 @@ class Table {
         if (viewObjects.contains(vo)) {
             viewObjects.remove(vo);
         } else {
-            throw new UnexpectedTakeException("Unexpected gather");
+            throw new UnexpectedTakeException("Unexpected take");
         }
     }
 
@@ -85,24 +85,35 @@ class Table {
             }
         }
         if (viewObjects.size() == 2) {
-            if (viewObjects.stream().filter(v -> v instanceof CardVO || v instanceof TokenVO && ((TokenVO) v).isVersatile()).count() == 2) {
+            if (viewObjects.stream().filter(v -> v instanceof CardVO).count() + viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).isVersatile()).count() == 2) {
                 return true;
             }
             for (TokenColor color : values()) {
                 if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() == 2) {
                     return true;
-                } else {
+                }
+            }
+            return false;
+        }
+        if (viewObjects.size() == 3) {
+            for (TokenColor color : values()) {
+                if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() > 1) {
                     return false;
                 }
             }
+            return true;
         }
         return false;
     }
 
     List<ViewObject> gather() {
-        List<ViewObject> copy = new ArrayList<>();
-        copy.addAll(viewObjects);
-        viewObjects.clear();
-        return copy;
+        if (canGather()) {
+            List<ViewObject> copy = new ArrayList<>();
+            copy.addAll(viewObjects);
+            viewObjects.clear();
+            return copy;
+        } else {
+            throw new UnexpectedGatherException("Unexpected gather");
+        }
     }
 }
