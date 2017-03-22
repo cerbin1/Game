@@ -1,6 +1,7 @@
 package app.presenter;
 
 import app.model.token.TokenColor;
+import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
 import app.view.render.vo.ViewObject;
@@ -11,9 +12,9 @@ import java.util.List;
 import static app.model.token.TokenColor.values;
 
 class Table {
-    private final List<ViewObject> viewObjects = new ArrayList<>();
+    private final List<Tableable> viewObjects = new ArrayList<>();
 
-    boolean put(ViewObject vo) {
+    boolean put(Tableable vo) {
         if (viewObjects.isEmpty()) {
             if ((vo instanceof CardVO || vo instanceof TokenVO)) {
                 viewObjects.add(vo);
@@ -61,7 +62,7 @@ class Table {
         return false;
     }
 
-    void take(ViewObject vo) {
+    void take(Tableable vo) {
         if (!viewObjects.contains(vo)) {
             throw new UnexpectedTakeException();
         }
@@ -105,11 +106,11 @@ class Table {
         return false;
     }
 
-    List<ViewObject> gather() {
+    List<Tableable> gather() {
         if (!canGather()) {
             throw new UnexpectedGatherException();
         }
-        List<ViewObject> copy = new ArrayList<>();
+        List<Tableable> copy = new ArrayList<>();
         copy.addAll(viewObjects);
         viewObjects.clear();
         return copy;

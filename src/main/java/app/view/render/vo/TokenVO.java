@@ -2,11 +2,12 @@ package app.view.render.vo;
 
 import app.model.token.Token;
 import app.model.token.TokenColor;
+import app.view.render.Tableable;
 
 import java.awt.*;
 import java.awt.geom.Ellipse2D;
 
-public class TokenVO extends ViewObject {
+public class TokenVO extends ViewObject implements Tableable {
     private final Token token;
 
     public TokenVO(Token token, int x, int y) {

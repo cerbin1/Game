@@ -2,13 +2,14 @@ package app.view.render.vo;
 
 import app.model.card.Card;
 import app.view.render.AnimatedValue;
+import app.view.render.Tableable;
 
 import java.awt.*;
 import java.awt.geom.RoundRectangle2D;
 
 import static java.lang.Math.PI;
 
-public class CardVO extends FigureVO {
+public class CardVO extends FigureVO implements Tableable {
     private final static double RESERVATION_ANIMATION_LENGTH = 2.5;
 
     private final Card card;

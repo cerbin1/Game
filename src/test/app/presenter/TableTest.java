@@ -5,6 +5,7 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
+import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.NobilityVO;
 import app.view.render.vo.TokenVO;
@@ -34,11 +35,11 @@ public class TableTest {
         return new NobilityVO(new Nobility(new Tokens(), 0), 0, 0);
     }
 
-    private static ViewObject tokenVO() {
+    private static TokenVO tokenVO() {
         return tokenVO(Green);
     }
 
-    private static ViewObject tokenVO(TokenColor color) {
+    private static TokenVO tokenVO(TokenColor color) {
         return new TokenVO(new Token(color), 0, 0);
     }
 
@@ -247,18 +248,6 @@ public class TableTest {
     }
 
     @Test
-    public void shouldNotPutNobility() {
-        // given
-        Table table = new Table();
-
-        // when
-        boolean canPut = table.put(nobilityVO());
-
-        // then
-        assertFalse(canPut);
-    }
-
-    @Test
     public void shouldThrowOnTakingNotExistingViewObject() {
         // given
         Table table = new Table();
@@ -381,13 +370,13 @@ public class TableTest {
     public void shouldGather() {
         // given
         Table table = new Table();
-        ViewObject cardVO = cardVO(), tokenVO = tokenVO(null);
+        Tableable cardVO = cardVO(), tokenVO = tokenVO(null);
 
         table.put(cardVO);
         table.put(tokenVO);
 
         // when
-        List<ViewObject> gathered = table.gather();
+        List<Tableable> gathered = table.gather();
 
         // then
         assertEquals(asList(cardVO, tokenVO), gathered);
