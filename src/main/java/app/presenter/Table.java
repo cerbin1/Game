@@ -46,7 +46,7 @@ class Table {
                 }
             }
             if (viewObjects.size() == 2) {
-                if (viewObjects.stream().anyMatch(v -> ((TokenVO) v).getColor() == ((TokenVO) vo).getColor())) {
+                if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == ((TokenVO) vo).getColor())) {
                     return false;
                 }
                 for (TokenColor color : values()) {
