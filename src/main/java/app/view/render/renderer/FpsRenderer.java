@@ -4,11 +4,11 @@ import app.model.Updatable;
 import app.view.render.vo.ViewObject;
 
 import java.awt.*;
-import java.awt.geom.RoundRectangle2D;
+import java.awt.font.GlyphVector;
 import java.text.DecimalFormat;
 
-import static java.awt.Color.WHITE;
-import static java.awt.Color.black;
+import static java.awt.Color.*;
+import static java.awt.Font.BOLD;
 
 public class FpsRenderer extends Renderer implements Updatable {
     private int frames = 0;
@@ -25,8 +25,7 @@ public class FpsRenderer extends Renderer implements Updatable {
 
         double fps = frames / seconds;
         graphics.setColor(WHITE);
-        graphics.drawString(new DecimalFormat("##.#").format(fps) + "", 0, 0);
-        drawOutline(graphics);
+        drawOutlineText(graphics, new DecimalFormat("00.0").format(fps) + "", -50, 50);
     }
 
     @Override
@@ -38,14 +37,18 @@ public class FpsRenderer extends Renderer implements Updatable {
         }
     }
 
-    private void drawOutline(Graphics2D graphics) {
-        graphics.setStroke(new BasicStroke(3));
+    private void drawOutlineText(Graphics2D graphics, String text, int x, int y) {
+        graphics.translate(x, y);
+        GlyphVector glyphVector = new Font("Franklin", BOLD, 55).createGlyphVector(graphics.getFontRenderContext(), text);
+        Shape textShape = glyphVector.getOutline();
+
         graphics.setColor(black);
-        graphics.draw(new RoundRectangle2D.Float(
-                -10, -35,
-                100, 50,
-                20, 20
-        ));
+        graphics.setStroke(new BasicStroke(6));
+        graphics.draw(textShape);
+
+        graphics.setColor(white);
+        graphics.fill(textShape);
+        graphics.translate(-x, -y);
     }
 
     @Override
