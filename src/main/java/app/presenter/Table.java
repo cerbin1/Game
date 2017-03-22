@@ -6,9 +6,9 @@ import app.view.render.vo.TokenVO;
 import app.view.render.vo.ViewObject;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
+
+import static app.model.token.TokenColor.values;
 
 class Table {
     private final List<ViewObject> viewObjects = new ArrayList<>();
@@ -49,9 +49,9 @@ class Table {
                 if (viewObjects.stream().anyMatch(v -> ((TokenVO) v).getColor() == ((TokenVO) vo).getColor())) {
                     return false;
                 }
-                for (TokenColor color : TokenColor.values()) {
+                for (TokenColor color : values()) {
                     if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() == 2) {
-                        return false;
+                        return true;
                     }
                 }
                 viewObjects.add(vo);
@@ -70,11 +70,37 @@ class Table {
     }
 
     boolean canGather() {
-        return true;
+        if (viewObjects.isEmpty()) {
+            return false;
+        }
+        if (viewObjects.size() == 1) {
+            if (viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
+                return true;
+            }
+            if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO)) {
+                return false;
+            }
+            if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO && ((TokenVO) v).isVersatile())) {
+                return false;
+            }
+        }
+        if (viewObjects.size() == 2) {
+            if (viewObjects.stream().filter(v -> v instanceof CardVO || v instanceof TokenVO && ((TokenVO) v).isVersatile()).count() == 2) {
+                return true;
+            }
+            for (TokenColor color : values()) {
+                if (viewObjects.stream().filter(viewObject -> ((TokenVO) viewObject).getColor() == color).count() == 2) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+        }
+        return false;
     }
 
-    Set<ViewObject> gather() {
-        Set<ViewObject> copy = new HashSet<>();
+    List<ViewObject> gather() {
+        List<ViewObject> copy = new ArrayList<>();
         copy.addAll(viewObjects);
         viewObjects.clear();
         return copy;

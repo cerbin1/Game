@@ -13,7 +13,7 @@ import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.Set;
+import java.util.List;
 
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
@@ -274,28 +274,16 @@ public class TableTest {
     public void shouldGather() {
         // given
         Table table = new Table();
-        ViewObject cardVO = cardVO(), tokenVo = tokenVO();
+        ViewObject cardVO = cardVO(), tokenVO = tokenVO();
 
         table.put(cardVO);
-        table.put(tokenVo);
+        table.put(tokenVO);
 
         // when
-        Set<ViewObject> gathered = table.gather();
+        List<ViewObject> gathered = table.gather();
 
         // then
-        assertEquals(gathered, asList(cardVO, tokenVo));
-    }
-
-    @Test
-    public void shouldThrowOnUnexpectedGather() {
-        // given
-        Table table = new Table();
-
-        expectedException.expect(RuntimeException.class);
-        expectedException.expectMessage("Unexpected gather");
-
-        // when
-        table.gather();
+        assertEquals(asList(cardVO, tokenVO), gathered);
     }
 
     @Test
@@ -315,62 +303,6 @@ public class TableTest {
         // given
         Table table = new Table();
         table.put(cardVO());
-
-        // when
-        boolean canGather = table.canGather();
-
-        // then
-        assertTrue(canGather);
-    }
-
-    @Test
-    public void shouldGatherSingleToken() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO());
-
-        // when
-        boolean canGather = table.canGather();
-
-        // then
-        assertTrue(canGather);
-    }
-
-    @Test
-    public void shouldNotGatherTwoDifferentTokens() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO(Blue));
-        table.put(tokenVO(Green));
-
-        // when
-        boolean canGather = table.canGather();
-
-        // then
-        assertFalse(canGather);
-    }
-
-    @Test
-    public void shouldGatherTwoSameTokens() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO(Blue));
-        table.put(tokenVO(Blue));
-
-        // when
-        boolean canGather = table.canGather();
-
-        // then
-        assertTrue(canGather);
-    }
-
-    @Test
-    public void shouldGatherThreeDifferentTokens() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO(Blue));
-        table.put(tokenVO(Green));
-        table.put(tokenVO(Red));
 
         // when
         boolean canGather = table.canGather();
@@ -404,5 +336,73 @@ public class TableTest {
 
         // then
         assertFalse(canGather);
+    }
+
+    @Test
+    public void shouldNotGatherSingleToken() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO());
+
+        // when
+        boolean canGather = table.canGather();
+
+        // then
+        assertFalse(canGather);
+    }
+
+    @Test
+    public void shouldGatherTwoSameTokens() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Blue));
+
+        // when
+        boolean canGather = table.canGather();
+
+        // then
+        assertTrue(canGather);
+    }
+
+    @Test
+    public void shouldNotGatherTwoDifferentTokens() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Blue));
+
+        // when
+        boolean canGather = table.canGather();
+
+        // then
+        assertFalse(canGather);
+    }
+
+    @Test
+    public void shouldGatherThreeDifferentTokens() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO(Blue));
+        table.put(tokenVO(Green));
+        table.put(tokenVO(Red));
+
+        // when
+        boolean canGather = table.canGather();
+
+        // then
+        assertTrue(canGather);
+    }
+
+    @Test
+    public void shouldThrowOnUnexpectedGather() {
+        // given
+        Table table = new Table();
+
+        expectedException.expect(RuntimeException.class);
+        expectedException.expectMessage("Unexpected gather");
+
+        // when
+        table.gather();
     }
 }
