@@ -50,7 +50,7 @@ class Table {
                     return false;
                 }
                 for (TokenColor color : values()) {
-                    if (viewObjects.stream().filter(viewObject -> viewObject instanceof TokenVO && ((TokenVO) viewObject).getColor() == color).count() == 2) {
+                    if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() == 2) {
                         return false;
                     }
                 }
@@ -88,7 +88,7 @@ class Table {
                 return true;
             }
             for (TokenColor color : values()) {
-                if (viewObjects.stream().filter(viewObject -> viewObject instanceof TokenVO && ((TokenVO) viewObject).getColor() == color).count() == 2) {
+                if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() == 2) {
                     return true;
                 }
             }
@@ -96,7 +96,7 @@ class Table {
         }
         if (viewObjects.size() == 3) {
             for (TokenColor color : values()) {
-                if (viewObjects.stream().filter(viewObject -> viewObject instanceof TokenVO && ((TokenVO) viewObject).getColor() == color).count() > 1) {
+                if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() > 1) {
                     return false;
                 }
             }
