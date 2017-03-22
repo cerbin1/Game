@@ -62,11 +62,10 @@ class Table {
     }
 
     void take(ViewObject vo) {
-        if (viewObjects.contains(vo)) {
-            viewObjects.remove(vo);
-        } else {
-            throw new UnexpectedTakeException("Unexpected take");
+        if (!viewObjects.contains(vo)) {
+            throw new UnexpectedTakeException();
         }
+        viewObjects.remove(vo);
     }
 
     boolean canGather() {
@@ -107,13 +106,13 @@ class Table {
     }
 
     List<ViewObject> gather() {
-        if (canGather()) {
-            List<ViewObject> copy = new ArrayList<>();
-            copy.addAll(viewObjects);
-            viewObjects.clear();
-            return copy;
-        } else {
-            throw new UnexpectedGatherException("Unexpected gather");
+        if (!canGather()) {
+            throw new UnexpectedGatherException();
         }
+        List<ViewObject> copy = new ArrayList<>();
+        copy.addAll(viewObjects);
+        viewObjects.clear();
+        return copy;
+
     }
 }

@@ -264,7 +264,6 @@ public class TableTest {
         Table table = new Table();
 
         expectedException.expect(UnexpectedTakeException.class);
-        expectedException.expectMessage("Unexpected take");
 
         // when
         table.take(cardVO());
@@ -399,8 +398,7 @@ public class TableTest {
         // given
         Table table = new Table();
 
-        expectedException.expect(RuntimeException.class);
-        expectedException.expectMessage("Unexpected gather");
+        expectedException.expect(UnexpectedGatherException.class);
 
         // when
         table.gather();
