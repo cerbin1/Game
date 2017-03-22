@@ -4,6 +4,9 @@ import app.model.Updatable;
 import app.view.render.vo.ViewObject;
 
 import java.awt.*;
+import java.text.DecimalFormat;
+
+import static java.awt.Color.*;
 
 public class FpsRenderer extends Renderer implements Updatable {
     private int frames = 0;
@@ -19,8 +22,8 @@ public class FpsRenderer extends Renderer implements Updatable {
         frames++;
 
         double fps = frames / seconds;
-        graphics.setColor(Color.WHITE);
-        graphics.drawString(fps + "", 0, 0);
+        graphics.setColor(WHITE);
+        graphics.drawString(new DecimalFormat("##.#").format(fps) + "", 0, 0);
     }
 
     @Override

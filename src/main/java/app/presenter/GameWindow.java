@@ -61,7 +61,7 @@ public class GameWindow implements Updatable {
         }
         Collections.shuffle(tokenVOs);
 
-        FpsRenderer fpsRenderer = new FpsRenderer(100, 1100);
+        FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
 
         for (int i = 0; i < tokens.getVersatile(); i++) {
             TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
