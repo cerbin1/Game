@@ -16,7 +16,7 @@ import static org.junit.Assert.*;
 
 public class BuyCardTurnTest {
     @Rule
-    public  ExpectedException expectedException = ExpectedException.none();
+    public ExpectedException expectedException = ExpectedException.none();
 
     @Test
     public void shouldBuyCardToPlayer() {
@@ -183,6 +183,8 @@ public class BuyCardTurnTest {
 
         // then
         assertFalse(card.isReserved());
+        assertEquals(new Tokens(), player.getTokens());
+        assertEquals(new Tokens(0, 5), game.getTokens());
     }
 
     private static Card card(TokenColor color) {
