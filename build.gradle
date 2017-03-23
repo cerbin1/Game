@@ -1,8 +1,11 @@
 apply plugin: 'idea'
 apply plugin: 'java'
-repositories { jcenter() }
+
+repositories {
+    jcenter()
+}
+
 dependencies {
     testCompile "org.mockito:mockito-core:1.+"
     testCompile 'junit:junit:4.12'
 }
-
