@@ -1,103 +1,103 @@
 package app.presenter;
 
 import app.model.token.TokenColor;
+import app.view.render.Operator;
 import app.view.render.Tableable;
-import app.view.render.vo.CardVO;
-import app.view.render.vo.TokenVO;
-import app.view.render.vo.ViewObject;
+import app.view.render.vo.*;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static app.model.token.TokenColor.values;
+import static java.util.stream.Collectors.toList;
 
 class Table {
-    private final List<Tableable> viewObjects = new ArrayList<>();
+    private final List<Operator> operators = new ArrayList<>();
 
-    boolean put(Tableable vo) {
-        if (viewObjects.isEmpty()) {
-            if ((vo instanceof CardVO || vo instanceof TokenVO)) {
-                viewObjects.add(vo);
+    boolean put(Tableable tableable) {
+        if (operators.isEmpty()) {
+            if ((tableable instanceof CardVO || tableable instanceof TokenVO)) {
+                operators.add(tableable.getOperator());
                 return true;
             }
         }
-        if (vo instanceof CardVO) {
-            if (viewObjects.size() == 1) {
-                if (viewObjects.stream().anyMatch(v -> ((v instanceof TokenVO) && ((TokenVO) v).isVersatile()))) {
-                    viewObjects.add(vo);
+        if (tableable instanceof CardVO) {
+            if (operators.size() == 1) {
+                if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
+                    operators.add(tableable.getOperator());
                     return true;
                 }
             }
             return false;
         }
-        if (vo instanceof TokenVO) {
-            if (((TokenVO) vo).isVersatile()) {
-                if (viewObjects.size() == 1) {
-                    if (viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
-                        viewObjects.add(vo);
+        if (tableable instanceof TokenVO) {
+            if (((TokenVO) tableable).isVersatile()) {
+                if (operators.size() == 1) {
+                    if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
+                        operators.add(tableable.getOperator());
                         return true;
                     }
                     return false;
                 }
             }
-            if (viewObjects.size() == 1) {
-                if (viewObjects.stream().anyMatch(v -> (v instanceof TokenVO) && !((TokenVO) v).isVersatile())) {
-                    viewObjects.add(vo);
+            if (operators.size() == 1) {
+                if (operators.stream().anyMatch(o -> o instanceof TokenOperator)) {
+                    operators.add(tableable.getOperator());
                     return true;
                 }
             }
-            if (viewObjects.size() == 2) {
-                if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == ((TokenVO) vo).getColor())) {
+            if (operators.size() == 2) {
+                if (operators.stream().anyMatch(o -> o instanceof TokenOperator && ((TokenOperator) o).hasSameColor(tableable))) {
                     return false;
                 }
                 for (TokenColor color : values()) {
-                    if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() == 2) {
+                    if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() == 2) {
                         return false;
                     }
                 }
-                viewObjects.add(vo);
+                operators.add(tableable.getOperator());
                 return true;
             }
         }
         return false;
     }
 
-    void take(Tableable vo) {
-        if (!viewObjects.contains(vo)) {
+    void take(Tableable tableable) {
+        if (!operators.contains(tableable.getOperator())) {
             throw new UnexpectedTakeException();
         }
-        viewObjects.remove(vo);
+        operators.remove(tableable.getOperator());
     }
 
     boolean canGather() {
-        if (viewObjects.isEmpty()) {
+        if (operators.isEmpty()) {
             return false;
         }
-        if (viewObjects.size() == 1) {
-            if (viewObjects.stream().anyMatch(v -> v instanceof CardVO)) {
+        if (operators.size() == 1) {
+            if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
                 return true;
             }
-            if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO)) {
+            if (operators.stream().anyMatch(o -> o instanceof TokenOperator)) {
                 return false;
             }
-            if (viewObjects.stream().anyMatch(v -> v instanceof TokenVO && ((TokenVO) v).isVersatile())) {
+            if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
                 return false;
             }
         }
-        if (viewObjects.size() == 2) {
-            if (viewObjects.stream().filter(v -> v instanceof CardVO).count() + viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).isVersatile()).count() == 2) {
+        if (operators.size() == 2) {
+            if (operators.stream().filter(o -> o instanceof CardOperator).count() + operators.stream().filter(o -> o instanceof VersatileOperator).count() == 2) {
                 return true;
             }
             for (TokenColor color : values()) {
-                if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() == 2) {
+                if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() == 2) {
                     return true;
                 }
             }
             return false;
         }
-        if (viewObjects.size() == 3) {
+        if (operators.size() == 3) {
             for (TokenColor color : values()) {
-                if (viewObjects.stream().filter(v -> v instanceof TokenVO && ((TokenVO) v).getColor() == color).count() > 1) {
+                if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() > 1) {
                     return false;
                 }
             }
@@ -110,10 +110,8 @@ class Table {
         if (!canGather()) {
             throw new UnexpectedGatherException();
         }
-        List<Tableable> copy = new ArrayList<>();
-        copy.addAll(viewObjects);
-        viewObjects.clear();
+        List<Tableable> copy = operators.stream().map(Operator::getTableable).collect(toList());
+        operators.clear();
         return copy;
-
     }
 }
