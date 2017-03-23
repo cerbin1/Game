@@ -31,10 +31,6 @@ public class TableTest {
         return new CardVO(new CheapCard(new Tokens(), 0, Green), 0, 0);
     }
 
-    private static ViewObject nobilityVO() {
-        return new NobilityVO(new Nobility(new Tokens(), 0), 0, 0);
-    }
-
     private static TokenVO tokenVO() {
         return tokenVO(Green);
     }
@@ -248,7 +244,7 @@ public class TableTest {
     }
 
     @Test
-    public void shouldThrowOnTakingNotExistingViewObject() {
+    public void shouldThrowOnTakingNotExistingTableable() {
         // given
         Table table = new Table();
 
