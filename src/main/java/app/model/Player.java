@@ -26,10 +26,6 @@ public class Player {
         this.tokens = tokens;
     }
 
-    public Tokens getTokens() {
-        return tokens;
-    }
-
     public Resources getResources() {
         return new Resources(getTokensFromCards(), getTokens());
     }
@@ -42,16 +38,20 @@ public class Player {
         cards.add(card);
     }
 
-    public boolean hasCards() {
-        return !cards.isEmpty();
-    }
-
     public boolean hasCard(Card card) {
         return cards.contains(card);
     }
 
+    public boolean hasCards() {
+        return !cards.isEmpty();
+    }
+
     void addNobility(Nobility nobility) {
         nobilities.add(nobility);
+    }
+
+    public Tokens getTokens() {
+        return tokens;
     }
 
     public void setTokens(Tokens tokens) {
@@ -61,7 +61,7 @@ public class Player {
     private Tokens getTokensFromCards() {
         Map<TokenColor, Integer> tokensFromCards = new EnumMap<>(TokenColor.class);
         for (TokenColor color : values()) {
-            tokensFromCards.put(color, (int) (cards.stream().filter(card -> card.is(color) && !card.isReserved()).count()));
+            tokensFromCards.put(color, (int) cards.stream().filter(card -> card.is(color) && !card.isReserved()).count());
         }
         return new Tokens(tokensFromCards, 0);
     }

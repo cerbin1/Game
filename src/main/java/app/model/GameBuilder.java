@@ -9,8 +9,8 @@ import java.util.List;
 
 public class GameBuilder {
     private Tokens tokens = new Tokens();
-    private final List<Card> cards = new ArrayList<>();
     private final List<Player> players = new ArrayList<>();
+    private final List<Card> cards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
 
     public Game create() {

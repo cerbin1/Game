@@ -12,6 +12,6 @@ public class Resolution {
         double width = screenSize.getWidth();
         double height = screenSize.getHeight();
 
-        transform.scale(width / 1920.0, height / 1080);
+        transform.scale(width / 1920.0, height / 1080.0);
     }
 }

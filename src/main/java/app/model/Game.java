@@ -33,14 +33,6 @@ public class Game {
         tokens = tokens.subtract(new Tokens(0, value));
     }
 
-    public List<Player> getPlayers() {
-        return players;
-    }
-
-    public Player getCurrentPlayer() {
-        return players.get(currentPlayer);
-    }
-
     public List<Card> getAvailableCards() {
         return cards;
     }
@@ -53,6 +45,14 @@ public class Game {
         cards.remove(card);
     }
 
+    public List<Player> getPlayers() {
+        return players;
+    }
+
+    public Player getCurrentPlayer() {
+        return players.get(currentPlayer);
+    }
+
     public List<Nobility> getNobility() {
         return nobilities;
     }
@@ -60,9 +60,5 @@ public class Game {
     public void performTurn(Turn turn) {
         turn.invoke(this);
         currentPlayer = (currentPlayer + 1) % players.size();
-    }
-
-    public static void main(String[] args) {
-        new GameBuilder().create();
     }
 }
