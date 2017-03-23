@@ -14,6 +14,10 @@ public class Tokens {
         this(0, 0);
     }
 
+    public Tokens(int versatile) {
+        this(0, versatile);
+    }
+
     public Tokens(Tokens tokens) {
         this.tokens.putAll(tokens.asMap());
         this.versatile = tokens.versatile;
@@ -27,10 +31,6 @@ public class Tokens {
     public Tokens(Tokens tokens, int versatile) {
         this.tokens.putAll(tokens.asMap());
         this.versatile = versatile;
-    }
-
-    public Tokens(int versatile) {
-        this(0, versatile);
     }
 
     public Tokens(int regular, int versatile) {
@@ -74,34 +74,26 @@ public class Tokens {
         return map;
     }
 
-    static class Operations {
-        static Tokens removeDebts(Tokens tokens) {
-            Map<TokenColor, Integer> mapCopy = tokens.asMap();
-            mapCopy.entrySet().forEach(entry -> entry.setValue(max(0, entry.getValue())));
-            return new Tokens(mapCopy, tokens.versatile);
-        }
-    }
-
-    public Tokens add(Tokens parameter) {
-        Tokens result = new Tokens(0, versatile + parameter.versatile);
-        for (TokenColor color : TokenColor.values()) {
-            result.tokens.put(color, tokens.get(color) + parameter.tokens.get(color));
-        }
-        return result;
-    }
-
-    public Tokens subtract(Tokens parameter) {
-        Tokens result = new Tokens(0, versatile - parameter.versatile);
-        for (TokenColor color : TokenColor.values()) {
-            result.tokens.put(color, get(color) - parameter.get(color));
-        }
-        return result;
-    }
-
     Tokens asCost() {
         Tokens tokens = new Tokens();
         tokens.tokens.putAll(this.tokens);
         return tokens;
+    }
+
+    public Tokens add(Tokens component) {
+        Tokens result = new Tokens(0, versatile + component.versatile);
+        for (TokenColor color : TokenColor.values()) {
+            result.tokens.put(color, tokens.get(color) + component.tokens.get(color));
+        }
+        return result;
+    }
+
+    public Tokens subtract(Tokens subtrahend) {
+        Tokens result = new Tokens(0, versatile - subtrahend.versatile);
+        for (TokenColor color : TokenColor.values()) {
+            result.tokens.put(color, get(color) - subtrahend.get(color));
+        }
+        return result;
     }
 
     @Override
@@ -120,5 +112,13 @@ public class Tokens {
     @Override
     public String toString() {
         return "Tokens{" + tokens + ", versatile=" + versatile + '}';
+    }
+
+    static class Operations {
+        static Tokens removeDebts(Tokens tokens) {
+            Map<TokenColor, Integer> mapCopy = tokens.asMap();
+            mapCopy.entrySet().forEach(entry -> entry.setValue(max(0, entry.getValue())));
+            return new Tokens(mapCopy, tokens.versatile);
+        }
     }
 }
