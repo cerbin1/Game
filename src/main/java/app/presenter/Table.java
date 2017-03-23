@@ -3,7 +3,9 @@ package app.presenter;
 import app.model.token.TokenColor;
 import app.view.render.Operator;
 import app.view.render.Tableable;
-import app.view.render.vo.*;
+import app.view.render.vo.CardOperator;
+import app.view.render.vo.TokenOperator;
+import app.view.render.vo.VersatileOperator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,51 +17,12 @@ class Table {
     private final List<Operator> operators = new ArrayList<>();
 
     boolean put(Tableable tableable) {
+        Operator operator = tableable.getOperator();
         if (operators.isEmpty()) {
-            operators.add(tableable.getOperator());
+            operators.add(operator);
             return true;
         }
-
-        if (tableable instanceof CardVO) {
-            if (operators.size() == 1) {
-                if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
-                    operators.add(tableable.getOperator());
-                    return true;
-                }
-            }
-            return false;
-        }
-        if (tableable instanceof TokenVO) {
-            TokenVO tokenVO = (TokenVO) tableable;
-            if (tokenVO.isVersatile()) {
-                if (operators.size() == 1) {
-                    if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
-                        operators.add(tableable.getOperator());
-                        return true;
-                    }
-                    return false;
-                }
-            }
-            if (operators.size() == 1) {
-                if (operators.stream().anyMatch(o -> o instanceof TokenOperator)) {
-                    operators.add(tableable.getOperator());
-                    return true;
-                }
-            }
-            if (operators.size() == 2) {
-                if (operators.stream().anyMatch(o -> o instanceof TokenOperator && ((TokenOperator) o).hasSameColor(tokenVO))) {
-                    return false;
-                }
-                for (TokenColor color : values()) {
-                    if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() == 2) {
-                        return false;
-                    }
-                }
-                operators.add(tableable.getOperator());
-                return true;
-            }
-        }
-        return false;
+        return operator.put(operators);
     }
 
     void take(Tableable tableable) {

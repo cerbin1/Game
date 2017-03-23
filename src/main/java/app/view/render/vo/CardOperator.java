@@ -3,6 +3,8 @@ package app.view.render.vo;
 import app.view.render.Operator;
 import app.view.render.Tableable;
 
+import java.util.List;
+
 public class CardOperator implements Operator {
     private Tableable tableable;
 
@@ -13,5 +15,16 @@ public class CardOperator implements Operator {
     @Override
     public Tableable getTableable() {
         return tableable;
+    }
+
+    @Override
+    public boolean put(List<Operator> operators) {
+        if (operators.size() == 1) {
+            if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
+                operators.add(tableable.getOperator());
+                return true;
+            }
+        }
+        return false;
     }
 }
