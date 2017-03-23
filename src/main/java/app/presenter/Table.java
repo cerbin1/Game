@@ -30,7 +30,8 @@ class Table {
             return false;
         }
         if (tableable instanceof TokenVO) {
-            if (((TokenVO) tableable).isVersatile()) {
+            TokenVO tokenVO = (TokenVO) tableable;
+            if (tokenVO.isVersatile()) {
                 if (operators.size() == 1) {
                     if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
                         operators.add(tableable.getOperator());
@@ -46,7 +47,7 @@ class Table {
                 }
             }
             if (operators.size() == 2) {
-                if (operators.stream().anyMatch(o -> o instanceof TokenOperator && ((TokenOperator) o).hasSameColor(tableable))) {
+                if (operators.stream().anyMatch(o -> o instanceof TokenOperator && ((TokenOperator) o).hasSameColor(tokenVO))) {
                     return false;
                 }
                 for (TokenColor color : values()) {

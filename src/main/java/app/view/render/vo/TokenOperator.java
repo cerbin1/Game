@@ -15,9 +15,8 @@ public class TokenOperator implements Operator {
         return tokenVO.getColor();
     }
 
-    public boolean hasSameColor(Tableable tableable) {
-        TokenColor another = ((TokenVO) tableable).getColor();
-        return tokenVO.getColor() == another;
+    public boolean hasSameColor(TokenVO tokenVO) {
+        return this.tokenVO.getColor() == tokenVO.getColor();
     }
 
     @Override
