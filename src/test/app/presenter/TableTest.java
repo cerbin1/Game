@@ -56,6 +56,18 @@ public class TableTest {
     }
 
     @Test
+    public void shouldPutVersatile() {
+        // given
+        Table table = new Table();
+
+        // when
+        boolean canPut = table.put(tokenVO(null));
+
+        // then
+        assertTrue(canPut);
+    }
+
+    @Test
     public void shouldNotPutSecondCard() {
         // given
         Table table = new Table();
@@ -118,18 +130,6 @@ public class TableTest {
 
         // then
         assertFalse(canPut);
-    }
-
-    @Test
-    public void shouldPutVersatile() {
-        // given
-        Table table = new Table();
-
-        // when
-        boolean canPut = table.put(tokenVO(null));
-
-        // then
-        assertTrue(canPut);
     }
 
     @Test
