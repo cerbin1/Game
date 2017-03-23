@@ -16,11 +16,10 @@ class Table {
 
     boolean put(Tableable tableable) {
         if (operators.isEmpty()) {
-            if ((tableable instanceof CardVO || tableable instanceof TokenVO)) {
-                operators.add(tableable.getOperator());
-                return true;
-            }
+            operators.add(tableable.getOperator());
+            return true;
         }
+
         if (tableable instanceof CardVO) {
             if (operators.size() == 1) {
                 if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
