@@ -1,15 +1,12 @@
 package app.presenter;
 
 import app.model.card.CheapCard;
-import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
-import app.view.render.vo.NobilityVO;
 import app.view.render.vo.TokenVO;
-import app.view.render.vo.ViewObject;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
