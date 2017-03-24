@@ -20,8 +20,8 @@ public class CardOperator implements Operator {
     @Override
     public boolean put(List<Operator> operators) {
         if (operators.size() == 1) {
-            if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
-                operators.add(tableable.getOperator());
+            if (operators.get(0) instanceof VersatileOperator) {
+                operators.add(this);
                 return true;
             }
         }

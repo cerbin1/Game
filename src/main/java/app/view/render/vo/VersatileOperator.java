@@ -21,8 +21,8 @@ public class VersatileOperator implements Operator {
     @Override
     public boolean put(List<Operator> operators) {
         if (operators.size() == 1) {
-            if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
-                operators.add(tableable.getOperator());
+            if (operators.get(0) instanceof CardOperator) {
+                operators.add(this);
                 return true;
             }
         }

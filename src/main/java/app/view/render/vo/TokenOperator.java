@@ -31,7 +31,7 @@ public class TokenOperator implements Operator {
     @Override
     public boolean put(List<Operator> operators) {
         if (operators.size() == 1) {
-            if (operators.stream().anyMatch(o -> o instanceof TokenOperator)) {
+            if (operators.get(0) instanceof TokenOperator) {
                 operators.add(this);
                 return true;
             }
