@@ -73,4 +73,19 @@ public class TokenOperator implements Operator {
                 getColor() != third.getColor() &&
                 second.getColor() != third.getColor();
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        TokenOperator that = (TokenOperator) o;
+
+        return tokenVO != null ? tokenVO.equals(that.tokenVO) : that.tokenVO == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return tokenVO != null ? tokenVO.hashCode() : 0;
+    }
 }
