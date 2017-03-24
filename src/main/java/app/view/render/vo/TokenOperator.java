@@ -50,4 +50,27 @@ public class TokenOperator implements Operator {
         }
         return false;
     }
+
+    @Override
+    public boolean canGatherOneElement() {
+        return false;
+    }
+
+    @Override
+    public boolean canGatherTwoElements(Operator second) {
+        return second instanceof TokenOperator && getColor() == ((TokenOperator) second).getColor();
+    }
+
+    @Override
+    public boolean canGatherThreeElements(Operator second, Operator third) {
+        return second instanceof TokenOperator &&
+                third instanceof TokenOperator &&
+                canGatherThreeElements((TokenOperator) second, (TokenOperator) third);
+    }
+
+    private boolean canGatherThreeElements(TokenOperator second, TokenOperator third) {
+        return getColor() != second.getColor() &&
+                getColor() != third.getColor() &&
+                second.getColor() != third.getColor();
+    }
 }

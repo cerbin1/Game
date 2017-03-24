@@ -27,4 +27,19 @@ public class CardOperator implements Operator {
         }
         return false;
     }
+
+    @Override
+    public boolean canGatherOneElement() {
+        return true;
+    }
+
+    @Override
+    public boolean canGatherTwoElements(Operator second) {
+        return second instanceof VersatileOperator;
+    }
+
+    @Override
+    public boolean canGatherThreeElements(Operator second, Operator third) {
+        return false;
+    }
 }

@@ -1,16 +1,11 @@
 package app.presenter;
 
-import app.model.token.TokenColor;
 import app.view.render.Operator;
 import app.view.render.Tableable;
-import app.view.render.vo.CardOperator;
-import app.view.render.vo.TokenOperator;
-import app.view.render.vo.VersatileOperator;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static app.model.token.TokenColor.values;
 import static java.util.stream.Collectors.toList;
 
 class Table {
@@ -36,35 +31,19 @@ class Table {
         if (operators.isEmpty()) {
             return false;
         }
+        Operator first = operators.get(0);
         if (operators.size() == 1) {
-            if (operators.stream().anyMatch(o -> o instanceof CardOperator)) {
-                return true;
-            }
-            if (operators.stream().anyMatch(o -> o instanceof TokenOperator)) {
-                return false;
-            }
-            if (operators.stream().anyMatch(o -> o instanceof VersatileOperator)) {
-                return false;
-            }
+            return first.canGatherOneElement();
         }
+
+        Operator second = operators.get(1);
         if (operators.size() == 2) {
-            if (operators.stream().filter(o -> o instanceof CardOperator).count() + operators.stream().filter(o -> o instanceof VersatileOperator).count() == 2) {
-                return true;
-            }
-            for (TokenColor color : values()) {
-                if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() == 2) {
-                    return true;
-                }
-            }
-            return false;
+            return first.canGatherTwoElements(second);
         }
+
         if (operators.size() == 3) {
-            for (TokenColor color : values()) {
-                if (operators.stream().filter(o -> o instanceof TokenOperator && ((TokenOperator) o).getColor() == color).count() > 1) {
-                    return false;
-                }
-            }
-            return true;
+            Operator third = operators.get(2);
+            return first.canGatherThreeElements(second, third);
         }
         return false;
     }
