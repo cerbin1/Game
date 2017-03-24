@@ -42,4 +42,14 @@ public class CardOperator implements Operator {
     public boolean canGatherThreeElements(Operator second, Operator third) {
         return false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        CardOperator that = (CardOperator) o;
+
+        return tableable.equals(that.tableable);
+    }
 }

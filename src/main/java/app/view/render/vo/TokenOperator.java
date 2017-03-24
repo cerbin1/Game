@@ -81,11 +81,6 @@ public class TokenOperator implements Operator {
 
         TokenOperator that = (TokenOperator) o;
 
-        return tokenVO != null ? tokenVO.equals(that.tokenVO) : that.tokenVO == null;
-    }
-
-    @Override
-    public int hashCode() {
-        return tokenVO != null ? tokenVO.hashCode() : 0;
+        return tokenVO.equals(that.tokenVO);
     }
 }

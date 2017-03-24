@@ -43,4 +43,14 @@ public class VersatileOperator implements Operator {
     public boolean canGatherThreeElements(Operator second, Operator third) {
         return false;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        VersatileOperator that = (VersatileOperator) o;
+
+        return tableable.equals(that.tableable);
+    }
 }
