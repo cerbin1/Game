@@ -98,15 +98,12 @@ public class Tokens {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
         if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (o instanceof Tokens) {
-            Tokens that = (Tokens) o;
-            return tokens.equals(that.tokens) && versatile == that.getVersatile();
-        } else {
-            return false;
-        }
+        Tokens that = (Tokens) o;
+
+        return tokens.equals(that.tokens) && versatile == that.getVersatile();
     }
 
     @Override

@@ -58,15 +58,12 @@ public class Resources {
 
     @Override
     public boolean equals(Object o) {
-        if (o == null) return false;
         if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
 
-        if (o instanceof Resources) {
-            Resources that = (Resources) o;
-            return stationary.equals(that.stationary) && temporary.equals(that.temporary);
-        } else {
-            return false;
-        }
+        Resources that = (Resources) o;
+
+        return stationary.equals(that.stationary) && temporary.equals(that.temporary);
     }
 
     @Override
