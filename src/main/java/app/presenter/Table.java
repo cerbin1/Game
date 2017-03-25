@@ -20,11 +20,11 @@ class Table {
         return operator.put(operators);
     }
 
-    void take(Tableable tableable) {
+    boolean take(Tableable tableable) {
         if (!operators.contains(tableable.getOperator())) {
             throw new UnexpectedTakeException();
         }
-        operators.remove(tableable.getOperator());
+        return operators.remove(tableable.getOperator());
     }
 
     boolean canGather() {
