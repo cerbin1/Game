@@ -11,6 +11,7 @@ import app.model.token.Tokens;
 import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
+import app.view.render.Tableable;
 import app.view.render.renderer.*;
 import app.view.render.vo.*;
 import app.view.util.FastClickMouseAdapter;
@@ -36,6 +37,8 @@ public class GameWindow implements Updatable {
     private Point currentVoPreviousPoint;
     private ViewObject currentVO;
 
+    private final PositionTable table = new PositionTable(1800, 600);
+
     public GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
         initializeGame();
@@ -55,7 +58,7 @@ public class GameWindow implements Updatable {
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
-                tokenVO.addClickListener(this::viewObjectClicked);
+                tokenVO.addClickListener(this::tableableClicked);
                 tokenVOs.add(tokenVO);
             }
         }
@@ -65,7 +68,7 @@ public class GameWindow implements Updatable {
 
         for (int i = 0; i < tokens.getVersatile(); i++) {
             TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
-            versatileVO.addClickListener(this::viewObjectClicked);
+            versatileVO.addClickListener(this::tableableClicked);
             tokenVOs.add(versatileVO);
         }
 
@@ -103,6 +106,18 @@ public class GameWindow implements Updatable {
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
         renderers.add(new ButtonRenderer(buttonVO));
+    }
+
+    private void tableableClicked(ViewObject viewObject) {
+        int x = viewObject.getDestinationX(), y = viewObject.getDestinationY();
+        Tableable tableable = (Tableable) viewObject;
+        if (table.has(tableable)) {
+            Point point = table.getPoint(tableable);
+            table.take(tableable);
+            viewObject.moveTo(point.x, point.y, 2.0);
+        } else if (table.put(tableable, new Point(x, y))) {
+            viewObject.moveTo(1800, 600, 2.0);
+        }
     }
 
     @Override
