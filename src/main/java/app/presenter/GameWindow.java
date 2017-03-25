@@ -74,20 +74,20 @@ public class GameWindow implements Updatable {
 
         for (int i = 0; i < 4; i++) {
             CardVO vo = new CardVO(cardFactory.createCheapCard(), 300, 200);
-            vo.addClickListener(this::viewObjectClicked);
+            vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
 
         for (int i = 0; i < 4; i++) {
             CardVO vo = new CardVO(cardFactory.createMediumCard(), 300, 530);
-            vo.addClickListener(this::viewObjectClicked);
+            vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
         for (int i = 0; i < 4; i++) {
             CardVO vo = new CardVO(cardFactory.createExpensiveCard(), 300, 860);
-            vo.addClickListener(this::viewObjectClicked);
+            vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
             cardVOs.add(vo);
         }
