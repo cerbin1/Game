@@ -19,12 +19,12 @@ import app.view.util.FastClickMouseAdapter;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 import static app.view.render.vo.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
+import static java.util.Collections.*;
 
 public class GameWindow implements Updatable {
     private final static Probability probability = new Probability();
@@ -62,7 +62,7 @@ public class GameWindow implements Updatable {
                 tokenVOs.add(tokenVO);
             }
         }
-        Collections.shuffle(tokenVOs);
+        shuffle(tokenVOs);
 
         FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
 
@@ -94,8 +94,8 @@ public class GameWindow implements Updatable {
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
-        cardVOs.forEach(updatables::add);
-        tokenVOs.forEach(updatables::add);
+        updatables.addAll(cardVOs);
+        updatables.addAll(tokenVOs);
         updatables.add(nobilityVO);
         updatables.add(fpsRenderer);
 
