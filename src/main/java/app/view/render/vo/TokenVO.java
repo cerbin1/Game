@@ -10,13 +10,10 @@ import java.awt.geom.Ellipse2D;
 
 public class TokenVO extends ViewObject implements Tableable {
     private final Token token;
-    private final int x, y;
 
     public TokenVO(Token token, int x, int y) {
         super(x, y, 122, 122);
         this.token = token;
-        this.x = x;
-        this.y = y;
     }
 
     @Override
@@ -32,16 +29,6 @@ public class TokenVO extends ViewObject implements Tableable {
 
     public boolean isVersatile() {
         return token.isVersatile();
-    }
-
-    @Override
-    public int getXX() {
-        return x;
-    }
-
-    @Override
-    public int getYY() {
-        return y;
     }
 
     @Override
