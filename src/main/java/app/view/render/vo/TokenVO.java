@@ -45,6 +45,11 @@ public class TokenVO extends ViewObject implements Tableable {
     }
 
     @Override
+    public void moveTo(int x, int y, double duration) {
+        super.moveTo(x, y, duration);
+    }
+
+    @Override
     public Operator getOperator() {
         if (token.isVersatile()) {
             return new VersatileOperator(this);

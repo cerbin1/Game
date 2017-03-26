@@ -57,6 +57,11 @@ public class CardVO extends FigureVO implements Tableable {
     }
 
     @Override
+    public void moveTo(int x, int y, double duration) {
+        super.moveTo(x, y, duration);
+    }
+
+    @Override
     public Operator getOperator() {
         return new CardOperator(this);
     }

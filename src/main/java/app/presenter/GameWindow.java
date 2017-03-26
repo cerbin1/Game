@@ -113,9 +113,9 @@ public class GameWindow implements Updatable {
         if (table.has(tableable)) {
             Point point = table.getPoint(tableable);
             table.take(tableable);
-            viewObject.moveTo(point.x, point.y, 2.0);
+            tableable.moveTo(point.x, point.y, 2.0);
         } else if (table.put(tableable)) {
-            viewObject.moveTo(1800, 600, 2.0);
+            tableable.moveTo(1800, 600, 2.0);
         }
     }
 
