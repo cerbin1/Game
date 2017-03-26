@@ -17,9 +17,10 @@ public class PositionTable {
         this.y = y;
     }
 
-    public boolean put(Tableable tableable, Point point) {
+    public boolean put(Tableable tableable) {
         if (table.put(tableable)) {
-            previousPosition.put(tableable, point);
+            Point position = new Point(tableable.getX(), tableable.getY());
+            this.previousPosition.put(tableable, position);
             return true;
         }
         return false;
