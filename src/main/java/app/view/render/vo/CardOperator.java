@@ -52,6 +52,6 @@ public class CardOperator implements Operator {
 
         CardOperator that = (CardOperator) o;
 
-        return tableable.equals(that.tableable);
+        return tableable == that.tableable;
     }
 }

@@ -81,6 +81,6 @@ public class TokenOperator implements Operator {
 
         TokenOperator that = (TokenOperator) o;
 
-        return tokenVO.equals(that.tokenVO);
+        return tokenVO == that.tokenVO;
     }
 }

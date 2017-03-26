@@ -51,6 +51,6 @@ public class VersatileOperator implements Operator {
 
         VersatileOperator that = (VersatileOperator) o;
 
-        return tableable.equals(that.tableable);
+        return tableable == that.tableable;
     }
 }
