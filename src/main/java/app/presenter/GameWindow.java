@@ -24,7 +24,7 @@ import java.util.Optional;
 
 import static app.view.render.vo.ViewObject.slightRotation;
 import static java.awt.RenderingHints.Entry;
-import static java.util.Collections.*;
+import static java.util.Collections.shuffle;
 
 public class GameWindow implements Updatable {
     private final static Probability probability = new Probability();
@@ -33,9 +33,6 @@ public class GameWindow implements Updatable {
 
     private final List<Updatable> updatables = new ArrayList<>();
     private final List<Renderer> renderers = new ArrayList<>();
-
-    private Point currentVoPreviousPoint;
-    private ViewObject currentVO;
 
     private final PositionTable table = new PositionTable(1800, 600);
 
