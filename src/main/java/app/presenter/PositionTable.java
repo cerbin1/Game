@@ -43,4 +43,8 @@ public class PositionTable {
     public Point getPoint(Tableable tableable) {
         return previousPosition.get(tableable);
     }
+
+    public Map<Tableable, Point> getPositionsTable() {
+        return previousPosition;
+    }
 }
