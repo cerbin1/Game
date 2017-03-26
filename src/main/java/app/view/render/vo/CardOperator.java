@@ -8,7 +8,7 @@ import java.util.List;
 public class CardOperator implements Operator {
     private Tableable tableable;
 
-    public CardOperator(Tableable tableable) {
+    CardOperator(Tableable tableable) {
         this.tableable = tableable;
     }
 
@@ -19,11 +19,13 @@ public class CardOperator implements Operator {
 
     @Override
     public boolean put(List<Operator> operators) {
-        if (operators.size() == 1) {
-            if (operators.get(0) instanceof VersatileOperator) {
-                operators.add(this);
-                return true;
-            }
+        if (operators.size() != 1) {
+            return false;
+        }
+
+        if (operators.get(0) instanceof VersatileOperator) {
+            operators.add(this);
+            return true;
         }
         return false;
     }

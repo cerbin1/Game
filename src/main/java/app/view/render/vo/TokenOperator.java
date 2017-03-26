@@ -11,7 +11,7 @@ import static app.model.token.TokenColor.values;
 public class TokenOperator implements Operator {
     private TokenVO tokenVO;
 
-    public TokenOperator(TokenVO tokenVO) {
+    TokenOperator(TokenVO tokenVO) {
         this.tokenVO = tokenVO;
     }
 
@@ -19,7 +19,7 @@ public class TokenOperator implements Operator {
         return tokenVO.getColor();
     }
 
-    public boolean hasSameColor(TokenVO tokenVO) {
+    private boolean hasSameColor(TokenVO tokenVO) {
         return this.tokenVO.getColor() == tokenVO.getColor();
     }
 
