@@ -136,6 +136,19 @@ public class AnimatedValueTest {
     }
 
     @Test
+    public void shouldGetStartingValue() {
+        AnimatedValue animatedValue = new AnimatedValue(-1.0);
+        animatedValue.setValue(1.0);
+        animatedValue.update(0.2);
+
+        // when
+        double destination = animatedValue.getStartingValue();
+
+        // then
+        assertEquals(-1.0, destination, 0.000001);
+    }
+
+    @Test
     public void shouldGetDestinationValue() {
         AnimatedValue animatedValue = new AnimatedValue(-1.0);
         animatedValue.setValue(1.0);

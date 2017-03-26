@@ -47,6 +47,10 @@ public class AnimatedValue {
         return currentValue;
     }
 
+    public double getStartingValue() {
+        return startValue;
+    }
+
     public double getDestinationValue() {
         return destinationValue;
     }
