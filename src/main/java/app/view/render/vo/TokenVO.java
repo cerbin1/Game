@@ -35,12 +35,12 @@ public class TokenVO extends ViewObject implements Tableable {
     }
 
     @Override
-    public int getX() {
+    public int getXX() {
         return x;
     }
 
     @Override
-    public int getY() {
+    public int getYY() {
         return y;
     }
 

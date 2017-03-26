@@ -16,10 +16,13 @@ public class CardVO extends FigureVO implements Tableable {
     private final Card card;
     private final AnimatedValue reservation = new AnimatedValue(0.0);
     private final AnimatedValue flip = new AnimatedValue(-1.0);
+    private final int x, y;
 
     public CardVO(Card card, int x, int y) {
         super(card, x, y, 236, 330);
         this.card = card;
+        this.x = x;
+        this.y = y;
     }
 
     public Card getCard() {
@@ -64,5 +67,15 @@ public class CardVO extends FigureVO implements Tableable {
     @Override
     public Operator getOperator() {
         return new CardOperator(this);
+    }
+
+    @Override
+    public int getXX() {
+        return x;
+    }
+
+    @Override
+    public int getYY() {
+        return y;
     }
 }
