@@ -8,4 +8,6 @@ public interface Tableable {
     void moveTo(int x, int y, double duration);
 
     Point getStartingPoint();
+
+    Point getDestination();
 }

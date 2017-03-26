@@ -19,7 +19,7 @@ public class PositionTable {
 
     public boolean put(Tableable tableable) {
         if (table.put(tableable)) {
-            Point position = tableable.getStartingPoint();
+            Point position = tableable.getDestination();
             this.previousPosition.put(tableable, position);
             return true;
         }
