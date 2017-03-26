@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PositionTable {
-    private int x, y;
+    private final int x, y;
     private Table table = new Table();
 
     private final Map<Tableable, Point> previousPosition = new HashMap<>();
@@ -19,7 +19,7 @@ public class PositionTable {
 
     public boolean put(Tableable tableable) {
         if (table.put(tableable)) {
-            Point position = new Point(tableable.getXX(), tableable.getYY());
+            Point position = tableable.getStartingPoint();
             this.previousPosition.put(tableable, position);
             return true;
         }

@@ -44,6 +44,14 @@ public abstract class ViewObject implements Updatable {
         );
     }
 
+    public Point getStartingPoint() {
+        return new Point((int) round(x.getStartingValue()), (int) round(y.getStartingValue()));
+    }
+
+    public Point getPosition() {
+        return new Point(getX(), getY());
+    }
+
     public int getX() {
         return (int) round(x.getValue());
     }
@@ -52,12 +60,8 @@ public abstract class ViewObject implements Updatable {
         return (int) round(y.getValue());
     }
 
-    public int getDestinationX() {
-        return (int) round(x.getDestinationValue());
-    }
-
-    public int getDestinationY() {
-        return (int) round(y.getDestinationValue());
+    public Point getDestination() {
+        return new Point((int) round(x.getDestinationValue()), (int) round(y.getDestinationValue()));
     }
 
     public void setRotation(double rotation) {
