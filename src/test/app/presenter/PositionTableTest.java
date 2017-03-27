@@ -1,11 +1,14 @@
 package app.presenter;
 
 import app.model.card.CheapCard;
+import app.model.token.Token;
 import app.view.render.vo.CardVO;
+import app.view.render.vo.TokenVO;
 import org.junit.Test;
 
 import java.awt.*;
 
+import static app.model.token.TokenColor.*;
 import static org.junit.Assert.*;
 
 public class PositionTableTest {
@@ -15,6 +18,10 @@ public class PositionTableTest {
 
     private static CardVO cardVO() {
         return new CardVO(new CheapCard(), 0, 0);
+    }
+
+    private static TokenVO tokenVO() {
+        return new TokenVO(new Token(Green), 0, 0);
     }
 
     private static Point point() {
@@ -130,6 +137,22 @@ public class PositionTableTest {
 
         // then
         assertTrue(canGather);
+        assertTrue(table.getPositionsTable().isEmpty());
+    }
+
+    @Test
+    public void shouldNotGather() {
+        // given
+        PositionTable table = positionTable();
+
+        TokenVO tokenVO = tokenVO();
+        table.put(tokenVO);
+
+        // when
+        boolean canGather = table.gather();
+
+        // then
+        assertFalse(canGather);
         assertTrue(table.getPositionsTable().isEmpty());
     }
 }
