@@ -20,7 +20,7 @@ public class TokenOperator implements Operator {
     }
 
     private boolean hasSameColor(TokenVO tokenVO) {
-        return this.tokenVO.getColor() == tokenVO.getColor();
+        return this.getColor() == tokenVO.getColor();
     }
 
     @Override
