@@ -32,15 +32,21 @@ public class TokenVO extends ViewObject implements Tableable {
     }
 
     @Override
-    public void moveTo(int x, int y, double duration) {
-        super.moveTo(x, y, duration);
-    }
-
-    @Override
     public Operator getOperator() {
         if (token.isVersatile()) {
             return new VersatileOperator(this);
         }
         return new TokenOperator(this);
+    }
+
+    @Override
+    public void moveTo(Point previousPoint, double duration) {
+        super.moveTo(previousPoint.x, previousPoint.y, duration);
+    }
+
+
+    @Override
+    public void moveToTable(int shift) {
+        super.moveTo(1800, 600 + shift, 0.5);
     }
 }

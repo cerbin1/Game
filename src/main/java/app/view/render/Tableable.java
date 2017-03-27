@@ -5,7 +5,9 @@ import java.awt.*;
 public interface Tableable {
     Operator getOperator();
 
-    void moveTo(int x, int y, double duration);
+    void moveTo(Point point, double duration);
+
+    void moveToTable(int bottomShift);
 
     Point getStartingPoint();
 
