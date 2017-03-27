@@ -117,4 +117,19 @@ public class PositionTableTest {
         assertFalse(table.has(cardVO));
         assertEquals(null, table.getPreviousPoint(cardVO));
     }
+
+    @Test
+    public void shouldGather() {
+        // given
+        PositionTable table = positionTable();
+        CardVO cardVO = cardVO();
+        table.put(cardVO);
+
+        // when
+        boolean canGather = table.gather();
+
+        // then
+        assertTrue(canGather);
+        assertTrue(table.getPositionsTable().isEmpty());
+    }
 }

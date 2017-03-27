@@ -25,8 +25,8 @@ public class PositionTable {
         return table.take(tableable);
     }
 
-    public void gather() {
-
+    public boolean gather() {
+        return table.canGather();
     }
 
     public boolean has(Tableable tableable) {
