@@ -51,6 +51,7 @@ public class GameWindow implements Updatable {
         List<TokenVO> tokenVOs = new ArrayList<>();
         NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(1, 2, 3, 4, 0), 3), 1000, 1500);
         ButtonVO buttonVO = new ButtonVO(1600, 1600);
+        buttonVO.addClickListener(viewObject -> buttonClicked());
 
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
@@ -107,6 +108,10 @@ public class GameWindow implements Updatable {
 
     private void tableableClicked(ViewObject viewObject) {
         table.set((Tableable) viewObject);
+    }
+
+    private void buttonClicked() {
+        table.gatherTableables();
     }
 
     @Override
