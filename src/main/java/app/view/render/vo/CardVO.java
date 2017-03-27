@@ -72,12 +72,7 @@ public class CardVO extends FigureVO implements Tableable {
     }
 
     @Override
-    public void moveToTable(int size) {
-        if (size == 1) {
-            moveTo(1800, 600, 0.5);
-        } else {
-            moveTo(1800, 600, 0.5);
-        }
+    public void moveToTable(int x, int y, int size) {
+        moveTo(x, y, 0.5);
     }
-
 }

@@ -50,13 +50,13 @@ public class TokenVO extends ViewObject implements Tableable {
     }
 
     @Override
-    public void moveToTable(int size) {
+    public void moveToTable(int x, int y, int size) {
         if (size == 1) {
-            moveTo(1800, 600, 0.5);
+            moveTo(x, y, 0.5);
         } else if (size == 2) {
-            moveTo(1920, 600, 0.5);
+            moveTo(x + 120, y, 0.5);
         } else {
-            moveTo(2040, 600, 0.5);
+            moveTo(x + 240, y, 0.5);
         }
     }
 }

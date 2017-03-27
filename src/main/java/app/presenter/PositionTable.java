@@ -50,7 +50,7 @@ public class PositionTable {
         } else if (put(tableable)) {
             Point currentPosition = tableable.getDestination();
             previousPosition.put(tableable, currentPosition);
-            tableable.moveToTable(previousPosition.size());
+            tableable.moveToTable(x, y, previousPosition.size());
         }
     }
 
