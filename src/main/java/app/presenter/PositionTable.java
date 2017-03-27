@@ -18,18 +18,11 @@ public class PositionTable {
     }
 
     public boolean put(Tableable tableable) {
-        if (table.put(tableable)) {
-            Point position = tableable.getDestination();
-            this.previousPosition.put(tableable, position);
-            return true;
-        }
-        return false;
+        return table.put(tableable);
     }
 
-    public void take(Tableable tableable) {
-        if (table.take(tableable)) {
-            previousPosition.remove(tableable);
-        }
+    public boolean take(Tableable tableable) {
+        return table.take(tableable);
     }
 
     public void gather() {
@@ -40,11 +33,24 @@ public class PositionTable {
         return previousPosition.containsKey(tableable);
     }
 
-    public Point getPoint(Tableable tableable) {
+    public Point getPreviousPoint(Tableable tableable) {
         return previousPosition.get(tableable);
     }
 
     public Map<Tableable, Point> getPositionsTable() {
         return previousPosition;
+    }
+
+    public void set(Tableable tableable) {
+        if (has(tableable)) {
+            if (take(tableable)) {
+                tableable.moveTo(getPreviousPoint(tableable), 0.5);
+                previousPosition.remove(tableable);
+            }
+        } else if (put(tableable)) {
+            Point currentPosition = tableable.getDestination();
+            previousPosition.put(tableable, currentPosition);
+            tableable.moveToTable(0);
+        }
     }
 }
