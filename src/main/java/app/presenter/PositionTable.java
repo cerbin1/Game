@@ -61,4 +61,14 @@ public class PositionTable {
             }
         }
     }
+
+    public void gatherTableables() {
+        if (gather()) {
+            for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
+                entry.getKey().moveTo(2000, 1000, 0.5);
+            }
+            table.gather();
+            previousPosition.clear();
+        }
+    }
 }
