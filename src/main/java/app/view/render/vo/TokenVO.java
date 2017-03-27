@@ -49,4 +49,14 @@ public class TokenVO extends ViewObject implements Tableable {
         super.moveTo(x, y, duration);
     }
 
+    @Override
+    public void moveToTable(int size) {
+        if (size == 1) {
+            moveTo(1800, 600, 0.5);
+        } else if (size == 2) {
+            moveTo(1920, 600, 0.5);
+        } else {
+            moveTo(2040, 600, 0.5);
+        }
+    }
 }
