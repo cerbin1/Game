@@ -57,7 +57,7 @@ public class PositionTableTest {
         CardVO cardVO = cardVO();
 
         // when
-        table.put(cardVO);
+        table.set(cardVO);
 
         // then
         assertTrue(table.has(cardVO));
@@ -67,30 +67,30 @@ public class PositionTableTest {
     public void shouldAddTableablePoint() {
         // given
         PositionTable table = positionTable();
-        CardVO cardVO = new CardVO(new CheapCard(), 0, 0);
+        CardVO cardVO = new CardVO(new CheapCard(), 0, 1);
 
         // when
-        table.put(cardVO);
+        table.set(cardVO);
 
         // then
-        assertEquals(new Point(0, 0), table.getPoint(cardVO));
+        assertEquals(point(), table.getPreviousPoint(cardVO));
     }
 
     @Test
-    public void shouldAddTableableWhenTake() {
+    public void shouldHasTableableAfterPut() {
         // given
         PositionTable table = positionTable();
         CardVO cardVO = cardVO();
 
         // when
-        table.put(cardVO);
+        table.set(cardVO);
 
         // then
         assertTrue(table.has(cardVO));
     }
 
     @Test
-    public void shouldRemoveTableablePositionWhenTake() {
+    public void shouldRemoveTableablePositionAfterTake() {
         // given
         PositionTable table = positionTable();
         CardVO cardVO = cardVO();
@@ -111,10 +111,10 @@ public class PositionTableTest {
         table.put(cardVO);
 
         // when
-        table.take(cardVO);
+        table.set(cardVO);
 
         // then
         assertFalse(table.has(cardVO));
-        assertEquals(null, table.getPoint(cardVO));
+        assertEquals(null, table.getPreviousPoint(cardVO));
     }
 }
