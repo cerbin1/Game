@@ -67,6 +67,11 @@ public class CardVO extends FigureVO implements Tableable {
     }
 
     @Override
+    public void moveTo(int x, int y, double duration) {
+        super.moveTo(x, y, duration);
+    }
+
+    @Override
     public void moveToTable(int shift) {
         super.moveTo(1800, 600, 0.5);
     }

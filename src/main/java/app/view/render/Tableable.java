@@ -7,6 +7,8 @@ public interface Tableable {
 
     void moveTo(Point point, double duration);
 
+    void moveTo(int x, int y, double duration);
+
     void moveToTable(int bottomShift);
 
     Point getStartingPoint();
