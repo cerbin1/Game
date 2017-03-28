@@ -1,8 +1,10 @@
 package app.presenter;
 
+import app.model.Game;
 import app.model.GameBuilder;
 import app.model.Player;
 import app.model.Updatable;
+import app.model.card.Card;
 import app.model.card.CardFactory;
 import app.model.card.nobility.Nobility;
 import app.model.token.Token;
@@ -36,6 +38,8 @@ public class GameWindow implements Updatable {
 
     private final PositionTable table = new PositionTable(1800, 600);
 
+    private Game game;
+
     public GameWindow() {
         window.addMouseListener(new GameMouseAdapter());
         initializeGame();
@@ -44,15 +48,22 @@ public class GameWindow implements Updatable {
     private void initializeGame() {
         CardFactory cardFactory = new CardFactory();
         GameBuilder builder = new GameBuilder();
-        Tokens tokens = new Tokens(7, 5);
-        Player player = new Player();
 
-        List<CardVO> cardVOs = new ArrayList<>();
-        List<TokenVO> tokenVOs = new ArrayList<>();
-        NobilityVO nobilityVO = new NobilityVO(new Nobility(new Tokens(1, 2, 3, 4, 0), 3), 1000, 1500);
+        Tokens tokens = new Tokens(7, 5);
+        List<Player> players = new ArrayList<>();
+        List<Card> cards = new ArrayList<>();
+        List<Nobility> nobilities = new ArrayList<>();
+
+        players.add(new Player());
+
+        Nobility nobility = new Nobility(new Tokens(1, 2, 3, 4, 0), 3);
+        NobilityVO nobilityVO = new NobilityVO(nobility, 1000, 1500);
+        nobilities.add(nobility);
+
         ButtonVO buttonVO = new ButtonVO(1600, 1600);
         buttonVO.addClickListener(viewObject -> buttonClicked());
 
+        List<TokenVO> tokenVOs = new ArrayList<>();
         for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
@@ -62,35 +73,46 @@ public class GameWindow implements Updatable {
         }
         shuffle(tokenVOs);
 
-        FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
-
         for (int i = 0; i < tokens.getVersatile(); i++) {
             TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
             versatileVO.addClickListener(this::tableableClicked);
             tokenVOs.add(versatileVO);
         }
 
+        List<CardVO> cardVOs = new ArrayList<>();
+
         for (int i = 0; i < 4; i++) {
-            CardVO vo = new CardVO(cardFactory.createCheapCard(), 300, 200);
+            Card cheapCard = cardFactory.createCheapCard();
+            CardVO vo = new CardVO(cheapCard, 300, 200);
             vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
+            cards.add(cheapCard);
             cardVOs.add(vo);
         }
 
         for (int i = 0; i < 4; i++) {
-            CardVO vo = new CardVO(cardFactory.createMediumCard(), 300, 530);
+            Card mediumCard = cardFactory.createMediumCard();
+            CardVO vo = new CardVO(mediumCard, 300, 530);
             vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
+            cards.add(mediumCard);
             cardVOs.add(vo);
         }
+
         for (int i = 0; i < 4; i++) {
-            CardVO vo = new CardVO(cardFactory.createExpensiveCard(), 300, 860);
+            Card expensiveCard = cardFactory.createExpensiveCard();
+            CardVO vo = new CardVO(expensiveCard, 300, 860);
             vo.addClickListener(this::tableableClicked);
             vo.setRotation(slightRotation());
+            cards.add(expensiveCard);
             cardVOs.add(vo);
         }
+
+        game = new Game(tokens, players, cards, nobilities);
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
+
+        FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
 
         updatables.addAll(cardVOs);
         updatables.addAll(tokenVOs);
