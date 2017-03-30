@@ -11,7 +11,7 @@ public interface Tableable {
 
     Point getStartingPoint();
 
-    Point getDestination();
+    Point getCurrentPoint();
 
     void moveToTable(int x, int y, int size);
 }
