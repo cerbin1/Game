@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class TextNotificationRenderer extends Renderer implements Updatable {
     private final String text;
-    private double seconds;
+    private final double seconds;
     private double timer = 0;
 
     public TextNotificationRenderer(String text, int x, int y) {
