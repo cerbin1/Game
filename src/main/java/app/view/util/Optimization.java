@@ -4,6 +4,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
+import static java.awt.Transparency.BITMASK;
 
 public class Optimization {
     public static BufferedImage createCompatibleImage(int width, int height) {
@@ -11,6 +12,6 @@ public class Optimization {
         GraphicsDevice gs = ge.getDefaultScreenDevice();
         GraphicsConfiguration gc = gs.getDefaultConfiguration();
 
-        return gc.createCompatibleImage(width, height);
+        return gc.createCompatibleImage(width, height, BITMASK);
     }
 }
