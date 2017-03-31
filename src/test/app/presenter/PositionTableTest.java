@@ -133,7 +133,7 @@ public class PositionTableTest {
         table.put(cardVO);
 
         // when
-        boolean canGather = table.gather();
+        boolean canGather = table.canGather();
 
         // then
         assertTrue(canGather);
@@ -149,7 +149,7 @@ public class PositionTableTest {
         table.put(tokenVO);
 
         // when
-        boolean canGather = table.gather();
+        boolean canGather = table.canGather();
 
         // then
         assertFalse(canGather);

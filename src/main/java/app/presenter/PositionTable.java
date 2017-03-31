@@ -25,7 +25,7 @@ public class PositionTable {
         return table.take(tableable);
     }
 
-    public boolean gather() {
+    public boolean canGather() {
         return table.canGather();
     }
 
@@ -53,8 +53,8 @@ public class PositionTable {
         }
     }
 
-    public void gatherTableables() {
-        if (gather()) {
+    public void gather() {
+        if (canGather()) {
             for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
                 entry.getKey().moveTo(2000, 1000, 0.5);
             }

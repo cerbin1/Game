@@ -137,7 +137,7 @@ public class GameWindow implements Updatable {
     }
 
     private void buttonClicked() {
-        table.gatherTableables();
+        table.gather();
     }
 
     @Override
