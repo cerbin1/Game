@@ -8,8 +8,9 @@ import org.junit.Test;
 
 import java.awt.*;
 
-import static app.model.token.TokenColor.*;
-import static org.junit.Assert.*;
+import static app.model.token.TokenColor.Green;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class PositionTableTest {
     private static PositionTable positionTable() {
@@ -35,11 +36,11 @@ public class PositionTableTest {
         CardVO cardVO = cardVO();
 
         // when
-        boolean canPut = table.put(cardVO);
+        boolean didPut = table.put(cardVO);
 
         // then
-        assertTrue(canPut);
-        assertFalse(table.isEmpty());
+        assertTrue(didPut);
+        assertTrue(table.has(cardVO));
     }
 
     @Test
@@ -50,23 +51,25 @@ public class PositionTableTest {
         CardVO cardVO = cardVO();
 
         // when
-        boolean canPut2 = table.put(cardVO);
+        boolean didPut = table.put(cardVO);
 
         // then
-        assertFalse(canPut2);
+        assertFalse(didPut);
+        assertFalse(table.has(cardVO));
     }
 
     @Test
-    public void shouldRemoveTableablePositionAfterTake() {
+    public void shouldRemoveTableableAfterTake() {
         // given
         PositionTable table = positionTable();
         CardVO cardVO = cardVO();
         table.put(cardVO);
 
         // when
-        table.take(cardVO);
+        boolean didTake = table.take(cardVO);
 
         // then
+        assertTrue(didTake);
         assertTrue(table.isEmpty());
     }
 }
