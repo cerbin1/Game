@@ -80,7 +80,7 @@ public class PositionTableTest {
         table.set(cardVO);
 
         // then
-        assertEquals(point(), table.getPreviousPoint(cardVO));
+        assertEquals(point(), table.getPreviousPointOf(cardVO));
     }
 
     @Test
@@ -122,7 +122,7 @@ public class PositionTableTest {
 
         // then
         assertFalse(table.has(cardVO));
-        assertEquals(null, table.getPreviousPoint(cardVO));
+        assertEquals(null, table.getPreviousPointOf(cardVO));
     }
 
     @Test

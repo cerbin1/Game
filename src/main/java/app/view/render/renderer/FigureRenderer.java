@@ -60,7 +60,6 @@ abstract class FigureRenderer extends Renderer {
         graphics.translate(-x, -y);
     }
 
-
     private void drawCost(Graphics2D graphics) {
         graphics.setColor(white);
         figure.getCost().asMap().forEach(new CostDrawer(graphics));
