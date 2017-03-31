@@ -54,9 +54,9 @@ public class TokenVO extends ViewObject implements Tableable {
         if (size == 1) {
             moveTo(x, y, 0.5);
         } else if (size == 2) {
-            moveTo(x + 120, y, 0.5);
+            moveTo(x + 200, y, 0.5);
         } else {
-            moveTo(x + 240, y, 0.5);
+            moveTo(x + 400, y, 0.5);
         }
     }
 }
