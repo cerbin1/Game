@@ -113,19 +113,22 @@ public class GameWindow implements Updatable {
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
         FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
+        TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer("Testing", 3, 2000, 1000);
 
         updatables.addAll(cardVOs);
         updatables.addAll(tokenVOs);
         updatables.add(nobilityVO);
         updatables.add(fpsRenderer);
+        updatables.add(textNotificationRenderer);
 
-        renderers.add(new BackgroundRenderer());
-        renderers.add(new NobilityRenderer(nobilityVO));
-        renderers.add(fpsRenderer);
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
+        renderers.add(new NobilityRenderer(nobilityVO));
 
         renderers.add(new ButtonRenderer(buttonVO));
+        renderers.add(new BackgroundRenderer());
+        renderers.add(fpsRenderer);
+        renderers.add(textNotificationRenderer);
     }
 
     private void tableableClicked(ViewObject viewObject) {
