@@ -121,12 +121,13 @@ public class GameWindow implements Updatable {
         updatables.add(fpsRenderer);
         updatables.add(textNotificationRenderer);
 
+        renderers.add(new BackgroundRenderer());
+
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
         renderers.add(new NobilityRenderer(nobilityVO));
 
         renderers.add(new ButtonRenderer(buttonVO));
-        renderers.add(new BackgroundRenderer());
         renderers.add(fpsRenderer);
         renderers.add(textNotificationRenderer);
     }
