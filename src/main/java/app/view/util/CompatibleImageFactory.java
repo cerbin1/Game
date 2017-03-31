@@ -6,16 +6,16 @@ import java.awt.image.BufferedImage;
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
 public class CompatibleImageFactory implements ImageFactory {
-    private GraphicsConfiguration gc;
+    private GraphicsConfiguration configuration;
 
     public CompatibleImageFactory() {
         GraphicsEnvironment ge = getLocalGraphicsEnvironment();
         GraphicsDevice gs = ge.getDefaultScreenDevice();
-        gc = gs.getDefaultConfiguration();
+        configuration = gs.getDefaultConfiguration();
     }
 
     @Override
     public BufferedImage create(int width, int height) {
-        return gc.createCompatibleImage(width, height);
+        return configuration.createCompatibleImage(width, height);
     }
 }
