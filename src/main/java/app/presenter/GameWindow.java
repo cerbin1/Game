@@ -133,11 +133,16 @@ public class GameWindow implements Updatable {
     }
 
     private void tableableClicked(ViewObject viewObject) {
-        table.set((Tableable) viewObject);
+        Tableable tableable = (Tableable) viewObject;
+        if (table.has(tableable)) {
+            table.put(tableable);
+        } else {
+            table.take(tableable);
+        }
     }
 
     private void buttonClicked() {
-        table.gatherTableables();
+        table.gather();
     }
 
     @Override

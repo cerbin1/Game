@@ -18,14 +18,24 @@ public class PositionTable {
     }
 
     public boolean put(Tableable tableable) {
-        return table.put(tableable);
+        if (table.put(tableable)) {
+            previousPosition.put(tableable, tableable.getDestination());
+            tableable.moveToTable(x, y, previousPosition.size());
+            return true;
+        }
+        return false;
     }
 
     public boolean take(Tableable tableable) {
-        return table.take(tableable);
+        if (table.take(tableable)) {
+            tableable.moveTo(getPreviousPointOf(tableable), 0.5);
+            previousPosition.remove(tableable);
+            return true;
+        }
+        return false;
     }
 
-    public boolean gather() {
+    public boolean canGather() {
         return table.canGather();
     }
 
@@ -37,24 +47,12 @@ public class PositionTable {
         return previousPosition.get(tableable);
     }
 
-    public Map<Tableable, Point> getPositionsTable() {
-        return previousPosition;
+    public boolean isEmpty() {
+        return previousPosition.isEmpty();
     }
 
-    public void set(Tableable tableable) {
-        if (has(tableable)) {
-            if (take(tableable)) {
-                tableable.moveTo(getPreviousPointOf(tableable), 0.5);
-                previousPosition.remove(tableable);
-            }
-        } else if (put(tableable)) {
-            previousPosition.put(tableable, tableable.getDestination());
-            tableable.moveToTable(x, y, previousPosition.size());
-        }
-    }
-
-    public void gatherTableables() {
-        if (gather()) {
+    public void gather() {
+        if (canGather()) {
             for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
                 entry.getKey().moveTo(2000, 1000, 0.5);
             }

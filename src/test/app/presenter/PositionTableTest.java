@@ -39,61 +39,21 @@ public class PositionTableTest {
 
         // then
         assertTrue(canPut);
+        assertFalse(table.isEmpty());
     }
 
     @Test
     public void shouldNotPutTableable() {
         // given
         PositionTable table = positionTable();
-        CardVO cardVO1 = cardVO();
-        CardVO cardVO2 = cardVO();
+        table.put(cardVO());
+        CardVO cardVO = cardVO();
 
         // when
-        boolean canPut1 = table.put(cardVO1);
-        boolean canPut2 = table.put(cardVO2);
+        boolean canPut2 = table.put(cardVO);
 
         // then
-        assertTrue(canPut1);
         assertFalse(canPut2);
-    }
-
-    @Test
-    public void shouldAddToPositionTableAfterPut() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = cardVO();
-
-        // when
-        table.set(cardVO);
-
-        // then
-        assertTrue(table.has(cardVO));
-    }
-
-    @Test
-    public void shouldAddTableablePoint() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = new CardVO(new CheapCard(), 0, 1);
-
-        // when
-        table.set(cardVO);
-
-        // then
-        assertEquals(point(), table.getPreviousPointOf(cardVO));
-    }
-
-    @Test
-    public void shouldHasTableableAfterPut() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = cardVO();
-
-        // when
-        table.set(cardVO);
-
-        // then
-        assertTrue(table.has(cardVO));
     }
 
     @Test
@@ -107,52 +67,6 @@ public class PositionTableTest {
         table.take(cardVO);
 
         // then
-        assertTrue(table.getPositionsTable().isEmpty());
-    }
-
-    @Test
-    public void shouldTakeTableable() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = cardVO();
-        table.put(cardVO);
-
-        // when
-        table.set(cardVO);
-
-        // then
-        assertFalse(table.has(cardVO));
-        assertEquals(null, table.getPreviousPointOf(cardVO));
-    }
-
-    @Test
-    public void shouldGather() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = cardVO();
-        table.put(cardVO);
-
-        // when
-        boolean canGather = table.gather();
-
-        // then
-        assertTrue(canGather);
-        assertTrue(table.getPositionsTable().isEmpty());
-    }
-
-    @Test
-    public void shouldNotGather() {
-        // given
-        PositionTable table = positionTable();
-
-        TokenVO tokenVO = tokenVO();
-        table.put(tokenVO);
-
-        // when
-        boolean canGather = table.gather();
-
-        // then
-        assertFalse(canGather);
-        assertTrue(table.getPositionsTable().isEmpty());
+        assertTrue(table.isEmpty());
     }
 }
