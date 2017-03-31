@@ -60,7 +60,7 @@ public abstract class ViewObject implements Updatable {
         return (int) round(y.getValue());
     }
 
-    public Point getCurrentPoint() {
+    public Point getDestination() {
         return new Point((int) round(x.getDestinationValue()), (int) round(y.getDestinationValue()));
     }
 

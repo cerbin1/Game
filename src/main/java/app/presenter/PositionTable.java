@@ -48,8 +48,7 @@ public class PositionTable {
                 previousPosition.remove(tableable);
             }
         } else if (put(tableable)) {
-            Point currentPosition = tableable.getCurrentPoint();
-            previousPosition.put(tableable, currentPosition);
+            previousPosition.put(tableable, tableable.getDestination());
             tableable.moveToTable(x, y, previousPosition.size());
         }
     }
