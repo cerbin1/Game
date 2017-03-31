@@ -33,7 +33,7 @@ public class PositionTable {
         return previousPosition.containsKey(tableable);
     }
 
-    public Point getPreviousPoint(Tableable tableable) {
+    public Point getPreviousPointOf(Tableable tableable) {
         return previousPosition.get(tableable);
     }
 
@@ -44,7 +44,7 @@ public class PositionTable {
     public void set(Tableable tableable) {
         if (has(tableable)) {
             if (take(tableable)) {
-                tableable.moveTo(getPreviousPoint(tableable), 0.5);
+                tableable.moveTo(getPreviousPointOf(tableable), 0.5);
                 previousPosition.remove(tableable);
             }
         } else if (put(tableable)) {
