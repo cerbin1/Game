@@ -29,7 +29,7 @@ public class Resources {
         return compensator.getTokensLeft();
     }
 
-    private class InsufficientTokens implements Consumer<Entry<TokenColor, Integer>> {
+    private static class InsufficientTokens implements Consumer<Entry<TokenColor, Integer>> {
         private final Map<TokenColor, Integer> change = new EnumMap<>(TokenColor.class);
         private int versatile;
 
