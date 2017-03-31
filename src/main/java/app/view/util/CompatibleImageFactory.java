@@ -6,7 +6,7 @@ import java.awt.image.BufferedImage;
 import static java.awt.GraphicsEnvironment.getLocalGraphicsEnvironment;
 
 public class CompatibleImageFactory implements ImageFactory {
-    GraphicsConfiguration gc;
+    private GraphicsConfiguration gc;
 
     public CompatibleImageFactory() {
         GraphicsEnvironment ge = getLocalGraphicsEnvironment();

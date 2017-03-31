@@ -27,7 +27,6 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
     @Override
     protected void render(Graphics2D graphics) {
         if (timer < seconds) {
-            System.out.println(timer);
             graphics.drawString(text, 30, 30);
         }
     }
