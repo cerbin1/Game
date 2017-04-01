@@ -44,7 +44,7 @@ public class PositionTable {
         return previousPosition.containsKey(tableable);
     }
 
-    public Point getPreviousPointOf(Tableable tableable) {
+    private Point getPreviousPointOf(Tableable tableable) {
         return previousPosition.get(tableable);
     }
 
