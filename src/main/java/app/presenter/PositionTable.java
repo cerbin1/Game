@@ -28,7 +28,8 @@ public class PositionTable {
 
     public boolean take(Tableable tableable) {
         if (table.take(tableable)) {
-            tableable.moveTo(getPreviousPointOf(tableable), 0.5);
+            Point previousPoint = getPreviousPointOf(tableable);
+            tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
             previousPosition.remove(tableable);
             return true;
         }
