@@ -105,7 +105,7 @@ public class PositionTableTest {
     }
 
     @Test
-    public void shouldGather() {
+    public void shouldBeAbleToGather() {
         // given
         PositionTable table = positionTable();
         table.put(cardVO());
@@ -118,7 +118,7 @@ public class PositionTableTest {
     }
 
     @Test
-    public void shouldNotGather() {
+    public void shouldNotBeAbleToGather() {
         // given
         PositionTable table = positionTable();
         table.put(tokenVO());
@@ -131,7 +131,7 @@ public class PositionTableTest {
     }
 
     @Test
-    public void shouldClearPreviousPositionsAfterGather() {
+    public void shouldGather() {
         // given
         PositionTable table = positionTable();
         table.put(cardVO());
