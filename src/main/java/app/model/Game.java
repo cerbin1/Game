@@ -45,12 +45,20 @@ public class Game {
         cards.remove(card);
     }
 
+    public void addCard(Card card) {
+        cards.add(card);
+    }
+
     public List<Player> getPlayers() {
         return players;
     }
 
     public Player getCurrentPlayer() {
         return players.get(currentPlayer);
+    }
+
+    public void addPlayer(Player player) {
+        players.add(player);
     }
 
     public List<Nobility> getNobility() {
