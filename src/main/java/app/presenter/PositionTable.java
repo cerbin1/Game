@@ -4,6 +4,7 @@ import app.view.render.Tableable;
 
 import java.awt.*;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class PositionTable {
@@ -48,13 +49,11 @@ public class PositionTable {
         return previousPosition.isEmpty();
     }
 
-    public void gather() {
-        if (canGather()) {
-            for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
-                entry.getKey().moveTo(2000, 1000, 0.5);
-            }
-            table.gather();
-            previousPosition.clear();
+    public List<Tableable> gather() {
+        for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
+            entry.getKey().moveTo(2000, 1000, 0.5);
         }
+        previousPosition.clear();
+        return table.gather();
     }
 }
