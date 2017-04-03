@@ -3,11 +3,11 @@ package app.model.card.nobility;
 import app.model.token.Tokens;
 import app.model.util.Probability;
 
-class ConditionsEmploymentNobility {
+public class ConditionsEmploymentNobility {
     private final int[] tokenValue = new int[5];
     private final Probability probability;
 
-    ConditionsEmploymentNobility() {
+    public ConditionsEmploymentNobility() {
         this(new Probability());
     }
 
