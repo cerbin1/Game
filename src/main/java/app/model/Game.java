@@ -29,8 +29,8 @@ public class Game {
         this.tokens = tokens;
     }
 
-    public void decVersatile(int value) {
-        tokens = tokens.subtract(new Tokens(0, value));
+    public void decVersatile() {
+        tokens = tokens.subtract(new Tokens(0, 1));
     }
 
     public List<Card> getAvailableCards() {

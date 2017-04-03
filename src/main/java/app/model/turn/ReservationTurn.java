@@ -24,8 +24,8 @@ public class ReservationTurn extends Turn {
             throw new IllegalTurnException("Card already reserved");
         }
         if (game.getTokens().getVersatile() >= 1) {
-            player.incVersatile(1);
-            game.decVersatile(1);
+            player.incVersatile();
+            game.decVersatile();
         }
         card.setReserved(true);
         game.removeCard(card);

@@ -66,8 +66,8 @@ public class Player {
         return new Tokens(tokensFromCards, 0);
     }
 
-    public void incVersatile(int value) {
-        tokens = tokens.add(new Tokens(0, value));
+    public void incVersatile() {
+        tokens = tokens.add(new Tokens(0, 1));
     }
 
     int getPoints() {

@@ -119,7 +119,7 @@ public class PlayerTest {
         Player player = new Player(new Tokens(0, 2));
 
         // when
-        player.incVersatile(1);
+        player.incVersatile();
 
         // then
         assertEquals(new Tokens(0, 3), player.getTokens());
