@@ -8,7 +8,7 @@ import java.util.Map;
 
 public class PositionTable {
     private final int x, y;
-    private Table table = new Table();
+    private final Table table = new Table();
 
     private final Map<Tableable, Point> previousPosition = new HashMap<>();
 
@@ -28,7 +28,7 @@ public class PositionTable {
 
     public boolean take(Tableable tableable) {
         if (table.take(tableable)) {
-            Point previousPoint = getPreviousPointOf(tableable);
+            Point previousPoint = previousPosition.get(tableable);
             tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
             previousPosition.remove(tableable);
             return true;
@@ -42,10 +42,6 @@ public class PositionTable {
 
     public boolean has(Tableable tableable) {
         return previousPosition.containsKey(tableable);
-    }
-
-    private Point getPreviousPointOf(Tableable tableable) {
-        return previousPosition.get(tableable);
     }
 
     public boolean isEmpty() {
