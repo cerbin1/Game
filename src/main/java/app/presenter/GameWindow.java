@@ -142,7 +142,9 @@ public class GameWindow implements Updatable {
     }
 
     private void buttonClicked() {
-        table.gather();
+        if (table.canGather()) {
+            table.gather();
+        }
     }
 
     @Override
