@@ -15,7 +15,6 @@ import java.util.List;
 
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
@@ -65,7 +64,7 @@ public class TurnFactoryTest {
     public void shouldCreateAcquireTokensTurnSameTokens() {
         // given
         TurnFactory turnFactory = new TurnFactory();
-        List<Tableable> tableables = singletonList(tokenVO(Blue));
+        List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Green));
 
         // when
         Turn turn = turnFactory.create(tableables);
@@ -93,11 +92,10 @@ public class TurnFactoryTest {
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Blue));
 
-        // when
-        Turn turn = turnFactory.create(tableables);
+        expectedException.expect(UnexpectedCreateTurnException.class);
 
-        // then
-        assertThat(turn, instanceOf(AcquireTokensTurn.class));
+        // when
+        turnFactory.create(tableables);
     }
 
     @Test
@@ -106,11 +104,10 @@ public class TurnFactoryTest {
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Green), tokenVO(Green));
 
-        // when
-        Turn turn = turnFactory.create(tableables);
+        expectedException.expect(UnexpectedCreateTurnException.class);
 
-        // then
-        assertThat(turn, instanceOf(AcquireTokensTurn.class));
+        // when
+        turnFactory.create(tableables);
     }
 
     @Test
