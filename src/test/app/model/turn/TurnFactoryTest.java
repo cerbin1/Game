@@ -61,7 +61,7 @@ public class TurnFactoryTest {
     }
 
     @Test
-    public void shouldCreateAcquireTokensTurnSameTokens() {
+    public void shouldCreateAcquireTokensTurnWithTwoSameTokens() {
         // given
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Green));
@@ -74,7 +74,7 @@ public class TurnFactoryTest {
     }
 
     @Test
-    public void shouldCreateAcquireTokensTurnDifferentTokens() {
+    public void shouldCreateAcquireTokensTurnWithThreeDifferentTokens() {
         // given
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Blue), tokenVO(Red));
@@ -87,7 +87,7 @@ public class TurnFactoryTest {
     }
 
     @Test
-    public void shouldNotCreateAcquireTokensTurnWithDifferentTokens() {
+    public void shouldNotCreateAcquireTokensTurnWithTwoDifferentTokens() {
         // given
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Blue));
@@ -99,7 +99,7 @@ public class TurnFactoryTest {
     }
 
     @Test
-    public void shouldNotCreateAcquireTokensTurnWithSameTokens() {
+    public void shouldNotCreateAcquireTokensTurnWithThreeSameTokens() {
         // given
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = asList(tokenVO(Green), tokenVO(Green), tokenVO(Green));
@@ -111,7 +111,7 @@ public class TurnFactoryTest {
     }
 
     @Test
-    public void shouldNotCreateTurn() {
+    public void shouldNotCreateTurnWithSingleToken() {
         // given
         TurnFactory turnFactory = new TurnFactory();
         List<Tableable> tableables = new ArrayList<>();
