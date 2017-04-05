@@ -2,7 +2,6 @@ package app.view.render.vo;
 
 import app.model.token.Token;
 import app.model.token.TokenColor;
-import app.view.render.Operator;
 import app.view.render.Tableable;
 
 import java.awt.*;
@@ -29,14 +28,6 @@ public class TokenVO extends ViewObject implements Tableable {
 
     public boolean isVersatile() {
         return token.isVersatile();
-    }
-
-    @Override
-    public Operator getOperator() {
-        if (token.isVersatile()) {
-            return new VersatileOperator(this);
-        }
-        return new TokenOperator(this);
     }
 
     @Override

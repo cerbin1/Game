@@ -2,7 +2,6 @@ package app.view.render.vo;
 
 import app.model.card.Card;
 import app.view.render.AnimatedValue;
-import app.view.render.Operator;
 import app.view.render.Tableable;
 
 import java.awt.*;
@@ -54,11 +53,6 @@ public class CardVO extends FigureVO implements Tableable {
     @Override
     public double getPerspectiveX() {
         return flip.getValue();
-    }
-
-    @Override
-    public Operator getOperator() {
-        return new CardOperator(this);
     }
 
     @Override
