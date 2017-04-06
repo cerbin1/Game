@@ -14,25 +14,43 @@ import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 
 public class TurnFactory {
-    private List<Pair<List<Class>, Factory>> combinations = new ArrayList<>();
+    private List<Correlation> correlations = new ArrayList<>();
 
     public TurnFactory() {
-        combinations.add(new Pair<>(new ArrayList<>(asList(CardVO.class)), new BuyCardTurnFactory()));
-        combinations.add(new Pair<>(new ArrayList<>(asList(CardVO.class, TokenVO.class)), new ReservationTurn1Factory()));
-        combinations.add(new Pair<>(new ArrayList<>(asList(TokenVO.class, CardVO.class)), new ReservationTurn2Factory()));
-        combinations.add(new Pair<>(new ArrayList<>(asList(TokenVO.class, TokenVO.class)), new AcquireTokensTurnFactory()));
-        combinations.add(new Pair<>(new ArrayList<>(asList(TokenVO.class, TokenVO.class, TokenVO.class)), new AcquireTokensTurnFactory()));
+        addCombination(new BuyCardTurnFactory(), CardVO.class);
+        addCombination(new ReservationTurn1Factory(), CardVO.class, TokenVO.class);
+        addCombination(new ReservationTurn2Factory(), TokenVO.class, CardVO.class);
+        addCombination(new AcquireTokensTurnFactory(), TokenVO.class, TokenVO.class);
+        addCombination(new AcquireTokensTurnFactory(), TokenVO.class, TokenVO.class, TokenVO.class);
+    }
+
+    private void addCombination(Factory factory, Class... classes) {
+        correlations.add(new Correlation(asList(classes), factory));
     }
 
     public Turn create(List<Tableable> tableables) {
-        List<Class> list = tableables.stream().map(Tableable::getClass).collect(toList());
-        if (combinations.stream().map(Pair::getKey).collect(toList()).contains(new ArrayList<>(list))) {
-            Optional<Pair<List<Class>, Factory>> first = combinations.stream().filter(setClassPair -> setClassPair.getKey().equals(new ArrayList<>(list))).findFirst();
+        List<Class> classes = tableables.stream().map(Tableable::getClass).collect(toList());
+        if (getCombinations().contains(classes)) {
+            Optional<Correlation> first = correlations.stream().filter(setClassPair -> setClassPair.getKey().equals(classes)).findFirst();
             if (first.isPresent()) {
-                return first.get().getValue().getTurn(tableables);
+                return first.get().getTurn(tableables);
             }
         }
         throw new UnexpectedCreateTurnException();
+    }
+
+    private List<List<Class>> getCombinations() {
+        return correlations.stream().map(Pair::getKey).collect(toList());
+    }
+
+    private class Correlation extends Pair<List<Class>, Factory> {
+        Correlation(List<Class> key, Factory value) {
+            super(key, value);
+        }
+
+        public Turn getTurn(List<Tableable> tableables) {
+            return getValue().getTurn(tableables);
+        }
     }
 
     private class BuyCardTurnFactory implements Factory {
