@@ -23,7 +23,7 @@ public class ReservationTurn extends Turn {
         if (card.isReserved()) {
             throw new IllegalTurnException("Card already reserved");
         }
-        if (game.getTokens().getVersatile() >= 1) {
+        if (game.getVersatile() >= 1) {
             player.incVersatile();
             game.decVersatile();
         }

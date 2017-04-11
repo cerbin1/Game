@@ -25,6 +25,10 @@ public class Game {
         return tokens;
     }
 
+    public int getVersatile() {
+        return getTokens().getVersatile();
+    }
+
     public void setTokens(Tokens tokens) {
         this.tokens = tokens;
     }
