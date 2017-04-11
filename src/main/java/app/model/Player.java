@@ -42,10 +42,6 @@ public class Player {
         return cards.contains(card);
     }
 
-    public boolean hasCards() {
-        return !cards.isEmpty();
-    }
-
     void addNobility(Nobility nobility) {
         nobilities.add(nobility);
     }
