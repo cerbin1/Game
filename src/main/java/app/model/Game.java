@@ -65,7 +65,7 @@ public class Game {
         players.add(player);
     }
 
-    public List<Nobility> getNobility() {
+    public List<Nobility> getNobilities() {
         return nobilities;
     }
 

@@ -27,11 +27,11 @@ public class CardCost {
     }
 
     private Tokens getCost(int min, int max) {
-        int[] array = {0, 0, 0, 0, 0};
-        int cost = probability.nextInt(min, max);
-        while (cost-- > 0) {
-            array[probability.nextInt(0, 5)]++;
+        int[] cost = {0, 0, 0, 0, 0};
+        int tokensCount = probability.nextInt(min, max);
+        while (tokensCount-- > 0) {
+            cost[probability.nextInt(0, 5)]++;
         }
-        return new Tokens(array[0], array[1], array[2], array[3], array[4]);
+        return new Tokens(cost[0], cost[1], cost[2], cost[3], cost[4]);
     }
 }

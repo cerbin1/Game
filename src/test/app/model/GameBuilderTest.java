@@ -61,6 +61,6 @@ public class GameBuilderTest {
         Game game = builder.add(first).add(second).add(new Player()).create();
 
         // then
-        assertEquals(game.getNobility(), asList(first, second));
+        assertEquals(game.getNobilities(), asList(first, second));
     }
 }
