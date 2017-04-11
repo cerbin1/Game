@@ -82,7 +82,7 @@ public class PlayerTest {
         Resources resources = player.getResources();
 
         // then
-        Resources expected = new Resources(new Tokens(1, 0, 0, 0, 0), new Tokens(0, 0, 0, 0, 0));
+        Resources expected = new Resources(new Tokens(1, 0, 0, 0, 0), new Tokens());
         assertEquals(expected, resources);
     }
 

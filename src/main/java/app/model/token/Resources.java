@@ -29,6 +29,21 @@ public class Resources {
         return compensator.getTokensLeft();
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Resources that = (Resources) o;
+
+        return stationary.equals(that.stationary) && temporary.equals(that.temporary);
+    }
+
+    @Override
+    public String toString() {
+        return "Stationary: " + stationary + ", temporary: " + temporary;
+    }
+
     private static class InsufficientTokens implements Consumer<Entry<TokenColor, Integer>> {
         private final Map<TokenColor, Integer> change = new EnumMap<>(TokenColor.class);
         private int versatile;
@@ -54,20 +69,5 @@ public class Resources {
         Tokens getTokensLeft() {
             return new Tokens(change, versatile);
         }
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Resources that = (Resources) o;
-
-        return stationary.equals(that.stationary) && temporary.equals(that.temporary);
-    }
-
-    @Override
-    public String toString() {
-        return "Stationary: " + stationary + ", temporary: " + temporary;
     }
 }

@@ -122,33 +122,6 @@ public class BuyCardTurnTest {
     }
 
     @Test
-    public void shouldThrowOnCardNotInGame() {
-        // given
-        Turn turn = new BuyCardTurn(new CheapCard());
-        Game game = builder().add(new Player()).create();
-
-        expectedException.expect(IllegalTurnException.class);
-        expectedException.expectMessage("Card not in model");
-
-        // when
-        turn.invoke(game);
-    }
-
-    @Test
-    public void shouldThrowOnNotEnoughResources() {
-        // given
-        Card card = new CheapCard(new Tokens(2, 0), 0, Green);
-        Turn turn = new BuyCardTurn(card);
-        Game game = builder().add(card).add(new Player()).create();
-
-        expectedException.expect(IllegalTurnException.class);
-        expectedException.expectMessage("Not enough resources");
-
-        // when
-        turn.invoke(game);
-    }
-
-    @Test
     public void shouldNotLoseTokensOrVersatile() {
         // given
         Card card = new CheapCard(new Tokens(2, 0, 0, 0, 0), 0, Green);
@@ -185,6 +158,33 @@ public class BuyCardTurnTest {
         assertFalse(card.isReserved());
         assertEquals(new Tokens(), player.getTokens());
         assertEquals(new Tokens(0, 5), game.getTokens());
+    }
+
+    @Test
+    public void shouldThrowOnCardNotInGame() {
+        // given
+        Turn turn = new BuyCardTurn(new CheapCard());
+        Game game = builder().add(new Player()).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Card not in model");
+
+        // when
+        turn.invoke(game);
+    }
+
+    @Test
+    public void shouldThrowOnNotEnoughResources() {
+        // given
+        Card card = new CheapCard(new Tokens(2, 0), 0, Green);
+        Turn turn = new BuyCardTurn(card);
+        Game game = builder().add(card).add(new Player()).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Not enough resources");
+
+        // when
+        turn.invoke(game);
     }
 
     private static Card card(TokenColor color) {
