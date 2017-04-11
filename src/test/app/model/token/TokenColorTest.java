@@ -5,8 +5,7 @@ import org.junit.Test;
 
 import static app.model.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class TokenColorTest {
     @Test
@@ -28,5 +27,6 @@ public class TokenColorTest {
         assertEquals(Blue, color3);
         assertEquals(Black, color4);
         assertEquals(Red, color5);
+        verify(probability, times(5)).nextInt(0, values().length);
     }
 }
