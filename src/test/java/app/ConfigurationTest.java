@@ -14,7 +14,7 @@ public class ConfigurationTest {
         boolean fullscreen = Configuration.getFullscreen();
 
         // then
-        assertEquals(false, debug);
+        assertEquals(true, debug);
         assertEquals(1920, width);
         assertEquals(1080, height);
         assertEquals(true, fullscreen);

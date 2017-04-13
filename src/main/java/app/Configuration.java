@@ -1,0 +1,24 @@
+package app;
+
+import java.util.Properties;
+
+public class Configuration {
+
+    private static final Properties properties = new ConfigurationLoader().getProperties();
+
+    public static boolean getDebug() {
+        return Boolean.parseBoolean(properties.getProperty("debug"));
+    }
+
+    public static int getWidth() {
+        return Integer.parseInt(properties.getProperty("width"));
+    }
+
+    public static int getHeight() {
+        return Integer.parseInt(properties.getProperty("height"));
+    }
+
+    public static boolean getFullscreen() {
+        return Boolean.parseBoolean(properties.getProperty("fullscreen"));
+    }
+}
