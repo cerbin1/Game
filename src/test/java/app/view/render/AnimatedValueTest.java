@@ -191,7 +191,7 @@ public class AnimatedValueTest {
 }
 
 class MockRunnable implements Runnable {
-    public boolean wasRun = false;
+    boolean wasRun = false;
 
     @Override
     public void run() {
