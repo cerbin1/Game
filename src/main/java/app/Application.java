@@ -2,6 +2,7 @@ package app;
 
 import app.presenter.GameWindow;
 import app.view.ImageRepository;
+import org.lwjgl.input.Mouse;
 import org.newdawn.slick.*;
 
 import java.util.logging.Level;
@@ -40,6 +41,7 @@ public class Application {
 
         private LwjglWindow(String gameName) {
             super(gameName);
+            Mouse.setClipMouseCoordinatesToWindow(false);
         }
 
         @Override
@@ -56,6 +58,11 @@ public class Application {
         @Override
         public void render(GameContainer gc, Graphics graphics) throws SlickException {
             window.render(graphics);
+        }
+
+        @Override
+        public void mousePressed(int button, int x, int y) {
+            window.mouseClicked(Mouse.getX(), -Mouse.getY());
         }
     }
 }
