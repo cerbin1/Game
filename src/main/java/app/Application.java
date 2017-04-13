@@ -23,6 +23,7 @@ public class Application {
 
             AppGameContainer container = new AppGameContainer(game);
             container.setDisplayMode(1920, 1080, true);
+            container.setShowFPS(true);
             container.start();
         } catch (SlickException ex) {
             Logger.getLogger(LwjglWindow.class.getName()).log(Level.SEVERE, null, ex);

@@ -11,15 +11,12 @@ import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.Tokens;
 import app.model.util.Probability;
-import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
 import app.view.render.Tableable;
 import app.view.render.renderer.*;
 import app.view.render.vo.*;
-import app.view.util.FastClickMouseAdapter;
 
 import java.awt.*;
-import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -31,8 +28,6 @@ import static java.util.Collections.shuffle;
 public class GameWindow implements Updatable {
     private final static Probability probability = new Probability();
 
-    private final BufferWindow window = new BufferWindow();
-
     private final List<Updatable> updatables = new ArrayList<>();
     private final List<Renderer> renderers = new ArrayList<>();
 
@@ -41,7 +36,6 @@ public class GameWindow implements Updatable {
     private Game game;
 
     public GameWindow() {
-        window.addMouseListener(new GameMouseAdapter());
         initializeGame();
     }
 
@@ -112,13 +106,11 @@ public class GameWindow implements Updatable {
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
-        FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
         TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer("Testing", 3, 2000, 1000);
 
         updatables.addAll(cardVOs);
         updatables.addAll(tokenVOs);
         updatables.add(nobilityVO);
-        updatables.add(fpsRenderer);
         updatables.add(textNotificationRenderer);
 
         renderers.add(new BackgroundRenderer());
@@ -128,7 +120,6 @@ public class GameWindow implements Updatable {
         renderers.add(new NobilityRenderer(nobilityVO));
 
         renderers.add(new ButtonRenderer(buttonVO));
-        renderers.add(fpsRenderer);
         renderers.add(textNotificationRenderer);
     }
 
@@ -152,13 +143,8 @@ public class GameWindow implements Updatable {
         updatables.forEach(updatable -> updatable.update(secondsElapsed));
     }
 
-    public void render() {
-        renderers.forEach(renderer -> renderer.renderOn(window.getCanvas()));
-        window.flip();
-    }
-
-    public void show() {
-        window.show();
+    public void render(org.newdawn.slick.Graphics graphics) {
+        renderers.forEach(renderer -> renderer.renderOn(graphics));
     }
 
     private Optional<Renderer> getRendererOnPoint(Point point) {
@@ -169,27 +155,23 @@ public class GameWindow implements Updatable {
                 .reduce((a, b) -> b);
     }
 
-    public class GameMouseAdapter extends FastClickMouseAdapter {
-        @Override
-        public void mouseFastClicked(MouseEvent event) {
-            getRendererOnPoint(event.getPoint()).ifPresent(this::clickedRenderer);
-        }
+    public void mouseClicked(int x, int y) {
+        getRendererOnPoint(new Point(x, y)).ifPresent(this::clickedRenderer);
+    }
 
-        private void clickedRenderer(Renderer renderer) {
-            renderer.getViewObject().triggerClicked();
-        }
+    private void clickedRenderer(Renderer renderer) {
+        renderer.getViewObject().triggerClicked();
+    }
 
-        @Override
-        public void mouseMoved(MouseEvent event) {
-            renderers.forEach(renderer -> renderer.getViewObject().setHover(false));
-            Optional<Renderer> optional = getRendererOnPoint(event.getPoint());
+    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
+        renderers.forEach(renderer -> renderer.getViewObject().setHover(false));
+        Optional<Renderer> optional = getRendererOnPoint(new Point(newx, newy));
 
-            if (optional.isPresent()) {
-                optional.get().getViewObject().setHover(true);
-                window.setHandCursor();
-            } else {
-                window.setDefaultCursor();
-            }
+        if (optional.isPresent()) {
+            optional.get().getViewObject().setHover(true);
+//            window.setHandCursor();
+        } else {
+//            window.setDefaultCursor();
         }
     }
 }
