@@ -6,6 +6,8 @@ import org.newdawn.slick.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import static org.newdawn.slick.Input.disableControllers;
+
 public class Application {
     public static void main(String[] args) {
         new Application().start();
@@ -13,6 +15,7 @@ public class Application {
 
     private void start() {
         initializeNatives();
+        disableControllers();
 
         try {
             LwjglWindow game = new LwjglWindow("Simple Slick Game");
