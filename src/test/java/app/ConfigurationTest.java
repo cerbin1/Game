@@ -29,10 +29,10 @@ public class ConfigurationTest {
         ConfigurationLoader.acceptStringParams(args);
 
         // then
-        assertEquals(true, Configuration.getDebug());
+        assertEquals(true, Configuration.isDebug());
         assertEquals(1280, Configuration.getWidth());
         assertEquals(720, Configuration.getHeight());
-        assertEquals(false, Configuration.getFullscreen());
+        assertEquals(false, Configuration.isFullscreen());
     }
 
 }

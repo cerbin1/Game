@@ -1,8 +1,9 @@
 package app;
 
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Properties;
+
+import static java.util.Arrays.asList;
 
 public class CustomizeConfiguration {
     private final Properties properties;
@@ -10,9 +11,10 @@ public class CustomizeConfiguration {
     private final String[] widthValues = {"1920", "1024"};
     private final String[] heightValues = {"1080", "1280"};
     private final String[] fullscreenValues = {"true", "false"};
-    private String[] propertyKeys = {"debug", "width", "height", "fullscreen"};
-    private final ArrayList[] possibleValues = {new ArrayList<>(Arrays.asList(debugValues)), new ArrayList<>(Arrays.asList(widthValues)),
-            new ArrayList<>(Arrays.asList(heightValues)), new ArrayList<>(Arrays.asList(fullscreenValues))};
+    private final String[] propertyKeys = {"debug", "width", "height", "fullscreen"};
+
+    private final List[] possibleValues = {asList(debugValues), asList(widthValues),
+            asList(heightValues), asList(fullscreenValues)};
 
     CustomizeConfiguration(Properties properties) {
         this.properties = properties;
