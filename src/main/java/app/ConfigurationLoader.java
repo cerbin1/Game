@@ -31,7 +31,7 @@ public class ConfigurationLoader {
         }
     }
 
-    private void loadDefaultConfiguration() {
+    void loadDefaultConfiguration() {
         try {
             defaultProperties = new Properties();
             FileInputStream in = new FileInputStream("config.defaultProperties");
