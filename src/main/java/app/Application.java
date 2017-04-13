@@ -1,6 +1,7 @@
 package app;
 
 import app.presenter.GameWindow;
+import app.view.ImageRepository;
 import org.newdawn.slick.*;
 
 import java.util.logging.Level;
@@ -42,6 +43,7 @@ public class Application {
 
         @Override
         public void init(GameContainer gc) throws SlickException {
+            ImageRepository.load();
             window = new GameWindow();
         }
 

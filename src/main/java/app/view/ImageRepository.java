@@ -1,30 +1,35 @@
 package app.view;
 
-import app.model.Load;
 import app.model.token.TokenColor;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
 
-import java.awt.image.BufferedImage;
 import java.util.EnumMap;
 import java.util.Map;
 
 import static app.model.token.TokenColor.*;
 
 public class ImageRepository {
-    private static final ImageRepository imageRepository = new ImageRepository();
+    public static ImageRepository imageRepository;
 
-    public BufferedImage cardBack = get("images/card.png");
-    public BufferedImage cardBench = get("images/cards/view/bench.png");
-    public BufferedImage cardCastle = get("images/cards/view/castle.png");
-    public BufferedImage nobility = get("images/nobilities/nobility.png");
-    public BufferedImage button = get("images/button.png");
+    public static void load() {
+        imageRepository = new ImageRepository();
+    }
 
-    public BufferedImage background1 = get("images/background_1.png");
 
-    private Map<TokenColor, BufferedImage> tokens = loadTokenImages();
-    private BufferedImage tokenVersatile = get("images/tokens/versatile.png");
+    public Image cardBack = get("images/card.png");
+    public Image cardBench = get("images/cards/view/bench.png");
+    public Image cardCastle = get("images/cards/view/castle.png");
+    public Image nobility = get("images/nobilities/nobility.png");
+    public Image button = get("images/button.png");
 
-    private Map<TokenColor, BufferedImage> loadTokenImages() {
-        Map<TokenColor, BufferedImage> tokens = new EnumMap<>(TokenColor.class);
+    public Image background1 = get("images/background_1.png");
+
+    private Map<TokenColor, Image> tokens = loadTokenImages();
+    private Image tokenVersatile = get("images/tokens/versatile.png");
+
+    private Map<TokenColor, Image> loadTokenImages() {
+        Map<TokenColor, Image> tokens = new EnumMap<>(TokenColor.class);
         tokens.put(Green, get("images/tokens/green.png"));
         tokens.put(Purple, get("images/tokens/purple.png"));
         tokens.put(Blue, get("images/tokens/blue.png"));
@@ -33,14 +38,15 @@ public class ImageRepository {
         return tokens;
     }
 
-    private ImageRepository() {
+    private Image get(String filename) {
+        try {
+            return new Image(filename);
+        } catch (SlickException exception) {
+            throw new RuntimeException(exception);
+        }
     }
 
-    private BufferedImage get(String filename) {
-        return Load.image(filename);
-    }
-
-    public BufferedImage getTokenImage(TokenColor color) {
+    public Image getTokenImage(TokenColor color) {
         if (color == null) {
             return tokenVersatile;
         }
