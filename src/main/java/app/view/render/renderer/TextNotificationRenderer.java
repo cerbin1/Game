@@ -2,8 +2,7 @@ package app.view.render.renderer;
 
 import app.model.Updatable;
 import app.view.render.vo.ViewObject;
-
-import java.awt.*;
+import org.newdawn.slick.Graphics;
 
 public class TextNotificationRenderer extends Renderer implements Updatable {
     private final String text;
@@ -25,7 +24,7 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
     }
 
     @Override
-    protected void render(Graphics2D graphics) {
+    protected void render(Graphics graphics) {
         if (timer < seconds) {
             graphics.drawString(text, 30, 30);
         }

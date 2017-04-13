@@ -1,26 +1,24 @@
 package app.view.render.renderer;
 
 import app.view.render.vo.TokenVO;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
 
 public class TokenRenderer extends Renderer {
-    private final BufferedImage tokenImage;
+    private final Image tokenImage;
 
     public TokenRenderer(TokenVO tokenVO) {
         this(tokenVO, imageRepository().getTokenImage(tokenVO.getColor()));
     }
 
-    private TokenRenderer(TokenVO tokenVO, BufferedImage image) {
+    private TokenRenderer(TokenVO tokenVO, Image image) {
         super(tokenVO);
         this.tokenImage = image;
     }
 
     @Override
-    protected void render(Graphics2D graphics) {
+    protected void render(org.newdawn.slick.Graphics graphics) {
         graphics.drawImage(tokenImage, 0, 0, null);
     }
 }

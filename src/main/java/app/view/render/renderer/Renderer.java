@@ -1,40 +1,46 @@
 package app.view.render.renderer;
 
 import app.view.render.vo.ViewObject;
-import app.view.util.Resolution;
+import org.newdawn.slick.Graphics;
 
 import java.awt.*;
-import java.awt.geom.AffineTransform;
+
+import static java.awt.Toolkit.getDefaultToolkit;
 
 public abstract class Renderer {
+    private final static Dimension screenSize = getDefaultToolkit().getScreenSize();
+
     final ViewObject viewObject;
 
     Renderer(ViewObject viewObject) {
         this.viewObject = viewObject;
     }
 
-    protected abstract void render(Graphics2D graphics);
+    protected abstract void render(Graphics graphics);
 
-    public void renderOn(Graphics2D graphics2D) {
-        AffineTransform previous = graphics2D.getTransform();
-        graphics2D.setTransform(getTransform());
+    public void renderOn(Graphics graphics2D) {
+        graphics2D.pushTransform();
+        performTransform(graphics2D);
         performRender(graphics2D);
-        graphics2D.setTransform(previous);
+        graphics2D.popTransform();
     }
 
-    protected void performRender(Graphics2D graphics2D) {
+    private void performRender(Graphics graphics2D) {
         render(graphics2D);
     }
 
-    private AffineTransform getTransform() {
-        AffineTransform transform = new AffineTransform();
-        transform.scale(0.6, 0.6);
-        Resolution.scaleFullHdToResolution(transform);
-        transform.translate(viewObject.getX(), viewObject.getY());
-        transform.scale(viewObject.getPerspectiveX(), viewObject.getPerspectiveY());
-        transform.rotate(viewObject.getRotation());
-        transform.translate(-viewObject.getWidth() / 2, -viewObject.getHeight() / 2);
-        return transform;
+    private void performTransform(Graphics graphics2D) {
+        double width = screenSize.getWidth();
+        double height = screenSize.getHeight();
+
+        graphics2D.scale(0.6f, 0.6f);
+        graphics2D.scale((float) width / 1920.0f, (float) height / 1080.0f);
+
+        graphics2D.translate(viewObject.getX(), viewObject.getY());
+        graphics2D.scale((float) viewObject.getPerspectiveX(), (float) viewObject.getPerspectiveY());
+        graphics2D.rotate(0, 0, (float) viewObject.getRotation());
+        graphics2D.translate(-viewObject.getWidth() / 2, -viewObject.getHeight() / 2);
+
     }
 
     private void drawOutline(Graphics2D graphics2D) {

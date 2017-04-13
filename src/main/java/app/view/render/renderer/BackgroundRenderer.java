@@ -1,14 +1,13 @@
 package app.view.render.renderer;
 
 import app.view.render.vo.ViewObject;
-
-import java.awt.*;
-import java.awt.image.BufferedImage;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
 
 public class BackgroundRenderer extends Renderer {
-    private final BufferedImage background;
+    private final Image background;
 
     public BackgroundRenderer() {
         super(new ViewObject(0, 0, 0, 0) {
@@ -17,8 +16,8 @@ public class BackgroundRenderer extends Renderer {
     }
 
     @Override
-    protected void render(Graphics2D graphics) {
-        graphics.scale(1 / 0.6, 1 / 0.6);
+    protected void render(Graphics graphics) {
+        graphics.scale(1 / 0.6f, 1 / 0.6f);
         graphics.drawImage(background, 0, 0, null);
     }
 
