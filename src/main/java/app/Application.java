@@ -8,6 +8,12 @@ import java.util.logging.Logger;
 
 public class Application {
     public static void main(String[] args) {
+        new Application().start();
+    }
+
+    private void start() {
+        initializeNatives();
+
         try {
             LwjglWindow game = new LwjglWindow("Simple Slick Game");
 
@@ -19,7 +25,12 @@ public class Application {
         }
     }
 
-    static class LwjglWindow extends BasicGame {
+    private void initializeNatives() {
+        String path = LwjglWindow.class.getClassLoader().getResource("natives").getFile();
+        System.setProperty("org.lwjgl.librarypath", path);
+    }
+
+    class LwjglWindow extends BasicGame {
         GameWindow window;
 
         private LwjglWindow(String gameName) {
