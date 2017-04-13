@@ -6,6 +6,8 @@ repositories {
 }
 
 dependencies {
+    compile group: 'org.slick2d', name: 'slick2d-core', version: '1.0.0'
+
     testCompile "org.mockito:mockito-core:1.+"
     testCompile 'junit:junit:4.12'
 }
