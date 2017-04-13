@@ -46,4 +46,8 @@ public class ConfigurationLoader {
     public Properties getProperties() {
         return properties;
     }
+
+    public static void acceptStringParams(String[] args) {
+
+    }
 }

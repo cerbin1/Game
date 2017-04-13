@@ -14,9 +14,25 @@ public class ConfigurationTest {
         boolean fullscreen = Configuration.getFullscreen();
 
         // then
-        assertEquals(true, debug);
+        assertEquals(false, debug);
         assertEquals(1920, width);
         assertEquals(1080, height);
         assertEquals(true, fullscreen);
     }
+
+    @Test
+    public void shouldAcceptStringArguments() {
+        // given
+        String[] args = {"debug=true", "fullscreen=false", "size=1280x720"};
+
+        // when
+        ConfigurationLoader.acceptStringParams(args);
+
+        // then
+        assertEquals(true, Configuration.getDebug());
+        assertEquals(1280, Configuration.getWidth());
+        assertEquals(720, Configuration.getHeight());
+        assertEquals(false, Configuration.getFullscreen());
+    }
+
 }
