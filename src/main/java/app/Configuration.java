@@ -6,7 +6,7 @@ public class Configuration {
 
     private static final Properties properties = new ConfigurationLoader().getProperties();
 
-    public static boolean getDebug() {
+    public static boolean isDebug() {
         return Boolean.parseBoolean(properties.getProperty("debug"));
     }
 
@@ -18,7 +18,7 @@ public class Configuration {
         return Integer.parseInt(properties.getProperty("height"));
     }
 
-    public static boolean getFullscreen() {
+    public static boolean isFullscreen() {
         return Boolean.parseBoolean(properties.getProperty("fullscreen"));
     }
 }
