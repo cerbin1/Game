@@ -20,7 +20,7 @@ public class Application {
         disableControllers();
 
         try {
-            LwjglWindow game = new LwjglWindow("Simple Slick Game");
+            LwjglWindow game = new LwjglWindow("Splendor");
 
             AppGameContainer container = new AppGameContainer(game);
             container.setDisplayMode(1920, 1080, true);

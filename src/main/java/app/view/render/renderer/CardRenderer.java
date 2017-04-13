@@ -17,7 +17,6 @@ public class CardRenderer extends FigureRenderer {
     @Override
     protected void render(Graphics graphics) {
         if (viewObject.isFlipped()) {
-//            graphics.drawImage(cardBack, 0, 0, null);
             cardBack.draw(0, 0);
         } else {
             super.render(graphics);

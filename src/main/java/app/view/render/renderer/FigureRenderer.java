@@ -3,18 +3,24 @@ package app.view.render.renderer;
 import app.model.card.Figure;
 import app.model.token.TokenColor;
 import app.view.render.vo.FigureVO;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.TrueTypeFont;
 
 import java.util.function.BiConsumer;
 
-import static org.newdawn.slick.Color.black;
+import static java.awt.Font.BOLD;
+import static java.awt.Font.PLAIN;
 import static org.newdawn.slick.Color.white;
 
 abstract class FigureRenderer extends Renderer {
-    //    private final Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
-//    private final Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
+    private final java.awt.Font pointsFont = new java.awt.Font("Franklin Gothic Medium", BOLD, 52);
+    private final java.awt.Font costFont = new java.awt.Font("Franklin Gothic Medium", PLAIN, 40);
+
+    TrueTypeFont ttf1 = new TrueTypeFont(pointsFont, true);
+    TrueTypeFont ttf2 = new TrueTypeFont(costFont, true);
+
     private final Figure figure;
     private final Image figureImage;
 
@@ -36,30 +42,14 @@ abstract class FigureRenderer extends Renderer {
         graphics.setColor(white);
         graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
-//        graphics.setColor(black);
-        // graphics.setFont(pointsFont);
         if (figure.getPoints() > 0) {
-            drawOutlineText(graphics, figure.getPoints() + "", 20, 66);
+            ttf1.drawString(20, 6, figure.getPoints() + "", Color.black);
         }
-    }
-
-    private void drawOutlineText(Graphics graphics, String text, int x, int y) {
-//        graphics.translate(x, y);
-//        GlyphVector glyphVector = pointsFont.createGlyphVector(graphics.getFontRenderContext(), text);
-//        Shape textShape = glyphVector.getOutline();
-//
-//        graphics.setColor(black);
-//        graphics.setStroke(new BasicStroke(2.0f));
-//        graphics.draw(textShape);
-//
-//        graphics.setColor(white);
-//        graphics.fill(textShape);
-//        graphics.translate(-x, -y);
     }
 
     private void drawCost(Graphics graphics) {
         graphics.setColor(white);
-        figure.getCost().asMap().forEach(new CostDrawer(graphics));
+        figure.getCost().asMap().forEach(new CostDrawer());
     }
 
     private void drawOutline(Graphics graphics) {
@@ -72,22 +62,16 @@ abstract class FigureRenderer extends Renderer {
     }
 
     private class CostDrawer implements BiConsumer<TokenColor, Integer> {
-        private final Graphics graphics;
         private int elementsRendered = 0;
-
-        CostDrawer(Graphics graphics) {
-            this.graphics = graphics;
-        }
 
         @Override
         public void accept(TokenColor color, Integer amount) {
             if (amount == 0) return;
-//            graphics.setFont(costFont);
-            graphics.drawString(color.name() + ": " + amount, 19, nextElementHeight());
+            ttf2.drawString(19, nextElementHeight(), color.name() + ": " + amount);
         }
 
         private int nextElementHeight() {
-            return figureImage.getHeight() - 15 - elementsRendered++ * 45;
+            return figureImage.getHeight() - 45 - elementsRendered++ * 45;
         }
     }
 }
