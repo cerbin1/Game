@@ -1,5 +1,7 @@
 package app.view;
 
+import java.util.Scanner;
+
 public class Size {
     private final int width, height;
 
@@ -17,6 +19,7 @@ public class Size {
     }
 
     public static Size parseSize(String size) {
-        return new Size(0,0);
+        Scanner scanner = new Scanner(size.replace('x', ' '));
+        return new Size(scanner.nextInt(), scanner.nextInt());
     }
 }
