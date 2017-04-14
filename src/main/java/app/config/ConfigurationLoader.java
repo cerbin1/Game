@@ -75,10 +75,10 @@ public class ConfigurationLoader {
     private void applyConfigurationFromArgs(String... args) {
         for (String string : args) {
             String key, value;
-            Matcher matcher = Pattern.compile("=").matcher(string);
+            Matcher matcher = Pattern.compile("([a-zA-Z]+)=([a-zA-Z0-9]+)").matcher(string);
             if (matcher.find()) {
-                key = string.substring(0, matcher.start());
-                value = string.substring(matcher.end());
+                key = matcher.group(1);
+                value = matcher.group(2);
                 if (propertiesMap.containsKey(key) && propertiesMap.get(key).contains(value)) {
                     properties.setProperty(key, value);
                 }
