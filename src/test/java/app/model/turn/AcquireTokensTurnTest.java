@@ -47,6 +47,21 @@ public class AcquireTokensTurnTest {
     }
 
     @Test
+    public void shouldThrowOnAcquireNoTokens() {
+        // given
+        Tokens tokens = new Tokens();
+        Turn turn = new AcquireTokensTurn(tokens);
+        Player player = new Player();
+        Game game = GameBuilder.builder().add(player).set(tokens).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Invalid amount of tokens");
+
+        // when
+        turn.invoke(game);
+    }
+
+    @Test
     public void shouldThrowOnAcquiringInvalidAmountOfTokens() {
         // given
         Tokens tokens = new Tokens(1, 0, 0, 0, 0);
