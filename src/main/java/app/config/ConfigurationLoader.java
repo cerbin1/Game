@@ -25,7 +25,7 @@ public class ConfigurationLoader {
         properties = getProperties();
     }
 
-    public Properties getProperties() {
+    private Properties getProperties() {
         File config = new File("config.properties");
         if (config.exists()) {
             return loadExistingConfiguration();
