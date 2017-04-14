@@ -39,7 +39,7 @@ public class ConfigurationTest {
     @Test
     public void shouldSetPropertiesFromArguments() {
         // given
-        String[] args = {"debug=true", "size=1210x14", "fullscreen=false"};
+        String[] args = {"debug=true", "size=1366x768", "fullscreen=true"};
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(args);
@@ -48,8 +48,8 @@ public class ConfigurationTest {
         Configuration.use(configurationLoader);
 
         assertEquals(true, Configuration.isDebug());
-        assertEquals(1210, Configuration.getSize().getWidth());
-        assertEquals(14, Configuration.getSize().getHeight());
+        assertEquals(1366, Configuration.getSize().getWidth());
+        assertEquals(768, Configuration.getSize().getHeight());
         assertEquals(true, Configuration.isFullscreen());
     }
 
