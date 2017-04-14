@@ -4,54 +4,69 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Properties;
 
-public class ConfigurationLoader {
-    private Properties properties = new Properties();
+import static java.util.Arrays.asList;
 
-    public ConfigurationLoader() {
-        setConfiguration();
+public class ConfigurationLoader {
+    private final Properties properties;
+
+    private final List<String> propertyKeys = asList("debug", "size", "fullscreen");
+    private final List[] possibleValues = {
+            asList("true", "false"), asList("1920x1080", "1280x720"), asList("true", "false")};
+
+    public ConfigurationLoader(String[] args) {
+        properties = getProperties();
+        applyConfigurationFromArgs(args);
     }
 
-    public void setConfiguration() {
+    public ConfigurationLoader() {
+        properties = getProperties();
+    }
+
+    public Properties getProperties() {
         File config = new File("config.properties");
         if (config.exists()) {
-            loadExistingConfiguration();
+            return loadExistingConfiguration();
         } else {
-            createNewConfigurationFile();
+            return createNewConfigurationFile();
         }
     }
 
-    private void createNewConfigurationFile() {
+    private Properties loadExistingConfiguration() {
+        try {
+            FileInputStream in = new FileInputStream("config.properties");
+            Properties properties = new Properties();
+            properties.load(in);
+            in.close();
+            return properties;
+        } catch (IOException e) {
+            throw new RuntimeException("Could not load configuration", e);
+        }
+    }
+
+    private Properties createNewConfigurationFile() {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("config.properties");
-            properties = new Properties();
+            Properties properties = new Properties();
             properties.setProperty("debug", "true");
             properties.setProperty("width", "1920");
             properties.setProperty("height", "1080");
             properties.setProperty("fullscreen", "true");
             properties.store(fileOutputStream, null);
             fileOutputStream.close();
+            return properties;
         } catch (IOException e) {
-            e.getStackTrace();
+            throw new RuntimeException("Could not create configuration", e);
         }
     }
 
-    private void loadExistingConfiguration() {
-        try {
-            FileInputStream in = new FileInputStream("config.properties");
-            properties.load(in);
-            in.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    private void applyConfigurationFromArgs(String... args) {
+        // TODO implement
     }
 
-    public void loadConfigurationFromArguments(String... args) {
-        new CustomizeConfiguration(properties, args);
-    }
-
-    public Properties getProperties() {
-        return properties;
+    public String getProperty(String name) {
+        return properties.getProperty(name);
     }
 }

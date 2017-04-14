@@ -1,11 +1,15 @@
 package app;
 
+import app.config.Configuration;
+import app.config.ConfigurationLoader;
 import app.model.EngineExecutor;
 import app.model.EngineFactory;
 import app.presenter.GameWindow;
 
 public class Application {
     public static void main(String... args) {
+        Configuration.use(new ConfigurationLoader(args));
+
         GameWindow window = new GameWindow();
         window.show();
 

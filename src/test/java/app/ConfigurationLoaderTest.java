@@ -3,8 +3,6 @@ package app;
 import app.config.ConfigurationLoader;
 import org.junit.Test;
 
-import java.util.Properties;
-
 import static org.junit.Assert.assertEquals;
 
 public class ConfigurationLoaderTest {
@@ -14,46 +12,39 @@ public class ConfigurationLoaderTest {
         ConfigurationLoader configurationLoader = new ConfigurationLoader();
 
         // when
-        configurationLoader.setConfiguration();
+        configurationLoader.getProperties();
 
         // then
-        Properties properties = configurationLoader.getProperties();
-        assertEquals("false", properties.getProperty("debug"));
-        assertEquals("1920", properties.getProperty("width"));
-        assertEquals("1080", properties.getProperty("height"));
-        assertEquals("false", properties.getProperty("fullscreen"));
+        assertEquals("false", configurationLoader.getProperty("debug"));
+        assertEquals("1920x1080", configurationLoader.getProperty("size"));
+        assertEquals("false", configurationLoader.getProperty("fullscreen"));
     }
 
     @Test
     public void shouldSetPropertiesFromArguments() {
         // given
-        ConfigurationLoader configurationLoader = new ConfigurationLoader();
+        String[] args = {"debug=true", "size=1210x14", "fullscreen=false"};
 
         // when
-        configurationLoader.loadConfigurationFromArguments("false", "1920", "1080", "false");
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(args);
 
         // then
-        Properties properties = configurationLoader.getProperties();
-        assertEquals("false", properties.getProperty("debug"));
-        assertEquals("1920", properties.getProperty("width"));
-        assertEquals("1080", properties.getProperty("height"));
-        assertEquals("false", properties.getProperty("fullscreen"));
+        assertEquals("true", configurationLoader.getProperty("debug"));
+        assertEquals("1210x14", configurationLoader.getProperty("size"));
+        assertEquals("true", configurationLoader.getProperty("fullscreen"));
     }
-
 
     @Test
     public void shouldNotSetPropertiesFromArgumentsAndLetDefaultValues() {
         // given
-        ConfigurationLoader configurationLoader = new ConfigurationLoader();
+        String[] args = {" ", " ", " ", " "};
 
         // when
-        configurationLoader.loadConfigurationFromArguments(" ", " ", " ", " ");
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(args);
 
         // then
-        Properties properties = configurationLoader.getProperties();
-        assertEquals("false", properties.getProperty("debug"));
-        assertEquals("1920", properties.getProperty("width"));
-        assertEquals("1080", properties.getProperty("height"));
-        assertEquals("false", properties.getProperty("fullscreen"));
+        assertEquals("false", configurationLoader.getProperty("debug"));
+        assertEquals("1920x1080", configurationLoader.getProperty("size"));
+        assertEquals("false", configurationLoader.getProperty("fullscreen"));
     }
 }
