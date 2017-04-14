@@ -9,7 +9,7 @@ import java.util.Properties;
 public class ConfigurationLoader {
     private Properties properties = new Properties();
 
-    ConfigurationLoader() {
+    public ConfigurationLoader() {
         setConfiguration();
     }
 
