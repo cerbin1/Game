@@ -19,7 +19,13 @@ public class Resolution {
     }
 
     public static Resolution parseResolution(String resolution) {
-        Scanner scanner = new Scanner(resolution.replace('x', ' '));
-        return new Resolution(scanner.nextInt(), scanner.nextInt());
+        try {
+            Scanner scanner = new Scanner(resolution.replace('x', ' '));
+            int width = scanner.nextInt(), height = scanner.nextInt();
+            return new Resolution(width, height);
+        } catch (IllegalArgumentException e) {
+            System.err.println("No integer value");
+        }
+        return new Resolution(0, 0);
     }
 }
