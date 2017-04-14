@@ -10,14 +10,12 @@ import java.awt.geom.RoundRectangle2D;
 import java.awt.image.BufferedImage;
 import java.util.function.BiConsumer;
 
+import static app.model.util.Fonts.COST_FONT;
+import static app.model.util.Fonts.POINTS_FONT;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
-import static java.awt.Font.ITALIC;
-import static java.awt.Font.PLAIN;
 
 abstract class FigureRenderer extends Renderer {
-    private final Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
-    private final Font costFont = new Font("Franklin Gothic Medium", PLAIN, 40);
     private final Figure figure;
     private final BufferedImage figureImage;
 
@@ -40,7 +38,7 @@ abstract class FigureRenderer extends Renderer {
         graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
         graphics.setColor(black);
-        graphics.setFont(pointsFont);
+        graphics.setFont(POINTS_FONT);
         if (figure.getPoints() > 0) {
             drawOutlineText(graphics, figure.getPoints() + "", 20, 66);
         }
@@ -48,7 +46,7 @@ abstract class FigureRenderer extends Renderer {
 
     private void drawOutlineText(Graphics2D graphics, String text, int x, int y) {
         graphics.translate(x, y);
-        GlyphVector glyphVector = pointsFont.createGlyphVector(graphics.getFontRenderContext(), text);
+        GlyphVector glyphVector = POINTS_FONT.createGlyphVector(graphics.getFontRenderContext(), text);
         Shape textShape = glyphVector.getOutline();
 
         graphics.setColor(black);
@@ -86,7 +84,7 @@ abstract class FigureRenderer extends Renderer {
         @Override
         public void accept(TokenColor color, Integer amount) {
             if (amount == 0) return;
-            graphics.setFont(costFont);
+            graphics.setFont(COST_FONT);
             graphics.drawString(color.name() + ": " + amount, 19, nextElementHeight());
         }
 

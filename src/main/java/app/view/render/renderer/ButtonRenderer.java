@@ -6,12 +6,11 @@ import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.awt.image.BufferedImage;
 
+import static app.model.util.Fonts.POINTS_FONT;
 import static app.view.ImageRepository.imageRepository;
 import static java.awt.Color.white;
-import static java.awt.Font.ITALIC;
 
 public class ButtonRenderer extends Renderer {
-    private final Font pointsFont = new Font("Franklin Gothic Medium", ITALIC, 70);
     private final BufferedImage buttonImage;
 
     public ButtonRenderer(ButtonVO buttonVO) {
@@ -29,7 +28,7 @@ public class ButtonRenderer extends Renderer {
 
     private void drawText(Graphics2D graphics, String text, int x, int y) {
         graphics.translate(x, y);
-        GlyphVector glyphVector = pointsFont.createGlyphVector(graphics.getFontRenderContext(), text);
+        GlyphVector glyphVector = POINTS_FONT.createGlyphVector(graphics.getFontRenderContext(), text);
         Shape textShape = glyphVector.getOutline();
 
         graphics.setColor(white);

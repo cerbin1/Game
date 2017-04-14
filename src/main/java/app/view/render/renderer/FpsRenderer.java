@@ -7,8 +7,8 @@ import java.awt.*;
 import java.awt.font.GlyphVector;
 import java.text.DecimalFormat;
 
+import static app.model.util.Fonts.FPS_FONT;
 import static java.awt.Color.*;
-import static java.awt.Font.BOLD;
 
 public class FpsRenderer extends Renderer implements Updatable {
     private int frames = 0;
@@ -39,7 +39,7 @@ public class FpsRenderer extends Renderer implements Updatable {
 
     private void drawOutlineText(Graphics2D graphics, String text, int x, int y) {
         graphics.translate(x, y);
-        GlyphVector glyphVector = new Font("Franklin", BOLD, 55).createGlyphVector(graphics.getFontRenderContext(), text);
+        GlyphVector glyphVector = FPS_FONT.createGlyphVector(graphics.getFontRenderContext(), text);
         Shape textShape = glyphVector.getOutline();
 
         graphics.setColor(black);
