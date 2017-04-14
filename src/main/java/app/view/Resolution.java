@@ -18,8 +18,8 @@ public class Resolution {
         return height;
     }
 
-    public static Resolution parseSize(String size) {
-        Scanner scanner = new Scanner(size.replace('x', ' '));
+    public static Resolution parseResolution(String resolution) {
+        Scanner scanner = new Scanner(resolution.replace('x', ' '));
         return new Resolution(scanner.nextInt(), scanner.nextInt());
     }
 }

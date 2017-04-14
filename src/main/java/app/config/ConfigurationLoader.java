@@ -15,14 +15,14 @@ import static java.util.Arrays.asList;
 
 public class ConfigurationLoader {
     private final Properties properties;
-    private final Map<String, List> propertiesMap = initializeMap();
     private final List[] possibleValues = {
             asList("true", "false"), asList("1920x1080", "1280x720", "1366x768", "1600x900"), asList("true", "false")};
+    private final Map<String, List> propertiesMap = initializeMap();
 
     private Map<String, List> initializeMap() {
         Map<String, List> map = new HashMap<>();
         map.put("debug", possibleValues[0]);
-        map.put("size", possibleValues[1]);
+        map.put("resolution", possibleValues[1]);
         map.put("fullscreen", possibleValues[2]);
         return map;
     }
@@ -61,8 +61,8 @@ public class ConfigurationLoader {
         try {
             FileOutputStream fileOutputStream = new FileOutputStream("config.properties");
             Properties properties = new Properties();
-            properties.setProperty("debug", "true");
-            properties.setProperty("size", "1920x1080");
+            properties.setProperty("debug", "false");
+            properties.setProperty("resolution", "1920x1080");
             properties.setProperty("fullscreen", "true");
             properties.store(fileOutputStream, null);
             fileOutputStream.close();

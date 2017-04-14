@@ -25,7 +25,7 @@ public class ResolutionTest {
         String string = "104x124";
 
         // when
-        Resolution resolution = Resolution.parseSize(string);
+        Resolution resolution = Resolution.parseResolution(string);
 
         // then
         assertEquals(104, resolution.getWidth());

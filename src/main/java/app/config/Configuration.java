@@ -13,8 +13,8 @@ public class Configuration {
         return Boolean.parseBoolean(properties.getProperty("debug"));
     }
 
-    public static Resolution getSize() {
-        return Resolution.parseSize(properties.getProperty("size"));
+    public static Resolution getResolution() {
+        return Resolution.parseResolution(properties.getProperty("resolution"));
     }
 
     public static boolean isFullscreen() {
