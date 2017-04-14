@@ -2,7 +2,7 @@ package app;
 
 import app.config.Configuration;
 import app.config.ConfigurationLoader;
-import app.view.Size;
+import app.view.Resolution;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
@@ -12,13 +12,13 @@ public class ConfigurationTest {
     public void shouldGetConfiguration() {
         // when
         boolean debug = Configuration.isDebug();
-        Size size = Configuration.getSize();
+        Resolution resolution = Configuration.getSize();
         boolean fullscreen = Configuration.isFullscreen();
 
         // then
         assertEquals(false, debug);
-        assertEquals(1920, size.getWidth());
-        assertEquals(1080, size.getHeight());
+        assertEquals(1920, resolution.getWidth());
+        assertEquals(1080, resolution.getHeight());
         assertEquals(false, fullscreen);
     }
 

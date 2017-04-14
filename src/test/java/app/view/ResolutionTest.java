@@ -4,7 +4,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
 
-public class SizeTest {
+public class ResolutionTest {
     @Test
     public void shouldGetWidth() {
         // given
@@ -12,11 +12,11 @@ public class SizeTest {
         int height = 25;
 
         // when
-        Size size = new Size(width, height);
+        Resolution resolution = new Resolution(width, height);
 
         // then
-        assertEquals(width, size.getWidth());
-        assertEquals(height, size.getHeight());
+        assertEquals(width, resolution.getWidth());
+        assertEquals(height, resolution.getHeight());
     }
 
     @Test
@@ -25,10 +25,10 @@ public class SizeTest {
         String string = "104x124";
 
         // when
-        Size size = Size.parseSize(string);
+        Resolution resolution = Resolution.parseSize(string);
 
         // then
-        assertEquals(104, size.getWidth());
-        assertEquals(124, size.getHeight());
+        assertEquals(104, resolution.getWidth());
+        assertEquals(124, resolution.getHeight());
     }
 }

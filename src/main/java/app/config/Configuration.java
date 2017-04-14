@@ -1,6 +1,6 @@
 package app.config;
 
-import app.view.Size;
+import app.view.Resolution;
 
 public class Configuration {
     private static ConfigurationLoader properties = new ConfigurationLoader();
@@ -13,8 +13,8 @@ public class Configuration {
         return Boolean.parseBoolean(properties.getProperty("debug"));
     }
 
-    public static Size getSize() {
-        return Size.parseSize(properties.getProperty("size"));
+    public static Resolution getSize() {
+        return Resolution.parseSize(properties.getProperty("size"));
     }
 
     public static boolean isFullscreen() {

@@ -2,10 +2,10 @@ package app.view;
 
 import java.util.Scanner;
 
-public class Size {
+public class Resolution {
     private final int width, height;
 
-    public Size(int width, int height) {
+    public Resolution(int width, int height) {
         this.width = width;
         this.height = height;
     }
@@ -18,8 +18,8 @@ public class Size {
         return height;
     }
 
-    public static Size parseSize(String size) {
+    public static Resolution parseSize(String size) {
         Scanner scanner = new Scanner(size.replace('x', ' '));
-        return new Size(scanner.nextInt(), scanner.nextInt());
+        return new Resolution(scanner.nextInt(), scanner.nextInt());
     }
 }
