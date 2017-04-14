@@ -1,5 +1,6 @@
 package app;
 
+import app.config.ConfigurationLoader;
 import org.junit.Test;
 
 import java.util.Properties;

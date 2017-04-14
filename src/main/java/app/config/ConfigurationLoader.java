@@ -1,4 +1,4 @@
-package app;
+package app.config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -13,7 +13,7 @@ public class ConfigurationLoader {
         setConfiguration();
     }
 
-    void setConfiguration() {
+    public void setConfiguration() {
         File config = new File("config.properties");
         if (config.exists()) {
             loadExistingConfiguration();
