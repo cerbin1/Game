@@ -1,10 +1,17 @@
 package app.view;
 
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
+
+import java.util.NoSuchElementException;
 
 import static org.junit.Assert.assertEquals;
 
 public class ResolutionTest {
+    @Rule
+    public ExpectedException expectedException = ExpectedException.none();
+
     @Test
     public void shouldGetWidth() {
         // given
@@ -30,5 +37,29 @@ public class ResolutionTest {
         // then
         assertEquals(104, resolution.getWidth());
         assertEquals(124, resolution.getHeight());
+    }
+
+    @Test
+    public void shouldThrowOnGivingNotNumber() {
+        // given
+        String string = "120x45dd";
+
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("No integer value");
+
+        // when
+        Resolution.parseResolution(string);
+    }
+
+    @Test
+    public void shouldThrowOnGivingNotEnoughNumbers() {
+        // given
+        String string = "1920";
+
+        expectedException.expect(NoSuchElementException.class);
+        expectedException.expectMessage("No enough numbers were given");
+
+        // when
+        Resolution.parseResolution(string);
     }
 }

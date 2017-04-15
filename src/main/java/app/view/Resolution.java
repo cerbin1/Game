@@ -1,5 +1,7 @@
 package app.view;
 
+import java.util.InputMismatchException;
+import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Resolution {
@@ -23,9 +25,11 @@ public class Resolution {
             Scanner scanner = new Scanner(resolution.replace('x', ' '));
             int width = scanner.nextInt(), height = scanner.nextInt();
             return new Resolution(width, height);
-        } catch (IllegalArgumentException e) {
-            System.err.println("No integer value"); // TODO co to kurwa jest. Ktoś wpisze przez przypadek "resolution=dupa" i nagle się odpali z rozdzielczością 0x0? Czemu nie wyjątek. Powinno się wyjebać z hukiem.
+        } catch (InputMismatchException e) {
+            throw new IllegalArgumentException("No integer value");
         }
-        return new Resolution(0, 0);
+        catch (NoSuchElementException e) {
+            throw new NoSuchElementException("No enough numbers were given");
+        }
     }
 }
