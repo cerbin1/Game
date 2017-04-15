@@ -1,7 +1,7 @@
 package app.view.render.renderer;
 
 import app.view.render.vo.ViewObject;
-import app.view.util.Resolution;
+import app.view.util.ResolutionHelper;
 
 import java.awt.*;
 import java.awt.geom.AffineTransform;
@@ -29,7 +29,7 @@ public abstract class Renderer {
     private AffineTransform getTransform() {
         AffineTransform transform = new AffineTransform();
         transform.scale(0.6, 0.6);
-        Resolution.scaleFullHdToResolution(transform);
+        ResolutionHelper.scaleFullHdToResolution(transform);
         transform.translate(viewObject.getX(), viewObject.getY());
         transform.scale(viewObject.getPerspectiveX(), viewObject.getPerspectiveY());
         transform.rotate(viewObject.getRotation());

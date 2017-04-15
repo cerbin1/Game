@@ -24,7 +24,7 @@ public class Resolution {
             int width = scanner.nextInt(), height = scanner.nextInt();
             return new Resolution(width, height);
         } catch (IllegalArgumentException e) {
-            System.err.println("No integer value");
+            System.err.println("No integer value"); // TODO co to kurwa jest. Ktoś wpisze przez przypadek "resolution=dupa" i nagle się odpali z rozdzielczością 0x0? Czemu nie wyjątek. Powinno się wyjebać z hukiem.
         }
         return new Resolution(0, 0);
     }
