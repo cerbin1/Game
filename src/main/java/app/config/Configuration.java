@@ -2,8 +2,10 @@ package app.config;
 
 import app.view.Resolution;
 
+import java.io.File;
+
 public class Configuration {
-    private static ConfigurationLoader properties = new ConfigurationLoader(new WorkingDirectoryConfigurationFile("config.properties"));
+    private static ConfigurationLoader properties = new ConfigurationLoader(new FileConfigurationFile(new File("config.properties")));
 
     public static void use(ConfigurationLoader configurationLoader) {
         properties = configurationLoader;

@@ -49,7 +49,7 @@ public class ConfigurationLoader {
     private Properties loadExistingConfiguration() {
         try {
             InputStream inputStream = configurationFile.getInputStream();
-            Properties properties = new Properties();
+            Properties properties = getDefaultProperties();
             properties.load(inputStream);
             inputStream.close();
             return properties;
@@ -61,10 +61,7 @@ public class ConfigurationLoader {
     private Properties createNewConfigurationFile() {
         try {
             OutputStream outputStream = configurationFile.getOutputStream();
-            Properties properties = new Properties();
-            properties.setProperty("debug", "false");
-            properties.setProperty("resolution", "1920x1080");
-            properties.setProperty("fullscreen", "true");
+            Properties properties = getDefaultProperties();
             properties.store(outputStream, null);
             outputStream.close();
             return properties;
@@ -89,5 +86,13 @@ public class ConfigurationLoader {
 
     public String getProperty(String name) {
         return properties.getProperty(name);
+    }
+
+    private static Properties getDefaultProperties() {
+        Properties properties = new Properties();
+        properties.setProperty("debug", "false");
+        properties.setProperty("resolution", "1920x1080");
+        properties.setProperty("fullscreen", "true");
+        return properties;
     }
 }

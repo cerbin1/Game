@@ -2,15 +2,31 @@ package app;
 
 import app.config.Configuration;
 import app.config.ConfigurationLoader;
-import app.config.ResourceConfigurationFile;
+import app.config.FileConfigurationFile;
 import app.view.Resolution;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.TemporaryFolder;
+
+import java.io.File;
+import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
 public class ConfigurationTest {
+    @Rule
+    public TemporaryFolder folder = new TemporaryFolder();
+
+    public void tearDown() {
+        folder.delete();
+    }
+
     @Test
-    public void shouldGetConfiguration() {
+    public void shouldGetDefaultConfiguration() {
+        // given
+        File createdFile = new File(folder.getRoot(), "test.properties");
+        Configuration.use(new ConfigurationLoader(new FileConfigurationFile(createdFile)));
+
         // when
         boolean debug = Configuration.isDebug();
         Resolution resolution = Configuration.getResolution();
@@ -26,7 +42,8 @@ public class ConfigurationTest {
     @Test
     public void shouldLoadConfigurationFromFile() {
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"));
+        File createdFile = newFile("test.properties");
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(createdFile));
 
         // then
         Configuration.use(configurationLoader);
@@ -41,9 +58,10 @@ public class ConfigurationTest {
     public void shouldSetPropertiesFromArguments() {
         // given
         String[] args = {"debug=true", "resolution=1366x768", "fullscreen=true"};
+        File file = newFile("test.properties");
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"), args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(file), args);
 
         // then
         Configuration.use(configurationLoader);
@@ -58,9 +76,10 @@ public class ConfigurationTest {
     public void shouldNotSetPropertiesFromArgumentsAndLetDefaultValues() {
         // given
         String[] args = {" ", " ", " ", " "};
+        File file = newFile("test.properties");
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"), args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(file), args);
 
         // then
         Configuration.use(configurationLoader);
@@ -69,5 +88,13 @@ public class ConfigurationTest {
         assertEquals(1920, Configuration.getResolution().getWidth());
         assertEquals(1080, Configuration.getResolution().getHeight());
         assertEquals(true, Configuration.isFullscreen());
+    }
+
+    private File newFile(String filename) {
+        try {
+            return folder.newFile(filename);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }
