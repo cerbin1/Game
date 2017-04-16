@@ -1,9 +1,8 @@
 package app.config;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,6 +13,8 @@ import java.util.regex.Pattern;
 import static java.util.Arrays.asList;
 
 public class ConfigurationLoader {
+    private final ConfigurationFile configurationFile;
+
     private final Properties properties;
     private final List[] possibleValues = {
             asList("true", "false"), asList("1920x1080", "1280x720", "1366x768", "1600x900"), asList("true", "false")};
@@ -27,18 +28,18 @@ public class ConfigurationLoader {
         return map;
     }
 
-    public ConfigurationLoader(String... args) {
-        properties = getProperties();
-        applyConfigurationFromArgs(args);
+    public ConfigurationLoader(ConfigurationFile configurationFile, String... args) {
+        this(configurationFile);
+        this.applyConfigurationFromArgs(args);
     }
 
-    public ConfigurationLoader() {
-        properties = getProperties();
+    public ConfigurationLoader(ConfigurationFile configurationFile) {
+        this.configurationFile = configurationFile;
+        this.properties = getProperties();
     }
 
     private Properties getProperties() {
-        File config = new File("config.properties");
-        if (config.exists()) {
+        if (configurationFile.exists()) {
             return loadExistingConfiguration();
         } else {
             return createNewConfigurationFile();
@@ -47,10 +48,10 @@ public class ConfigurationLoader {
 
     private Properties loadExistingConfiguration() {
         try {
-            FileInputStream in = new FileInputStream("config.properties");
+            InputStream inputStream = configurationFile.getInputStream();
             Properties properties = new Properties();
-            properties.load(in);
-            in.close();
+            properties.load(inputStream);
+            inputStream.close();
             return properties;
         } catch (IOException e) {
             throw new RuntimeException("Could not load configuration", e);
@@ -59,13 +60,13 @@ public class ConfigurationLoader {
 
     private Properties createNewConfigurationFile() {
         try {
-            FileOutputStream fileOutputStream = new FileOutputStream("config.properties");
+            OutputStream outputStream = configurationFile.getOutputStream();
             Properties properties = new Properties();
             properties.setProperty("debug", "false");
             properties.setProperty("resolution", "1920x1080");
             properties.setProperty("fullscreen", "true");
-            properties.store(fileOutputStream, null);
-            fileOutputStream.close();
+            properties.store(outputStream, null);
+            outputStream.close();
             return properties;
         } catch (IOException e) {
             throw new RuntimeException("Could not create configuration", e);

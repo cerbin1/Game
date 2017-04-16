@@ -3,7 +3,7 @@ package app.config;
 import app.view.Resolution;
 
 public class Configuration {
-    private static ConfigurationLoader properties = new ConfigurationLoader();
+    private static ConfigurationLoader properties = new ConfigurationLoader(new WorkingDirectoryConfigurationFile("config.properties"));
 
     public static void use(ConfigurationLoader configurationLoader) {
         properties = configurationLoader;

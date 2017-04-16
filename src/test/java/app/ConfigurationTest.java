@@ -2,6 +2,7 @@ package app;
 
 import app.config.Configuration;
 import app.config.ConfigurationLoader;
+import app.config.ResourceConfigurationFile;
 import app.view.Resolution;
 import org.junit.Test;
 
@@ -25,7 +26,7 @@ public class ConfigurationTest {
     @Test
     public void shouldLoadConfigurationFromFile() {
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader();
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"));
 
         // then
         Configuration.use(configurationLoader);
@@ -42,7 +43,7 @@ public class ConfigurationTest {
         String[] args = {"debug=true", "resolution=1366x768", "fullscreen=true"};
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"), args);
 
         // then
         Configuration.use(configurationLoader);
@@ -59,7 +60,7 @@ public class ConfigurationTest {
         String[] args = {" ", " ", " ", " "};
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(new ResourceConfigurationFile("test.properties"), args);
 
         // then
         Configuration.use(configurationLoader);
