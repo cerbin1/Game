@@ -2,7 +2,6 @@ package app;
 
 import app.config.Configuration;
 import app.config.ConfigurationLoader;
-import app.config.FileConfigurationFile;
 import app.view.Resolution;
 import org.junit.Rule;
 import org.junit.Test;
@@ -25,7 +24,7 @@ public class ConfigurationTest {
     public void shouldGetDefaultConfiguration() {
         // given
         File createdFile = new File(folder.getRoot(), "test.properties");
-        Configuration.use(new ConfigurationLoader(new FileConfigurationFile(createdFile)));
+        Configuration.use(new ConfigurationLoader(createdFile));
 
         // when
         boolean debug = Configuration.isDebug();
@@ -43,7 +42,7 @@ public class ConfigurationTest {
     public void shouldLoadConfigurationFromFile() {
         // when
         File createdFile = newFile("test.properties");
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(createdFile));
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(createdFile);
 
         // then
         Configuration.use(configurationLoader);
@@ -61,7 +60,7 @@ public class ConfigurationTest {
         File file = newFile("test.properties");
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(file), args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
 
         // then
         Configuration.use(configurationLoader);
@@ -79,7 +78,7 @@ public class ConfigurationTest {
         File file = newFile("test.properties");
 
         // when
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(new FileConfigurationFile(file), args);
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
 
         // then
         Configuration.use(configurationLoader);

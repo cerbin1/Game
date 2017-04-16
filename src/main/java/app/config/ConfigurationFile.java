@@ -1,12 +1,35 @@
 package app.config;
 
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 
-public interface ConfigurationFile {
-    boolean exists();
+class ConfigurationFile {
+    private final File file;
 
-    InputStream getInputStream();
+    ConfigurationFile(File file) {
+        this.file = file;
+    }
 
-    OutputStream getOutputStream();
+    boolean exists() {
+        return file.exists();
+    }
+
+    InputStream getInputStream() {
+        try {
+            return new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            throw new ConfigurationFileException(e);
+        }
+    }
+
+    OutputStream getOutputStream() {
+        try {
+            boolean alreadyExists = file.createNewFile();
+            if (!alreadyExists) {
+                throw new RuntimeException("File already exists");
+            }
+            return new FileOutputStream(file);
+        } catch (IOException e) {
+            throw new ConfigurationFileException(e);
+        }
+    }
 }

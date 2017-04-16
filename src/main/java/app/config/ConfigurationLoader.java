@@ -1,5 +1,6 @@
 package app.config;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -28,14 +29,10 @@ public class ConfigurationLoader {
         return map;
     }
 
-    public ConfigurationLoader(ConfigurationFile configurationFile, String... args) {
-        this(configurationFile);
-        this.applyConfigurationFromArgs(args);
-    }
-
-    public ConfigurationLoader(ConfigurationFile configurationFile) {
-        this.configurationFile = configurationFile;
+    public ConfigurationLoader(File file, String... args) {
+        this.configurationFile = new ConfigurationFile(file);
         this.properties = getProperties();
+        this.applyConfigurationFromArgs(args);
     }
 
     private Properties getProperties() {
@@ -84,7 +81,7 @@ public class ConfigurationLoader {
         }
     }
 
-    public String getProperty(String name) {
+    String getProperty(String name) {
         return properties.getProperty(name);
     }
 
