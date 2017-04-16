@@ -26,10 +26,9 @@ public class Resolution {
             int width = scanner.nextInt(), height = scanner.nextInt();
             return new Resolution(width, height);
         } catch (InputMismatchException e) {
-            throw new IllegalArgumentException("No integer value");
-        }
-        catch (NoSuchElementException e) {
-            throw new NoSuchElementException("No enough numbers were given");
+            throw new IllegalArgumentException("Invalid resolution");
+        } catch (NoSuchElementException e) {
+            throw new NoSuchElementException("Invalid resolution");
         }
     }
 }
