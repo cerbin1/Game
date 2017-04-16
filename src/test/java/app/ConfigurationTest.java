@@ -6,10 +6,12 @@ import app.view.Resolution;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
+import util.RuntimeFileWriter;
 
 import java.io.File;
 import java.io.IOException;
 
+import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 
 public class ConfigurationTest {
@@ -32,32 +34,32 @@ public class ConfigurationTest {
         boolean fullscreen = Configuration.isFullscreen();
 
         // then
-        assertEquals(false, debug);
-        assertEquals(1920, resolution.getWidth());
-        assertEquals(1080, resolution.getHeight());
-        assertEquals(true, fullscreen);
+        assertEquals(false, debug); // from default
+        assertEquals(1920, resolution.getWidth()); // from default
+        assertEquals(1080, resolution.getHeight()); // from default
+        assertEquals(true, fullscreen); // from default
     }
 
     @Test
     public void shouldLoadConfigurationFromFile() {
         // when
-        File createdFile = newFile("test.properties");
+        File createdFile = newFile("test.properties", "fullscreen=false");
         ConfigurationLoader configurationLoader = new ConfigurationLoader(createdFile);
 
         // then
         Configuration.use(configurationLoader);
 
-        assertEquals(false, Configuration.isDebug());
-        assertEquals(1920, Configuration.getResolution().getWidth());
-        assertEquals(1080, Configuration.getResolution().getHeight());
-        assertEquals(true, Configuration.isFullscreen());
+        assertEquals(false, Configuration.isDebug()); // from default
+        assertEquals(1920, Configuration.getResolution().getWidth()); // from default
+        assertEquals(1080, Configuration.getResolution().getHeight()); // from default
+        assertEquals(false, Configuration.isFullscreen()); // from file
     }
 
     @Test
     public void shouldSetPropertiesFromArguments() {
         // given
         String[] args = {"debug=true", "resolution=1366x768", "fullscreen=true"};
-        File file = newFile("test.properties");
+        File file = newFile("test.properties", "fullscreen=false");
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
@@ -65,17 +67,17 @@ public class ConfigurationTest {
         // then
         Configuration.use(configurationLoader);
 
-        assertEquals(true, Configuration.isDebug());
-        assertEquals(1366, Configuration.getResolution().getWidth());
-        assertEquals(768, Configuration.getResolution().getHeight());
-        assertEquals(true, Configuration.isFullscreen());
+        assertEquals(true, Configuration.isDebug()); // from args
+        assertEquals(1366, Configuration.getResolution().getWidth()); // from args
+        assertEquals(768, Configuration.getResolution().getHeight()); // from args
+        assertEquals(true, Configuration.isFullscreen()); // from args
     }
 
     @Test
     public void shouldNotSetPropertiesFromArgumentsAndLetDefaultValues() {
         // given
-        String[] args = {" ", " ", " ", " "};
-        File file = newFile("test.properties");
+        String[] args = {" "};
+        File file = newFile("test.properties", "fullscreen=false");
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
@@ -83,15 +85,38 @@ public class ConfigurationTest {
         // then
         Configuration.use(configurationLoader);
 
-        assertEquals(false, Configuration.isDebug());
-        assertEquals(1920, Configuration.getResolution().getWidth());
-        assertEquals(1080, Configuration.getResolution().getHeight());
-        assertEquals(true, Configuration.isFullscreen());
+        assertEquals(false, Configuration.isDebug()); //from default
+        assertEquals(1920, Configuration.getResolution().getWidth()); //from default
+        assertEquals(1080, Configuration.getResolution().getHeight()); //from default
+        assertEquals(false, Configuration.isFullscreen()); //from file
     }
 
-    private File newFile(String filename) {
+    @Test
+    public void shouldTakePartialValuesFileArgsDefault() {
+        // given
+        String[] args = {"debug=true"};
+        File file = newFile("test.properties", "resolution=1050x750");
+
+        // when
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
+
+        // then
+        Configuration.use(configurationLoader);
+
+        assertEquals(true, Configuration.isDebug()); // from args
+        assertEquals(1050, Configuration.getResolution().getWidth()); //from file
+        assertEquals(750, Configuration.getResolution().getHeight()); //from file
+        assertEquals(true, Configuration.isFullscreen()); // from default
+    }
+
+    private File newFile(String filename, String... content) {
         try {
-            return folder.newFile(filename);
+            File file = folder.newFile(filename);
+            RuntimeFileWriter writer = new RuntimeFileWriter(file);
+            asList(content).forEach(writer::write);
+            writer.flush();
+            System.out.println(file.getAbsolutePath());
+            return file;
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
