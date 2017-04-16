@@ -114,8 +114,7 @@ public class ConfigurationTest {
             File file = folder.newFile(filename);
             RuntimeFileWriter writer = new RuntimeFileWriter(file);
             asList(content).forEach(writer::write);
-            writer.flush();
-            System.out.println(file.getAbsolutePath());
+            writer.close();
             return file;
         } catch (IOException e) {
             throw new RuntimeException(e);
