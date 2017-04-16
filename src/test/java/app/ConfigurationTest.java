@@ -25,8 +25,8 @@ public class ConfigurationTest {
     @Test
     public void shouldGetDefaultConfiguration() {
         // given
-        File createdFile = new File(folder.getRoot(), "test.properties");
-        Configuration.use(new ConfigurationLoader(createdFile));
+        File emptyFile = new File(folder.getRoot(), "test.properties");
+        Configuration.use(new ConfigurationLoader(emptyFile));
 
         // when
         boolean debug = Configuration.isDebug();
@@ -43,8 +43,8 @@ public class ConfigurationTest {
     @Test
     public void shouldLoadConfigurationFromFile() {
         // when
-        File createdFile = newFile("test.properties", "fullscreen=false");
-        ConfigurationLoader configurationLoader = new ConfigurationLoader(createdFile);
+        File fullscreenFile = newFile("test.properties", "fullscreen=false");
+        ConfigurationLoader configurationLoader = new ConfigurationLoader(fullscreenFile);
 
         // then
         Configuration.use(configurationLoader);
