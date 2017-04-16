@@ -45,7 +45,7 @@ public class ResolutionTest {
         String string = "120x45dd";
 
         expectedException.expect(IllegalArgumentException.class);
-        expectedException.expectMessage("No integer value");
+        expectedException.expectMessage("Invalid resolution");
 
         // when
         Resolution.parseResolution(string);
@@ -56,8 +56,8 @@ public class ResolutionTest {
         // given
         String string = "1920";
 
-        expectedException.expect(NoSuchElementException.class);
-        expectedException.expectMessage("No enough numbers were given");
+        expectedException.expect(IllegalArgumentException.class);
+        expectedException.expectMessage("Invalid resolution");
 
         // when
         Resolution.parseResolution(string);
