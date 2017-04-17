@@ -28,7 +28,7 @@ public class TextNotificationRendererTest {
     }
 
     @Test
-    public void shouldRenderTwoStrings() {
+    public void shouldRenderThreeStrings() {
         // given
         TextNotificationRenderer renderer = new TextNotificationRenderer(20, 20);
         renderer.display("First text");
@@ -63,9 +63,44 @@ public class TextNotificationRendererTest {
 
         // then
         ArgumentCaptor<Integer> yValues = forClass(Integer.class);
-        verify(graphics, times(3))
-                .drawString(any(String.class), 20, yValues.capture());
+        verify(graphics, times(2))
+                .drawString(any(String.class), any(Integer.class), yValues.capture());
 
         assertEquals(asList(20, 50, 80), yValues.getAllValues());
+    }
+
+    @Test
+    public void shouldNotRenderAfterTimeRunsOut() {
+        // given
+        TextNotificationRenderer renderer = new TextNotificationRenderer(20, 20);
+        renderer.display("First text", 3.0);
+        renderer.display("Second text", 6.0);
+
+        renderer.update(3.5);
+
+        Graphics2D graphics = mock(Graphics2D.class);
+
+        // when
+        renderer.render(graphics);
+
+        // then
+        verify(graphics).drawString("Second text", 20, 20);
+    }
+
+    @Test
+    public void shouldRenderAfterMultipleUpdated() {
+        // given
+        TextNotificationRenderer renderer = new TextNotificationRenderer(20, 20);
+        renderer.update(3.5);
+        renderer.display("First text", 1.0);
+        renderer.update(0.5);
+
+        Graphics2D graphics = mock(Graphics2D.class);
+
+        // when
+        renderer.render(graphics);
+
+        // then
+        verify(graphics).drawString("First text", 20, 20);
     }
 }

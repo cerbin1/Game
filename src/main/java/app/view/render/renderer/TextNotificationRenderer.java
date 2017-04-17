@@ -30,4 +30,8 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
     public void display(String string) {
 
     }
+
+    public void display(String string, double time) {
+
+    }
 }
