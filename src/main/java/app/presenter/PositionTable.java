@@ -29,6 +29,7 @@ public class PositionTable {
     }
 
     public void take(Tableable tableable) {
+        table.take(tableable);
         Point previousPoint = previousPosition.get(tableable);
         tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
         previousPosition.remove(tableable);

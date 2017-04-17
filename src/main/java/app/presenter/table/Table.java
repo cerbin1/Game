@@ -39,8 +39,9 @@ public class Table {
     public void take(Tableable tableable) {
         if (tableables.contains(tableable)) {
             tableables.remove(tableable);
+        } else {
+            throw new UnexpectedTakeException();
         }
-        throw new UnexpectedTakeException();
     }
 
     public boolean canGather() {
