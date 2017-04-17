@@ -1,9 +1,9 @@
 package app.model.token;
 
 public class BuyingResult {
-    private final Tokens remaining, spent;
+    private final TokensAmount remaining, spent;
 
-    public BuyingResult(Tokens remaining, Tokens spent) {
+    public BuyingResult(TokensAmount remaining, TokensAmount spent) {
         this.remaining = remaining;
         this.spent = spent;
     }
@@ -12,11 +12,11 @@ public class BuyingResult {
         return remaining.asMap().entrySet().stream().allMatch(entry -> entry.getValue() >= 0);
     }
 
-    public Tokens getRemaining() {
+    public TokensAmount getRemaining() {
         return remaining;
     }
 
-    public Tokens getSpent() {
+    public TokensAmount getSpent() {
         return spent;
     }
 }

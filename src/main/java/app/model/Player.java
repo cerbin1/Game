@@ -4,7 +4,7 @@ import app.model.card.Card;
 import app.model.card.nobility.Nobility;
 import app.model.token.Resources;
 import app.model.token.TokenColor;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
@@ -16,18 +16,18 @@ import static app.model.token.TokenColor.values;
 public class Player {
     private final List<Card> cards = new ArrayList<>();
     private final List<Nobility> nobilities = new ArrayList<>();
-    private Tokens tokens;
+    private TokensAmount tokensAmount;
 
     public Player() {
-        this(new Tokens());
+        this(new TokensAmount());
     }
 
-    public Player(Tokens tokens) {
-        this.tokens = tokens;
+    public Player(TokensAmount tokensAmount) {
+        this.tokensAmount = tokensAmount;
     }
 
     public Resources getResources() {
-        return new Resources(getTokensFromCards(), getTokens());
+        return new Resources(getTokensFromCards(), getTokensAmount());
     }
 
     public List<Card> getCards() {
@@ -46,24 +46,24 @@ public class Player {
         nobilities.add(nobility);
     }
 
-    public Tokens getTokens() {
-        return tokens;
+    public TokensAmount getTokensAmount() {
+        return tokensAmount;
     }
 
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
+    public void setTokensAmount(TokensAmount tokensAmount) {
+        this.tokensAmount = tokensAmount;
     }
 
-    private Tokens getTokensFromCards() {
+    private TokensAmount getTokensFromCards() {
         Map<TokenColor, Integer> tokensFromCards = new EnumMap<>(TokenColor.class);
         for (TokenColor color : values()) {
             tokensFromCards.put(color, (int) cards.stream().filter(card -> card.is(color) && !card.isReserved()).count());
         }
-        return new Tokens(tokensFromCards, 0);
+        return new TokensAmount(tokensFromCards, 0);
     }
 
     public void incVersatile() {
-        tokens = tokens.add(new Tokens(0, 1));
+        tokensAmount = tokensAmount.add(new TokensAmount(0, 1));
     }
 
     int getPoints() {

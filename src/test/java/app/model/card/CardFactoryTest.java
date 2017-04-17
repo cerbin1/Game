@@ -1,6 +1,6 @@
 package app.model.card;
 
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.util.Probability;
 import org.junit.Test;
 
@@ -25,7 +25,7 @@ public class CardFactoryTest {
         verify(probability, times(1)).nextInt(3, 5);
         verify(probability, times(4)).nextInt(0, 5);
         verify(probability, times(1)).nextInt(0, 1);
-        assertEquals(new Tokens(3, 0, 0, 0, 0), cheapCard.getCost());
+        assertEquals(new TokensAmount(3, 0, 0, 0, 0), cheapCard.getCost());
         assertEquals(1, cheapCard.getPoints());
         assertEquals(Black, cheapCard.getColor());
     }
@@ -46,7 +46,7 @@ public class CardFactoryTest {
         verify(probability, times(1)).nextInt(5, 8);
         verify(probability, times(6)).nextInt(0, 5);
         verify(probability, times(1)).nextInt(1, 3);
-        assertEquals(new Tokens(1, 2, 1, 0, 1), mediumCard.getCost());
+        assertEquals(new TokensAmount(1, 2, 1, 0, 1), mediumCard.getCost());
         assertEquals(3, mediumCard.getPoints());
         assertEquals(Purple, mediumCard.getColor());
     }
@@ -67,7 +67,7 @@ public class CardFactoryTest {
         verify(probability, times(1)).nextInt(7, 14);
         verify(probability, times(11)).nextInt(0, 5);
         verify(probability, times(1)).nextInt(3, 5);
-        assertEquals(new Tokens(2, 2, 2, 2, 2), expensiveCard.getCost());
+        assertEquals(new TokensAmount(2, 2, 2, 2, 2), expensiveCard.getCost());
         assertEquals(4, expensiveCard.getPoints());
         assertEquals(Green, expensiveCard.getColor());
     }

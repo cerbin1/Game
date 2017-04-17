@@ -3,7 +3,7 @@ package app.presenter;
 import app.model.card.CheapCard;
 import app.model.token.Token;
 import app.model.token.TokenColor;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
@@ -25,7 +25,7 @@ public class TableTest {
     public ExpectedException expectedException = none();
 
     private static CardVO cardVO() {
-        return new CardVO(new CheapCard(new Tokens(), 0, Green), 0, 0);
+        return new CardVO(new CheapCard(new TokensAmount(), 0, Green), 0, 0);
     }
 
     private static TokenVO tokenVO() {

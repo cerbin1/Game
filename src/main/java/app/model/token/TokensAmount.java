@@ -6,34 +6,34 @@ import java.util.Map;
 import static app.model.token.TokenColor.*;
 import static java.lang.Math.max;
 
-public class Tokens {
+public class TokensAmount {
     private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
     private final int versatile;
 
-    public Tokens() {
+    public TokensAmount() {
         this(0, 0);
     }
 
-    public Tokens(int versatile) {
+    public TokensAmount(int versatile) {
         this(0, versatile);
     }
 
-    public Tokens(Tokens tokens) {
-        this.tokens.putAll(tokens.asMap());
-        this.versatile = tokens.versatile;
+    public TokensAmount(TokensAmount tokensAmount) {
+        this.tokens.putAll(tokensAmount.asMap());
+        this.versatile = tokensAmount.versatile;
     }
 
-    public Tokens(Map<TokenColor, Integer> tokens, int versatile) {
+    public TokensAmount(Map<TokenColor, Integer> tokens, int versatile) {
         this.tokens.putAll(tokens);
         this.versatile = versatile;
     }
 
-    public Tokens(Tokens tokens, int versatile) {
-        this.tokens.putAll(tokens.asMap());
+    public TokensAmount(TokensAmount tokensAmount, int versatile) {
+        this.tokens.putAll(tokensAmount.asMap());
         this.versatile = versatile;
     }
 
-    public Tokens(int regular, int versatile) {
+    public TokensAmount(int regular, int versatile) {
         tokens.put(Green, regular);
         tokens.put(Purple, regular);
         tokens.put(Blue, regular);
@@ -42,7 +42,7 @@ public class Tokens {
         this.versatile = versatile;
     }
 
-    public Tokens(int green, int purple, int blue, int black, int red) {
+    public TokensAmount(int green, int purple, int blue, int black, int red) {
         tokens.put(Green, green);
         tokens.put(Purple, purple);
         tokens.put(Blue, blue);
@@ -51,7 +51,7 @@ public class Tokens {
         versatile = 0;
     }
 
-    public Tokens(int green, int purple, int blue, int black, int red, int versatile) {
+    public TokensAmount(int green, int purple, int blue, int black, int red, int versatile) {
         tokens.put(Green, green);
         tokens.put(Purple, purple);
         tokens.put(Blue, blue);
@@ -74,22 +74,22 @@ public class Tokens {
         return map;
     }
 
-    Tokens asCost() {
-        Tokens tokens = new Tokens();
-        tokens.tokens.putAll(this.tokens);
-        return tokens;
+    TokensAmount asCost() {
+        TokensAmount tokensAmount = new TokensAmount();
+        tokensAmount.tokens.putAll(this.tokens);
+        return tokensAmount;
     }
 
-    public Tokens add(Tokens component) {
-        Tokens result = new Tokens(0, versatile + component.versatile);
+    public TokensAmount add(TokensAmount component) {
+        TokensAmount result = new TokensAmount(0, versatile + component.versatile);
         for (TokenColor color : TokenColor.values()) {
             result.tokens.put(color, tokens.get(color) + component.tokens.get(color));
         }
         return result;
     }
 
-    public Tokens subtract(Tokens subtrahend) {
-        Tokens result = new Tokens(0, versatile - subtrahend.versatile);
+    public TokensAmount subtract(TokensAmount subtrahend) {
+        TokensAmount result = new TokensAmount(0, versatile - subtrahend.versatile);
         for (TokenColor color : TokenColor.values()) {
             result.tokens.put(color, get(color) - subtrahend.get(color));
         }
@@ -101,21 +101,21 @@ public class Tokens {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        Tokens that = (Tokens) o;
+        TokensAmount that = (TokensAmount) o;
 
         return tokens.equals(that.tokens) && versatile == that.getVersatile();
     }
 
     @Override
     public String toString() {
-        return "Tokens{" + tokens + ", versatile=" + versatile + '}';
+        return "TokensAmount{" + tokens + ", versatile=" + versatile + '}';
     }
 
     static class Operations {
-        static Tokens removeDebts(Tokens tokens) {
-            Map<TokenColor, Integer> mapCopy = tokens.asMap();
+        static TokensAmount removeDebts(TokensAmount tokensAmount) {
+            Map<TokenColor, Integer> mapCopy = tokensAmount.asMap();
             mapCopy.entrySet().forEach(entry -> entry.setValue(max(0, entry.getValue())));
-            return new Tokens(mapCopy, tokens.versatile);
+            return new TokensAmount(mapCopy, tokensAmount.versatile);
         }
     }
 }

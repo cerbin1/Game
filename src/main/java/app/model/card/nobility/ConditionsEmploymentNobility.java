@@ -1,6 +1,6 @@
 package app.model.card.nobility;
 
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.util.Probability;
 
 public class ConditionsEmploymentNobility {
@@ -15,7 +15,7 @@ public class ConditionsEmploymentNobility {
         this.probability = probability;
     }
 
-    Tokens getRandomConditions() {
+    TokensAmount getRandomConditions() {
         return isFirstTypeDrawn() ? getConditions(3, 3) : getConditions(2, 4);
     }
 
@@ -23,7 +23,7 @@ public class ConditionsEmploymentNobility {
         return probability.nextInt(0, 1) % 2 == 0;
     }
 
-    private Tokens getConditions(int typesCount, int value) {
+    private TokensAmount getConditions(int typesCount, int value) {
         for (int i = 0; i < typesCount; i++) {
             setSingleToken(value);
         }
@@ -44,7 +44,7 @@ public class ConditionsEmploymentNobility {
         return probability.nextInt(0, 4);
     }
 
-    private Tokens getAssignedTokens() {
-        return new Tokens(tokenValue[0], tokenValue[1], tokenValue[2], tokenValue[3], tokenValue[4]);
+    private TokensAmount getAssignedTokens() {
+        return new TokensAmount(tokenValue[0], tokenValue[1], tokenValue[2], tokenValue[3], tokenValue[4]);
     }
 }

@@ -29,8 +29,8 @@ public class BuyCardTurn extends Turn {
 
     private void buyCard(Game game, BuyingResult result) {
         Player player = game.getCurrentPlayer();
-        game.setTokens(game.getTokens().add(result.getSpent()));
-        player.setTokens(result.getRemaining());
+        game.setTokensAmount(game.getTokensAmount().add(result.getSpent()));
+        player.setTokensAmount(result.getRemaining());
         card.setReserved(false);
         game.removeCard(card);
         player.addCard(card);

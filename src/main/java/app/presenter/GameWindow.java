@@ -9,7 +9,7 @@ import app.model.card.CardFactory;
 import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.util.Probability;
 import app.view.BufferWindow;
 import app.view.SubsequentCardDealer;
@@ -49,14 +49,14 @@ public class GameWindow implements Updatable {
         CardFactory cardFactory = new CardFactory();
         GameBuilder builder = new GameBuilder();
 
-        Tokens tokens = new Tokens(7, 5);
+        TokensAmount tokensAmount = new TokensAmount(7, 5);
         List<Player> players = new ArrayList<>();
         List<Card> cards = new ArrayList<>();
         List<Nobility> nobilities = new ArrayList<>();
 
         players.add(new Player());
 
-        Nobility nobility = new Nobility(new Tokens(1, 2, 3, 4, 0), 3);
+        Nobility nobility = new Nobility(new TokensAmount(1, 2, 3, 4, 0), 3);
         NobilityVO nobilityVO = new NobilityVO(nobility, 1000, 1500);
         nobilities.add(nobility);
 
@@ -64,7 +64,7 @@ public class GameWindow implements Updatable {
         buttonVO.addClickListener(viewObject -> buttonClicked());
 
         List<TokenVO> tokenVOs = new ArrayList<>();
-        for (Entry<TokenColor, Integer> entry : tokens.asMap().entrySet()) {
+        for (Entry<TokenColor, Integer> entry : tokensAmount.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
                 tokenVO.addClickListener(this::tableableClicked);
@@ -73,7 +73,7 @@ public class GameWindow implements Updatable {
         }
         shuffle(tokenVOs);
 
-        for (int i = 0; i < tokens.getVersatile(); i++) {
+        for (int i = 0; i < tokensAmount.getVersatile(); i++) {
             TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
             versatileVO.addClickListener(this::tableableClicked);
             tokenVOs.add(versatileVO);
@@ -108,7 +108,7 @@ public class GameWindow implements Updatable {
             cardVOs.add(vo);
         }
 
-        game = new Game(tokens, players, cards, nobilities);
+        game = new Game(tokensAmount, players, cards, nobilities);
 
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 

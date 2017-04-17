@@ -5,7 +5,7 @@ import app.model.Player;
 import app.model.card.Card;
 import app.model.card.CheapCard;
 import app.model.token.TokenColor;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -37,26 +37,26 @@ public class BuyCardTurnTest {
     @Test
     public void shouldLoseTokens() {
         // given
-        Tokens cardCost = new Tokens(1, 2, 3, 4, 5);
+        TokensAmount cardCost = new TokensAmount(1, 2, 3, 4, 5);
         Card card = new CheapCard(cardCost, 0, Green);
         Turn turn = new BuyCardTurn(card);
-        Player player = new Player(new Tokens(6, 0));
+        Player player = new Player(new TokensAmount(6, 0));
         Game game = builder().add(card).add(player).create();
 
         // when
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(5, 4, 3, 2, 1), player.getTokens());
-        assertEquals(cardCost, game.getTokens());
+        assertEquals(new TokensAmount(5, 4, 3, 2, 1), player.getTokensAmount());
+        assertEquals(cardCost, game.getTokensAmount());
     }
 
     @Test
     public void shouldLoseLessTokensIfHasMines() {
         // given
-        Card card = new CheapCard(new Tokens(0, 1, 2, 1, 3), 0, Green);
+        Card card = new CheapCard(new TokensAmount(0, 1, 2, 1, 3), 0, Green);
         Turn turn = new BuyCardTurn(card);
-        Player player = new Player(new Tokens(3, 0));
+        Player player = new Player(new TokensAmount(3, 0));
         Game game = builder().add(card).add(player).create();
 
         player.addCard(card(Purple));
@@ -67,15 +67,15 @@ public class BuyCardTurnTest {
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(3, 3, 2, 2, 1), player.getTokens());
-        assertEquals(new Tokens(0, 0, 1, 1, 2), game.getTokens());
+        assertEquals(new TokensAmount(3, 3, 2, 2, 1), player.getTokensAmount());
+        assertEquals(new TokensAmount(0, 0, 1, 1, 2), game.getTokensAmount());
     }
 
     @Test
     public void shouldBuyWithVersatile() {
         // given
-        Card card = new CheapCard(new Tokens(2, 1, 2, 1, 2), 0, Green);
-        Player player = new Player(new Tokens(0, 2, 1, 1, 1, 5));
+        Card card = new CheapCard(new TokensAmount(2, 1, 2, 1, 2), 0, Green);
+        Player player = new Player(new TokensAmount(0, 2, 1, 1, 1, 5));
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(player).create();
 
@@ -83,16 +83,16 @@ public class BuyCardTurnTest {
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(0, 1, 0, 0, 0, 1), player.getTokens());
-        assertEquals(new Tokens(0, 1, 1, 1, 1, 4), game.getTokens());
+        assertEquals(new TokensAmount(0, 1, 0, 0, 0, 1), player.getTokensAmount());
+        assertEquals(new TokensAmount(0, 1, 1, 1, 1, 4), game.getTokensAmount());
     }
 
 
     @Test
     public void shouldPreferTokensOverVersatile() {
         // given
-        Card card = new CheapCard(new Tokens(1, 0, 0, 0, 0), 0, Green);
-        Player player = new Player(new Tokens(1, 0, 0, 0, 0, 1));
+        Card card = new CheapCard(new TokensAmount(1, 0, 0, 0, 0), 0, Green);
+        Player player = new Player(new TokensAmount(1, 0, 0, 0, 0, 1));
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(player).create();
 
@@ -100,14 +100,14 @@ public class BuyCardTurnTest {
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(0, 1), player.getTokens());
+        assertEquals(new TokensAmount(0, 1), player.getTokensAmount());
     }
 
     @Test
     public void shouldBuyWithMinesAndVersatile() {
         // given
-        Card card = new CheapCard(new Tokens(3, 0, 0, 0, 0), 0, Green);
-        Player player = new Player(new Tokens(1, 0, 0, 0, 0, 1));
+        Card card = new CheapCard(new TokensAmount(3, 0, 0, 0, 0), 0, Green);
+        Player player = new Player(new TokensAmount(1, 0, 0, 0, 0, 1));
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(player).create();
 
@@ -117,15 +117,15 @@ public class BuyCardTurnTest {
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(), player.getTokens());
-        assertEquals(new Tokens(1, 0, 0, 0, 0, 1), game.getTokens());
+        assertEquals(new TokensAmount(), player.getTokensAmount());
+        assertEquals(new TokensAmount(1, 0, 0, 0, 0, 1), game.getTokensAmount());
     }
 
     @Test
     public void shouldNotLoseTokensOrVersatile() {
         // given
-        Card card = new CheapCard(new Tokens(2, 0, 0, 0, 0), 0, Green);
-        Player player = new Player(new Tokens(1, 0, 0, 0, 0, 1));
+        Card card = new CheapCard(new TokensAmount(2, 0, 0, 0, 0), 0, Green);
+        Player player = new Player(new TokensAmount(1, 0, 0, 0, 0, 1));
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(player).create();
 
@@ -136,16 +136,16 @@ public class BuyCardTurnTest {
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(1, 0, 0, 0, 0, 1), player.getTokens());
-        assertEquals(new Tokens(), game.getTokens());
+        assertEquals(new TokensAmount(1, 0, 0, 0, 0, 1), player.getTokensAmount());
+        assertEquals(new TokensAmount(), game.getTokensAmount());
     }
 
     @Test
     public void shouldBuyReservedCard() {
         // given
-        Card card = new CheapCard(new Tokens(1, 0), 0, Green);
+        Card card = new CheapCard(new TokensAmount(1, 0), 0, Green);
         Turn turn = new BuyCardTurn(card);
-        Player player = new Player(new Tokens(5));
+        Player player = new Player(new TokensAmount(5));
         Game game = builder().add(player).create();
 
         player.addCard(card);
@@ -156,8 +156,8 @@ public class BuyCardTurnTest {
 
         // then
         assertFalse(card.isReserved());
-        assertEquals(new Tokens(), player.getTokens());
-        assertEquals(new Tokens(0, 5), game.getTokens());
+        assertEquals(new TokensAmount(), player.getTokensAmount());
+        assertEquals(new TokensAmount(0, 5), game.getTokensAmount());
     }
 
     @Test
@@ -176,7 +176,7 @@ public class BuyCardTurnTest {
     @Test
     public void shouldThrowOnNotEnoughResources() {
         // given
-        Card card = new CheapCard(new Tokens(2, 0), 0, Green);
+        Card card = new CheapCard(new TokensAmount(2, 0), 0, Green);
         Turn turn = new BuyCardTurn(card);
         Game game = builder().add(card).add(new Player()).create();
 
@@ -188,6 +188,6 @@ public class BuyCardTurnTest {
     }
 
     private static Card card(TokenColor color) {
-        return new CheapCard(new Tokens(), 0, color);
+        return new CheapCard(new TokensAmount(), 0, color);
     }
 }

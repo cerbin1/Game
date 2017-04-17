@@ -1,13 +1,13 @@
 package app.model.card;
 
 import app.model.token.TokenColor;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 
-public abstract class Card extends Figure{
+public abstract class Card extends Figure {
     private boolean reserved = false;
     private final TokenColor color;
 
-    Card(Tokens cost, int points, TokenColor color) {
+    Card(TokensAmount cost, int points, TokenColor color) {
         super(cost, points);
         this.color = color;
     }

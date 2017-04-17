@@ -4,7 +4,7 @@ import app.model.Game;
 import app.model.Player;
 import app.model.card.Card;
 import app.model.card.CheapCard;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -53,14 +53,14 @@ public class ReservationTurnTest {
         Card card = new CheapCard();
         Turn turn = new ReservationTurn(card);
         Player player = new Player();
-        Game game = builder().add(player).add(card).set(new Tokens(1)).create();
+        Game game = builder().add(player).add(card).set(new TokensAmount(1)).create();
 
         // when
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(), game.getTokens());
-        assertEquals(new Tokens(1), player.getTokens());
+        assertEquals(new TokensAmount(), game.getTokensAmount());
+        assertEquals(new TokensAmount(1), player.getTokensAmount());
     }
 
     @Test
@@ -71,13 +71,13 @@ public class ReservationTurnTest {
         Player player = new Player();
         Game game = builder().add(player).add(card).create();
 
-        game.setTokens(new Tokens());
+        game.setTokensAmount(new TokensAmount());
 
         // when
         turn.invoke(game);
 
         // then
-        assertEquals(new Tokens(), player.getTokens());
+        assertEquals(new TokensAmount(), player.getTokensAmount());
     }
 
     @Test
