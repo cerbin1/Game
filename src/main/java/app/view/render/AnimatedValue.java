@@ -21,7 +21,7 @@ public class AnimatedValue {
         this(value, new LinearTransition());
     }
 
-    AnimatedValue(double value, Transition transition) {
+    private AnimatedValue(double value, Transition transition) {
         this.currentValue = value;
         this.destinationValue = value;
         this.transition = transition;
