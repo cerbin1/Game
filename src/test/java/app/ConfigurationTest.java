@@ -25,7 +25,7 @@ public class ConfigurationTest {
     @Test
     public void shouldGetDefaultConfiguration() {
         // given
-        File emptyFile = newFile("test.properties", "");
+        File emptyFile = newFile("");
         Configuration.use(new ConfigurationLoader(emptyFile));
 
         // when
@@ -43,7 +43,7 @@ public class ConfigurationTest {
     @Test
     public void shouldLoadConfigurationFromFile() {
         // when
-        File fullscreenFile = newFile("test.properties", "fullscreen=false");
+        File fullscreenFile = newFile("fullscreen=false");
         ConfigurationLoader configurationLoader = new ConfigurationLoader(fullscreenFile);
 
         // then
@@ -79,7 +79,7 @@ public class ConfigurationTest {
     public void shouldSetPropertiesFromArguments() {
         // given
         String[] args = {"debug=true", "resolution=1366x768", "fullscreen=true"};
-        File file = newFile("test.properties", "fullscreen=false");
+        File file = newFile("fullscreen=false");
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
@@ -97,7 +97,7 @@ public class ConfigurationTest {
     public void shouldNotSetPropertiesFromArgumentsAndLetDefaultValues() {
         // given
         String[] args = {" "};
-        File file = newFile("test.properties", "fullscreen=false");
+        File file = newFile("fullscreen=false");
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
@@ -114,7 +114,7 @@ public class ConfigurationTest {
     @Test
     public void shouldTakePartialValuesFileArgsDefault() {
         // given
-        File file = newFile("test.properties", "resolution=1050x750");
+        File file = newFile("resolution=1050x750");
         String[] args = {"debug=true"};
 
         // when
@@ -129,9 +129,9 @@ public class ConfigurationTest {
         assertEquals(true, Configuration.isFullscreen()); // from default
     }
 
-    private File newFile(String filename, String... content) {
+    private File newFile(String... content) {
         try {
-            File file = folder.newFile(filename);
+            File file = folder.newFile("test.properties");
             RuntimeFileWriter writer = new RuntimeFileWriter(file);
             asList(content).forEach(writer::write);
             writer.close();
@@ -144,7 +144,7 @@ public class ConfigurationTest {
     @Test
     public void shouldPrintConfiguration() {
         // given
-        File emptyFile = newFile("test.properties", "");
+        File emptyFile = newFile("");
         Configuration.use(new ConfigurationLoader(emptyFile));
 
         OutputStream stream = new ByteArrayOutputStream();
