@@ -45,4 +45,11 @@ public class TokenVO extends ViewObject implements Tableable {
             moveTo(x + 400, y, 0.5);
         }
     }
+
+    @Override
+    public String toString() {
+        return "TokenVO{" +
+                "tokenColor=" + token.getColor() +
+                '}';
+    }
 }
