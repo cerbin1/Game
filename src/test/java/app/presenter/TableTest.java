@@ -32,6 +32,10 @@ public class TableTest {
         return tokenVO(Green);
     }
 
+    private static TokenVO versatileVO() {
+        return tokenVO(null);
+    }
+
     private static TokenVO tokenVO(TokenColor color) {
         return new TokenVO(new Token(color), 0, 0);
     }
@@ -54,7 +58,7 @@ public class TableTest {
         Table table = new Table();
 
         // when
-        boolean canPut = table.put(tokenVO(null));
+        boolean canPut = table.put(versatileVO());
 
         // then
         assertTrue(canPut);
@@ -77,7 +81,7 @@ public class TableTest {
     public void shouldPutCardOnVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO(null));
+        table.put(versatileVO());
 
         // when
         boolean canPut = table.put(cardVO());
@@ -93,7 +97,7 @@ public class TableTest {
         table.put(cardVO());
 
         // when
-        boolean canPut = table.put(tokenVO(null));
+        boolean canPut = table.put(versatileVO());
 
         // then
         assertTrue(canPut);
@@ -129,10 +133,10 @@ public class TableTest {
     public void shouldNotPutSecondVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO(null));
+        table.put(versatileVO());
 
         // when
-        boolean canPut = table.put(tokenVO(null));
+        boolean canPut = table.put(versatileVO());
 
         // then
         assertFalse(canPut);
@@ -145,7 +149,7 @@ public class TableTest {
         table.put(tokenVO(Green));
 
         // when
-        boolean canPut = table.put(tokenVO(null));
+        boolean canPut = table.put(versatileVO());
 
         // then
         assertFalse(canPut);
@@ -155,7 +159,7 @@ public class TableTest {
     public void shouldNotPutTokenOnVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO(null));
+        table.put(versatileVO());
 
         // when
         boolean canPut = table.put(tokenVO(Green));
@@ -176,6 +180,34 @@ public class TableTest {
         // then
         assertTrue(canPut1);
         assertTrue(canPut2);
+    }
+
+    @Test
+    public void shouldNotPutThirdTokenSameColor() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO(Red));
+        table.put(tokenVO(Red));
+
+        // when
+        boolean canPut = table.put(tokenVO(Blue));
+
+        // then
+        assertFalse(canPut);
+    }
+
+    @Test
+    public void shouldNotPutThirdTokenAlreadyPut() {
+        // given
+        Table table = new Table();
+        table.put(tokenVO(Green));
+        table.put(tokenVO(Blue));
+
+        // when
+        boolean canPut = table.put(tokenVO(Green));
+
+        // then
+        assertFalse(canPut);
     }
 
     @Test
@@ -210,34 +242,6 @@ public class TableTest {
         assertTrue(canPut2);
         assertTrue(canPut3);
         assertFalse(canPut4);
-    }
-
-    @Test
-    public void shouldNotPutThirdTokenSameColor() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO(Green));
-        table.put(tokenVO(Green));
-
-        // when
-        boolean canPut = table.put(tokenVO(Blue));
-
-        // then
-        assertFalse(canPut);
-    }
-
-    @Test
-    public void shouldNotPutThirdTokenAlreadyPut() {
-        // given
-        Table table = new Table();
-        table.put(tokenVO(Green));
-        table.put(tokenVO(Blue));
-
-        // when
-        boolean canPut = table.put(tokenVO(Green));
-
-        // then
-        assertFalse(canPut);
     }
 
     @Test
@@ -281,7 +285,7 @@ public class TableTest {
         // given
         Table table = new Table();
         table.put(cardVO());
-        table.put(tokenVO(null));
+        table.put(versatileVO());
 
         // when
         boolean canGather = table.canGather();
@@ -294,7 +298,7 @@ public class TableTest {
     public void shouldNotGatherVersatile() {
         // given
         Table table = new Table();
-        table.put(tokenVO(null));
+        table.put(versatileVO());
 
         // when
         boolean canGather = table.canGather();
@@ -363,7 +367,7 @@ public class TableTest {
     public void shouldGather() {
         // given
         Table table = new Table();
-        Tableable cardVO = cardVO(), tokenVO = tokenVO(null);
+        Tableable cardVO = cardVO(), tokenVO = versatileVO();
 
         table.put(cardVO);
         table.put(tokenVO);
