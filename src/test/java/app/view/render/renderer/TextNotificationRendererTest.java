@@ -3,8 +3,7 @@ package app.view.render.renderer;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.verification.VerificationMode;
-
-import java.awt.*;
+import org.newdawn.slick.Graphics;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
@@ -19,7 +18,7 @@ public class TextNotificationRendererTest {
         TextNotificationRenderer renderer = new TextNotificationRenderer(20, 20);
         renderer.display("Test text");
 
-        Graphics2D graphics = mock(Graphics2D.class);
+        Graphics graphics = mock(Graphics.class);
 
         // when
         renderer.render(graphics);
@@ -36,7 +35,7 @@ public class TextNotificationRendererTest {
         renderer.display("Second text");
         renderer.display("Third text");
 
-        Graphics2D graphics = mock(Graphics2D.class);
+        Graphics graphics = mock(Graphics.class);
 
         // when
         renderer.render(graphics);
@@ -44,7 +43,7 @@ public class TextNotificationRendererTest {
         // then
         ArgumentCaptor<String> texts = forClass(String.class);
         verify(graphics, times(3))
-                .drawString(texts.capture(), eq(20), any(Integer.class));
+                .drawString(texts.capture(), eq(20.0f), any(Integer.class));
 
         assertEquals(asList("First text", "Second text", "Third text"), texts.getAllValues());
     }
@@ -57,17 +56,17 @@ public class TextNotificationRendererTest {
         renderer.display("Second text");
         renderer.display("Third text");
 
-        Graphics2D graphics = mock(Graphics2D.class);
+        Graphics graphics = mock(Graphics.class);
 
         // when
         renderer.render(graphics);
 
         // then
-        ArgumentCaptor<Integer> yValues = forClass(Integer.class);
+        ArgumentCaptor<Float> yValues = forClass(Float.class);
         verify(graphics, times(3))
-                .drawString(any(String.class), eq(20), yValues.capture());
+                .drawString(any(String.class), eq(20.0f), yValues.capture());
 
-        assertEquals(asList(20, 50, 80), yValues.getAllValues());
+        assertEquals(asList(20.0f, 50.0f, 80.0f), yValues.getAllValues());
     }
 
     @Test
@@ -79,7 +78,7 @@ public class TextNotificationRendererTest {
 
         renderer.update(3.5);
 
-        Graphics2D graphics = mock(Graphics2D.class);
+        Graphics graphics = mock(Graphics.class);
 
         // when
         renderer.render(graphics);
@@ -96,7 +95,7 @@ public class TextNotificationRendererTest {
         renderer.display("First text", 1.0);
         renderer.update(0.5);
 
-        Graphics2D graphics = mock(Graphics2D.class);
+        Graphics graphics = mock(Graphics.class);
 
         // when
         renderer.render(graphics);
