@@ -113,7 +113,7 @@ public class GameWindow implements Updatable {
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
 
         FpsRenderer fpsRenderer = new FpsRenderer(3130, 80);
-        TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer("Testing", 3, 2000, 1000);
+        TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer(3, 2000);
 
         updatables.addAll(cardVOs);
         updatables.addAll(tokenVOs);
