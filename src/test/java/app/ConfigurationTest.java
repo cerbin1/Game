@@ -10,6 +10,7 @@ import util.RuntimeFileWriter;
 
 import java.io.*;
 
+import static java.lang.System.lineSeparator;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
 
@@ -153,6 +154,6 @@ public class ConfigurationTest {
         Configuration.print(printStream);
 
         // then
-        assertEquals("{debug=false, resolution=1920x1080, fullscreen=true}", stream.toString());
+        assertEquals("{debug=false, resolution=1920x1080, fullscreen=true}" + lineSeparator(), stream.toString());
     }
 }
