@@ -15,6 +15,7 @@ class TokensCombination {
         List<TokenVO> tokenVOs = tableables.stream()
                 .filter(tableable -> tableable instanceof TokenVO)
                 .map(tableable -> (TokenVO) tableable)
+                .filter(tokenVO -> !tokenVO.isVersatile())
                 .collect(toList());
 
         if (tokenVOs.size() != tokensAmount) {
@@ -22,7 +23,6 @@ class TokensCombination {
         }
 
         Set<TokenColor> colors = tokenVOs.stream()
-                .filter(tokenVO -> !tokenVO.isVersatile())
                 .map(TokenVO::getColor)
                 .collect(toSet());
 
