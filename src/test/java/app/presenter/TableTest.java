@@ -4,6 +4,7 @@ import app.model.card.CheapCard;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.TokensAmount;
+import app.presenter.table.Table;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
