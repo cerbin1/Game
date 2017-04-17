@@ -1,7 +1,7 @@
 package app;
 
-import app.config.Configuration;
-import app.config.ConfigurationLoader;
+import app.model.config.Configuration;
+import app.model.config.ConfigurationLoader;
 import app.model.EngineExecutor;
 import app.model.EngineFactory;
 import app.presenter.GameWindow;

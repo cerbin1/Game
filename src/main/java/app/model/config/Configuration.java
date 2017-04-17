@@ -1,4 +1,4 @@
-package app.config;
+package app.model.config;
 
 import app.view.Resolution;
 
