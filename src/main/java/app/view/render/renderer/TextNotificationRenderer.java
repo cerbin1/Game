@@ -22,7 +22,7 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
         texts.entrySet()
                 .stream()
                 .filter(stringDoubleEntry -> stringDoubleEntry.getValue() >= timer)
-                .forEach(new TextDisplay(graphics));
+                .forEach(new MultipleTextNotificationDisplayer(graphics));
     }
 
     @Override
@@ -38,11 +38,11 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
         texts.put(text, timer + time);
     }
 
-    private static class TextDisplay implements Consumer<Map.Entry<String, Double>> {
+    private static class MultipleTextNotificationDisplayer implements Consumer<Map.Entry<String, Double>> {
         private final Graphics2D graphics;
         private int index;
 
-        TextDisplay(Graphics2D graphics) {
+        MultipleTextNotificationDisplayer(Graphics2D graphics) {
             this.graphics = graphics;
             index = 0;
         }
