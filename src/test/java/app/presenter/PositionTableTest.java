@@ -65,20 +65,6 @@ public class PositionTableTest {
     }
 
     @Test
-    public void shouldTakeTableable() {
-        // given
-        PositionTable table = positionTable();
-        CardVO cardVO = cardVO();
-        table.put(cardVO);
-
-        // when
-        boolean canTake = table.take(cardVO);
-
-        // then
-        assertTrue(canTake);
-    }
-
-    @Test
     public void shouldRemoveTableablePositionAfterTake() {
         // given
         PositionTable table = positionTable();

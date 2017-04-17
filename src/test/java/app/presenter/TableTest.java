@@ -34,7 +34,7 @@ public class TableTest {
     }
 
     private static TokenVO versatileVO() {
-        return tokenVO(null);
+        return new TokenVO(new Token(null), 0, 0);
     }
 
     private static TokenVO tokenVO(TokenColor color) {

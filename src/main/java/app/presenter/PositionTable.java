@@ -1,5 +1,6 @@
 package app.presenter;
 
+import app.presenter.table.Table;
 import app.view.render.Tableable;
 
 import java.awt.*;
@@ -27,14 +28,10 @@ public class PositionTable {
         return false;
     }
 
-    public boolean take(Tableable tableable) {
-        if (table.take(tableable)) {
-            Point previousPoint = previousPosition.get(tableable);
-            tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
-            previousPosition.remove(tableable);
-            return true;
-        }
-        return false;
+    public void take(Tableable tableable) {
+        Point previousPoint = previousPosition.get(tableable);
+        tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
+        previousPosition.remove(tableable);
     }
 
     public boolean canGather() {

@@ -1,4 +1,4 @@
 package app.presenter;
 
-class UnexpectedTakeException extends RuntimeException {
+public class UnexpectedTakeException extends RuntimeException {
 }
