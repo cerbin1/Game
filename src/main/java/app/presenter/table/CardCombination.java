@@ -9,17 +9,19 @@ public class CardCombination implements Combination {
 
     @Override
     public boolean applies(List<Tableable> tableables) {
-        if (tableables.size() > 1) {
-            return false;
+        if (tableables.isEmpty()) {
+            return true;
         }
-        return tableables.get(0) instanceof CardVO;
+
+        return fulfills(tableables);
     }
 
     @Override
     public boolean fulfills(List<Tableable> tableables) {
-        if (tableables.size() != 1) {
-            return false;
+        if (tableables.size() == 1) {
+            return tableables.get(0) instanceof CardVO;
         }
-        return tableables.get(0) instanceof CardVO;
+
+        return false;
     }
 }

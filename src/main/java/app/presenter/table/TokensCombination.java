@@ -17,11 +17,12 @@ class TokensCombination {
                 .map(tableable -> (TokenVO) tableable)
                 .collect(toList());
 
-        if (tableables.size() != tokensAmount) {
+        if (tokenVOs.size() != tokensAmount) {
             return false;
         }
 
         Set<TokenColor> colors = tokenVOs.stream()
+                .filter(tokenVO -> !tokenVO.isVersatile())
                 .map(TokenVO::getColor)
                 .collect(toSet());
 

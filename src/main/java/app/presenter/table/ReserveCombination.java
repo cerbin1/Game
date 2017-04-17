@@ -6,13 +6,24 @@ import app.view.render.vo.TokenVO;
 
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 public class ReserveCombination implements Combination {
     @Override
     public boolean applies(List<Tableable> tableables) {
-        if (tableables.size() > 2) {
-            return false;
+        if (tableables.isEmpty()) {
+            return true;
         }
-        return tableables.stream().allMatch(this::validItem);
+
+        if (tableables.size() == 1) {
+            return validItem(tableables.get(0));
+        }
+
+        if (tableables.size() == 2) {
+            return fulfills(tableables);
+        }
+
+        return false;
     }
 
     @Override
@@ -20,7 +31,16 @@ public class ReserveCombination implements Combination {
         if (tableables.size() != 2) {
             return false;
         }
-        return tableables.stream().allMatch(this::validItem);
+
+        List<Tableable> cardsOrVersatiles = tableables.stream()
+                .filter(this::validItem)
+                .collect(toList());
+
+        if (cardsOrVersatiles.size() == 2) {
+            return cardsOrVersatiles.get(0).getClass() != cardsOrVersatiles.get(1).getClass();
+        }
+
+        return false;
     }
 
     private boolean validItem(Tableable tableable) {
