@@ -63,8 +63,8 @@ public class TextNotificationRendererTest {
 
         // then
         ArgumentCaptor<Integer> yValues = forClass(Integer.class);
-        verify(graphics, times(2))
-                .drawString(any(String.class), any(Integer.class), yValues.capture());
+        verify(graphics, times(3))
+                .drawString(any(String.class), 20, yValues.capture());
 
         assertEquals(asList(20, 50, 80), yValues.getAllValues());
     }
@@ -84,7 +84,7 @@ public class TextNotificationRendererTest {
         renderer.render(graphics);
 
         // then
-        verify(graphics).drawString("Second text", 20, 20);
+        verify(graphics, times(1)).drawString("Second text", 20, 20);
     }
 
     @Test
@@ -101,6 +101,6 @@ public class TextNotificationRendererTest {
         renderer.render(graphics);
 
         // then
-        verify(graphics).drawString("First text", 20, 20);
+        verify(graphics, times(1)).drawString("First text", 20, 20);
     }
 }
