@@ -19,7 +19,10 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
 
     @Override
     protected void render(Graphics2D graphics) {
-        texts.entrySet()
+        texts
+
+
+                .entrySet()
                 .stream()
                 .filter(stringDoubleEntry -> stringDoubleEntry.getValue() >= timer)
                 .forEach(new MultipleTextNotificationDisplayer(graphics));
