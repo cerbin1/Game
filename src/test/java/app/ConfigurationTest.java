@@ -13,6 +13,8 @@ import java.io.IOException;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 public class ConfigurationTest {
     @Rule
@@ -25,7 +27,7 @@ public class ConfigurationTest {
     @Test
     public void shouldGetDefaultConfiguration() {
         // given
-        File emptyFile = new File(folder.getRoot(), "test.properties");
+        File emptyFile = newFile("test.properties", "");
         Configuration.use(new ConfigurationLoader(emptyFile));
 
         // when
@@ -53,6 +55,26 @@ public class ConfigurationTest {
         assertEquals(1920, Configuration.getResolution().getWidth()); // from default
         assertEquals(1080, Configuration.getResolution().getHeight()); // from default
         assertEquals(false, Configuration.isFullscreen()); // from file
+    }
+
+    @Test
+    public void shouldCreateFileWithDefaultConfiguration() {
+        // given
+        File unexistingFile = new File(folder.getRoot(), "test.properties");
+        assertFalse(unexistingFile.exists());
+        Configuration.use(new ConfigurationLoader(unexistingFile));
+
+        // when
+        boolean debug = Configuration.isDebug();
+        Resolution resolution = Configuration.getResolution();
+        boolean fullscreen = Configuration.isFullscreen();
+
+        // then
+        assertTrue(unexistingFile.exists());
+        assertEquals(false, debug); // from default
+        assertEquals(1920, resolution.getWidth()); // from default
+        assertEquals(1080, resolution.getHeight()); // from default
+        assertEquals(true, fullscreen); // from default
     }
 
     @Test
@@ -94,8 +116,8 @@ public class ConfigurationTest {
     @Test
     public void shouldTakePartialValuesFileArgsDefault() {
         // given
-        String[] args = {"debug=true"};
         File file = newFile("test.properties", "resolution=1050x750");
+        String[] args = {"debug=true"};
 
         // when
         ConfigurationLoader configurationLoader = new ConfigurationLoader(file, args);
