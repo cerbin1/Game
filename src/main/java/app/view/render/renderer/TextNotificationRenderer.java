@@ -18,7 +18,7 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
     }
 
     @Override
-    protected void render(org.newdawn.slick.Graphics graphics) {
+    protected void render(Graphics graphics) {
         texts.entrySet()
                 .stream()
                 .filter(stringDoubleEntry -> stringDoubleEntry.getValue() >= timer)
