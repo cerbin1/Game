@@ -4,22 +4,25 @@ import app.model.Updatable;
 import app.view.render.vo.ViewObject;
 
 import java.awt.*;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 public class TextNotificationRenderer extends Renderer implements Updatable {
-    private final double seconds;
+    private Map<String, Double> texts = new LinkedHashMap<>();
     private double timer = 0;
 
     public TextNotificationRenderer(int x, int y) {
         super(new ViewObject(x, y, 300, 50) {
         });
-        this.seconds = 3;
     }
 
     @Override
     protected void render(Graphics2D graphics) {
-        if (timer < seconds) {
-            graphics.drawString("", 30, 30);
-        }
+        texts.forEach((text, time) -> {
+            if (timer < time) {
+                graphics.drawString(text, 20, 20);
+            }
+        });
     }
 
     @Override
@@ -27,11 +30,11 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
         timer += secondsPassed;
     }
 
-    public void display(String string) {
-
+    public void display(String text) {
+        display(text, 3.0);
     }
 
-    public void display(String string, double time) {
-
+    public void display(String text, double seconds) {
+        texts.put(text, seconds);
     }
 }
