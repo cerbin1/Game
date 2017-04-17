@@ -8,10 +8,7 @@ import org.junit.Test;
 import org.junit.rules.TemporaryFolder;
 import util.RuntimeFileWriter;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintStream;
+import java.io.*;
 
 import static java.util.Arrays.asList;
 import static org.junit.Assert.*;
@@ -144,22 +141,18 @@ public class ConfigurationTest {
     }
 
     @Test
-    public void shouldPrintProperties() {
+    public void shouldPrintConfiguration() {
         // given
         File emptyFile = newFile("test.properties", "");
         Configuration.use(new ConfigurationLoader(emptyFile));
 
-        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        PrintStream stream = new PrintStream(outputStream);
+        OutputStream stream = new ByteArrayOutputStream();
+        PrintStream printStream = new PrintStream(stream);
 
         // when
-        Configuration.print(stream);
+        Configuration.print(printStream);
 
         // then
-        assertEquals(
-                "fullscreen = true\n" +
-                        "resolution = 1920x1080\n" +
-                        "debug = false\n",
-                outputStream.toString());
+        assertEquals("{debug=false, resolution=1920x1080, fullscreen=true}", stream.toString());
     }
 }

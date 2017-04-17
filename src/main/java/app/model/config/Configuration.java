@@ -24,8 +24,6 @@ public class Configuration {
     }
 
     public static void print(PrintStream stream) {
-        properties.getProperties().forEach((key, value) -> {
-            stream.printf("%s = %s\n", key, value);
-        });
+        stream.print(properties.getProperties().toString());
     }
 }
