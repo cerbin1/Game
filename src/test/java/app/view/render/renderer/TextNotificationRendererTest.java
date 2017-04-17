@@ -43,7 +43,7 @@ public class TextNotificationRendererTest {
         // then
         ArgumentCaptor<String> texts = forClass(String.class);
         verify(graphics, times(3))
-                .drawString(texts.capture(), 20, any(Integer.class));
+                .drawString(texts.capture(), eq(20), any(Integer.class));
 
         assertEquals(asList("First text", "Second text", "Third text"), texts.getAllValues());
     }
@@ -64,7 +64,7 @@ public class TextNotificationRendererTest {
         // then
         ArgumentCaptor<Integer> yValues = forClass(Integer.class);
         verify(graphics, times(3))
-                .drawString(any(String.class), 20, yValues.capture());
+                .drawString(any(String.class), eq(20), yValues.capture());
 
         assertEquals(asList(20, 50, 80), yValues.getAllValues());
     }
