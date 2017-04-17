@@ -11,6 +11,7 @@ import java.io.File;
 public class Application {
     public static void main(String... args) {
         Configuration.use(new ConfigurationLoader(new File("config.properties"), args));
+        Configuration.print(System.out);
 
         GameWindow window = new GameWindow();
         window.show();

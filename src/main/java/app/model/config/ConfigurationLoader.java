@@ -35,7 +35,7 @@ public class ConfigurationLoader {
         this.applyConfigurationFromArgs(args);
     }
 
-    private Properties getProperties() {
+    Properties getProperties() {
         if (configurationFile.exists()) {
             return loadExistingConfiguration();
         } else {

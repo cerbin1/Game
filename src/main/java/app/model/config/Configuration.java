@@ -2,6 +2,8 @@ package app.model.config;
 
 import app.view.Resolution;
 
+import java.io.PrintStream;
+
 public class Configuration {
     private static ConfigurationLoader properties;
 
@@ -19,5 +21,11 @@ public class Configuration {
 
     public static boolean isFullscreen() {
         return Boolean.parseBoolean(properties.getProperty("fullscreen"));
+    }
+
+    public static void print(PrintStream stream) {
+        properties.getProperties().forEach((key, value) -> {
+            stream.printf("%s = %s\n", key, value);
+        });
     }
 }
