@@ -34,7 +34,7 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
         display(text, 3.0);
     }
 
-    public void display(String text, double seconds) {
-        texts.put(text, seconds);
+    public void display(String text, double time) {
+        texts.put(text, timer + time);
     }
 }
