@@ -24,6 +24,6 @@ public class Configuration {
     }
 
     public static void print(PrintStream stream) {
-        stream.print(properties.getProperties().toString());
+        stream.println(properties.getProperties().toString());
     }
 }
