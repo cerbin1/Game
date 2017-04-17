@@ -1,6 +1,6 @@
 package app.model.card.nobility;
 
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.util.Probability;
 import org.junit.Test;
 
@@ -22,7 +22,7 @@ public class NobilityFactoryTest {
         Nobility nobility = factory.create();
 
         // then
-        assertEquals(new Tokens(0, 3, 3, 3, 0), nobility.getCost());
+        assertEquals(new TokensAmount(0, 3, 3, 3, 0), nobility.getCost());
         assertEquals(4, nobility.getPoints());
 
         verify(probability, times(1)).nextInt(0, 1);

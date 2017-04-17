@@ -3,7 +3,7 @@ package app.model;
 import app.model.card.Card;
 import app.model.card.CheapCard;
 import app.model.card.nobility.Nobility;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import org.junit.Test;
 
 import static java.util.Arrays.asList;
@@ -14,13 +14,13 @@ public class GameBuilderTest {
     public void shouldSetTokens() {
         // given
         GameBuilder builder = new GameBuilder();
-        Tokens tokens = new Tokens();
+        TokensAmount tokensAmount = new TokensAmount();
 
         // when
-        Game game = builder.set(tokens).add(new Player()).create();
+        Game game = builder.set(tokensAmount).add(new Player()).create();
 
         // then
-        assertEquals(game.getTokens(), tokens);
+        assertEquals(game.getTokensAmount(), tokensAmount);
     }
 
     @Test
@@ -54,8 +54,8 @@ public class GameBuilderTest {
     public void shouldAddNobility() {
         // given
         GameBuilder builder = new GameBuilder();
-        Nobility first = new Nobility(new Tokens(), 4),
-                second = new Nobility(new Tokens(), 3);
+        Nobility first = new Nobility(new TokensAmount(), 4),
+                second = new Nobility(new TokensAmount(), 3);
 
         // when
         Game game = builder.add(first).add(second).add(new Player()).create();

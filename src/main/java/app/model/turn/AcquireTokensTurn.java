@@ -1,10 +1,10 @@
 package app.model.turn;
 
 import app.model.Game;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 
 public class AcquireTokensTurn extends Turn {
-    public AcquireTokensTurn(Tokens tokens) {
+    public AcquireTokensTurn(TokensAmount tokensAmount) {
 
     }
 

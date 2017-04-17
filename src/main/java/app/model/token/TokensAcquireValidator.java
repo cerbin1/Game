@@ -3,22 +3,22 @@ package app.model.token;
 import java.util.function.BiConsumer;
 
 class TokensAcquireValidator {
-    private final Tokens tokens;
+    private final TokensAmount amount;
 
-    TokensAcquireValidator(Tokens tokens) {
-        this.tokens = tokens;
+    TokensAcquireValidator(TokensAmount amount) {
+        this.amount = amount;
     }
 
-    boolean canAcquire(Tokens requested) {
+    boolean canAcquire(TokensAmount requested) {
         if (requested.getVersatile() != 0) {
             return false;
         }
 
         for (TokenColor color : TokenColor.values()) {
-            if (requested.get(color) > tokens.get(color)) {
+            if (requested.get(color) > amount.get(color)) {
                 return false;
             }
-            if (requested.get(color) == 2 && tokens.get(color) < 3) {
+            if (requested.get(color) == 2 && amount.get(color) < 3) {
                 return false;
             }
         }
@@ -26,17 +26,17 @@ class TokensAcquireValidator {
         return isValidationPassed(requested) && !isTooManyTokensChose(requested);
     }
 
-    private boolean isValidationPassed(Tokens requested) {
+    private boolean isValidationPassed(TokensAmount requested) {
         return validate(requested, 1, 3) || validate(requested, 2, 2);
     }
 
-    private boolean isTooManyTokensChose(Tokens requested) {
+    private boolean isTooManyTokensChose(TokensAmount requested) {
         return requested.asMap().entrySet().stream().anyMatch(token -> token.getValue() > 2);
     }
 
-    private boolean validate(Tokens requestedTokens, int value, int amount) {
+    private boolean validate(TokensAmount requestedTokensAmount, int value, int amount) {
         RequestedTokensValidator validator = new RequestedTokensValidator(value, amount);
-        requestedTokens.asMap().forEach(validator);
+        requestedTokensAmount.asMap().forEach(validator);
         return validator.isValid();
     }
 

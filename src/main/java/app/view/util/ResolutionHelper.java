@@ -5,7 +5,7 @@ import java.awt.geom.AffineTransform;
 
 import static java.awt.Toolkit.getDefaultToolkit;
 
-public class Resolution {
+public class ResolutionHelper {
     private final static Dimension screenSize = getDefaultToolkit().getScreenSize();
 
     public static void scaleFullHdToResolution(AffineTransform transform) {

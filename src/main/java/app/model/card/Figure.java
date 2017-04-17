@@ -1,12 +1,12 @@
 package app.model.card;
 
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 
 public abstract class Figure {
-    private final Tokens cost;
+    private final TokensAmount cost;
     private final int points;
 
-    public Figure(Tokens cost, int points) {
+    public Figure(TokensAmount cost, int points) {
         this.cost = cost;
         this.points = points;
     }
@@ -15,7 +15,7 @@ public abstract class Figure {
         return points;
     }
 
-    public Tokens getCost() {
+    public TokensAmount getCost() {
         return cost;
     }
 }

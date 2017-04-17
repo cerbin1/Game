@@ -1,4 +1,4 @@
 package app.presenter;
 
-class UnexpectedGatherException extends RuntimeException {
+public class UnexpectedGatherException extends RuntimeException {
 }

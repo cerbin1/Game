@@ -53,12 +53,7 @@ abstract class FigureRenderer extends Renderer {
     }
 
     private void drawOutline(Graphics graphics) {
-//        graphics.setStroke(new BasicStroke(2));
-//        graphics.setColor(black);
-//        graphics.draw(new Rectangle(
-//                0f, 0f,
-//                figureImage.getWidth(), figureImage.getHeight()
-//        ));
+
     }
 
     private class CostDrawer implements BiConsumer<TokenColor, Integer> {

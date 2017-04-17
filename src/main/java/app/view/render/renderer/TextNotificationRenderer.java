@@ -4,34 +4,53 @@ import app.model.Updatable;
 import app.view.render.vo.ViewObject;
 import org.newdawn.slick.Graphics;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Consumer;
+
 public class TextNotificationRenderer extends Renderer implements Updatable {
-    private final String text;
-    private final double seconds;
+    private Map<String, Double> texts = new LinkedHashMap<>();
     private double timer = 0;
 
-    public TextNotificationRenderer(String text, int x, int y) {
+    public TextNotificationRenderer(int x, int y) {
         super(new ViewObject(x, y, 300, 50) {
         });
-        this.text = text;
-        this.seconds = 3;
-    }
-
-    public TextNotificationRenderer(String text, int seconds, int x, int y) {
-        super(new ViewObject(x, y, 300, 50) {
-        });
-        this.text = text;
-        this.seconds = seconds;
     }
 
     @Override
-    protected void render(Graphics graphics) {
-        if (timer < seconds) {
-            graphics.drawString(text, 30, 30);
-        }
+    protected void render(org.newdawn.slick.Graphics graphics) {
+        texts.entrySet()
+                .stream()
+                .filter(stringDoubleEntry -> stringDoubleEntry.getValue() >= timer)
+                .forEach(new MultipleTextNotificationDisplayer(graphics));
     }
 
     @Override
     public void update(double secondsPassed) {
         timer += secondsPassed;
+    }
+
+    void display(String text) {
+        display(text, 3.0);
+    }
+
+    void display(String text, double time) {
+        texts.put(text, timer + time);
+    }
+
+    private static class MultipleTextNotificationDisplayer implements Consumer<Map.Entry<String, Double>> {
+        private final Graphics graphics;
+        private int index;
+
+        MultipleTextNotificationDisplayer(Graphics graphics) {
+            this.graphics = graphics;
+            index = 0;
+        }
+
+        @Override
+        public void accept(Map.Entry<String, Double> text) {
+            graphics.drawString(text.getKey(), 20, 20 + index * 30);
+            index++;
+        }
     }
 }

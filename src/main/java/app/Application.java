@@ -1,5 +1,7 @@
 package app;
 
+import app.model.config.Configuration;
+import app.model.config.ConfigurationLoader;
 import app.presenter.GameWindow;
 import app.view.ImageRepository;
 import org.lwjgl.input.Mouse;
@@ -10,8 +12,13 @@ import java.util.logging.Logger;
 
 import static org.newdawn.slick.Input.disableControllers;
 
+import java.io.File;
+
 public class Application {
-    public static void main(String[] args) {
+    public static void main(String... args) {
+        Configuration.use(new ConfigurationLoader(new File("config.properties"), args));
+        Configuration.print(System.out);
+
         new Application().start();
     }
 

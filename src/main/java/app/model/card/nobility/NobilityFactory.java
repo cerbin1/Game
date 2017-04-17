@@ -1,6 +1,6 @@
 package app.model.card.nobility;
 
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.util.Probability;
 
 public class NobilityFactory {
@@ -18,7 +18,7 @@ public class NobilityFactory {
         return new Nobility(getRandomConditions(), getRandomPoints());
     }
 
-    private Tokens getRandomConditions() {
+    private TokensAmount getRandomConditions() {
         return new ConditionsEmploymentNobility(probability).getRandomConditions();
     }
 

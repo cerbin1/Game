@@ -2,39 +2,39 @@ package app.model;
 
 import app.model.card.Card;
 import app.model.card.nobility.Nobility;
-import app.model.token.Tokens;
+import app.model.token.TokensAmount;
 import app.model.turn.Turn;
 
 import java.util.List;
 
 public class Game {
-    private Tokens tokens;
+    private TokensAmount tokensAmount;
     private final List<Card> cards;
     private final List<Player> players;
     private final List<Nobility> nobilities;
     private int currentPlayer = 0;
 
-    public Game(Tokens tokens, List<Player> players, List<Card> cards, List<Nobility> nobilities) {
-        this.tokens = tokens;
+    public Game(TokensAmount tokensAmount, List<Player> players, List<Card> cards, List<Nobility> nobilities) {
+        this.tokensAmount = tokensAmount;
         this.players = players;
         this.cards = cards;
         this.nobilities = nobilities;
     }
 
-    public Tokens getTokens() {
-        return tokens;
+    public TokensAmount getTokensAmount() {
+        return tokensAmount;
     }
 
     public int getVersatile() {
-        return getTokens().getVersatile();
+        return tokensAmount.getVersatile();
     }
 
-    public void setTokens(Tokens tokens) {
-        this.tokens = tokens;
+    public void setTokensAmount(TokensAmount tokensAmount) {
+        this.tokensAmount = tokensAmount;
     }
 
     public void decVersatile() {
-        tokens = tokens.subtract(new Tokens(0, 1));
+        tokensAmount = tokensAmount.subtract(new TokensAmount(0, 1));
     }
 
     public List<Card> getAvailableCards() {

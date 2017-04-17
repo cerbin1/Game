@@ -9,21 +9,21 @@ import static java.lang.Math.abs;
 import static java.lang.Math.min;
 
 public class Resources {
-    private final Tokens stationary, temporary;
+    private final TokensAmount stationary, temporary;
 
-    public Resources(Tokens stationary, Tokens temporary) {
+    public Resources(TokensAmount stationary, TokensAmount temporary) {
         this.stationary = stationary.asCost();
         this.temporary = temporary;
     }
 
-    public BuyingResult buy(Tokens cost) {
-        Tokens costAfterMines = cost.subtract(stationary);
-        Tokens paidCost = temporary.subtract(Tokens.Operations.removeDebts(costAfterMines));
-        Tokens remaining = compensateInsufficientTokens(paidCost);
+    public BuyingResult buy(TokensAmount cost) {
+        TokensAmount costAfterMines = cost.subtract(stationary);
+        TokensAmount paidCost = temporary.subtract(TokensAmount.Operations.removeDebts(costAfterMines));
+        TokensAmount remaining = compensateInsufficientTokens(paidCost);
         return new BuyingResult(remaining, temporary.subtract(remaining));
     }
 
-    private Tokens compensateInsufficientTokens(Tokens paidCost) {
+    private TokensAmount compensateInsufficientTokens(TokensAmount paidCost) {
         InsufficientTokens compensator = new InsufficientTokens(temporary.getVersatile());
         paidCost.asMap().entrySet().forEach(compensator);
         return compensator.getTokensLeft();
@@ -66,8 +66,8 @@ public class Resources {
             return 0;
         }
 
-        Tokens getTokensLeft() {
-            return new Tokens(change, versatile);
+        TokensAmount getTokensLeft() {
+            return new TokensAmount(change, versatile);
         }
     }
 }

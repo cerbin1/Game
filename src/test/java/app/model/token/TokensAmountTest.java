@@ -8,19 +8,19 @@ import java.util.Map;
 import static app.model.token.TokenColor.*;
 import static org.junit.Assert.assertEquals;
 
-public class TokensTest {
+public class TokensAmountTest {
     @Test
     public void shouldGetTokens() {
         // given
-        Tokens tokens = new Tokens(3, 2);
+        TokensAmount tokensAmount = new TokensAmount(3, 2);
 
         // when
-        int green = tokens.get(Green);
-        int purple = tokens.get(Purple);
-        int blue = tokens.get(Blue);
-        int black = tokens.get(Black);
-        int red = tokens.get(Red);
-        int versatile = tokens.getVersatile();
+        int green = tokensAmount.get(Green);
+        int purple = tokensAmount.get(Purple);
+        int blue = tokensAmount.get(Blue);
+        int black = tokensAmount.get(Black);
+        int red = tokensAmount.get(Red);
+        int versatile = tokensAmount.getVersatile();
 
         // then
         assertEquals(3, green);
@@ -34,14 +34,14 @@ public class TokensTest {
     @Test
     public void shouldGetSeparateTokens() {
         // given
-        Tokens tokens = new Tokens(0, 4, 2, 12, 4);
+        TokensAmount tokensAmount = new TokensAmount(0, 4, 2, 12, 4);
 
         // when
-        int green = tokens.get(Green);
-        int purple = tokens.get(Purple);
-        int blue = tokens.get(Blue);
-        int black = tokens.get(Black);
-        int red = tokens.get(Red);
+        int green = tokensAmount.get(Green);
+        int purple = tokensAmount.get(Purple);
+        int blue = tokensAmount.get(Blue);
+        int black = tokensAmount.get(Black);
+        int red = tokensAmount.get(Red);
 
         // then
         assertEquals(0, green);
@@ -54,10 +54,10 @@ public class TokensTest {
     @Test
     public void shouldGetTokensAsMap() {
         // given
-        Tokens tokens = new Tokens(3, 2);
+        TokensAmount tokensAmount = new TokensAmount(3, 2);
 
         // when
-        Map<TokenColor, Integer> map = tokens.asMap();
+        Map<TokenColor, Integer> map = tokensAmount.asMap();
 
         // then
         assertEquals(new EnumMap<TokenColor, Integer>(TokenColor.class) {{
@@ -72,10 +72,10 @@ public class TokensTest {
     @Test
     public void shouldCopyTokens() {
         // given
-        Tokens original = new Tokens(1, 2, 3, 4, 5);
+        TokensAmount original = new TokensAmount(1, 2, 3, 4, 5);
 
         // when
-        Tokens copy = new Tokens(original);
+        TokensAmount copy = new TokensAmount(original);
 
         // then
         assertEquals(copy, original);
@@ -84,39 +84,39 @@ public class TokensTest {
     @Test
     public void shouldAddTokens() {
         // given
-        Tokens first = new Tokens(1, 2, 3, 4, 5, 6);
-        Tokens second = new Tokens(0, 4, 4, 1, 5, 6);
+        TokensAmount first = new TokensAmount(1, 2, 3, 4, 5, 6);
+        TokensAmount second = new TokensAmount(0, 4, 4, 1, 5, 6);
 
         // when
-        Tokens result = first.add(second);
+        TokensAmount result = first.add(second);
 
         // then
-        assertEquals(new Tokens(1, 6, 7, 5, 10, 12), result);
+        assertEquals(new TokensAmount(1, 6, 7, 5, 10, 12), result);
     }
 
     @Test
     public void shouldSubtractTokens() {
         // given
-        Tokens first = new Tokens(1, 2, 3, 4, 5, 6);
-        Tokens second = new Tokens(0, 4, 4, 1, 5, 5);
+        TokensAmount first = new TokensAmount(1, 2, 3, 4, 5, 6);
+        TokensAmount second = new TokensAmount(0, 4, 4, 1, 5, 5);
 
         // when
-        Tokens result = first.subtract(second);
+        TokensAmount result = first.subtract(second);
 
         // then
-        assertEquals(new Tokens(1, -2, -1, 3, 0, 1), result);
+        assertEquals(new TokensAmount(1, -2, -1, 3, 0, 1), result);
     }
 
     @Test
     public void shouldReturnAsCost() {
         // given
-        Tokens tokens = new Tokens(1, 2, 3, 4, 5, 6);
+        TokensAmount tokensAmount = new TokensAmount(1, 2, 3, 4, 5, 6);
 
         // when
-        Tokens cost = tokens.asCost();
+        TokensAmount cost = tokensAmount.asCost();
 
         // then
-        assertEquals(new Tokens(1, 2, 3, 4, 5, 0), cost);
+        assertEquals(new TokensAmount(1, 2, 3, 4, 5, 0), cost);
     }
 
     @Test
@@ -130,21 +130,21 @@ public class TokensTest {
         map.put(Red, 2);
 
         // when
-        Tokens tokens = new Tokens(map, 2);
+        TokensAmount tokensAmount = new TokensAmount(map, 2);
 
         // then
-        assertEquals(new Tokens(2, 2, 2, 2, 2, 2), tokens);
+        assertEquals(new TokensAmount(2, 2, 2, 2, 2, 2), tokensAmount);
     }
 
     @Test
     public void shouldRemoveDebts() {
         // given
-        Tokens debts = new Tokens(1, -1, 0, 4, -5, -3);
+        TokensAmount debts = new TokensAmount(1, -1, 0, 4, -5, -3);
 
         // when
-        Tokens tokens = Tokens.Operations.removeDebts(debts);
+        TokensAmount tokensAmount = TokensAmount.Operations.removeDebts(debts);
 
         // then
-        assertEquals(new Tokens(1, 0, 0, 4, 0, -3), tokens);
+        assertEquals(new TokensAmount(1, 0, 0, 4, 0, -3), tokensAmount);
     }
 }
