@@ -2,6 +2,7 @@ package app.view.render.renderer;
 
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
+import org.mockito.verification.VerificationMode;
 
 import java.awt.*;
 
@@ -24,7 +25,7 @@ public class TextNotificationRendererTest {
         renderer.render(graphics);
 
         // then
-        verify(graphics, times(1)).drawString("Test text", 20, 20);
+        verify(graphics, once()).drawString("Test text", 20, 20);
     }
 
     @Test
@@ -84,7 +85,7 @@ public class TextNotificationRendererTest {
         renderer.render(graphics);
 
         // then
-        verify(graphics, times(1)).drawString("Second text", 20, 20);
+        verify(graphics, once()).drawString("Second text", 20, 20);
     }
 
     @Test
@@ -101,6 +102,10 @@ public class TextNotificationRendererTest {
         renderer.render(graphics);
 
         // then
-        verify(graphics, times(1)).drawString("First text", 20, 20);
+        verify(graphics, once()).drawString("First text", 20, 20);
+    }
+
+    private static VerificationMode once() {
+        return times(1);
     }
 }
