@@ -27,7 +27,7 @@ public class Application {
         disableControllers();
 
         try {
-            LwjglWindow game = new LwjglWindow("Splendor");
+            LwjglWindow game = new LwjglWindow("The Realm of Mines");
 
             AppGameContainer container = new AppGameContainer(game);
             container.setDisplayMode(1920, 1080, true);
