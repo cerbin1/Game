@@ -32,12 +32,12 @@ public class ReserveCombination implements Combination {
             return false;
         }
 
-        List<Tableable> cardsOrVersatiles = tableables.stream()
+        List<Tableable> cardsOrVersatile = tableables.stream()
                 .filter(this::validItem)
                 .collect(toList());
 
-        if (cardsOrVersatiles.size() == 2) {
-            return cardsOrVersatiles.get(0).getClass() != cardsOrVersatiles.get(1).getClass();
+        if (cardsOrVersatile.size() == 2) {
+            return cardsOrVersatile.get(0).getClass() != cardsOrVersatile.get(1).getClass();
         }
 
         return false;
