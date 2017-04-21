@@ -1,6 +1,4 @@
 .idea
 .gradle/
 build/
-out/
-Splendor.iml
 config.properties
