@@ -162,16 +162,4 @@ public class GameWindow implements Updatable {
     private void clickedRenderer(Renderer renderer) {
         renderer.getViewObject().triggerClicked();
     }
-
-    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        renderers.forEach(renderer -> renderer.getViewObject().setHover(false));
-        Optional<Renderer> optional = getRendererOnPoint(new Point(newx, newy));
-
-        if (optional.isPresent()) {
-            optional.get().getViewObject().setHover(true);
-//            window.setHandCursor();
-        } else {
-//            window.setDefaultCursor();
-        }
-    }
 }
