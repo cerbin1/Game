@@ -1,6 +1,5 @@
 package app.presenter.table;
 
-import app.model.turn.Factory;
 import app.model.turn.Turn;
 import app.presenter.UnexpectedGatherException;
 import app.presenter.UnexpectedTakeException;
@@ -56,14 +55,11 @@ public class Table {
         List<Tableable> copy = new ArrayList<>(tableables);
         tableables.clear();
 
-        if (canGather()) {
-            for (Combination combination : combinations) {
-                if (combination.fulfills(copy)) {
-                    Factory factory = combination.getTurnFactory();
-                    return factory.getTurn(copy);
-                }
-            }
-        }
-        throw new UnexpectedGatherException();
+        return combinations.stream()
+                .filter(combination -> combination.fulfills(copy))
+                .map(Combination::getTurnFactory)
+                .findAny()
+                .orElseThrow(UnexpectedGatherException::new)
+                .getTurn(copy);
     }
 }
