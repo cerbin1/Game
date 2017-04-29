@@ -1,5 +1,7 @@
 package app.presenter.table;
 
+import app.model.turn.Factory;
+import app.model.turn.TurnFactory;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
@@ -51,5 +53,10 @@ public class ReserveCombination implements Combination {
             return ((TokenVO) tableable).isVersatile();
         }
         return false;
+    }
+
+    @Override
+    public Factory getTurnFactory() {
+        return new TurnFactory.ReservationTurn1Factory();
     }
 }
