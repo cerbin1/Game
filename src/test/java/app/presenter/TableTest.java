@@ -4,20 +4,23 @@ import app.model.card.CheapCard;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.TokensAmount;
+import app.model.turn.ReservationTurn;
+import app.model.turn.Turn;
 import app.presenter.table.Table;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
+import org.hamcrest.CoreMatchers;
+import org.junit.Assert;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
 
-import java.util.List;
-
 import static app.model.token.TokenColor.*;
 import static java.util.Arrays.asList;
-import static junit.framework.TestCase.assertEquals;
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 import static org.junit.rules.ExpectedException.none;
 
@@ -374,10 +377,10 @@ public class TableTest {
         table.put(tokenVO);
 
         // when
-        List<Tableable> gathered = table.gather();
+        Turn turn = table.gather();
 
         // then
-        assertEquals(asList(cardVO, tokenVO), gathered);
+        assertThat(turn, instanceOf(ReservationTurn.class));
     }
 
     @Test

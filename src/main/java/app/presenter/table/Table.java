@@ -1,5 +1,7 @@
 package app.presenter.table;
 
+import app.model.turn.Factory;
+import app.model.turn.Turn;
 import app.presenter.UnexpectedGatherException;
 import app.presenter.UnexpectedTakeException;
 import app.view.render.Tableable;
@@ -50,11 +52,17 @@ public class Table {
                 .anyMatch(combination -> combination.fulfills(tableables));
     }
 
-    public List<Tableable> gather() {
+    public Turn gather() {
+        List<Tableable> copy = new ArrayList<>(tableables);
+        tableables.clear();
+
         if (canGather()) {
-            List<Tableable> copy = new ArrayList<>(tableables);
-            tableables.clear();
-            return copy;
+            for (Combination combination : combinations) {
+                if (combination.fulfills(copy)) {
+                    Factory factory = combination.getTurnFactory();
+                    return factory.getTurn(copy);
+                }
+            }
         }
         throw new UnexpectedGatherException();
     }
