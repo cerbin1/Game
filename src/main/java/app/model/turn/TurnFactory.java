@@ -7,9 +7,6 @@ import app.view.render.vo.TokenVO;
 import java.util.List;
 
 public class TurnFactory {
-    public TurnFactory() {
-    }
-
     public static class BuyCardTurnFactory implements Factory {
         @Override
         public Turn getTurn(List<Tableable> tableables) {
