@@ -51,11 +51,11 @@ public class GameWindow implements Updatable {
 
         players.add(new Player());
 
-        ButtonVO passButtonVo = new ButtonVO("Pass turn", 1600, 1600);
-        passButtonVo.addClickListener(viewObject -> passButtonClicked());
+        ButtonVO cancelButtonVo = new ButtonVO("Pass turn", 1600, 1600);
+        cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
 
-        ButtonVO okButtonVo = new ButtonVO("Ok", 2100, 1600);
-        passButtonVo.addClickListener(viewObject -> okButtonClicked());
+        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
+        cancelButtonVo.addClickListener(viewObject -> turnButtonClicked());
 
         List<TokenVO> tokenVOs = new ArrayList<>();
         for (Entry<TokenColor, Integer> entry : tokensAmount.asMap().entrySet()) {
@@ -117,8 +117,8 @@ public class GameWindow implements Updatable {
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
-        renderers.add(new ButtonRenderer(passButtonVo));
-        renderers.add(new ButtonRenderer(okButtonVo));
+        renderers.add(new ButtonRenderer(cancelButtonVo));
+        renderers.add(new ButtonRenderer(turnButtonVo));
         renderers.add(textNotificationRenderer);
     }
 
@@ -131,11 +131,11 @@ public class GameWindow implements Updatable {
         }
     }
 
-    private void passButtonClicked() {
+    private void cancelButtonClicked() {
 
     }
 
-    private void okButtonClicked() {
+    private void turnButtonClicked() {
         if (table.canGather()) {
             table.gather();
         }
