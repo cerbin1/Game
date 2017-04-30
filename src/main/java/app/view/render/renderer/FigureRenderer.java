@@ -3,13 +3,13 @@ package app.view.render.renderer;
 import app.model.card.Figure;
 import app.model.token.TokenColor;
 import app.view.render.vo.FigureVO;
-import app.view.util.Font;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import java.util.function.BiConsumer;
 
+import static app.view.util.Font.*;
 import static org.newdawn.slick.Color.white;
 
 abstract class FigureRenderer extends Renderer {
@@ -36,7 +36,7 @@ abstract class FigureRenderer extends Renderer {
         graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
         if (figure.getPoints() > 0) {
-            Font.POINTS.drawString(20, 6, figure.getPoints() + "", Color.black);
+            POINTS_FONT.drawString(20, 6, figure.getPoints() + "", Color.black);
         }
     }
 
@@ -55,7 +55,7 @@ abstract class FigureRenderer extends Renderer {
         @Override
         public void accept(TokenColor color, Integer amount) {
             if (amount == 0) return;
-            Font.COST.drawString(19, nextElementHeight(), color.name() + ": " + amount);
+            COST_FONT.drawString(19, nextElementHeight(), color.name() + ": " + amount);
         }
 
         private int nextElementHeight() {
