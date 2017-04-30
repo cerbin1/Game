@@ -2,6 +2,7 @@ package app.view.render.renderer;
 
 import app.model.Updatable;
 import app.view.render.vo.ViewObject;
+import app.view.util.Font;
 import org.newdawn.slick.Graphics;
 
 import java.util.LinkedHashMap;
@@ -19,37 +20,39 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
 
     @Override
     protected void render(Graphics graphics) {
-        texts.entrySet()
-                .stream()
-                .filter(stringDoubleEntry -> stringDoubleEntry.getValue() >= timer)
-                .forEach(new MultipleTextNotificationDisplayer(graphics));
+        texts.keySet().forEach(new MultipleTextNotificationDisplayer(graphics));
     }
 
     @Override
     public void update(double secondsPassed) {
         timer += secondsPassed;
+        texts.values().removeIf(time -> time <= timer + 0);
     }
 
-    void display(String text) {
+    public void display(String text) {
         display(text, 3.0);
     }
 
     void display(String text, double time) {
+        if (texts.containsKey(text)) {
+            display(text + "*", time);
+            return;
+        }
         texts.put(text, timer + time);
     }
 
-    private static class MultipleTextNotificationDisplayer implements Consumer<Map.Entry<String, Double>> {
+    private static class MultipleTextNotificationDisplayer implements Consumer<String> {
         private final Graphics graphics;
-        private int index;
+        private int index = 0;
 
         MultipleTextNotificationDisplayer(Graphics graphics) {
             this.graphics = graphics;
-            index = 0;
         }
 
         @Override
-        public void accept(Map.Entry<String, Double> text) {
-            graphics.drawString(text.getKey(), 20, 20 + index * 30);
+        public void accept(String text) {
+            graphics.setFont(Font.POINTS_FONT);
+            graphics.drawString(text, 20, 20 + index * 30);
             index++;
         }
     }
