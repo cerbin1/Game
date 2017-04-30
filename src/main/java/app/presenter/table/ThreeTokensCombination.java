@@ -1,7 +1,7 @@
 package app.presenter.table;
 
 import app.model.turn.Factory;
-import app.model.turn.TurnFactory;
+import app.model.turn.factory.AcquireThreeTokensTurnFactory;
 import app.view.render.Tableable;
 
 import java.util.List;
@@ -43,6 +43,6 @@ public class ThreeTokensCombination implements Combination {
 
     @Override
     public Factory getTurnFactory() {
-        return new TurnFactory.AcquireThreeTokensTurnFactory();
+        return new AcquireThreeTokensTurnFactory();
     }
 }

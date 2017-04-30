@@ -1,7 +1,7 @@
 package app.presenter.table;
 
 import app.model.turn.Factory;
-import app.model.turn.TurnFactory;
+import app.model.turn.factory.AcquireTwoTokensTurnFactory;
 import app.view.render.Tableable;
 
 import java.util.List;
@@ -39,6 +39,6 @@ public class TwoTokensCombination implements Combination {
 
     @Override
     public Factory getTurnFactory() {
-        return new TurnFactory.AcquireTwoTokensTurnFactory();
+        return new AcquireTwoTokensTurnFactory();
     }
 }

@@ -7,7 +7,7 @@ import app.model.card.Card;
 public class ReservationTurn extends Turn {
     private final Card card;
 
-    ReservationTurn(Card card) {
+    public ReservationTurn(Card card) {
         this.card = card;
     }
 

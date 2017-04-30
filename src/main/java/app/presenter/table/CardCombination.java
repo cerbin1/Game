@@ -1,7 +1,7 @@
 package app.presenter.table;
 
 import app.model.turn.Factory;
-import app.model.turn.TurnFactory;
+import app.model.turn.factory.BuyCardTurnFactory;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 
@@ -29,6 +29,6 @@ public class CardCombination implements Combination {
 
     @Override
     public Factory getTurnFactory() {
-        return new TurnFactory.BuyCardTurnFactory();
+        return new BuyCardTurnFactory();
     }
 }
