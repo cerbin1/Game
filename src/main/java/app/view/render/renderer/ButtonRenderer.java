@@ -5,7 +5,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
-import static app.view.util.Font.*;
+import static app.view.util.Font.BUTTON_FONT;
 
 public class ButtonRenderer extends Renderer {
     private final Image buttonImage;
