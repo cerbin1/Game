@@ -1,7 +1,7 @@
 package app.presenter.table;
 
 import app.model.turn.factory.TurnFactory;
-import app.model.turn.factory.ReservationTurn1Factory;
+import app.model.turn.factory.ReservationTurnFactory;
 import app.view.render.Tableable;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
@@ -57,6 +57,6 @@ public class ReserveCombination implements Combination {
 
     @Override
     public TurnFactory getTurnFactory() {
-        return new ReservationTurn1Factory();
+        return new ReservationTurnFactory();
     }
 }

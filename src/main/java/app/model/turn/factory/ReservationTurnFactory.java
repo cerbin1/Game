@@ -9,7 +9,7 @@ import app.view.render.vo.TokenVO;
 
 import java.util.List;
 
-public class ReservationTurn1Factory implements TurnFactory {
+public class ReservationTurnFactory implements TurnFactory {
     @Override
     public Turn getTurn(List<Tableable> tableables) {
         if (tableables.size() == 2) {
