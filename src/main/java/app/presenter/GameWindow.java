@@ -1,7 +1,6 @@
 package app.presenter;
 
 import app.model.Game;
-import app.model.GameBuilder;
 import app.model.Player;
 import app.model.Updatable;
 import app.model.card.Card;
@@ -14,7 +13,10 @@ import app.model.util.Probability;
 import app.view.SubsequentCardDealer;
 import app.view.render.Tableable;
 import app.view.render.renderer.*;
-import app.view.render.vo.*;
+import app.view.render.vo.ButtonVO;
+import app.view.render.vo.CardVO;
+import app.view.render.vo.TokenVO;
+import app.view.render.vo.ViewObject;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -41,7 +43,6 @@ public class GameWindow implements Updatable {
 
     private void initializeGame() {
         CardFactory cardFactory = new CardFactory();
-        GameBuilder builder = new GameBuilder();
 
         TokensAmount tokensAmount = new TokensAmount(7, 5);
         List<Player> players = new ArrayList<>();
@@ -50,12 +51,11 @@ public class GameWindow implements Updatable {
 
         players.add(new Player());
 
-        Nobility nobility = new Nobility(new TokensAmount(1, 2, 3, 4, 0), 3);
-        NobilityVO nobilityVO = new NobilityVO(nobility, 1000, 1500);
-        nobilities.add(nobility);
+        ButtonVO passButtonVo = new ButtonVO("Pass turn", 1600, 1600);
+        passButtonVo.addClickListener(viewObject -> passButtonClicked());
 
-        ButtonVO buttonVO = new ButtonVO(1600, 1600);
-        buttonVO.addClickListener(viewObject -> buttonClicked());
+        ButtonVO okButtonVo = new ButtonVO("Ok", 2100, 1600);
+        passButtonVo.addClickListener(viewObject -> okButtonClicked());
 
         List<TokenVO> tokenVOs = new ArrayList<>();
         for (Entry<TokenColor, Integer> entry : tokensAmount.asMap().entrySet()) {
@@ -110,16 +110,15 @@ public class GameWindow implements Updatable {
 
         updatables.addAll(cardVOs);
         updatables.addAll(tokenVOs);
-        updatables.add(nobilityVO);
         updatables.add(textNotificationRenderer);
 
         renderers.add(new BackgroundRenderer());
 
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
-        renderers.add(new NobilityRenderer(nobilityVO));
 
-        renderers.add(new ButtonRenderer(buttonVO));
+        renderers.add(new ButtonRenderer(passButtonVo));
+        renderers.add(new ButtonRenderer(okButtonVo));
         renderers.add(textNotificationRenderer);
     }
 
@@ -132,7 +131,11 @@ public class GameWindow implements Updatable {
         }
     }
 
-    private void buttonClicked() {
+    private void passButtonClicked() {
+
+    }
+
+    private void okButtonClicked() {
         if (table.canGather()) {
             table.gather();
         }
