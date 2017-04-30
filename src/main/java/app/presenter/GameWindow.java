@@ -9,6 +9,7 @@ import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.TokensAmount;
+import app.model.turn.Turn;
 import app.model.util.Probability;
 import app.view.SubsequentCardDealer;
 import app.view.render.Tableable;
@@ -137,7 +138,8 @@ public class GameWindow implements Updatable {
 
     private void turnButtonClicked() {
         if (table.canGather()) {
-            table.gather();
+            Turn turn = table.gather();
+            game.performTurn(turn);
         }
     }
 
@@ -150,16 +152,16 @@ public class GameWindow implements Updatable {
         renderers.forEach(renderer -> renderer.renderOn(graphics));
     }
 
+    void mouseClicked(int x, int y) {
+        getRendererOnPoint(new Point(x, y)).ifPresent(this::clickedRenderer);
+    }
+
     private Optional<Renderer> getRendererOnPoint(Point point) {
         return renderers
                 .stream()
                 .filter(Renderer::isHoverable)
                 .filter(renderer -> renderer.getViewObject().getOutline().contains(point))
                 .reduce((a, b) -> b);
-    }
-
-    public void mouseClicked(int x, int y) {
-        getRendererOnPoint(new Point(x, y)).ifPresent(this::clickedRenderer);
     }
 
     private void clickedRenderer(Renderer renderer) {

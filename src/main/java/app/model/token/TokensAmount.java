@@ -75,16 +75,14 @@ public class TokensAmount {
     }
 
     TokensAmount asCost() {
-        TokensAmount tokensAmount = new TokensAmount();
+        TokensAmount tokensAmount = new TokensAmount(0);
         tokensAmount.tokens.putAll(this.tokens);
         return tokensAmount;
     }
 
     public TokensAmount add(TokensAmount component) {
         TokensAmount result = new TokensAmount(0, versatile + component.versatile);
-        for (TokenColor color : TokenColor.values()) {
-            result.tokens.put(color, tokens.get(color) + component.tokens.get(color));
-        }
+        tokens.forEach((color, amount) -> result.tokens.merge(color, amount, Integer::sum));
         return result;
     }
 
