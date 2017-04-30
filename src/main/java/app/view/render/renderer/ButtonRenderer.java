@@ -23,6 +23,6 @@ public class ButtonRenderer extends Renderer {
         graphics.drawImage(buttonImage, 0, 0, null);
         graphics.scale(1 / 1.6f, 1 / 1.6f);
         graphics.setFont(BUTTON_FONT);
-        graphics.drawString(buttonVO.getTitle(), 50, 30);
+        graphics.drawString(buttonVO.getTitle(), 100, 30);
     }
 }
