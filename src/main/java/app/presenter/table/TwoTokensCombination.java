@@ -1,6 +1,6 @@
 package app.presenter.table;
 
-import app.model.turn.Factory;
+import app.model.turn.factory.TurnFactory;
 import app.model.turn.factory.AcquireTwoTokensTurnFactory;
 import app.view.render.Tableable;
 
@@ -38,7 +38,7 @@ public class TwoTokensCombination implements Combination {
     }
 
     @Override
-    public Factory getTurnFactory() {
+    public TurnFactory getTurnFactory() {
         return new AcquireTwoTokensTurnFactory();
     }
 }
