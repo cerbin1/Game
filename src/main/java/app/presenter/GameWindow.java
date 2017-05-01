@@ -37,6 +37,8 @@ public class GameWindow implements Updatable {
     private final PositionTable table = new PositionTable(1800, 600);
     private TextNotificationRenderer textNotificationRenderer;
 
+    private static final CardFactory cardFactory = new CardFactory();
+
     private Game game;
 
     public GameWindow() {
@@ -44,22 +46,14 @@ public class GameWindow implements Updatable {
     }
 
     private void initializeGame() {
-        CardFactory cardFactory = new CardFactory();
-
-        TokensAmount tokensAmount = new TokensAmount(7, 5);
         List<Player> players = new ArrayList<>();
-        List<Card> cards = new ArrayList<>();
-        List<Nobility> nobilities = new ArrayList<>();
-
         players.add(new Player());
 
-        ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
-        cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
+        List<Nobility> nobilities = new ArrayList<>();
 
-        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
-        cancelButtonVo.addClickListener(viewObject -> turnButtonClicked());
-
+        TokensAmount tokensAmount = new TokensAmount(7, 5);
         List<TokenVO> tokenVOs = new ArrayList<>();
+
         for (Entry<TokenColor, Integer> entry : tokensAmount.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
@@ -75,6 +69,7 @@ public class GameWindow implements Updatable {
             tokenVOs.add(versatileVO);
         }
 
+        List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
 
         for (int i = 0; i < 4; i++) {
@@ -104,9 +99,9 @@ public class GameWindow implements Updatable {
             cardVOs.add(vo);
         }
 
-        game = new Game(tokensAmount, players, cards, nobilities);
-
         new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
+
+        game = new Game(tokensAmount, players, cards, nobilities);
 
         textNotificationRenderer = new TextNotificationRenderer(200, 100);
 
@@ -118,6 +113,12 @@ public class GameWindow implements Updatable {
 
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
+
+        ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
+        cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
+
+        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
+        turnButtonVo.addClickListener(viewObject -> turnButtonClicked());
 
         renderers.add(new ButtonRenderer(cancelButtonVo));
         renderers.add(new ButtonRenderer(turnButtonVo));
