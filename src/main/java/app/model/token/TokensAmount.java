@@ -81,7 +81,7 @@ public class TokensAmount {
     }
 
     public TokensAmount add(TokensAmount component) {
-        TokensAmount result = new TokensAmount(0, versatile + component.versatile);
+        TokensAmount result = new TokensAmount(component, versatile + component.versatile);
         tokens.forEach((color, amount) -> result.tokens.merge(color, amount, Integer::sum));
         return result;
     }
