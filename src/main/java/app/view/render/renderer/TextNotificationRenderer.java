@@ -9,6 +9,8 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
+import static app.view.util.Font.*;
+
 public class TextNotificationRenderer extends Renderer implements Updatable {
     private Map<String, Double> texts = new LinkedHashMap<>();
     private double timer = 0;
@@ -51,7 +53,7 @@ public class TextNotificationRenderer extends Renderer implements Updatable {
 
         @Override
         public void accept(String text) {
-            graphics.setFont(Font.POINTS_FONT);
+            graphics.setFont(POINTS_FONT);
             graphics.drawString(text, 20, 20 + index * 30);
             index++;
         }
