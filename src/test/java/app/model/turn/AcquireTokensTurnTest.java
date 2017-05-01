@@ -62,6 +62,53 @@ public class AcquireTokensTurnTest {
     }
 
     @Test
+    public void shouldThrowOnTakingTwoSameTokensWhenAfterOneTokenLeft() {
+        // given
+        TokensAmount tokensAmount = new TokensAmount(2, 0, 0, 0, 0);
+        TokensAmount gameTokens = new TokensAmount(3, 0, 0, 0, 0);
+        Turn turn = new AcquireTokensTurn(tokensAmount);
+        Player player = new Player();
+        Game game = GameBuilder.builder().add(player).set(gameTokens).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Invalid amount of tokensAmount");
+
+        // when
+        turn.invoke(game);
+
+    }
+
+    @Test
+    public void shouldThrowOnAcquireThreeSameTokens() {
+        // given
+        TokensAmount tokensAmount = new TokensAmount(3, 0, 0, 0, 0);
+        Turn turn = new AcquireTokensTurn(tokensAmount);
+        Player player = new Player();
+        Game game = GameBuilder.builder().add(player).set(tokensAmount).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Invalid amount of tokensAmount");
+
+        // then
+        turn.invoke(game);
+    }
+
+    @Test
+    public void shouldThrowOnAcquiringTwoDifferentTokens() {
+        // given
+        TokensAmount tokensAmount = new TokensAmount(1, 1, 0, 0, 0);
+        Turn turn = new AcquireTokensTurn(tokensAmount);
+        Player player = new Player();
+        Game game = GameBuilder.builder().add(player).set(tokensAmount).create();
+
+        expectedException.expect(IllegalTurnException.class);
+        expectedException.expectMessage("Invalid amount of tokensAmount");
+
+        // when
+        turn.invoke(game);
+    }
+
+    @Test
     public void shouldThrowOnAcquiringInvalidAmountOfTokens() {
         // given
         TokensAmount tokensAmount = new TokensAmount(1, 0, 0, 0, 0);
