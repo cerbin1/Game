@@ -2,14 +2,13 @@ package app.view.render.renderer;
 
 import app.model.Updatable;
 import app.view.render.vo.ViewObject;
-import app.view.util.Font;
 import org.newdawn.slick.Graphics;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.Consumer;
 
-import static app.view.util.Font.*;
+import static app.view.util.Font.POINTS_FONT;
 
 public class TextNotificationRenderer extends Renderer implements Updatable {
     private Map<String, Double> texts = new LinkedHashMap<>();
