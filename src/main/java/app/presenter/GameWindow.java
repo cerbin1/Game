@@ -60,8 +60,6 @@ public class GameWindow implements Updatable {
 
         game = new Game(gameTokensAmount, players, cards, new ArrayList<>());
 
-        cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
-        tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
 
         ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
         cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
@@ -76,6 +74,10 @@ public class GameWindow implements Updatable {
         renderers.add(new BackgroundRenderer());
         renderers.add(new ButtonRenderer(cancelButtonVo));
         renderers.add(new ButtonRenderer(turnButtonVo));
+
+        cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
+        tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
+
         renderers.add(textNotificationRenderer);
     }
 
