@@ -5,7 +5,6 @@ import app.model.Player;
 import app.model.Updatable;
 import app.model.card.Card;
 import app.model.card.CardFactory;
-import app.model.card.nobility.Nobility;
 import app.model.token.Token;
 import app.model.token.TokenColor;
 import app.model.token.TokensAmount;
@@ -18,6 +17,7 @@ import app.view.render.vo.ButtonVO;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
 import app.view.render.vo.ViewObject;
+import javafx.util.Pair;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -29,19 +29,20 @@ import static java.awt.RenderingHints.Entry;
 import static java.util.Collections.shuffle;
 
 public class GameWindow implements Updatable {
+    private final static TokensAmount gameTokensAmount = new TokensAmount(7, 5);
     private final static Probability probability = new Probability();
 
     private final List<Updatable> updatables = new ArrayList<>();
     private final List<Renderer> renderers = new ArrayList<>();
 
     private final PositionTable table = new PositionTable(1800, 600);
-    private TextNotificationRenderer textNotificationRenderer;
+    private TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer(200, 100);
 
     private static final CardFactory cardFactory = new CardFactory();
 
     private Game game;
 
-    public GameWindow() {
+    GameWindow() {
         initializeGame();
     }
 
@@ -49,12 +50,39 @@ public class GameWindow implements Updatable {
         List<Player> players = new ArrayList<>();
         players.add(new Player());
 
-        List<Nobility> nobilities = new ArrayList<>();
+        Pair<List<Card>, List<CardVO>> cardsAndVOs = createCardAndVOs();
+        List<Card> cards = cardsAndVOs.getKey();
+        List<CardVO> cardVOs = cardsAndVOs.getValue();
 
-        TokensAmount tokensAmount = new TokensAmount(7, 5);
+        List<TokenVO> tokenVOs = createTokenVOs();
+
+        new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
+
+        game = new Game(gameTokensAmount, players, cards, new ArrayList<>());
+
+        cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
+        tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
+
+        ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
+        cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
+
+        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
+        turnButtonVo.addClickListener(viewObject -> turnButtonClicked());
+
+        updatables.addAll(cardVOs);
+        updatables.addAll(tokenVOs);
+        updatables.add(textNotificationRenderer);
+
+        renderers.add(new BackgroundRenderer());
+        renderers.add(new ButtonRenderer(cancelButtonVo));
+        renderers.add(new ButtonRenderer(turnButtonVo));
+        renderers.add(textNotificationRenderer);
+    }
+
+    private List<TokenVO> createTokenVOs() {
         List<TokenVO> tokenVOs = new ArrayList<>();
 
-        for (Entry<TokenColor, Integer> entry : tokensAmount.asMap().entrySet()) {
+        for (Entry<TokenColor, Integer> entry : gameTokensAmount.asMap().entrySet()) {
             for (int i = 0; i < entry.getValue(); i++) {
                 TokenVO tokenVO = new TokenVO(new Token(entry.getKey()), probability.nextInt(1700, 2100), probability.nextInt(100, 300));
                 tokenVO.addClickListener(this::tableableClicked);
@@ -63,12 +91,15 @@ public class GameWindow implements Updatable {
         }
         shuffle(tokenVOs);
 
-        for (int i = 0; i < tokensAmount.getVersatile(); i++) {
+        for (int i = 0; i < gameTokensAmount.getVersatile(); i++) {
             TokenVO versatileVO = new TokenVO(new Token(null), probability.nextInt(2200, 2300), probability.nextInt(100, 300));
             versatileVO.addClickListener(this::tableableClicked);
             tokenVOs.add(versatileVO);
         }
+        return tokenVOs;
+    }
 
+    private Pair<List<Card>, List<CardVO>> createCardAndVOs() {
         List<Card> cards = new ArrayList<>();
         List<CardVO> cardVOs = new ArrayList<>();
 
@@ -98,31 +129,7 @@ public class GameWindow implements Updatable {
             cards.add(expensiveCard);
             cardVOs.add(vo);
         }
-
-        new SubsequentCardDealer(cardVOs, 4, i -> 1430 - i * 238).deal();
-
-        game = new Game(tokensAmount, players, cards, nobilities);
-
-        textNotificationRenderer = new TextNotificationRenderer(200, 100);
-
-        updatables.addAll(cardVOs);
-        updatables.addAll(tokenVOs);
-        updatables.add(textNotificationRenderer);
-
-        renderers.add(new BackgroundRenderer());
-
-        cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
-        tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));
-
-        ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
-        cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
-
-        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
-        turnButtonVo.addClickListener(viewObject -> turnButtonClicked());
-
-        renderers.add(new ButtonRenderer(cancelButtonVo));
-        renderers.add(new ButtonRenderer(turnButtonVo));
-        renderers.add(textNotificationRenderer);
+        return new Pair<>(cards, cardVOs);
     }
 
     private void tableableClicked(ViewObject viewObject) {
