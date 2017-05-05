@@ -36,6 +36,9 @@ public class GameWindow implements Updatable {
     private final List<Renderer> renderers = new ArrayList<>();
 
     private final PositionTable table = new PositionTable(1800, 600);
+    private ButtonVO turnButtonVo;
+    private ButtonVO cancelButtonVo;
+
     private TextNotificationRenderer textNotificationRenderer = new TextNotificationRenderer(200, 100);
 
     private static final CardFactory cardFactory = new CardFactory();
@@ -60,11 +63,10 @@ public class GameWindow implements Updatable {
 
         game = new Game(gameTokensAmount, players, cards, new ArrayList<>());
 
-
-        ButtonVO cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
+        cancelButtonVo = new ButtonVO("Cancel", 1600, 1600);
         cancelButtonVo.addClickListener(viewObject -> cancelButtonClicked());
 
-        ButtonVO turnButtonVo = new ButtonVO("Ok", 2100, 1600);
+        turnButtonVo = new ButtonVO("Ok", 2100, 1600);
         turnButtonVo.addClickListener(viewObject -> turnButtonClicked());
 
         updatables.addAll(cardVOs);
@@ -142,6 +144,8 @@ public class GameWindow implements Updatable {
         } else {
             table.put(tableable);
         }
+        cancelButtonVo.setEnabled(table.canGather());
+        turnButtonVo.setEnabled(table.canGather());
     }
 
     private void cancelButtonClicked() {

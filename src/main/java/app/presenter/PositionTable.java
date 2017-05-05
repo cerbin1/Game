@@ -14,7 +14,7 @@ public class PositionTable {
 
     private final Map<Tableable, Point> previousPosition = new HashMap<>();
 
-    public PositionTable(int x, int y) {
+    PositionTable(int x, int y) {
         this.x = x;
         this.y = y;
     }

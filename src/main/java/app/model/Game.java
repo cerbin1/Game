@@ -53,7 +53,7 @@ public class Game {
         cards.add(card);
     }
 
-    public List<Player> getPlayers() {
+    List<Player> getPlayers() {
         return players;
     }
 
@@ -65,7 +65,7 @@ public class Game {
         players.add(player);
     }
 
-    public List<Nobility> getNobilities() {
+    List<Nobility> getNobilities() {
         return nobilities;
     }
 
