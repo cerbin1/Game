@@ -74,6 +74,7 @@ public class GameWindow implements Updatable {
         renderers.add(new BackgroundRenderer());
         renderers.add(new ButtonRenderer(cancelButtonVo));
         renderers.add(new ButtonRenderer(turnButtonVo));
+        renderers.add(new PositionTableDebugRenderer(table));
 
         cardVOs.forEach(vo -> renderers.add(new CardRenderer(vo)));
         tokenVOs.forEach(vo -> renderers.add(new TokenRenderer(vo)));

@@ -28,30 +28,38 @@ public class PositionTable {
         return false;
     }
 
-    public void take(Tableable tableable) {
+    void take(Tableable tableable) {
         table.take(tableable);
         Point previousPoint = previousPosition.get(tableable);
         tableable.moveTo(previousPoint.x, previousPoint.y, 0.5);
         previousPosition.remove(tableable);
     }
 
-    public boolean canGather() {
+    boolean canGather() {
         return table.canGather();
     }
 
-    public boolean has(Tableable tableable) {
+    boolean has(Tableable tableable) {
         return previousPosition.containsKey(tableable);
     }
 
-    public boolean isEmpty() {
+    boolean isEmpty() {
         return previousPosition.isEmpty();
     }
 
-    public Turn gather() {
+    Turn gather() {
         for (Map.Entry<Tableable, Point> entry : previousPosition.entrySet()) {
             entry.getKey().moveTo(2000, 1000, 0.5);
         }
         previousPosition.clear();
         return table.gather();
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    public int getY() {
+        return y;
     }
 }
