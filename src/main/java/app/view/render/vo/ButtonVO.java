@@ -20,4 +20,11 @@ public class ButtonVO extends ViewObject {
     public void setEnabled(boolean disabled) {
         this.enabled = disabled;
     }
+
+    @Override
+    public void triggerClicked() {
+        if (enabled) {
+            super.triggerClicked();
+        }
+    }
 }
