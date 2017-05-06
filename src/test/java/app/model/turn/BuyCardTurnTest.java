@@ -87,7 +87,6 @@ public class BuyCardTurnTest {
         assertEquals(new TokensAmount(0, 1, 1, 1, 1, 4), game.getTokensAmount());
     }
 
-
     @Test
     public void shouldPreferTokensOverVersatile() {
         // given
