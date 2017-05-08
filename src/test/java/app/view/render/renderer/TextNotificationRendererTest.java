@@ -1,16 +1,24 @@
 package app.view.render.renderer;
 
+import app.view.util.Font;
+import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.verification.VerificationMode;
 import org.newdawn.slick.Graphics;
 
+import static app.view.util.Font.*;
 import static java.util.Arrays.asList;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentCaptor.forClass;
 import static org.mockito.Mockito.*;
 
 public class TextNotificationRendererTest {
+
+    @Before
+    public void overrideFont() {
+        setFont(mock(Font.class));
+    }
 
     @Test
     public void shouldRenderText() {

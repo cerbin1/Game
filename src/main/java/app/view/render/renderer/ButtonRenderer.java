@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
-import static app.view.util.Font.BUTTON_FONT;
+import static app.view.util.Font.*;
 
 public class ButtonRenderer extends Renderer {
     private final Image buttonImage;
@@ -24,7 +24,7 @@ public class ButtonRenderer extends Renderer {
         graphics.scale(1.6f, 1.6f);
         graphics.drawImage(buttonImage, 0, 0, null);
         graphics.scale(1 / 1.6f, 1 / 1.6f);
-        graphics.setFont(BUTTON_FONT);
+        graphics.setFont(getFont().BUTTON_FONT);
         graphics.drawString(buttonVO.getTitle(), 100, 30);
     }
 

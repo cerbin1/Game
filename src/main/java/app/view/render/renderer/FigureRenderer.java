@@ -36,7 +36,7 @@ abstract class FigureRenderer extends Renderer {
         graphics.fillRoundRect(0, 0, figureImage.getWidth(), 80, 20, 20);
 
         if (figure.getPoints() > 0) {
-            POINTS_FONT.drawString(20, 6, figure.getPoints() + "", Color.black);
+            getFont().POINTS_FONT.drawString(20, 6, figure.getPoints() + "", Color.black);
         }
     }
 
@@ -55,7 +55,7 @@ abstract class FigureRenderer extends Renderer {
         @Override
         public void accept(TokenColor color, Integer amount) {
             if (amount == 0) return;
-            COST_FONT.drawString(19, nextElementHeight(), color.name() + ": " + amount);
+            getFont().COST_FONT.drawString(19, nextElementHeight(), color.name() + ": " + amount);
         }
 
         private int nextElementHeight() {
