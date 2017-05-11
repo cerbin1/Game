@@ -94,6 +94,10 @@ public class TokensAmount {
         return result;
     }
 
+    public boolean isZero() {
+        return tokens.entrySet().stream().noneMatch(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() != 0);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
