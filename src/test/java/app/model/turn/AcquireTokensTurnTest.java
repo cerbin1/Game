@@ -18,16 +18,17 @@ public class AcquireTokensTurnTest {
     public void shouldAcquireTwoSameTokens() {
         // given
         TokensAmount tokensAmount = new TokensAmount(2, 0, 0, 0, 0);
+        TokensAmount gameTokens = new TokensAmount(3, 0, 0, 0, 0);
         Turn turn = new AcquireTokensTurn(tokensAmount);
         Player player = new Player();
-        Game game = GameBuilder.builder().add(player).set(tokensAmount).create();
+        Game game = GameBuilder.builder().add(player).set(gameTokens).create();
 
         // when
         turn.invoke(game);
 
         // then
         assertEquals(new TokensAmount(2, 0, 0, 0, 0), player.getTokensAmount());
-        assertEquals(new TokensAmount(), game.getTokensAmount());
+        assertEquals(new TokensAmount(new TokensAmount(1, 0, 0, 0, 0)), game.getTokensAmount());
     }
 
     @Test

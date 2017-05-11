@@ -14,23 +14,25 @@ public class AcquireTokensTurn extends Turn {
     @Override
     public void invoke(Game game) {
         Player player = game.getCurrentPlayer();
-        if (!three() && !two()) {
+        if (!threeDifferentTokensChose(game.getTokensAmount()) && !twoSameTokensChose(game.getTokensAmount())) {
             throw new IllegalTurnException("Invalid amount of tokensAmount");
         }
+
         player.setTokensAmount(player.getTokensAmount().add(tokensAmount));
         game.setTokensAmount(game.getTokensAmount().subtract(tokensAmount));
+
     }
 
-    private boolean two() {
-        return tokensAmount.asMap().entrySet().stream().filter(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() == 2).count() == 1 && tokensAmount.asMap().entrySet().stream().filter(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() == 0).count() == 4;
+    private boolean twoSameTokensChose(TokensAmount gameTokens) {
+        return tokensAmount.asMap().entrySet().stream().filter(tokenColor -> tokenColor.getValue() == 2 &&
+                gameTokens.asMap().get(tokenColor.getKey()) > tokenColor.getValue()).count() == 1 &&
+                tokensAmount.asMap().entrySet().stream().filter(tokenColor -> tokenColor.getValue() == 0).count() == 4;
     }
 
-    private boolean three() {
-        return (tokensAmount.asMap().entrySet().stream().filter(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() == 1).count() == 3) &&
-                tokensAmount.asMap().entrySet().stream().filter(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() == 0).count() == 2;
-    }
-
-    private boolean areThreeSameTokensChose() {
-        return tokensAmount.asMap().entrySet().stream().anyMatch(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() == 3);
+    private boolean threeDifferentTokensChose(TokensAmount gameTokens) {
+        return (tokensAmount.asMap().entrySet().stream().filter(tokenColor -> tokenColor.getValue() == 1).count() == 3) &&
+                tokensAmount.asMap().entrySet().stream().filter(tokenColor -> tokenColor.getValue() == 0).count() == 2 &&
+                tokensAmount.asMap().entrySet().stream().noneMatch(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() <= gameTokens.asMap().get(tokenColorIntegerEntry.getKey()))
+                ;
     }
 }
