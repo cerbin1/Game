@@ -40,6 +40,9 @@ public class AnimatedValue {
         this.destinationValue = value;
         this.duration = duration;
         this.passedDuration = 0.0;
+        if(this.onFinish != null) {
+            this.onFinish.run();
+        }
         this.onFinish = onFinish;
     }
 
