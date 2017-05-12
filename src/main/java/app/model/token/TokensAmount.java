@@ -60,7 +60,7 @@ public class TokensAmount {
         this.versatile = versatile;
     }
 
-    int get(TokenColor color) {
+    public int get(TokenColor color) {
         return tokens.getOrDefault(color, 0);
     }
 
@@ -92,10 +92,6 @@ public class TokensAmount {
             result.tokens.put(color, get(color) - subtrahend.get(color));
         }
         return result;
-    }
-
-    public boolean isZero() {
-        return tokens.entrySet().stream().noneMatch(tokenColorIntegerEntry -> tokenColorIntegerEntry.getValue() != 0);
     }
 
     @Override
