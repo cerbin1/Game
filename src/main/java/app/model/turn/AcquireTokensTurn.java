@@ -16,7 +16,7 @@ public class AcquireTokensTurn extends Turn {
 
     @Override
     public void invoke(Game game) {
-        if (!isEnoughTokensInGame(game.getTokensAmount())) {
+        if (isEnoughTokensInGame(game.getTokensAmount())) {
             throw new IllegalTurnException("Not enough tokens in game");
         }
         if (!canAcquireThreeDifferentTokens() && !canAcquireTwoSameTokens(game.getTokensAmount())) {
