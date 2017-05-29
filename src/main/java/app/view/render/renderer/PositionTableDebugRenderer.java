@@ -2,8 +2,9 @@ package app.view.render.renderer;
 
 import app.presenter.PositionTable;
 import app.view.render.vo.ViewObject;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
+
+import static org.newdawn.slick.Color.*;
 
 public class PositionTableDebugRenderer extends Renderer {
     public PositionTableDebugRenderer(PositionTable positionTable) {
@@ -13,11 +14,11 @@ public class PositionTableDebugRenderer extends Renderer {
 
     @Override
     protected void render(Graphics graphics) {
-        graphics.setColor(Color.white);
+        graphics.setColor(white);
         graphics.fillRect(0, 0, 330, 80);
-        graphics.setColor(Color.black);
+        graphics.setColor(black);
         graphics.drawString("PositionTable", 10, 10);
-        graphics.setColor(Color.red);
+        graphics.setColor(red);
         graphics.fillRect(0, 0, 10, 10);
     }
 }
