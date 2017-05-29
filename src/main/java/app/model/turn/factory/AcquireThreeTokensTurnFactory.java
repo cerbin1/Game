@@ -25,7 +25,7 @@ public class AcquireThreeTokensTurnFactory implements TurnFactory {
             if (uniqueTokens == 3) {
                 Map<TokenColor, Integer> tokensToAcquire = new HashMap<>();
                 tableables.forEach(tableable -> tokensToAcquire.put(((TokenVO) tableable).getColor(), 1));
-                return new AcquireTokensTurn(new TokensAmount(tokensToAcquire, 0));
+                return new AcquireTokensTurn(new TokensAmount(tokensToAcquire));
             }
         }
         throw new UnexpectedCreateTurnException();

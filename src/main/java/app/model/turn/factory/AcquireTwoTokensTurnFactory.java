@@ -19,7 +19,7 @@ public class AcquireTwoTokensTurnFactory implements TurnFactory {
             if (((TokenVO) tableables.get(0)).getColor() == ((TokenVO) tableables.get(1)).getColor()) {
                 Map<TokenColor, Integer> tokensToAcquire = new HashMap<>();
                 tokensToAcquire.put(((TokenVO) tableables.get(0)).getColor(), 2);
-                return new AcquireTokensTurn(new TokensAmount(tokensToAcquire, 0));
+                return new AcquireTokensTurn(new TokensAmount(tokensToAcquire));
             }
         }
         throw new UnexpectedCreateTurnException();
