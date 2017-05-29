@@ -16,7 +16,6 @@ public class ImageRepository {
         imageRepository = new ImageRepository();
     }
 
-
     public Image cardBack = get("images/card.png");
     public Image cardBench = get("images/cards/view/bench.png");
     public Image cardCastle = get("images/cards/view/castle.png");

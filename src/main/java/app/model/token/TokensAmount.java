@@ -23,6 +23,10 @@ public class TokensAmount {
         this.versatile = tokensAmount.versatile;
     }
 
+    public TokensAmount(Map<TokenColor, Integer> tokens) {
+        this(tokens, 0);
+    }
+
     public TokensAmount(Map<TokenColor, Integer> tokens, int versatile) {
         this.tokens.putAll(tokens);
         this.versatile = versatile;
@@ -75,7 +79,7 @@ public class TokensAmount {
     }
 
     TokensAmount asCost() {
-        TokensAmount tokensAmount = new TokensAmount(0);
+        TokensAmount tokensAmount = new TokensAmount();
         tokensAmount.tokens.putAll(this.tokens);
         return tokensAmount;
     }
