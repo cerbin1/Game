@@ -7,6 +7,7 @@ import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
 import static app.view.util.Font.*;
+import static org.newdawn.slick.Color.*;
 
 public class ButtonRenderer extends Renderer {
     private final Image buttonImage;
@@ -30,9 +31,9 @@ public class ButtonRenderer extends Renderer {
 
     private void setColor(Graphics graphics) {
         if (buttonVO.isEnabled()) {
-            graphics.setColor(Color.white);
+            graphics.setColor(white);
         } else {
-            graphics.setColor(Color.darkGray);
+            graphics.setColor(darkGray);
         }
     }
 }
