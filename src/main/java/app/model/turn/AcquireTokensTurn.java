@@ -5,7 +5,6 @@ import app.model.Player;
 import app.model.token.TokensAmount;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 public class AcquireTokensTurn extends Turn {
@@ -33,7 +32,7 @@ public class AcquireTokensTurn extends Turn {
     }
 
     private boolean canAcquireTwoSameTokens(TokensAmount gameTokens) {
-        return tokensAmount.asMap().values().stream().sorted().collect(toList()).equals(singletonList(2)) &&
+        return tokensAmount.asMap().values().stream().sorted().collect(toList()).equals(asList(0, 0, 0, 0, 2)) &&
                 tokensAmount.asMap().entrySet().stream().noneMatch(token -> token.getValue() == 2 && gameTokens.get(token.getKey()) - token.getValue() == 1);
     }
 
