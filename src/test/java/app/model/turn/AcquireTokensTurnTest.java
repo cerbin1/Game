@@ -17,11 +17,12 @@ public class AcquireTokensTurnTest {
     @Test
     public void shouldAcquireTwoSameTokens() {
         // given
-        TokensAmount tokensAmount = new TokensAmount(2, 0, 0, 0, 0);
-        TokensAmount gameTokens = new TokensAmount(4, 0, 0, 0, 0);
-        Turn turn = new AcquireTokensTurn(tokensAmount);
+        Turn turn = new AcquireTokensTurn(new TokensAmount(2, 0, 0, 0, 0));
         Player player = new Player();
-        Game game = GameBuilder.builder().add(player).set(gameTokens).create();
+        Game game = GameBuilder.builder()
+                .add(player)
+                .set(new TokensAmount(4, 0, 0, 0, 0))
+                .create();
 
         // when
         turn.invoke(game);

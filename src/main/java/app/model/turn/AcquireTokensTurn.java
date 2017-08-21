@@ -5,7 +5,7 @@ import app.model.Player;
 import app.model.token.TokensAmount;
 
 import static java.util.Arrays.asList;
-import static java.util.Collections.*;
+import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
 
 public class AcquireTokensTurn extends Turn {
@@ -38,6 +38,6 @@ public class AcquireTokensTurn extends Turn {
     }
 
     private boolean canAcquireThreeDifferentTokens() {
-        return tokensAmount.asMap().values().stream().sorted().collect(toList()).equals(asList(1, 1, 1));
+        return tokensAmount.asMap().values().stream().sorted().collect(toList()).equals(asList(0, 0, 1, 1, 1));
     }
 }
