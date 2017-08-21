@@ -7,7 +7,14 @@ import static app.model.token.TokenColor.*;
 import static java.lang.Math.max;
 
 public class TokensAmount {
-    private final Map<TokenColor, Integer> tokens = new EnumMap<>(TokenColor.class);
+    private final Map<TokenColor, Integer> tokens = new EnumMap<TokenColor, Integer>(TokenColor.class) {{
+        put(Green, 0);
+        put(Purple, 0);
+        put(Blue, 0);
+        put(Black, 0);
+        put(Red, 0);
+    }};
+
     private final int versatile;
 
     public TokensAmount() {
