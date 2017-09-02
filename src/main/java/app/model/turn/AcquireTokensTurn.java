@@ -16,7 +16,7 @@ public class AcquireTokensTurn extends Turn {
 
     @Override
     public void invoke(Game game) {
-        if (!isEnoughTokensInGame(game.getTokensAmount())) {
+        if (isNotEnoughTokensInGame(game.getTokensAmount())) {
             throw new IllegalTurnException("Not enough tokens in game");
         }
         if (!canAcquireThreeDifferentTokens() && !canAcquireTwoSameTokens(game.getTokensAmount())) {
@@ -27,7 +27,7 @@ public class AcquireTokensTurn extends Turn {
         game.setTokensAmount(game.getTokensAmount().subtract(tokensAmount));
     }
 
-    private boolean isEnoughTokensInGame(TokensAmount gameTokens) {
+    private boolean isNotEnoughTokensInGame(TokensAmount gameTokens) {
         return tokensAmount.asMap().entrySet().stream().anyMatch(token -> gameTokens.get(token.getKey()) - token.getValue() < 0);
     }
 
