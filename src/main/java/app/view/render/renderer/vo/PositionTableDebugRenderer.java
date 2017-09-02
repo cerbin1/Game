@@ -1,6 +1,7 @@
-package app.view.render.renderer;
+package app.view.render.renderer.vo;
 
 import app.presenter.PositionTable;
+import app.view.render.renderer.Renderer;
 import app.view.render.vo.ViewObject;
 import org.newdawn.slick.Graphics;
 

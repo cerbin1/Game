@@ -1,7 +1,8 @@
-package app.view.render.renderer;
+package app.view.render.renderer.vo;
 
 import app.model.card.Figure;
 import app.model.token.TokenColor;
+import app.view.render.renderer.Renderer;
 import app.view.render.vo.FigureVO;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
@@ -9,7 +10,7 @@ import org.newdawn.slick.Image;
 
 import java.util.function.BiConsumer;
 
-import static app.view.util.Font.*;
+import static app.view.util.Font.getFont;
 import static org.newdawn.slick.Color.white;
 
 abstract class FigureRenderer extends Renderer {

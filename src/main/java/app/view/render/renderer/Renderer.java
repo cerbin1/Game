@@ -10,9 +10,9 @@ import static java.awt.Toolkit.getDefaultToolkit;
 public abstract class Renderer {
     private final static Dimension screenSize = getDefaultToolkit().getScreenSize();
 
-    final ViewObject viewObject;
+    protected final ViewObject viewObject;
 
-    Renderer(ViewObject viewObject) {
+    protected Renderer(ViewObject viewObject) {
         this.viewObject = viewObject;
     }
 

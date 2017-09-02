@@ -1,4 +1,4 @@
-package app.view.render.renderer;
+package app.view.render.renderer.vo;
 
 import app.view.render.vo.CardVO;
 import org.newdawn.slick.Graphics;

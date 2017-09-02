@@ -1,5 +1,6 @@
-package app.view.render.renderer;
+package app.view.render.renderer.vo;
 
+import app.view.render.renderer.Renderer;
 import app.view.render.vo.TokenVO;
 import org.newdawn.slick.Image;
 

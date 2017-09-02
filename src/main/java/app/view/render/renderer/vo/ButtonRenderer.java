@@ -1,13 +1,14 @@
-package app.view.render.renderer;
+package app.view.render.renderer.vo;
 
+import app.view.render.renderer.Renderer;
 import app.view.render.vo.ButtonVO;
-import org.newdawn.slick.Color;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 
 import static app.view.ImageRepository.imageRepository;
-import static app.view.util.Font.*;
-import static org.newdawn.slick.Color.*;
+import static app.view.util.Font.getFont;
+import static org.newdawn.slick.Color.darkGray;
+import static org.newdawn.slick.Color.white;
 
 public class ButtonRenderer extends Renderer {
     private final Image buttonImage;
