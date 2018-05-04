@@ -1,4 +1,4 @@
-NOT FINISHED
+GAME IS NOT FINISHED
 
 Board card game written using Java and frameworks.
 
