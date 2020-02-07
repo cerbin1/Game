@@ -12,7 +12,9 @@ import app.model.turn.Turn;
 import app.model.util.Probability;
 import app.view.SubsequentCardDealer;
 import app.view.render.Tableable;
-import app.view.render.renderer.*;
+import app.view.render.renderer.BackgroundRenderer;
+import app.view.render.renderer.Renderer;
+import app.view.render.renderer.TextNotificationRenderer;
 import app.view.render.renderer.vo.ButtonRenderer;
 import app.view.render.renderer.vo.CardRenderer;
 import app.view.render.renderer.vo.PositionTableDebugRenderer;
@@ -21,7 +23,6 @@ import app.view.render.vo.ButtonVO;
 import app.view.render.vo.CardVO;
 import app.view.render.vo.TokenVO;
 import app.view.render.vo.ViewObject;
-import javafx.util.Pair;
 
 import java.awt.*;
 import java.util.ArrayList;
